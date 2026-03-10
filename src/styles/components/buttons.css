@@ -1,0 +1,55 @@
+/* ========================================
+   Fixed Side Buttons
+   ======================================== */
+
+/* ---------- Fixed Side Buttons ---------- */
+.fixed-side-btns {
+  position: fixed;
+  right: 0;
+  bottom: 120px;
+  display: flex;
+  flex-direction: column;
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.fixed-side-btns.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fixed-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.fixed-btn:hover {
+  opacity: 0.85;
+}
+
+.fixed-btn img,
+.fixed-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.fixed-btn-contact {
+  background: var(--hy-red);
+}
+
+.fixed-btn-contact img,
+.fixed-btn-contact svg {
+  filter: brightness(0) invert(1);
+}
+
+.fixed-btn-top {
+  background: var(--zinc-100);
+}

@@ -1,0 +1,77 @@
+import { IconXmarkOutline24 } from 'nucleo-core-outline-24'
+import { IconBoltSpeedOutline24 } from 'nucleo-core-outline-24'
+import { IconFlaskOutline24 } from 'nucleo-core-outline-24'
+import { IconHighlighterOutline24 } from 'nucleo-core-outline-24'
+import { IconNodes2Outline24 } from 'nucleo-core-outline-24'
+import { IconCutleryOutline24 } from 'nucleo-core-outline-24'
+import { IconMedicineOutline24 } from 'nucleo-core-outline-24'
+import { IconSoapDispenserOutline24 } from 'nucleo-core-outline-24'
+import { IconMicrochipOutline24 } from 'nucleo-core-outline-24'
+import { IconChevronRightOutline24 } from 'nucleo-core-outline-24'
+import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
+
+const leftItems = [
+  { Icon: IconBoltSpeedOutline24, label: '新能源行业' },
+  { Icon: IconFlaskOutline24, label: '化工行业' },
+  { Icon: IconHighlighterOutline24, label: '制胶行业' },
+  { Icon: IconNodes2Outline24, label: '火工药剂' },
+]
+
+const middleItems = [
+  { Icon: IconCutleryOutline24, label: '食品行业' },
+  { Icon: IconMedicineOutline24, label: '医药行业' },
+  { Icon: IconSoapDispenserOutline24, label: '化妆品行业' },
+  { Icon: IconMicrochipOutline24, label: '电子材料行业' },
+]
+
+export default function DropdownSolutions({ active, onClose, cancelClose, scheduleClose }) {
+  const renderItem = (item) => (
+    <a href="#" key={item.label} className="dropdown-item">
+      <span className="dropdown-item-content">
+        <item.Icon className="dropdown-icon-svg" size={20} />
+        <span>{item.label}</span>
+      </span>
+      <span className="dropdown-arrow">
+        <IconChevronRightOutline24 size={16} />
+      </span>
+    </a>
+  )
+
+  return (
+    <div
+      className={`dropdown-menu${active ? ' active' : ''}`}
+      id="dropdownSolutions"
+      onMouseEnter={cancelClose}
+      onMouseLeave={scheduleClose}
+    >
+      <button className="dropdown-close" aria-label="关闭" onClick={onClose}>
+        <IconXmarkOutline24 size={24} aria-hidden={true} />
+      </button>
+      <div className="dropdown-container">
+        <div className="dropdown-col dropdown-col-left">
+          {leftItems.map(renderItem)}
+        </div>
+
+        <div className="dropdown-col dropdown-col-middle visible">
+          {middleItems.map(renderItem)}
+        </div>
+
+        <div className="dropdown-col dropdown-col-right">
+          <div className="dropdown-preview">
+            <h3 className="dropdown-preview-title">行业解决方案</h3>
+            <p className="dropdown-preview-desc">
+              服务新能源、医药、化工等多个行业，提供可靠高效的混合与工艺解决方案，以技术创新推动产业智能化发展。
+            </p>
+            <a href="#" className="dropdown-preview-btn">
+              了解更多
+              <IconArrowRightOutline24 className="dropdown-preview-btn-icon" size={18} />
+            </a>
+          </div>
+          <div className="dropdown-preview-image">
+            <img src="/assets/images/hy-dropmenu-application-img.jpg" alt="行业解决方案" />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

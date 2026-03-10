@@ -1,0 +1,298 @@
+/* ========================================
+   Footer
+   ======================================== */
+
+/* ---------- Footer ---------- */
+.footer {
+  background: #fff;
+}
+
+.footer-main {
+  padding: 60px 0;
+}
+
+.footer-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  gap: 60px;
+}
+
+.footer-logo-col {
+  flex-shrink: 0;
+  padding-right: 60px;
+}
+
+.footer-logo {
+  height: 100px;
+  width: auto;
+}
+
+.footer-nav {
+  flex: 1;
+  display: flex;
+  gap: 60px;
+}
+
+.footer-col {
+  flex: 1;
+}
+
+.footer-col-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--hy-red);
+  margin-bottom: 16px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.footer-col-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100px;
+  height: 0.5px;
+  background: var(--zinc-200);
+}
+
+.footer-col-title::before {
+  content: '';
+  position: absolute;
+  left: 100px;
+  bottom: 0;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--zinc-200);
+  transform: translateY(50%);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 2px;
+}
+
+.footer-links li.level-1 > a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--zinc-700);
+  transition: color 0.3s ease;
+}
+
+.footer-links li.level-1 > a:hover {
+  color: var(--hy-red);
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: var(--zinc-700);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--hy-red);
+}
+
+/* Sub links (level 2) */
+.footer-sublinks {
+  list-style: none;
+}
+
+.footer-sublinks li {
+  margin-bottom: 0px;
+}
+
+.footer-sublinks a {
+  font-size: 13px;
+  color: var(--zinc-400);
+  line-height: 1.8;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.footer-sublinks a:hover {
+  color: var(--hy-red);
+}
+
+/* Footer Contact Column */
+.footer-contact {
+  flex: 1.2;
+}
+
+.footer-hotline-label {
+  font-size: 14px;
+  color: var(--zinc-400);
+}
+
+.footer-hotline {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: 'DIN Pro', sans-serif;
+  color: var(--hy-red);
+  letter-spacing: 0.02em;
+}
+
+.footer-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--zinc-600);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+.footer-email:hover {
+  color: var(--hy-red);
+}
+
+.footer-email img,
+.footer-email svg {
+  width: 16px;
+  height: 16px;
+}
+
+.footer-social {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+}
+
+.social-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.social-icon:hover {
+  opacity: 0.7;
+}
+
+.social-icon > img {
+  display: none;
+}
+
+.social-icon::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-color: var(--hy-red);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.social-icon[aria-label="微信"]::after {
+  mask-image: url('/assets/icons/re/wechat-fill 2.svg');
+  -webkit-mask-image: url('/assets/icons/re/wechat-fill 2.svg');
+}
+
+.social-icon[aria-label="抖音"]::after {
+  mask-image: url('/assets/icons/re/tiktok 2.svg');
+  -webkit-mask-image: url('/assets/icons/re/tiktok 2.svg');
+}
+
+.social-icon[aria-label="LinkedIn"]::after {
+  mask-image: url('/assets/icons/re/linkedin-box-fill 2.svg');
+  -webkit-mask-image: url('/assets/icons/re/linkedin-box-fill 2.svg');
+}
+
+/* WeChat QR Code Popup */
+.social-wechat {
+  position: relative;
+}
+
+.wechat-qrcode {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 12px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--zinc-200);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 100;
+  white-space: nowrap;
+}
+
+.social-wechat:hover .wechat-qrcode {
+  opacity: 1;
+  visibility: visible;
+}
+
+.wechat-qrcode img {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.wechat-qrcode p {
+  font-size: 14px;
+  color: var(--zinc-600);
+  text-align: center;
+  margin-top: 8px;
+  white-space: nowrap;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  background-color: var(--zinc-100);
+  padding: 16px 0 16px 0;
+}
+
+.footer-bottom-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copyright {
+  font-size: 12px;
+  color: var(--zinc-400);
+}
+
+.footer-legal {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-legal a {
+  font-size: 12px;
+  color: var(--zinc-400);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-legal a:hover {
+  color: var(--zinc-600);
+}
+
+.legal-divider {
+  font-size: 12px;
+  color: var(--zinc-300);
+}

@@ -1,0 +1,47 @@
+/* ========================================
+   CSS 变量定义
+   ======================================== */
+
+:root {
+  /* Main Colors */
+  --hy-red: #BA0C2F;
+  --hy-red-dark: #9A0A27;
+  --hy-black: #000000;
+  --hy-white: #FFFFFF;
+  
+  /* Zinc Scale */
+  --zinc-50: #FAFAFA;
+  --zinc-100: #F4F4F5;
+  --zinc-200: #E4E4E7;
+  --zinc-300: #D4D4D8;
+  --zinc-400: #A1A1AA;
+  --zinc-500: #71717A;
+  --zinc-600: #52525B;
+  --zinc-700: #3F3F46;
+  --zinc-800: #27272A;
+  --zinc-900: #18181B;
+  --zinc-950: #09090B;
+  
+  /* Border Radius */
+  --rounded-none: 0;
+  --rounded-sm: 2px;
+  --rounded: 4px;
+  --rounded-md: 6px;
+  --rounded-lg: 8px;
+  --rounded-xl: 12px;
+  --rounded-2xl: 16px;
+  --rounded-3xl: 24px;
+  
+  /* Aliases (for convenience) */
+  --color-primary: var(--hy-red);
+  --color-text: var(--zinc-900);
+  --color-text-secondary: var(--zinc-600);
+  --color-border: var(--zinc-200);
+  --color-bg: var(--hy-white);
+  --color-bg-secondary: var(--zinc-50);
+  
+  /* Layout */
+  --max-width: 1360px;
+  --header-height: 64px;
+  --hero-height: calc(100vh - 140px);
+}
