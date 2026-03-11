@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import { IconGlobeOutline24 } from 'nucleo-core-outline-24'
 import { IconMagnifierOutline24 } from 'nucleo-core-outline-24'
 import MobileMenu from './MobileMenu'
 
-export default function Header({ activeDropdown, openDropdown, scheduleClose, cancelClose, closeDropdown, onSearchOpen }) {
+export default function Header({ activeDropdown, openDropdown, scheduleClose, cancelClose, closeDropdown, onSearchOpen, forceScrolled = false }) {
   const [scrolled, setScrolled] = useState(false)
   const [contactHovered, setContactHovered] = useState(false)
   const [activeLang, setActiveLang] = useState('zh')
@@ -18,7 +19,7 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const isHeaderWhite = scrolled || activeDropdown || contactHovered
+  const isHeaderWhite = forceScrolled || scrolled || activeDropdown || contactHovered
 
   const handleNavEnter = useCallback((name) => {
     openDropdown(name)
@@ -41,9 +42,9 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
   return (
     <header className={`header${isHeaderWhite ? ' scrolled' : ''}`}>
       <div className="header-container">
-        <a href="/" className="logo">
+        <Link to="/" className="logo">
           <img src="/assets/images/hy-logo-ch-h.svg" alt="红运机械" className="logo-img" />
-        </a>
+        </Link>
 
         <nav className="nav">
           <ul className="nav-list">
@@ -52,7 +53,7 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
               onMouseEnter={() => handleNavEnter('about')}
               onMouseLeave={handleNavLeave}
             >
-              <a href="#about" className="nav-link">关于红运</a>
+              <Link to="/about" className="nav-link">关于红运</Link>
             </li>
             <li
               className={`nav-item has-dropdown${activeDropdown === 'solutions' ? ' active' : ''}`}
@@ -60,7 +61,7 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
               onMouseEnter={() => handleNavEnter('solutions')}
               onMouseLeave={handleNavLeave}
             >
-              <a href="#solutions" className="nav-link">行业解决方案</a>
+              <Link to="/solutions" className="nav-link">行业解决方案</Link>
             </li>
             <li
               className={`nav-item has-dropdown${activeDropdown === 'products' ? ' active' : ''}`}
@@ -68,14 +69,14 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
               onMouseEnter={() => handleNavEnter('products')}
               onMouseLeave={handleNavLeave}
             >
-              <a href="#products" className="nav-link">产品中心</a>
+              <Link to="/products" className="nav-link">产品中心</Link>
             </li>
             <li
               className="nav-item"
               onMouseEnter={handleContactEnter}
               onMouseLeave={handleContactLeave}
             >
-              <a href="#contact" className="nav-link">联系我们</a>
+              <Link to="/contact" className="nav-link">联系我们</Link>
             </li>
           </ul>
         </nav>

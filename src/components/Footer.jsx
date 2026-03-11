@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { IconEnvelopeOutline24 } from 'nucleo-core-outline-24'
 
 export default function Footer() {
@@ -17,18 +18,18 @@ export default function Footer() {
               <h4 className="footer-col-title">关于红运</h4>
               <ul className="footer-links">
                 <li className="level-1">
-                  <a href="#">公司介绍</a>
+                  <Link to="/about#company-intro">公司介绍</Link>
                   <ul className="footer-sublinks">
-                    <li><a href="#">简介</a></li>
-                    <li><a href="#">企业使命</a></li>
-                    <li><a href="#">企业愿景</a></li>
-                    <li><a href="#">企业价值观</a></li>
-                    <li><a href="#">合作伙伴</a></li>
+                    <li><Link to="/about#company-intro">简介</Link></li>
+                    <li><Link to="/about#culture">企业使命</Link></li>
+                    <li><Link to="/about#culture">企业愿景</Link></li>
+                    <li><Link to="/about#culture">企业价值观</Link></li>
+                    <li><Link to="/about#partners-page">合作伙伴</Link></li>
                   </ul>
                 </li>
-                <li className="level-1"><a href="#">发展历程</a></li>
-                <li className="level-1"><a href="#">荣誉资质</a></li>
-                <li className="level-1"><a href="#">联系我们</a></li>
+                <li className="level-1"><Link to="/about#history">发展历程</Link></li>
+                <li className="level-1"><Link to="/about#honors">荣誉资质</Link></li>
+                <li className="level-1"><Link to="/contact">联系我们</Link></li>
                 <li className="level-1"><a href="#">加入我们</a></li>
                 <li className="level-1"><a href="#">新闻中心</a></li>
               </ul>
@@ -38,9 +39,9 @@ export default function Footer() {
             <div className="footer-col">
               <h4 className="footer-col-title">产品中心</h4>
               <ul className="footer-links">
-                <li><a href="#">计量输送系统</a></li>
-                <li><a href="#">核心设备</a></li>
-                <li><a href="#">集成系统</a></li>
+                <li><Link to="/products">计量输送系统</Link></li>
+                <li><Link to="/products">核心设备</Link></li>
+                <li><Link to="/products">集成系统</Link></li>
               </ul>
             </div>
 
@@ -48,14 +49,14 @@ export default function Footer() {
             <div className="footer-col">
               <h4 className="footer-col-title">解决方案</h4>
               <ul className="footer-links">
-                <li><a href="#">新能源行业</a></li>
-                <li><a href="#">化工行业</a></li>
-                <li><a href="#">制胶行业</a></li>
-                <li><a href="#">火工药剂</a></li>
-                <li><a href="#">食品行业</a></li>
-                <li><a href="#">医药行业</a></li>
-                <li><a href="#">化妆品行业</a></li>
-                <li><a href="#">电子材料行业</a></li>
+                <li><Link to="/solutions#new-energy">新能源行业</Link></li>
+                <li><Link to="/solutions#chemical">化工行业</Link></li>
+                <li><Link to="/solutions#adhesive">制胶行业</Link></li>
+                <li><Link to="/solutions#pyrotechnics">火工药剂</Link></li>
+                <li><Link to="/solutions#food">食品行业</Link></li>
+                <li><Link to="/solutions#pharma">医药行业</Link></li>
+                <li><Link to="/solutions#cosmetics">化妆品行业</Link></li>
+                <li><Link to="/solutions#electronics">电子材料行业</Link></li>
               </ul>
             </div>
 

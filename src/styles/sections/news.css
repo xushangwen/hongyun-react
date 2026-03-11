@@ -33,7 +33,6 @@
 
 .news-card {
   background: var(--hy-white);
-  border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

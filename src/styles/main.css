@@ -21,5 +21,8 @@
 @import './sections/contact.css';
 @import './sections/news.css';
 
+/* Pages */
+@import './pages/pages.css';
+
 /* Responsive */
 @import './base/responsive.css';

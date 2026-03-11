@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { IconChevronRightOutline24 } from 'nucleo-core-outline-24'
 import { IconChevronLeftOutline24 } from 'nucleo-core-outline-24'
 import { IconXmarkOutline24 } from 'nucleo-core-outline-24'
@@ -25,10 +26,10 @@ const menuData = [
     label: '关于红运',
     Icon: IconOffice2Outline24,
     children: [
-      { Icon: IconOffice2Outline24, label: '公司介绍', href: '#' },
-      { Icon: IconHistoryOutline24, label: '发展历程', href: '#' },
-      { Icon: IconAwardPlaqueOutline24, label: '荣誉资质', href: '#' },
-      { Icon: IconMessageBubbleUserOutline24, label: '联系我们', href: '#' },
+      { Icon: IconOffice2Outline24, label: '公司介绍', href: '/about#company-intro' },
+      { Icon: IconHistoryOutline24, label: '发展历程', href: '/about#history' },
+      { Icon: IconAwardPlaqueOutline24, label: '荣誉资质', href: '/about#honors' },
+      { Icon: IconMessageBubbleUserOutline24, label: '联系我们', href: '/contact' },
       { Icon: IconUsersPlusOutline24, label: '加入我们', href: '#' },
     ],
   },
@@ -36,29 +37,29 @@ const menuData = [
     label: '行业解决方案',
     Icon: IconBoltSpeedOutline24,
     children: [
-      { Icon: IconBoltSpeedOutline24, label: '新能源行业', href: '#' },
-      { Icon: IconFlaskOutline24, label: '化工行业', href: '#' },
-      { Icon: IconHighlighterOutline24, label: '制胶行业', href: '#' },
-      { Icon: IconNodes2Outline24, label: '火工药剂', href: '#' },
-      { Icon: IconCutleryOutline24, label: '食品行业', href: '#' },
-      { Icon: IconMedicineOutline24, label: '医药行业', href: '#' },
-      { Icon: IconSoapDispenserOutline24, label: '化妆品行业', href: '#' },
-      { Icon: IconMicrochipOutline24, label: '电子材料行业', href: '#' },
+      { Icon: IconBoltSpeedOutline24, label: '新能源行业', href: '/solutions#new-energy' },
+      { Icon: IconFlaskOutline24, label: '化工行业', href: '/solutions#chemical' },
+      { Icon: IconHighlighterOutline24, label: '制胶行业', href: '/solutions#adhesive' },
+      { Icon: IconNodes2Outline24, label: '火工药剂', href: '/solutions#pyrotechnics' },
+      { Icon: IconCutleryOutline24, label: '食品行业', href: '/solutions#food' },
+      { Icon: IconMedicineOutline24, label: '医药行业', href: '/solutions#pharma' },
+      { Icon: IconSoapDispenserOutline24, label: '化妆品行业', href: '/solutions#cosmetics' },
+      { Icon: IconMicrochipOutline24, label: '电子材料行业', href: '/solutions#electronics' },
     ],
   },
   {
     label: '产品中心',
     Icon: IconGearNodesOutline24,
     children: [
-      { Icon: IconScrollVerticalOutline24, label: '计量输送系统', href: '#' },
-      { Icon: IconGearNodesOutline24, label: '核心设备', href: '#' },
-      { Icon: IconAiOutline24, label: '集成系统', href: '#' },
+      { Icon: IconScrollVerticalOutline24, label: '计量输送系统', href: '/products' },
+      { Icon: IconGearNodesOutline24, label: '核心设备', href: '/products' },
+      { Icon: IconAiOutline24, label: '集成系统', href: '/products' },
     ],
   },
   {
     label: '联系我们',
     Icon: IconPhoneOutline24,
-    href: '#contact',
+    href: '/contact',
   },
 ]
 
@@ -118,12 +119,12 @@ export default function MobileMenu({ isOpen, onClose }) {
                       <IconChevronRightOutline24 size={16} className="mobile-menu-chevron" />
                     </button>
                   ) : (
-                    <a href={item.href} className="mobile-menu-link" onClick={handleClose}>
+                    <Link to={item.href} className="mobile-menu-link" onClick={handleClose}>
                       <span className="mobile-menu-link-inner">
                         <item.Icon size={20} className="mobile-menu-icon" />
                         <span className="mobile-menu-label">{item.label}</span>
                       </span>
-                    </a>
+                    </Link>
                   )}
                 </li>
               ))}
@@ -140,12 +141,12 @@ export default function MobileMenu({ isOpen, onClose }) {
                 <ul className="mobile-menu-list">
                   {item.children.map((child) => (
                     <li key={child.label} className="mobile-menu-item">
-                      <a href={child.href} className="mobile-menu-link" onClick={handleClose}>
+                      <Link to={child.href} className="mobile-menu-link" onClick={handleClose}>
                         <span className="mobile-menu-link-inner">
                           <child.Icon size={20} className="mobile-menu-icon" />
                           <span className="mobile-menu-label">{child.label}</span>
                         </span>
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>

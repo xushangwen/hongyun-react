@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import { IconXmarkOutline24 } from 'nucleo-core-outline-24'
 import { IconScrollVerticalOutline24 } from 'nucleo-core-outline-24'
 import { IconGearNodesOutline24 } from 'nucleo-core-outline-24'
@@ -85,8 +86,8 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
         {/* 第一级：产品大类 */}
         <div className="dropdown-col dropdown-col-left dropdown-products-level1" id="productsLevel1">
           {level1Items.map((item, index) => (
-            <a
-              href="#"
+            <Link
+              to="/products"
               key={item.category}
               className={`dropdown-item${activeLevel1 === index ? ' active' : ''}`}
               data-category={item.category}
@@ -94,6 +95,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
                 setActiveLevel1(index)
                 setLevel2Visible(true)
               }}
+              onClick={handleClose}
             >
               <span className="dropdown-item-content">
                 <item.Icon className="dropdown-icon-svg" size={20} />
@@ -102,7 +104,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
               <span className="dropdown-arrow">
                 <IconChevronRightOutline24 size={16} />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -118,7 +120,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
               key={item.subcategory}
               className="dropdown-item"
               data-subcategory={item.subcategory}
-              onClick={enterLevel3}
+              onClick={(e) => { e.preventDefault(); enterLevel3(e) }}
             >
               <span className="dropdown-item-content">
                 <span>{item.label}</span>
@@ -143,6 +145,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
               className={`dropdown-item${activeLevel3Left === index ? ' active' : ''}`}
               data-sub={item.sub}
               onMouseEnter={() => setActiveLevel3Left(index)}
+              onClick={(e) => e.preventDefault()}
             >
               <span className="dropdown-item-content">
                 <span>{item.label}</span>
@@ -160,10 +163,11 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
           id="productsLevel3FeedingSub"
         >
           {level3SubItems.map((item, index) => (
-            <a
-              href="#"
+            <Link
+              to="/products"
               key={item.label}
               className={`dropdown-item${index === 0 ? ' active' : ''}`}
+              onClick={handleClose}
             >
               <span className="dropdown-item-content">
                 <span>{item.label}</span>
@@ -171,7 +175,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
               <span className="dropdown-arrow">
                 <IconChevronRightOutline24 size={16} />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -182,10 +186,10 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
             <p className="dropdown-preview-desc">
               用于粉体、液体等物料的精准计量与高效输送，广泛应用于新能源、化工、食品等行业。系统稳定、精度高，适配多种复杂工艺。
             </p>
-            <a href="#" className="dropdown-preview-btn">
+            <Link to="/products" className="dropdown-preview-btn">
               了解更多
               <IconArrowRightOutline24 className="dropdown-preview-btn-icon" size={18} />
-            </a>
+            </Link>
           </div>
           <div className="dropdown-preview-image">
             <img src="/assets/images/hy-dropmenu-product-img.jpg" alt="计量输送系统" id="productsPreviewImg" />

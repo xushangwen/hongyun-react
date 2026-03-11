@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { IconXmarkOutline24 } from 'nucleo-core-outline-24'
 import { IconBoltSpeedOutline24 } from 'nucleo-core-outline-24'
 import { IconFlaskOutline24 } from 'nucleo-core-outline-24'
@@ -11,22 +12,22 @@ import { IconChevronRightOutline24 } from 'nucleo-core-outline-24'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 
 const leftItems = [
-  { Icon: IconBoltSpeedOutline24, label: '新能源行业' },
-  { Icon: IconFlaskOutline24, label: '化工行业' },
-  { Icon: IconHighlighterOutline24, label: '制胶行业' },
-  { Icon: IconNodes2Outline24, label: '火工药剂' },
+  { Icon: IconBoltSpeedOutline24, label: '新能源行业', to: '/solutions#new-energy' },
+  { Icon: IconFlaskOutline24, label: '化工行业', to: '/solutions#chemical' },
+  { Icon: IconHighlighterOutline24, label: '制胶行业', to: '/solutions#adhesive' },
+  { Icon: IconNodes2Outline24, label: '火工药剂', to: '/solutions#pyrotechnics' },
 ]
 
 const middleItems = [
-  { Icon: IconCutleryOutline24, label: '食品行业' },
-  { Icon: IconMedicineOutline24, label: '医药行业' },
-  { Icon: IconSoapDispenserOutline24, label: '化妆品行业' },
-  { Icon: IconMicrochipOutline24, label: '电子材料行业' },
+  { Icon: IconCutleryOutline24, label: '食品行业', to: '/solutions#food' },
+  { Icon: IconMedicineOutline24, label: '医药行业', to: '/solutions#pharma' },
+  { Icon: IconSoapDispenserOutline24, label: '化妆品行业', to: '/solutions#cosmetics' },
+  { Icon: IconMicrochipOutline24, label: '电子材料行业', to: '/solutions#electronics' },
 ]
 
 export default function DropdownSolutions({ active, onClose, cancelClose, scheduleClose }) {
   const renderItem = (item) => (
-    <a href="#" key={item.label} className="dropdown-item">
+    <Link to={item.to} key={item.label} className="dropdown-item" onClick={onClose}>
       <span className="dropdown-item-content">
         <item.Icon className="dropdown-icon-svg" size={20} />
         <span>{item.label}</span>
@@ -34,7 +35,7 @@ export default function DropdownSolutions({ active, onClose, cancelClose, schedu
       <span className="dropdown-arrow">
         <IconChevronRightOutline24 size={16} />
       </span>
-    </a>
+    </Link>
   )
 
   return (
@@ -62,10 +63,10 @@ export default function DropdownSolutions({ active, onClose, cancelClose, schedu
             <p className="dropdown-preview-desc">
               服务新能源、医药、化工等多个行业，提供可靠高效的混合与工艺解决方案，以技术创新推动产业智能化发展。
             </p>
-            <a href="#" className="dropdown-preview-btn">
+            <Link to="/solutions" className="dropdown-preview-btn">
               了解更多
               <IconArrowRightOutline24 className="dropdown-preview-btn-icon" size={18} />
-            </a>
+            </Link>
           </div>
           <div className="dropdown-preview-image">
             <img src="/assets/images/hy-dropmenu-application-img.jpg" alt="行业解决方案" />
