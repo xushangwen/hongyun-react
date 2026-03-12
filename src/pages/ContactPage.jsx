@@ -89,7 +89,11 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero title="联系我们" subtitle="CONTACT US" deco="CONTACT" />
+      <PageHero
+        title="联系我们"
+        subtitle="专业团队随时为您提供技术支持与商务咨询"
+        bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
+      />
 
       <div className="page-body">
         <div className="page-container">
@@ -136,11 +140,28 @@ export default function ContactPage() {
         <section className="contact-page-section contact-page-section--gray" id="inquiry">
           <div className="page-container">
             <h2 className="section-heading">技术咨询</h2>
-            <p className="section-desc">
-              请填写以下信息，我们的技术团队将在24小时内与您联系，为您提供一站式工艺解决方案。
-              <span className="generated-tag">AI</span>
-            </p>
             <div className="contact-form-wrapper">
+              {/* 左侧品牌面板 */}
+              <div className="contact-brand-panel">
+                <div className="contact-brand-logo">红运<span>机械</span></div>
+                <p className="contact-brand-tagline">专注混合工艺<br />三十年技术积淀</p>
+                <div className="contact-brand-divider" />
+                <div className="contact-brand-items">
+                  <div className="contact-brand-item">
+                    <span className="contact-brand-item-label">响应时效</span>
+                    <span className="contact-brand-item-value">24小时内技术团队回复</span>
+                  </div>
+                  <div className="contact-brand-item">
+                    <span className="contact-brand-item-label">服务热线</span>
+                    <span className="contact-brand-item-value">400 915 3366</span>
+                  </div>
+                  <div className="contact-brand-item">
+                    <span className="contact-brand-item-label">商务邮箱</span>
+                    <span className="contact-brand-item-value">business@hongyun.com</span>
+                  </div>
+                </div>
+              </div>
+              {/* 右侧表单 */}
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="contact-form-row">
                   <div className="contact-form-field">

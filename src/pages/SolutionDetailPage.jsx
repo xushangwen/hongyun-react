@@ -99,7 +99,11 @@ export default function SolutionDetailPage() {
 
   return (
     <>
-      <PageHero title={solutionName} subtitle={industryName.toUpperCase()} deco="SOLUTION" />
+      <PageHero
+        title={solutionName}
+        subtitle={industryName}
+        bgImage="https://plus.unsplash.com/premium_photo-1661915091623-3025c240b0fb?auto=format&fit=crop&w=1920&q=80"
+      />
 
       <div className="page-body">
         <div className="page-container">
@@ -219,19 +223,17 @@ export default function SolutionDetailPage() {
           </div>
         </section>
 
-        {/* ===== 联系CTA ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <div className="detail-contact-inner">
-              <h2 className="detail-contact-title">需要了解更多？</h2>
-              <p className="detail-contact-desc">我们的专业团队随时为您提供技术咨询和定制化解决方案。</p>
-              <Link to="/contact" className="btn-primary">
-                联系我们
-                <IconArrowRightOutline24 size={18} />
-              </Link>
-            </div>
+        {/* ===== 联系CTA - 全宽暗色 ===== */}
+        <div className="detail-contact-cta">
+          <div className="detail-contact-inner">
+            <h2 className="detail-contact-title">需要了解更多？</h2>
+            <p className="detail-contact-desc">我们的专业团队随时为您提供技术咨询和定制化解决方案，助力您的生产工艺升级。</p>
+            <Link to="/contact" className="btn-primary">
+              联系我们
+              <IconArrowRightOutline24 size={18} />
+            </Link>
           </div>
-        </section>
+        </div>
       </div>
     </>
   )

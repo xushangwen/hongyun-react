@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { IconXmarkOutline24 } from 'nucleo-core-outline-24'
-import { IconBoltSpeedOutline24 } from 'nucleo-core-outline-24'
+import { IconCarBatteryOutline24 } from 'nucleo-core-outline-24'
+import { IconBatteryChargingOutline24 } from 'nucleo-core-outline-24'
 import { IconFlaskOutline24 } from 'nucleo-core-outline-24'
-import { IconHighlighterOutline24 } from 'nucleo-core-outline-24'
-import { IconNodes2Outline24 } from 'nucleo-core-outline-24'
+import { IconTestTubeOutline24 } from 'nucleo-core-outline-24'
+import { IconFireFlameOutline24 } from 'nucleo-core-outline-24'
 import { IconCutleryOutline24 } from 'nucleo-core-outline-24'
 import { IconMedicineOutline24 } from 'nucleo-core-outline-24'
 import { IconSoapDispenserOutline24 } from 'nucleo-core-outline-24'
@@ -12,17 +13,18 @@ import { IconChevronRightOutline24 } from 'nucleo-core-outline-24'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 
 const leftItems = [
-  { Icon: IconBoltSpeedOutline24, label: '新能源行业', to: '/solutions#new-energy' },
-  { Icon: IconFlaskOutline24, label: '化工行业', to: '/solutions#chemical' },
-  { Icon: IconHighlighterOutline24, label: '制胶行业', to: '/solutions#adhesive' },
-  { Icon: IconNodes2Outline24, label: '火工药剂', to: '/solutions#pyrotechnics' },
+  { Icon: IconCarBatteryOutline24,       label: '新能源',   to: '/solutions#new-energy' },
+  { Icon: IconBatteryChargingOutline24,   label: '固态电池', to: '/solutions#solid-state-battery' },
+  { Icon: IconFlaskOutline24,           label: '化工',     to: '/solutions#chemical' },
+  { Icon: IconTestTubeOutline24,        label: '制胶',     to: '/solutions#adhesive' },
+  { Icon: IconFireFlameOutline24,       label: '火工药剂', to: '/solutions#pyrotechnics' },
 ]
 
 const middleItems = [
-  { Icon: IconCutleryOutline24, label: '食品行业', to: '/solutions#food' },
-  { Icon: IconMedicineOutline24, label: '医药行业', to: '/solutions#pharma' },
-  { Icon: IconSoapDispenserOutline24, label: '化妆品行业', to: '/solutions#cosmetics' },
-  { Icon: IconMicrochipOutline24, label: '电子材料行业', to: '/solutions#electronics' },
+  { Icon: IconCutleryOutline24,       label: '食品',   to: '/solutions#food' },
+  { Icon: IconMedicineOutline24,      label: '医药',   to: '/solutions#pharma' },
+  { Icon: IconSoapDispenserOutline24, label: '化妆品', to: '/solutions#cosmetics' },
+  { Icon: IconMicrochipOutline24,     label: '电子材料', to: '/solutions#electronics' },
 ]
 
 export default function DropdownSolutions({ active, onClose, cancelClose, scheduleClose }) {
@@ -61,9 +63,9 @@ export default function DropdownSolutions({ active, onClose, cancelClose, schedu
           <div className="dropdown-preview">
             <h3 className="dropdown-preview-title">行业解决方案</h3>
             <p className="dropdown-preview-desc">
-              服务新能源、医药、化工等多个行业，提供可靠高效的混合与工艺解决方案，以技术创新推动产业智能化发展。
+              深耕新能源、固态电池、化工等多个行业，提供可靠高效的混合与工艺解决方案，以技术创新推动产业智能化发展。
             </p>
-            <Link to="/solutions" className="dropdown-preview-btn">
+            <Link to="/solutions" className="dropdown-preview-btn" onClick={onClose}>
               了解更多
               <IconArrowRightOutline24 className="dropdown-preview-btn-icon" size={18} />
             </Link>

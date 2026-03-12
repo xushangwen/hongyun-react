@@ -1,40 +1,33 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IconXmarkOutline24 } from 'nucleo-core-outline-24'
 import { IconOffice2Outline24 } from 'nucleo-core-outline-24'
-import { IconHistoryOutline24 } from 'nucleo-core-outline-24'
-import { IconAwardPlaqueOutline24 } from 'nucleo-core-outline-24'
-import { IconMessageBubbleUserOutline24 } from 'nucleo-core-outline-24'
-import { IconUsersPlusOutline24 } from 'nucleo-core-outline-24'
-import { IconNewspaperOutline24 } from 'nucleo-core-outline-24'
+import { IconCircleMediaPlayOutline24 } from 'nucleo-core-outline-24'
 import { IconTargetOutline24 } from 'nucleo-core-outline-24'
-import { IconNodes2Outline24 } from 'nucleo-core-outline-24'
+import { IconHistoryOutline24 } from 'nucleo-core-outline-24'
+import { IconGearNodesOutline24 } from 'nucleo-core-outline-24'
+import { IconAtomOutline24 } from 'nucleo-core-outline-24'
 import { IconGlobeOutline24 } from 'nucleo-core-outline-24'
+import { IconAwardPlaqueOutline24 } from 'nucleo-core-outline-24'
 import { IconUsersShakingHandsOutline24 } from 'nucleo-core-outline-24'
 import { IconChevronRightOutline24 } from 'nucleo-core-outline-24'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 
 const leftItems = [
-  { Icon: IconOffice2Outline24, label: '公司介绍', hasMiddle: true, to: '/about#company-intro' },
-  { Icon: IconHistoryOutline24, label: '发展历程', hasMiddle: false, to: '/about#history' },
-  { Icon: IconAwardPlaqueOutline24, label: '荣誉资质', hasMiddle: false, to: '/about#honors' },
-  { Icon: IconMessageBubbleUserOutline24, label: '联系我们', hasMiddle: false, to: '/contact' },
-  { Icon: IconUsersPlusOutline24, label: '加入我们', hasMiddle: false, to: '/about' },
+  { Icon: IconOffice2Outline24,          label: '公司简介', to: '/about#company-intro' },
+  { Icon: IconCircleMediaPlayOutline24,  label: '企业宣传片', to: '/about#promo-video' },
+  { Icon: IconTargetOutline24,           label: '企业文化',  to: '/about#culture' },
+  { Icon: IconHistoryOutline24,          label: '发展历程',  to: '/about#history' },
+  { Icon: IconGearNodesOutline24,        label: '生产实力',  to: '/about#production' },
 ]
 
 const middleItems = [
-  { Icon: IconNewspaperOutline24, label: '简介', to: '/about#company-intro' },
-  { Icon: IconTargetOutline24, label: '企业使命', to: '/about#culture' },
-  { Icon: IconNodes2Outline24, label: '企业愿景', to: '/about#culture' },
-  { Icon: IconGlobeOutline24, label: '企业价值观', to: '/about#culture' },
-  { Icon: IconUsersShakingHandsOutline24, label: '合作伙伴', to: '/about#partners-page' },
+  { Icon: IconAtomOutline24,             label: '研发实力',   to: '/about#rnd' },
+  { Icon: IconGlobeOutline24,            label: '全球化布局', to: '/about#global' },
+  { Icon: IconAwardPlaqueOutline24,      label: '资质 / 荣誉', to: '/about#honors' },
+  { Icon: IconUsersShakingHandsOutline24, label: '合作伙伴',  to: '/about#partners-page' },
 ]
 
 export default function DropdownAbout({ active, onClose, cancelClose, scheduleClose }) {
-  const [activeLeftIndex, setActiveLeftIndex] = useState(0)
-
-  const showMiddle = activeLeftIndex === 0
-
   return (
     <div
       className={`dropdown-menu${active ? ' active' : ''}`}
@@ -48,12 +41,11 @@ export default function DropdownAbout({ active, onClose, cancelClose, scheduleCl
       <div className="dropdown-container">
         {/* Left Column */}
         <div className="dropdown-col dropdown-col-left">
-          {leftItems.map((item, index) => (
+          {leftItems.map((item) => (
             <Link
               to={item.to}
               key={item.label}
-              className={`dropdown-item${activeLeftIndex === index ? ' active' : ''}`}
-              onMouseEnter={() => setActiveLeftIndex(index)}
+              className="dropdown-item"
               onClick={onClose}
             >
               <span className="dropdown-item-content">
@@ -67,13 +59,16 @@ export default function DropdownAbout({ active, onClose, cancelClose, scheduleCl
           ))}
         </div>
 
-        {/* Middle Column */}
-        <div className={`dropdown-col dropdown-col-middle${showMiddle ? ' visible' : ''}`}>
+        {/* Middle Column - always visible */}
+        <div className="dropdown-col dropdown-col-middle visible">
           {middleItems.map((item) => (
             <Link to={item.to} key={item.label} className="dropdown-item" onClick={onClose}>
               <span className="dropdown-item-content">
                 <item.Icon className="dropdown-icon-svg" size={20} />
                 <span>{item.label}</span>
+              </span>
+              <span className="dropdown-arrow">
+                <IconChevronRightOutline24 size={16} />
               </span>
             </Link>
           ))}
@@ -86,7 +81,7 @@ export default function DropdownAbout({ active, onClose, cancelClose, scheduleCl
             <p className="dropdown-preview-desc">
               红运机械自1993年成立以来，专注于混合设备的研究、开发与制造，始终以技术创新为核心驱动力。
             </p>
-            <Link to="/about" className="dropdown-preview-btn">
+            <Link to="/about" className="dropdown-preview-btn" onClick={onClose}>
               了解更多
               <IconArrowRightOutline24 className="dropdown-preview-btn-icon" size={18} />
             </Link>

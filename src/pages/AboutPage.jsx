@@ -1,10 +1,43 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+
+/* ========== 数字计数动画 Hook ========== */
+function useCountUp(target, duration = 1800) {
+  const [count, setCount] = useState(0)
+  const [started, setStarted] = useState(false)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setStarted(true); observer.disconnect() } },
+      { threshold: 0.5 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!started) return
+    let startTime = null
+    const step = (ts) => {
+      if (!startTime) startTime = ts
+      const progress = Math.min((ts - startTime) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.round(eased * target))
+      if (progress < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }, [started, target, duration])
+
+  return [count, ref]
+}
 
 /* ========== 发展历程数据 [AI生成] ========== */
 const timelineData = [
@@ -37,28 +70,33 @@ const honorsTabs = ['资质认证', '专利技术', '荣誉奖项']
 export default function AboutPage() {
   const [activeHonorTab, setActiveHonorTab] = useState(0)
 
+  const [count30, ref30] = useCountUp(30)
+  const [count100, ref100] = useCountUp(100)
+  const [count2000, ref2000] = useCountUp(2000)
+  const [count50000, ref50000] = useCountUp(50000)
+  const [count300, ref300] = useCountUp(300)
+  const [count1000, ref1000] = useCountUp(1000)
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-          }
+          if (entry.isIntersecting) entry.target.classList.add('visible')
         })
       },
       { threshold: 0.15 }
     )
-
-    document.querySelectorAll('.section-heading, .fade-up').forEach((el) => {
-      observer.observe(el)
-    })
-
+    document.querySelectorAll('.section-heading, .fade-up').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
 
   return (
     <>
-      <PageHero title="追求完美 做到极致" subtitle="ABOUT HONGYUN" deco="HONGYUN" />
+      <PageHero
+        title="追求完美 做到极致"
+        subtitle="专注混合设备研发制造三十余年"
+        bgImage="https://images.unsplash.com/photo-1624027492684-327af1fb7559?auto=format&fit=crop&w=1920&q=80"
+      />
 
       <div className="page-body">
         {/* ===== 面包屑 ===== */}
@@ -81,16 +119,16 @@ export default function AboutPage() {
                   <span className="generated-tag">AI</span>
                 </p>
                 <div className="about-intro-stats">
-                  <div>
-                    <div className="about-intro-stat-number">30<span style={{ fontSize: '20px' }}>+</span></div>
+                  <div ref={ref30}>
+                    <div className="about-intro-stat-number">{count30}<span style={{ fontSize: '20px' }}>+</span></div>
                     <div className="about-intro-stat-unit">年技术积累</div>
                   </div>
-                  <div>
-                    <div className="about-intro-stat-number">100<span style={{ fontSize: '20px' }}>+</span></div>
+                  <div ref={ref100}>
+                    <div className="about-intro-stat-number">{count100}<span style={{ fontSize: '20px' }}>+</span></div>
                     <div className="about-intro-stat-unit">专利技术</div>
                   </div>
-                  <div>
-                    <div className="about-intro-stat-number">2000<span style={{ fontSize: '20px' }}>+</span></div>
+                  <div ref={ref2000}>
+                    <div className="about-intro-stat-number">{count2000}<span style={{ fontSize: '20px' }}>+</span></div>
                     <div className="about-intro-stat-unit">服务客户</div>
                   </div>
                 </div>
@@ -184,16 +222,16 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="about-production-stats">
-              <div className="about-production-stat">
-                <div className="about-production-stat-num">50,000<span style={{ fontSize: '16px' }}>+</span></div>
+              <div className="about-production-stat" ref={ref50000}>
+                <div className="about-production-stat-num">{count50000.toLocaleString()}<span style={{ fontSize: '16px' }}>+</span></div>
                 <div className="about-production-stat-label">厂房面积（m²）</div>
               </div>
-              <div className="about-production-stat">
-                <div className="about-production-stat-num">300<span style={{ fontSize: '16px' }}>+</span></div>
+              <div className="about-production-stat" ref={ref300}>
+                <div className="about-production-stat-num">{count300}<span style={{ fontSize: '16px' }}>+</span></div>
                 <div className="about-production-stat-label">精密加工设备（台）</div>
               </div>
-              <div className="about-production-stat">
-                <div className="about-production-stat-num">1000<span style={{ fontSize: '16px' }}>+</span></div>
+              <div className="about-production-stat" ref={ref1000}>
+                <div className="about-production-stat-num">{count1000}<span style={{ fontSize: '16px' }}>+</span></div>
                 <div className="about-production-stat-label">年产能（台套）</div>
               </div>
             </div>

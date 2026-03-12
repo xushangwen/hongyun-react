@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
@@ -89,49 +89,63 @@ const productCategories = [
 ]
 
 export default function ProductsPage() {
+  const [activeId, setActiveId] = useState(`products-${productCategories[0]?.id}`)
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible')
-        })
-      },
+    const fadeObserver = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible') }),
       { threshold: 0.15 }
     )
-    document.querySelectorAll('.section-heading, .fade-up').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+    document.querySelectorAll('.section-heading, .fade-up').forEach((el) => fadeObserver.observe(el))
+
+    const sectionObserver = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) setActiveId(e.target.id) }),
+      { rootMargin: '-20% 0px -60% 0px' }
+    )
+    productCategories.forEach(({ id }) => {
+      const el = document.getElementById(`products-${id}`)
+      if (el) sectionObserver.observe(el)
+    })
+
+    return () => { fadeObserver.disconnect(); sectionObserver.disconnect() }
   }, [])
 
   return (
     <>
-      <PageHero title="产品中心" subtitle="PRODUCT CENTER" deco="PRODUCTS" />
+      <PageHero
+        title="产品中心"
+        subtitle="核心混合装备与整线解决方案"
+        bgImage="https://plus.unsplash.com/premium_photo-1682124451727-92ecf1e065ce?auto=format&fit=crop&w=1920&q=80"
+      />
 
       <div className="page-body">
         <div className="page-container">
           <Breadcrumb items={[{ label: '产品中心' }]} />
-
-          {/* 行业快速导航 */}
-          <nav className="solutions-nav">
-            {productCategories.map((cat) => (
-              <a key={cat.id} href={`#products-${cat.id}`} className="solutions-nav-item">
-                {cat.name}
-              </a>
-            ))}
-          </nav>
         </div>
 
-        {/* 各行业产品列表（交替背景色） */}
+        {/* 产品分类导航 - sticky 全宽 */}
+        <div className="page-sticky-nav">
+          <div className="page-container">
+            <nav className="products-nav">
+              {productCategories.map((cat) => (
+                <a
+                  key={cat.id}
+                  href={`#products-${cat.id}`}
+                  className={`solutions-nav-item${activeId === `products-${cat.id}` ? ' active' : ''}`}
+                >
+                  {cat.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        {/* 各产品分类 */}
         {productCategories.map((category, idx) => (
-          <section
-            className="products-category"
-            id={`products-${category.id}`}
-            key={category.id}
-          >
+          <section className="products-category" id={`products-${category.id}`} key={category.id}>
             <div className="page-container">
               <div className="products-category-header">
-                <div className="products-category-index">
-                  {String(idx + 1).padStart(2, '0')}
-                </div>
+                <div className="products-category-index">{String(idx + 1).padStart(2, '0')}</div>
                 <h2 className="products-category-title">{category.name}</h2>
               </div>
 
@@ -148,7 +162,7 @@ export default function ProductsPage() {
                     key={product.slug}
                   >
                     <div className="product-card-image">
-                      <ImagePlaceholder height="200px" label={product.name} />
+                      <ImagePlaceholder height="220px" label={product.name} />
                     </div>
                     <div className="product-card-content">
                       <h3 className="product-card-title">{product.name}</h3>

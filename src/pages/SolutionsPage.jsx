@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
@@ -87,49 +87,66 @@ const industries = [
 ]
 
 export default function SolutionsPage() {
+  const [activeId, setActiveId] = useState(industries[0]?.id)
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('visible')
-        })
-      },
+    const fadeObserver = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible') }),
       { threshold: 0.15 }
     )
-    document.querySelectorAll('.section-heading, .fade-up').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+    document.querySelectorAll('.section-heading, .fade-up').forEach((el) => fadeObserver.observe(el))
+
+    /* 滚动高亮导航 */
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setActiveId(e.target.id) })
+      },
+      { rootMargin: '-20% 0px -60% 0px' }
+    )
+    industries.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) sectionObserver.observe(el)
+    })
+
+    return () => { fadeObserver.disconnect(); sectionObserver.disconnect() }
   }, [])
 
   return (
     <>
-      <PageHero title="行业解决方案" subtitle="INDUSTRY SOLUTIONS" deco="SOLUTIONS" />
+      <PageHero
+        title="行业解决方案"
+        subtitle="深耕多行业工艺场景，提供一站式系统集成方案"
+        bgImage="https://plus.unsplash.com/premium_photo-1661883301669-d86c4430f718?auto=format&fit=crop&w=1920&q=80"
+      />
 
       <div className="page-body">
         <div className="page-container">
           <Breadcrumb items={[{ label: '行业解决方案' }]} />
-
-          {/* 行业快速导航 */}
-          <nav className="solutions-nav">
-            {industries.map((ind) => (
-              <a key={ind.id} href={`#${ind.id}`} className="solutions-nav-item">
-                {ind.name}
-              </a>
-            ))}
-          </nav>
         </div>
 
-        {/* 各行业板块（交替背景色） */}
+        {/* 行业快速导航 - sticky 全宽 */}
+        <div className="page-sticky-nav">
+          <div className="page-container">
+            <nav className="solutions-nav">
+              {industries.map((ind) => (
+                <a
+                  key={ind.id}
+                  href={`#${ind.id}`}
+                  className={`solutions-nav-item${activeId === ind.id ? ' active' : ''}`}
+                >
+                  {ind.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        {/* 各行业板块 */}
         {industries.map((industry, idx) => (
-          <section
-            className="solutions-industry"
-            id={industry.id}
-            key={industry.id}
-          >
+          <section className="solutions-industry" id={industry.id} key={industry.id}>
             <div className="page-container">
               <div className="solutions-industry-header">
-                <div className="solutions-industry-index">
-                  {String(idx + 1).padStart(2, '0')}
-                </div>
+                <div className="solutions-industry-index">{String(idx + 1).padStart(2, '0')}</div>
                 <h2 className="solutions-industry-title">{industry.name}</h2>
               </div>
 
@@ -146,7 +163,7 @@ export default function SolutionsPage() {
                     key={sol.slug}
                   >
                     <div className="solutions-card-image">
-                      <ImagePlaceholder height="180px" label={sol.name} />
+                      <ImagePlaceholder height="220px" label={sol.name} />
                     </div>
                     <div className="solutions-card-content">
                       <h3 className="solutions-card-title">{sol.name}</h3>
