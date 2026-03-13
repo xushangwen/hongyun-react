@@ -4,6 +4,7 @@ import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import solutionsHeroImg from '../assets/img/IMG_4366.jpg'
 
 /* ========== 行业数据 [AI生成描述] ========== */
 const industries = [
@@ -116,7 +117,7 @@ export default function SolutionsPage() {
       <PageHero
         title="行业解决方案"
         subtitle="深耕多行业工艺场景，提供一站式系统集成方案"
-        bgImage="https://plus.unsplash.com/premium_photo-1661883301669-d86c4430f718?auto=format&fit=crop&w=1920&q=80"
+        bgImage={solutionsHeroImg}
       />
 
       <div className="page-body">
@@ -152,7 +153,6 @@ export default function SolutionsPage() {
 
               <p className="solutions-industry-desc">
                 {industry.desc}
-                <span className="generated-tag">AI</span>
               </p>
 
               <div className="solutions-cards">

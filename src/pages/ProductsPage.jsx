@@ -4,6 +4,7 @@ import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import productsHeroImg from '../assets/img/产品中心.jpg'
 
 /* ========== 产品分类数据 [AI生成描述] ========== */
 const productCategories = [
@@ -115,7 +116,7 @@ export default function ProductsPage() {
       <PageHero
         title="产品中心"
         subtitle="核心混合装备与整线解决方案"
-        bgImage="https://plus.unsplash.com/premium_photo-1682124451727-92ecf1e065ce?auto=format&fit=crop&w=1920&q=80"
+        bgImage={productsHeroImg}
       />
 
       <div className="page-body">
@@ -151,7 +152,6 @@ export default function ProductsPage() {
 
               <p className="products-category-desc">
                 {category.desc}
-                <span className="generated-tag">AI</span>
               </p>
 
               <div className="products-grid">

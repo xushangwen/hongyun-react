@@ -5,6 +5,8 @@ import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import ctaBgImg from '../assets/img/需要了解更多.jpg'
+import productHeroImg from '../assets/img/行业产品.jpg'
 
 /* ========== 产品数据映射 [AI生成描述] ========== */
 const productMap = {
@@ -85,7 +87,7 @@ export default function ProductDetailPage() {
       <PageHero
         title={productName}
         subtitle={categoryName}
-        bgImage="https://images.unsplash.com/photo-1563968743333-044cef800494?auto=format&fit=crop&w=1920&q=80"
+        bgImage={productHeroImg}
       />
 
       <div className="page-body">
@@ -115,7 +117,6 @@ export default function ProductDetailPage() {
               <div className="detail-intro-text">
                 <p>
                   {product?.intro || `${productName}详细介绍内容待补充。`}
-                  <span className="generated-tag">AI</span>
                 </p>
                 {product?.features && (
                   <>
@@ -164,7 +165,7 @@ export default function ProductDetailPage() {
         {product?.params && (
           <section className="page-section page-section--gray">
             <div className="page-container">
-              <h2 className="section-heading">产品参数 <span className="generated-tag">AI</span></h2>
+              <h2 className="section-heading">产品参数</h2>
               <div className="detail-params-table">
                 <table className="params-table">
                   <thead>
@@ -195,7 +196,7 @@ export default function ProductDetailPage() {
 
         {/* ===== 联系CTA - 全宽暗色 ===== */}
         <div className="detail-contact-cta">
-          <div className="detail-contact-inner">
+          <div className="detail-contact-inner" style={{ backgroundImage: `url(${ctaBgImg})` }}>
             <h2 className="detail-contact-title">需要了解更多？</h2>
             <p className="detail-contact-desc">我们的专业团队随时为您提供技术咨询和定制化解决方案，助力您的生产工艺升级。</p>
             <Link to="/contact" className="btn-primary">

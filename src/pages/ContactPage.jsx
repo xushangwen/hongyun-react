@@ -4,6 +4,8 @@ import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import contactHeroImg from '../assets/img/IMG_4865 拷贝.jpg'
+import brandPanelBg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.png'
 
 /* ========== 联系方式数据 [部分AI生成] ========== */
 const contactCards = [
@@ -12,24 +14,23 @@ const contactCards = [
     title: '全国服务热线',
     items: [
       { label: '全国客服', value: '400 915 3366', isPhone: true },
-      { label: '常州总部', value: '0519-8888 8888', isPhone: true },
-      { label: '广州基地', value: '020-8888 8888', isPhone: true },
+      { label: '常州总部', value: '0519-86886896', isPhone: true },
+      { label: '广州基地', value: '020-34881055', isPhone: true },
     ],
   },
   {
     Icon: IconMapPinOutline24,
     title: '公司地址',
     items: [
-      { label: '常州总部', value: '江苏省常州市新北区（详细地址待确认）' },
-      { label: '广州基地', value: '广东省广州市增城区（详细地址待确认）' },
+      { label: '江苏红运智能装备有限公司', value: '江苏省常州市武进高新区南湖西路8-8号' },
+      { label: '广州红尚机械制造有限公司', value: '广州市南沙区东涌镇同裕街40号' },
     ],
   },
   {
     Icon: IconMessageBubbleUserOutline24,
     title: '商务邮箱',
     items: [
-      { label: '商务合作', value: 'business@hongyun.com' },
-      { label: '技术咨询', value: 'tech@hongyun.com' },
+      { label: '商务合作', value: 'hy@gzhy.cn' },
     ],
   },
   {
@@ -92,7 +93,8 @@ export default function ContactPage() {
       <PageHero
         title="联系我们"
         subtitle="专业团队随时为您提供技术支持与商务咨询"
-        bgImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
+        bgImage={contactHeroImg}
+        bgPosition="center 65%"
       />
 
       <div className="page-body">
@@ -142,8 +144,7 @@ export default function ContactPage() {
             <h2 className="section-heading">技术咨询</h2>
             <div className="contact-form-wrapper">
               {/* 左侧品牌面板 */}
-              <div className="contact-brand-panel">
-                <div className="contact-brand-logo">红运<span>机械</span></div>
+              <div className="contact-brand-panel" style={{ backgroundImage: `url(${brandPanelBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <p className="contact-brand-tagline">专注混合工艺<br />三十年技术积淀</p>
                 <div className="contact-brand-divider" />
                 <div className="contact-brand-items">
@@ -157,7 +158,7 @@ export default function ContactPage() {
                   </div>
                   <div className="contact-brand-item">
                     <span className="contact-brand-item-label">商务邮箱</span>
-                    <span className="contact-brand-item-value">business@hongyun.com</span>
+                    <span className="contact-brand-item-value">hy@gzhy.cn</span>
                   </div>
                 </div>
               </div>

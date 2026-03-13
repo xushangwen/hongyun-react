@@ -5,6 +5,8 @@ import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import solutionHeroImg from '../assets/img/行业产品.jpg'
+import ctaBgImg from '../assets/img/需要了解更多.jpg'
 
 /* ========== 方案数据映射 [AI生成描述] ========== */
 const solutionMap = {
@@ -102,7 +104,7 @@ export default function SolutionDetailPage() {
       <PageHero
         title={solutionName}
         subtitle={industryName}
-        bgImage="https://plus.unsplash.com/premium_photo-1661915091623-3025c240b0fb?auto=format&fit=crop&w=1920&q=80"
+        bgImage={solutionHeroImg}
       />
 
       <div className="page-body">
@@ -122,7 +124,6 @@ export default function SolutionDetailPage() {
               <div className="detail-intro-text">
                 <p>
                   {solution?.intro || `${solutionName}详细介绍内容待补充。`}
-                  <span className="generated-tag">AI</span>
                 </p>
               </div>
               <div className="detail-intro-image">
@@ -144,7 +145,7 @@ export default function SolutionDetailPage() {
             </div>
             {solution?.features && (
               <div className="detail-features" style={{ marginTop: '48px' }}>
-                <h3 className="detail-subtitle">方案特点 <span className="generated-tag">AI</span></h3>
+                <h3 className="detail-subtitle">方案特点</h3>
                 <div className="detail-features-grid">
                   {solution.features.map((feat, i) => (
                     <div className="detail-feature-card" key={i}>
@@ -165,7 +166,6 @@ export default function SolutionDetailPage() {
               <h2 className="section-heading">系统组成</h2>
               <p className="section-desc">
                 {solutionName}由以下核心单元组成，各单元协同运行，确保系统的高效与稳定。
-                <span className="generated-tag">AI</span>
               </p>
               <div className="detail-composition-grid">
                 {solution.compositions.map((comp, i) => (
@@ -183,7 +183,7 @@ export default function SolutionDetailPage() {
         {solution?.params && (
           <section className="page-section page-section--gray">
             <div className="page-container">
-              <h2 className="section-heading">系统参数 <span className="generated-tag">AI</span></h2>
+              <h2 className="section-heading">系统参数</h2>
               <div className="detail-params-table">
                 <table className="params-table">
                   <thead>
@@ -225,7 +225,7 @@ export default function SolutionDetailPage() {
 
         {/* ===== 联系CTA - 全宽暗色 ===== */}
         <div className="detail-contact-cta">
-          <div className="detail-contact-inner">
+          <div className="detail-contact-inner" style={{ backgroundImage: `url(${ctaBgImg})` }}>
             <h2 className="detail-contact-title">需要了解更多？</h2>
             <p className="detail-contact-desc">我们的专业团队随时为您提供技术咨询和定制化解决方案，助力您的生产工艺升级。</p>
             <Link to="/contact" className="btn-primary">

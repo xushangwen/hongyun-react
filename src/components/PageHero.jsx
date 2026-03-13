@@ -1,9 +1,9 @@
-export default function PageHero({ title, subtitle, bgImage }) {
+export default function PageHero({ title, subtitle, bgImage, bgPosition = 'center' }) {
   return (
     <section className="page-hero">
       <div className="page-hero-bg">
         {bgImage
-          ? <img src={bgImage} alt="" className="page-hero-bg-img" loading="eager" />
+          ? <img src={bgImage} alt="" className="page-hero-bg-img" loading="eager" style={{ objectPosition: bgPosition }} />
           : <div className="page-hero-placeholder" />}
       </div>
       <div className="page-hero-overlay" />

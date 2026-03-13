@@ -36,7 +36,7 @@
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.65) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.58) 50%, rgba(0,0,0,0.82) 100%);
   pointer-events: none;
 }
 
@@ -232,10 +232,9 @@
   position: absolute;
   left: 0;
   top: 4px;
-  width: 4px;
+  width: 2px;
   height: 0;
   background: var(--hy-red);
-  border-radius: 2px;
   transition: height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -354,7 +353,7 @@
   font-size: 14px;
   font-weight: 500;
   border: none;
-  border-radius: 0;
+  border-radius: 9999px;
   text-decoration: none;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -384,7 +383,7 @@
   font-size: 14px;
   font-weight: 500;
   border: 1px solid var(--hy-red);
-  border-radius: 0;
+  border-radius: 9999px;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -441,6 +440,7 @@
   padding: 100px 0;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: calc(var(--header-height) + 20px);
 }
 
 .about-page-section:nth-child(even) {
@@ -455,7 +455,7 @@
 /* 公司简介 */
 .about-intro-grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 72px;
   align-items: center;
 }
@@ -465,30 +465,9 @@
   position: relative;
 }
 
-.about-intro-image::before {
-  content: '';
-  position: absolute;
-  top: -14px;
-  right: -14px;
-  width: 100px;
-  height: 100px;
-  border-top: 2px solid var(--hy-red);
-  border-right: 2px solid var(--hy-red);
-  z-index: 1;
-  pointer-events: none;
-  transition: width 0.4s ease, height 0.4s ease;
-}
-
+.about-intro-image::before,
 .about-intro-image::after {
-  content: '';
-  position: absolute;
-  bottom: -14px;
-  left: -14px;
-  width: 60px;
-  height: 60px;
-  border-bottom: 1px solid rgba(186,12,47,0.3);
-  border-left: 1px solid rgba(186,12,47,0.3);
-  pointer-events: none;
+  content: none;
 }
 
 .about-intro-text p {
@@ -496,6 +475,7 @@
   line-height: 2;
   color: var(--zinc-600);
   margin-bottom: 16px;
+  text-wrap: pretty;
 }
 
 .about-intro-stats {
@@ -546,6 +526,12 @@
   font-size: 14px;
   color: var(--zinc-500);
   margin-top: 4px;
+}
+
+.about-intro-stat-icon {
+  color: var(--hy-red);
+  margin-bottom: 6px;
+  display: block;
 }
 
 /* 企业宣传片 */
@@ -621,7 +607,7 @@
 }
 
 .about-culture-card:hover {
-  background: var(--zinc-950);
+  background: var(--zinc-100);
 }
 
 .about-culture-card:hover::before {
@@ -629,16 +615,16 @@
 }
 
 .about-culture-card:hover .about-culture-card-title {
-  color: var(--hy-white);
+  color: var(--zinc-900);
 }
 
 .about-culture-card:hover .about-culture-card-desc {
-  color: var(--zinc-400);
+  color: var(--zinc-600);
 }
 
 .about-culture-card:hover .about-culture-card-icon {
-  background: rgba(186,12,47,0.2);
-  color: #ff6b6b;
+  background: rgba(186,12,47,0.1);
+  color: var(--hy-red);
   transform: scale(1.05);
 }
 
@@ -696,29 +682,34 @@
 .about-timeline-item {
   position: relative;
   width: 50%;
-  padding: 0 40px 56px;
+  padding: 0 0 56px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .about-timeline-item.left {
   padding-right: 60px;
-  text-align: right;
+  flex-direction: row;
 }
 
 .about-timeline-item.right {
   margin-left: 50%;
   padding-left: 60px;
+  flex-direction: row-reverse;
 }
 
 .about-timeline-dot {
   position: absolute;
-  top: 8px;
-  width: 16px;
-  height: 16px;
+  top: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--hy-red);
   border: 3px solid var(--hy-white);
   box-shadow: 0 0 0 2px var(--hy-red), 0 0 12px rgba(186, 12, 47, 0.3);
   z-index: 1;
+  flex-shrink: 0;
 }
 
 .about-timeline-item.left .about-timeline-dot {
@@ -727,6 +718,21 @@
 
 .about-timeline-item.right .about-timeline-dot {
   left: -8px;
+}
+
+.about-timeline-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.about-timeline-item.left .about-timeline-content {
+  text-align: right;
+}
+
+.about-timeline-image {
+  width: 260px;
+  flex-shrink: 0;
+  overflow: hidden;
 }
 
 .about-timeline-year {
@@ -795,8 +801,8 @@
   display: flex;
   gap: 0;
   margin-top: 48px;
-  background: var(--zinc-950);
-  background-image: linear-gradient(135deg, rgba(186,12,47,0.12) 0%, transparent 60%);
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-100);
   position: relative;
   overflow: hidden;
 }
@@ -815,12 +821,26 @@
   flex: 1;
   text-align: center;
   padding: 48px 32px;
-  border-right: 1px solid rgba(255,255,255,0.05);
+  border-right: 1px solid var(--zinc-100);
   position: relative;
+  transition: background 0.3s ease;
 }
 
 .about-production-stat:last-child {
   border-right: none;
+}
+
+.about-production-stat:hover {
+  background: var(--hy-red);
+}
+
+.about-production-stat:hover .about-production-stat-num {
+  background: none;
+  -webkit-text-fill-color: var(--hy-white);
+}
+
+.about-production-stat:hover .about-production-stat-label {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .about-production-stat-num {
@@ -859,29 +879,9 @@
   position: relative;
 }
 
-.about-rnd-images::before {
-  content: '';
-  position: absolute;
-  top: -14px;
-  left: -14px;
-  width: 80px;
-  height: 80px;
-  border-top: 2px solid var(--hy-red);
-  border-left: 2px solid var(--hy-red);
-  z-index: 1;
-  pointer-events: none;
-}
-
+.about-rnd-images::before,
 .about-rnd-images::after {
-  content: '';
-  position: absolute;
-  bottom: -14px;
-  right: -14px;
-  width: 56px;
-  height: 56px;
-  border-bottom: 1px solid rgba(186,12,47,0.3);
-  border-right: 1px solid rgba(186,12,47,0.3);
-  pointer-events: none;
+  content: none;
 }
 
 .about-rnd-text h3 {
@@ -922,16 +922,16 @@
 }
 
 .about-global-branch:hover {
-  background: var(--zinc-950);
+  background: var(--zinc-100);
 }
 
 .about-global-branch:hover .about-global-branch-name {
-  color: var(--hy-white);
+  color: var(--zinc-900);
 }
 
 .about-global-branch:hover .about-global-branch-address,
 .about-global-branch:hover .about-global-branch-role {
-  color: var(--zinc-400);
+  color: var(--zinc-500);
 }
 
 .about-global-branch:hover .about-global-branch-index {
@@ -1067,11 +1067,22 @@
   transition: all 0.3s ease;
   border-bottom: 1px solid var(--zinc-100);
   border-right: 1px solid var(--zinc-100);
+  padding: 14px 20px;
+  height: 72px;
 }
 
 .about-partner-logo-item:hover {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   background: var(--zinc-50);
+}
+
+.partner-logo-img {
+  max-height: 28px;
+  max-width: 120px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
 }
 
 /* ========================================
@@ -1473,10 +1484,10 @@
 }
 
 .contact-info-card:hover {
-  background: var(--zinc-950);
-  border-color: var(--zinc-800);
+  background: var(--zinc-100);
+  border-color: var(--zinc-200);
   transform: translateY(-4px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
 }
 
 .contact-info-card:hover::before {
@@ -1484,7 +1495,7 @@
 }
 
 .contact-info-card:hover .contact-info-card-title {
-  color: var(--hy-white);
+  color: var(--zinc-900);
 }
 
 .contact-info-card:hover .contact-info-label {
@@ -1492,12 +1503,12 @@
 }
 
 .contact-info-card:hover .contact-info-value {
-  color: var(--zinc-300);
+  color: var(--zinc-700);
 }
 
 .contact-info-card:hover .contact-info-card-icon {
-  background: rgba(186,12,47,0.2);
-  color: #ff6b6b;
+  background: rgba(186,12,47,0.1);
+  color: var(--hy-red);
 }
 
 .contact-info-card-icon {
@@ -1572,14 +1583,28 @@
 
 /* 左侧品牌面板 */
 .contact-brand-panel {
-  background: var(--zinc-950);
-  background-image: linear-gradient(135deg, rgba(186,12,47,0.15) 0%, transparent 70%);
+  background-color: var(--zinc-800);
+  background-size: cover;
+  background-position: center;
   padding: 48px 40px;
   display: flex;
   flex-direction: column;
   gap: 32px;
   position: relative;
   overflow: hidden;
+}
+
+.contact-brand-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.68);
+  z-index: 0;
+}
+
+.contact-brand-panel > * {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-brand-panel::after {
@@ -1796,7 +1821,7 @@
 }
 
 .detail-feature-card:hover {
-  background: var(--zinc-950);
+  background: var(--zinc-800);
   transform: translateY(-2px);
   box-shadow: 0 12px 32px rgba(0,0,0,0.15);
   z-index: 1;
@@ -1891,11 +1916,11 @@
 }
 
 .params-table thead {
-  background: var(--zinc-950);
+  background: var(--zinc-800);
 }
 
 .params-table th {
-  background: var(--zinc-950);
+  background: var(--zinc-800);
   color: var(--zinc-300);
   padding: 14px 24px;
   text-align: left;
@@ -1964,8 +1989,9 @@
 }
 
 .detail-contact-inner {
-  background: var(--zinc-950);
-  background-image: linear-gradient(135deg, rgba(186,12,47,0.15) 0%, transparent 55%);
+  background-color: var(--zinc-800);
+  background-size: cover;
+  background-position: center;
   padding: 96px 40px;
   text-align: center;
   position: relative;
@@ -1975,21 +2001,14 @@
 .detail-contact-inner::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--hy-red), rgba(186,12,47,0.3) 50%, transparent);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  z-index: 0;
 }
 
-.detail-contact-inner::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(255,255,255,0.04);
+.detail-contact-inner > * {
+  position: relative;
+  z-index: 1;
 }
 
 .detail-contact-title {
