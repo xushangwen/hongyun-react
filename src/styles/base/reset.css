@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  font-family: 'HarmonyOS Sans SC', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'IBM Plex Sans SC', "PingFang SC", "Microsoft YaHei", sans-serif;
   line-height: 1.6;
   color: var(--color-text, #18181B);
   background-color: var(--color-bg, #FFFFFF);
