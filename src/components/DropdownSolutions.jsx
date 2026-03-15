@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IconXmarkOutline24 } from 'nucleo-core-outline-24'
 import { IconCarBatteryOutline24 } from 'nucleo-core-outline-24'
@@ -12,33 +13,98 @@ import { IconMicrochipOutline24 } from 'nucleo-core-outline-24'
 import { IconChevronRightOutline24 } from 'nucleo-core-outline-24'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 
-const leftItems = [
-  { Icon: IconCarBatteryOutline24,       label: '新能源',   to: '/solutions#new-energy' },
-  { Icon: IconBatteryChargingOutline24,   label: '固态电池', to: '/solutions#solid-state-battery' },
-  { Icon: IconFlaskOutline24,           label: '化工',     to: '/solutions#chemical' },
-  { Icon: IconTestTubeOutline24,        label: '制胶',     to: '/solutions#adhesive' },
-  { Icon: IconFireFlameOutline24,       label: '火工药剂', to: '/solutions#pyrotechnics' },
-]
-
-const middleItems = [
-  { Icon: IconCutleryOutline24,       label: '食品',   to: '/solutions#food' },
-  { Icon: IconMedicineOutline24,      label: '医药',   to: '/solutions#pharma' },
-  { Icon: IconSoapDispenserOutline24, label: '化妆品', to: '/solutions#cosmetics' },
-  { Icon: IconMicrochipOutline24,     label: '电子材料', to: '/solutions#electronics' },
+const solutionCategories = [
+  {
+    Icon: IconCarBatteryOutline24,
+    label: '新能源',
+    id: 'new-energy',
+    desc: '面向锂电池正负极浆料制备，提供从投料、制浆到输送的全流程自动化解决方案，已服务宁德时代、比亚迪等头部客户。',
+    items: [
+      { name: 'PD制浆系统', slug: 'pd-pulping' },
+      { name: '高效管线式制浆系统', slug: 'pipeline-pulping' },
+      { name: '高速循环制浆系统', slug: 'circulation-pulping' },
+      { name: '双螺杆连续制浆系统', slug: 'twin-screw-pulping' },
+    ],
+  },
+  {
+    Icon: IconBatteryChargingOutline24,
+    label: '固态电池',
+    id: 'solid-state-battery',
+    desc: '针对固态电池干法电极制备工艺，提供包覆、混合、挤出全套设备方案，助力下一代电池技术产业化落地。',
+    items: [
+      { name: '材料包覆机', slug: 'material-coating' },
+      { name: '干法高速粉体混合机', slug: 'dry-powder-mixer' },
+      { name: '干法双螺杆挤出机', slug: 'dry-twin-screw-extruder' },
+    ],
+  },
+  {
+    Icon: IconFlaskOutline24,
+    label: '化工',
+    id: 'chemical',
+    desc: '为精细化工、涂料、胶粘剂等领域提供自动化混合生产系统，满足高粘度、多组分物料的精准配比与均匀混合需求。',
+    items: [
+      { name: '红运机械全自动生产系统', slug: 'auto-production' },
+    ],
+  },
+  {
+    Icon: IconTestTubeOutline24,
+    label: '制胶',
+    id: 'adhesive',
+    desc: '针对密封胶、结构胶、硅胶等高粘度物料，提供真空脱泡、行星搅拌等专业制胶工艺方案。',
+    items: [
+      { name: '制胶解决方案', slug: 'adhesive-overview' },
+    ],
+  },
+  {
+    Icon: IconFireFlameOutline24,
+    label: '火工药剂',
+    id: 'pyrotechnics',
+    desc: '为烟火药剂、推进剂等含能材料提供防爆、防静电的安全混合生产方案，符合国防军工安全标准。',
+    items: [
+      { name: '火工药剂方案', slug: 'pyro-overview' },
+    ],
+  },
+  {
+    Icon: IconCutleryOutline24,
+    label: '食品',
+    id: 'food',
+    desc: '为调味品、烘焙预拌粉、功能食品等提供符合GMP标准的卫生级混合生产方案，确保食品安全。',
+    items: [
+      { name: '食品行业方案', slug: 'food-overview' },
+    ],
+  },
+  {
+    Icon: IconMedicineOutline24,
+    label: '医药',
+    id: 'pharma',
+    desc: '为制药企业提供符合GMP规范的混合、制粒、包衣等工艺设备，满足药品生产的高精度、高洁净度要求。',
+    items: [
+      { name: '医药行业方案', slug: 'pharma-overview' },
+    ],
+  },
+  {
+    Icon: IconSoapDispenserOutline24,
+    label: '化妆品',
+    id: 'cosmetics',
+    desc: '为乳液、膏霜、粉底等化妆品提供真空乳化、均质混合等专业生产方案，兼顾高效与品质稳定。',
+    items: [
+      { name: '化妆品行业方案', slug: 'cosmetics-overview' },
+    ],
+  },
+  {
+    Icon: IconMicrochipOutline24,
+    label: '电子材料',
+    id: 'electronics',
+    desc: '为电子浆料、导电胶、封装材料等高精度电子材料提供超细研磨、真空脱泡等专业混合工艺。',
+    items: [
+      { name: '电子材料方案', slug: 'electronics-overview' },
+    ],
+  },
 ]
 
 export default function DropdownSolutions({ active, onClose, cancelClose, scheduleClose }) {
-  const renderItem = (item) => (
-    <Link to={item.to} key={item.label} className="dropdown-item" onClick={onClose}>
-      <span className="dropdown-item-content">
-        <item.Icon className="dropdown-icon-svg" size={20} />
-        <span>{item.label}</span>
-      </span>
-      <span className="dropdown-arrow">
-        <IconChevronRightOutline24 size={16} />
-      </span>
-    </Link>
-  )
+  const [activeIdx, setActiveIdx] = useState(0)
+  const current = solutionCategories[activeIdx]
 
   return (
     <div
@@ -50,22 +116,54 @@ export default function DropdownSolutions({ active, onClose, cancelClose, schedu
       <button className="dropdown-close" aria-label="关闭" onClick={onClose}>
         <IconXmarkOutline24 size={24} aria-hidden={true} />
       </button>
+
       <div className="dropdown-container">
+        {/* 左列：行业分类 */}
         <div className="dropdown-col dropdown-col-left">
-          {leftItems.map(renderItem)}
+          {solutionCategories.map((cat, index) => (
+            <Link
+              to={`/solutions#${cat.id}`}
+              key={cat.id}
+              className={`dropdown-item${activeIdx === index ? ' active' : ''}`}
+              onMouseEnter={() => setActiveIdx(index)}
+              onClick={onClose}
+            >
+              <span className="dropdown-item-content">
+                <cat.Icon className="dropdown-icon-svg" size={20} />
+                <span>{cat.label}</span>
+              </span>
+              <span className="dropdown-arrow">
+                <IconChevronRightOutline24 size={16} />
+              </span>
+            </Link>
+          ))}
         </div>
 
+        {/* 中列：该行业解决方案子项（动态） */}
         <div className="dropdown-col dropdown-col-middle visible">
-          {middleItems.map(renderItem)}
+          {current.items.map((item) => (
+            <Link
+              to={`/solutions/${current.id}/${item.slug}`}
+              key={item.slug}
+              className="dropdown-item"
+              onClick={onClose}
+            >
+              <span className="dropdown-item-content">
+                <span>{item.name}</span>
+              </span>
+              <span className="dropdown-arrow">
+                <IconChevronRightOutline24 size={16} />
+              </span>
+            </Link>
+          ))}
         </div>
 
+        {/* 右列：预览（动态） */}
         <div className="dropdown-col dropdown-col-right">
           <div className="dropdown-preview">
-            <h3 className="dropdown-preview-title">行业解决方案</h3>
-            <p className="dropdown-preview-desc">
-              深耕新能源、固态电池、化工等多个行业，提供可靠高效的混合与工艺解决方案，以技术创新推动产业智能化发展。
-            </p>
-            <Link to="/solutions" className="dropdown-preview-btn" onClick={onClose}>
+            <h3 className="dropdown-preview-title">{current.label}</h3>
+            <p className="dropdown-preview-desc">{current.desc}</p>
+            <Link to={`/solutions#${current.id}`} className="dropdown-preview-btn" onClick={onClose}>
               了解更多
               <IconArrowRightOutline24 className="dropdown-preview-btn-icon" size={18} />
             </Link>
