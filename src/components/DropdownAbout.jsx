@@ -59,8 +59,8 @@ export default function DropdownAbout({ active, onClose, cancelClose, scheduleCl
           ))}
         </div>
 
-        {/* Middle Column - always visible */}
-        <div className="dropdown-col dropdown-col-middle visible">
+        {/* Middle Column */}
+        <div className="dropdown-col dropdown-col-middle">
           {middleItems.map((item) => (
             <Link to={item.to} key={item.label} className="dropdown-item" onClick={onClose}>
               <span className="dropdown-item-content">

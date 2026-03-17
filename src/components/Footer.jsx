@@ -17,21 +17,31 @@ export default function Footer() {
             <div className="footer-col">
               <h4 className="footer-col-title">关于红运</h4>
               <ul className="footer-links">
-                <li className="level-1">
-                  <Link to="/about#company-intro">公司介绍</Link>
-                  <ul className="footer-sublinks">
-                    <li><Link to="/about#company-intro">简介</Link></li>
-                    <li><Link to="/about#culture">企业使命</Link></li>
-                    <li><Link to="/about#culture">企业愿景</Link></li>
-                    <li><Link to="/about#culture">企业价值观</Link></li>
-                    <li><Link to="/about#partners-page">合作伙伴</Link></li>
-                  </ul>
-                </li>
-                <li className="level-1"><Link to="/about#history">发展历程</Link></li>
-                <li className="level-1"><Link to="/about#honors">荣誉资质</Link></li>
-                <li className="level-1"><Link to="/contact">联系我们</Link></li>
-                <li className="level-1"><a href="#">加入我们</a></li>
-                <li className="level-1"><a href="#">新闻中心</a></li>
+                <li><Link to="/about#company-intro">公司简介</Link></li>
+                <li><Link to="/about#promo-video">企业宣传片</Link></li>
+                <li><Link to="/about#culture">企业文化</Link></li>
+                <li><Link to="/about#history">发展历程</Link></li>
+                <li><Link to="/about#production">生产实力</Link></li>
+                <li><Link to="/about#rnd">研发实力</Link></li>
+                <li><Link to="/about#global">全球化布局</Link></li>
+                <li><Link to="/about#honors">资质/荣誉</Link></li>
+                <li><Link to="/about#partners-page">合作伙伴</Link></li>
+              </ul>
+            </div>
+
+            {/* Solutions Column */}
+            <div className="footer-col">
+              <h4 className="footer-col-title">行业解决方案</h4>
+              <ul className="footer-links">
+                <li><Link to="/solutions#new-energy">新能源</Link></li>
+                <li><Link to="/solutions#solid-state-battery">固态电池</Link></li>
+                <li><Link to="/solutions#chemical">化工</Link></li>
+                <li><Link to="/solutions#adhesive">制胶</Link></li>
+                <li><Link to="/solutions#pyrotechnics">火工药剂</Link></li>
+                <li><Link to="/solutions#food">食品</Link></li>
+                <li><Link to="/solutions#pharma">医药</Link></li>
+                <li><Link to="/solutions#cosmetics">化妆品</Link></li>
+                <li><Link to="/solutions#electronics">电子材料</Link></li>
               </ul>
             </div>
 
@@ -39,24 +49,14 @@ export default function Footer() {
             <div className="footer-col">
               <h4 className="footer-col-title">产品中心</h4>
               <ul className="footer-links">
-                <li><Link to="/products">计量输送系统</Link></li>
-                <li><Link to="/products">核心设备</Link></li>
-                <li><Link to="/products">集成系统</Link></li>
-              </ul>
-            </div>
-
-            {/* Solutions Column */}
-            <div className="footer-col">
-              <h4 className="footer-col-title">解决方案</h4>
-              <ul className="footer-links">
-                <li><Link to="/solutions#new-energy">新能源行业</Link></li>
-                <li><Link to="/solutions#chemical">化工行业</Link></li>
-                <li><Link to="/solutions#adhesive">制胶行业</Link></li>
-                <li><Link to="/solutions#pyrotechnics">火工药剂</Link></li>
-                <li><Link to="/solutions#food">食品行业</Link></li>
-                <li><Link to="/solutions#pharma">医药行业</Link></li>
-                <li><Link to="/solutions#cosmetics">化妆品行业</Link></li>
-                <li><Link to="/solutions#electronics">电子材料行业</Link></li>
+                <li><Link to="/products#products-new-energy">新能源</Link></li>
+                <li><Link to="/products#products-solid-state-battery">固态电池</Link></li>
+                <li><Link to="/products#products-chemical">化工</Link></li>
+                <li><Link to="/products#products-adhesive">制胶</Link></li>
+                <li><Link to="/products#products-pyrotechnics">火工药剂</Link></li>
+                <li><Link to="/products#products-food">食品</Link></li>
+                <li><Link to="/products#products-cosmetics">化妆品</Link></li>
+                <li><Link to="/products#products-electronics">电子材料</Link></li>
               </ul>
             </div>
 

@@ -304,8 +304,9 @@
   visibility: visible;
 }
 
-/* 行业解决方案 - 中间列始终显示 */
-#dropdownSolutions .dropdown-col-middle {
+/* 行业解决方案和关于红运 - 中间列始终显示 */
+#dropdownSolutions .dropdown-col-middle,
+#dropdownAbout .dropdown-col-middle {
   opacity: 1;
   visibility: visible;
 }
@@ -372,7 +373,7 @@
   color: var(--hy-red);
 }
 
-/* Middle column items - lighter color */
+/* Middle column items - 默认灰色（用于行业解决方案和产品中心） */
 .dropdown-col-middle .dropdown-item {
   color: var(--zinc-400);
 }
@@ -389,14 +390,15 @@
   color: var(--hy-red);
 }
 
-/* 关于红运 - 中间列子菜单专用样式 */
+/* 关于红运 - 中列与左列颜色一致（同级） */
 #dropdownAbout .dropdown-col-middle .dropdown-item {
   position: relative;
   z-index: 50;
+  color: var(--zinc-900);
 }
 
 #dropdownAbout .dropdown-col-middle .dropdown-item:hover {
-  color: var(--zinc-900);
+  color: var(--hy-red);
 }
 
 #dropdownAbout .dropdown-col-middle .dropdown-item:hover .dropdown-icon {
