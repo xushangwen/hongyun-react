@@ -38,14 +38,6 @@
 .logo-img {
   height: 32px;
   width: auto;
-  /* 默认白色 */
-  filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
-}
-
-.header.scrolled .logo-img {
-  /* 滚动后恢复原色（红色） */
-  filter: none;
 }
 
 /* Icon 图片 */
