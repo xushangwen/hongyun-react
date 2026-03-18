@@ -23,10 +23,12 @@
   bottom: 0;
   background: url('/assets/images/about-section-bgimg.jpg') center center / cover no-repeat;
   background-attachment: fixed;
-  z-index: -1;
+  z-index: 0;
 }
 
 .about-container {
+  position: relative;
+  z-index: 1;
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 40px;
