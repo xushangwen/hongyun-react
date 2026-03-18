@@ -8,6 +8,8 @@ import ProductsPage from './pages/ProductsPage'
 import ContactPage from './pages/ContactPage'
 import SolutionDetailPage from './pages/SolutionDetailPage'
 import ProductDetailPage from './pages/ProductDetailPage'
+import NewsListPage from './pages/NewsListPage'
+import NewsDetailPage from './pages/NewsDetailPage'
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/news" element={<NewsListPage />} />
+          <Route path="/news/:id" element={<NewsDetailPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

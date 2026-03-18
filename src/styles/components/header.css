@@ -716,3 +716,93 @@
 .search-close:hover {
   opacity: 1;
 }
+
+/* ========================================
+   Dropdown Contact
+   ======================================== */
+.dropdown-contact {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--hy-white);
+  border-top: 1px solid var(--zinc-100);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  z-index: 1000;
+}
+
+.dropdown-contact.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-contact-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 40px 48px;
+}
+
+.dropdown-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.dropdown-contact-item {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  background: var(--zinc-50);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+  border: 1px solid transparent;
+}
+
+.dropdown-contact-item:hover {
+  background: var(--hy-white);
+  border-color: var(--zinc-200);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.dropdown-contact-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(186,12,47,0.08);
+  color: var(--hy-red);
+  transition: all 0.3s ease;
+}
+
+.dropdown-contact-item:hover .dropdown-contact-icon {
+  background: var(--hy-red);
+  color: var(--hy-white);
+}
+
+.dropdown-contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.dropdown-contact-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--zinc-900);
+  margin: 0 0 4px;
+}
+
+.dropdown-contact-desc {
+  font-size: 13px;
+  color: var(--zinc-500);
+  margin: 0;
+  line-height: 1.5;
+}

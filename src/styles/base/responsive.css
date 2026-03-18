@@ -156,7 +156,7 @@
   }
 
   .footer-nav {
-    gap: 32px;
+    gap: 24px;
   }
 
   .footer-logo-col {
@@ -546,10 +546,10 @@
     height: 48px;
   }
 
-  /* 导航三列网格 */
+  /* 导航两列网格 */
   .footer-nav {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px 12px;
   }
 
@@ -584,8 +584,8 @@
     line-height: 2;
   }
 
-  /* 联系列单独一行 */
-  .footer-contact {
+  /* 联系信息列单独一行 */
+  .footer-contact-info {
     grid-column: 1 / -1;
     border-top: 1px solid var(--zinc-100);
     padding-top: 16px;
@@ -756,7 +756,7 @@
     gap: 14px 10px;
   }
 
-  .footer-contact {
+  .footer-contact-info {
     grid-column: 1 / -1;
   }
 

@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import { IconGlobeOutline24 } from 'nucleo-core-outline-24'
 import { IconMagnifierOutline24 } from 'nucleo-core-outline-24'
 import MobileMenu from './MobileMenu'
+import DropdownContact from './DropdownContact'
 
 export default function Header({ activeDropdown, openDropdown, scheduleClose, cancelClose, closeDropdown, onSearchOpen, forceScrolled = false }) {
   const [scrolled, setScrolled] = useState(false)
-  const [contactHovered, setContactHovered] = useState(false)
   const [activeLang, setActiveLang] = useState('zh')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -19,7 +19,7 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const isHeaderWhite = forceScrolled || scrolled || activeDropdown || contactHovered
+  const isHeaderWhite = forceScrolled || scrolled || activeDropdown
 
   const handleNavEnter = useCallback((name) => {
     openDropdown(name)
@@ -28,16 +28,6 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
   const handleNavLeave = useCallback(() => {
     scheduleClose()
   }, [scheduleClose])
-
-  const handleContactEnter = useCallback(() => {
-    setContactHovered(true)
-    cancelClose()
-    closeDropdown()
-  }, [cancelClose, closeDropdown])
-
-  const handleContactLeave = useCallback(() => {
-    setContactHovered(false)
-  }, [])
 
   return (
     <header className={`header${isHeaderWhite ? ' scrolled' : ''}`}>
@@ -72,9 +62,9 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
               <Link to="/products" className="nav-link">产品中心</Link>
             </li>
             <li
-              className="nav-item"
-              onMouseEnter={handleContactEnter}
-              onMouseLeave={handleContactLeave}
+              className={`nav-item has-dropdown${activeDropdown === 'contact' ? ' active' : ''}`}
+              onMouseEnter={() => handleNavEnter('contact')}
+              onMouseLeave={handleNavLeave}
             >
               <Link to="/contact" className="nav-link">联系我们</Link>
             </li>
@@ -116,6 +106,11 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
           </button>
         </div>
       </div>
+      <DropdownContact 
+        isActive={activeDropdown === 'contact'} 
+        onMouseEnter={cancelClose}
+        onMouseLeave={scheduleClose}
+      />
       <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
     </header>
   )

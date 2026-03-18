@@ -60,9 +60,18 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Contact Column */}
-            <div className="footer-col footer-contact">
+            {/* Contact Column - links only */}
+            <div className="footer-col">
               <h4 className="footer-col-title">联系我们</h4>
+              <ul className="footer-links">
+                <li><Link to="/contact?tab=inquiry">技术咨询</Link></li>
+                <li><Link to="/contact?tab=info">联系方式</Link></li>
+                <li><Link to="/contact?tab=join">加入我们</Link></li>
+              </ul>
+            </div>
+
+            {/* Contact Info Column - hotline, email, social */}
+            <div className="footer-col footer-contact-info">
               <p className="footer-hotline-label">全国统一商务热线</p>
               <p className="footer-hotline">400 915 3366</p>
               <a href="mailto:hy@gzhy.cn" className="footer-email">
