@@ -91,13 +91,11 @@ export default function ProductDetailPage() {
       />
 
       <div className="page-body">
-        <div className="page-container">
-          <Breadcrumb items={[
-            { label: '产品中心', path: '/products' },
-            { label: categoryName, path: `/products#products-${categoryId}` },
-            { label: productName },
-          ]} />
-        </div>
+        <Breadcrumb items={[
+          { label: '产品中心', path: '/products' },
+          { label: categoryName, path: `/products#products-${categoryId}` },
+          { label: productName },
+        ]} />
 
         {/* ===== 产品展示 ===== */}
         <section className="page-section">

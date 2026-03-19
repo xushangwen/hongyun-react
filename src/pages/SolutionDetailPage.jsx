@@ -108,13 +108,11 @@ export default function SolutionDetailPage() {
       />
 
       <div className="page-body">
-        <div className="page-container">
-          <Breadcrumb items={[
-            { label: '行业解决方案', path: '/solutions' },
-            { label: industryName, path: `/solutions#${industryId}` },
-            { label: solutionName },
-          ]} />
-        </div>
+        <Breadcrumb items={[
+          { label: '行业解决方案', path: '/solutions' },
+          { label: industryName, path: `/solutions#${industryId}` },
+          { label: solutionName },
+        ]} />
 
         {/* ===== 方案概览 ===== */}
         <section className="page-section">

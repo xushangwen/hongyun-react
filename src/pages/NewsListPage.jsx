@@ -56,14 +56,11 @@ export default function NewsListPage() {
       />
 
       <div className="page-body">
-        <div className="page-container">
-          <Breadcrumb items={[{ label: '行业动态' }]} />
-        </div>
+        <Breadcrumb items={[{ label: '行业动态' }]} />
 
-        <section className="news-list-section">
+        {/* 分类筛选 - sticky 全宽 */}
+        <div className="page-sticky-nav">
           <div className="page-container">
-
-            {/* 分类筛选 */}
             <div className="news-list-filter">
               {categories.map((cat) => (
                 <button
@@ -75,6 +72,11 @@ export default function NewsListPage() {
                 </button>
               ))}
             </div>
+          </div>
+        </div>
+
+        <section className="news-list-section">
+          <div className="page-container">
 
             {/* 新闻网格 */}
             {pageNews.length > 0 ? (
@@ -88,16 +90,18 @@ export default function NewsListPage() {
                     <Link to={`/news/${news.id}`} className="news-list-card-link">
                       <div className="news-list-card-image">
                         <img src={news.image} alt={news.title} loading="lazy" />
-                        <span className="news-list-card-category">{news.category}</span>
                       </div>
                       <div className="news-list-card-content">
                         <time className="news-list-card-date">{news.dateDisplay}</time>
                         <h3 className="news-list-card-title">{news.title}</h3>
                         <p className="news-list-card-summary">{news.summary}</p>
-                        <span className="news-list-card-more">
-                          阅读全文
-                          <IconArrowRightOutline24 size={16} />
-                        </span>
+                        <div className="news-list-card-footer">
+                          <span className="news-list-card-category">{news.category}</span>
+                          <span className="news-list-card-more">
+                            阅读全文
+                            <IconArrowRightOutline24 size={16} />
+                          </span>
+                        </div>
                       </div>
                     </Link>
                   </article>

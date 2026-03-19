@@ -121,9 +121,7 @@ export default function SolutionsPage() {
       />
 
       <div className="page-body">
-        <div className="page-container">
-          <Breadcrumb items={[{ label: '行业解决方案' }]} />
-        </div>
+        <Breadcrumb items={[{ label: '行业解决方案' }]} />
 
         {/* 行业快速导航 - sticky 全宽 */}
         <div className="page-sticky-nav">

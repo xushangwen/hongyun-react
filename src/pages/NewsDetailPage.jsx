@@ -81,15 +81,13 @@ export default function NewsDetailPage() {
         bgPosition="center 40%"
       />
 
-      <div className="page-body">
-        <div className="page-container">
-          <Breadcrumb
-            items={[
-              { label: '行业动态', path: '/news' },
-              { label: article.title.length > 20 ? article.title.slice(0, 20) + '…' : article.title },
-            ]}
-          />
-        </div>
+      <div className="page-body page-body--news-detail">
+        <Breadcrumb
+          items={[
+            { label: '行业动态', path: '/news' },
+            { label: article.title.length > 20 ? article.title.slice(0, 20) + '…' : article.title },
+          ]}
+        />
 
         <div className="article-layout">
           {/* ===== 文章主体 ===== */}

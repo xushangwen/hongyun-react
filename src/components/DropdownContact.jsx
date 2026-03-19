@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import {
   IconMessageBubbleUserOutline24,
   IconPhoneOutline24,
-  IconUsersShakingHandsOutline24,
+  IconUsersChatOutline24,
 } from 'nucleo-core-outline-24'
 
 const contactItems = [
@@ -19,7 +19,7 @@ const contactItems = [
     link: '/contact?tab=info',
   },
   {
-    icon: IconUsersShakingHandsOutline24,
+    icon: IconUsersChatOutline24,
     title: '加入我们',
     desc: '查看招聘岗位，投递简历',
     link: '/contact?tab=join',

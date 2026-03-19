@@ -3,7 +3,9 @@ import { useSearchParams } from 'react-router-dom'
 import {
   IconPhoneOutline24,
   IconMapPinOutline24,
+  IconEnvelopeContentOutline24,
   IconMessageBubbleUserOutline24,
+  IconTimer3Outline24,
   IconUsersShakingHandsOutline24,
   IconArrowRightOutline24,
   IconXmarkOutline24,
@@ -13,8 +15,9 @@ import {
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
-import contactHeroImg from '../assets/img/IMG_4865 拷贝.jpg'
+import contactHeroImg from '../assets/img/DJI_20250418104522_0160_D 拷贝.jpg'
 import brandPanelBg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.png'
+import mapImage from '../assets/img/高德地图 - 精准专业的手机地图 拷贝.jpg'
 
 /* ========== 联系方式数据 ========== */
 const contactCards = [
@@ -36,12 +39,12 @@ const contactCards = [
     ],
   },
   {
-    Icon: IconMessageBubbleUserOutline24,
+    Icon: IconEnvelopeContentOutline24,
     title: '商务邮箱',
     items: [{ label: '商务合作', value: 'hy@gzhy.cn' }],
   },
-  {
-    Icon: IconUsersShakingHandsOutline24,
+    {
+    Icon: IconTimer3Outline24,
     title: '工作时间',
     items: [
       { label: '周一至周五', value: '08:30 - 17:30' },
@@ -520,7 +523,11 @@ function ContactInfoTab() {
         ))}
       </div>
       <div className="contact-map-section">
-        <ImagePlaceholder height="360px" label="公司位置地图 / 百度地图嵌入" />
+        <img 
+          src={mapImage} 
+          alt="公司位置地图" 
+          style={{ width: '100%', height: 'auto', display: 'block' }}
+        />
       </div>
     </>
   )
@@ -644,13 +651,11 @@ export default function ContactPage() {
         title="联系我们"
         subtitle="专业团队随时为您提供技术支持与商务咨询"
         bgImage={contactHeroImg}
-        bgPosition="center 65%"
+        bgPosition="center 35%"
       />
 
       <div className="page-body">
-        <div className="page-container">
-          <Breadcrumb items={[{ label: '联系我们' }, { label: currentTab.label }]} />
-        </div>
+        <Breadcrumb items={[{ label: '联系我们' }, { label: currentTab.label }]} />
 
         {/* ===== 子页面 Tab 导航 ===== */}
         <div className="contact-tab-nav-wrap">
@@ -662,6 +667,7 @@ export default function ContactPage() {
                   className={`contact-tab-btn${activeTab === tab.key ? ' active' : ''}`}
                   onClick={() => setSearchParams({ tab: tab.key })}
                 >
+                  {tab.icon && <tab.icon style={{ marginRight: '8px' }} />}
                   {tab.label}
                 </button>
               ))}
@@ -671,8 +677,10 @@ export default function ContactPage() {
 
         {/* ===== Tab 内容 ===== */}
         {activeTab === 'join' ? (
-          <div className="page-container join-tab-container">
-            <JoinUsTab />
+          <div className="join-tab-container">
+            <div className="page-container">
+              <JoinUsTab />
+            </div>
           </div>
         ) : (
           <section className="contact-page-section">

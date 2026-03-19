@@ -18,16 +18,16 @@ export default function NewsSection() {
                   <img src={news.image} alt={news.title} />
                 </div>
                 <div className="news-card-content">
-                  <div className="news-card-meta">
-                    <time className="news-card-date">{news.dateDisplay}</time>
-                    <span className="news-card-category">{news.category}</span>
-                  </div>
+                  <time className="news-card-date">{news.dateDisplay}</time>
                   <h3 className="news-card-title">{news.title}</h3>
                   <p className="news-card-desc">{news.summary}</p>
-                  <span className="news-card-more">
-                    了解更多
-                    <IconArrowRightOutline24 size={16} />
-                  </span>
+                  <div className="news-card-footer">
+                    <span className="news-card-category">{news.category}</span>
+                    <span className="news-card-more">
+                      阅读全文
+                      <IconArrowRightOutline24 size={16} />
+                    </span>
+                  </div>
                 </div>
               </Link>
             </article>

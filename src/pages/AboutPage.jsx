@@ -105,9 +105,7 @@ export default function AboutPage() {
 
       <div className="page-body">
         {/* ===== 面包屑 ===== */}
-        <div className="page-container">
-          <Breadcrumb items={[{ label: '关于红运' }]} />
-        </div>
+        <Breadcrumb items={[{ label: '关于红运' }]} />
 
         {/* ===== 公司简介 ===== */}
         <section className="about-page-section" id="company-intro">

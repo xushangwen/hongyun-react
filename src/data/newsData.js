@@ -139,7 +139,7 @@ export const newsData = [
     date: '2026-02-09',
     dateDisplay: '2026年2月9日',
     category: '展会信息',
-    image: '/news-images/solid-state-battery-summit-2026/solid_state_battery_equipment.png',
+    image: '/news-images/solid-state-battery-summit-2026/cover_image.jpg',
     summary: '2月7日至8日，2026年中国全固态电池产学研协同创新平台年会在北京召开。红运机械总经理吕柏良受邀参会，固态电池工艺总工程师吴博在"工艺创新与关键装备"专题论坛上发表主题演讲。红运机械荣获"优秀合作伙伴"称号。',
     blocks: [
       {

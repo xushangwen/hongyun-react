@@ -120,9 +120,7 @@ export default function ProductsPage() {
       />
 
       <div className="page-body">
-        <div className="page-container">
-          <Breadcrumb items={[{ label: '产品中心' }]} />
-        </div>
+        <Breadcrumb items={[{ label: '产品中心' }]} />
 
         {/* 产品分类导航 - sticky 全宽 */}
         <div className="page-sticky-nav">
