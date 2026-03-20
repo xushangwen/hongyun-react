@@ -8,6 +8,7 @@ import ProductsPage from './pages/ProductsPage'
 import ContactPage from './pages/ContactPage'
 import SolutionDetailPage from './pages/SolutionDetailPage'
 import ProductDetailPage from './pages/ProductDetailPage'
+import DualPlanetaryMixerPage from './pages/DualPlanetaryMixerPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/new-energy/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/news" element={<NewsListPage />} />

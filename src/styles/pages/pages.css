@@ -1975,7 +1975,13 @@
 /* 参数表格 - 简洁规格单设计 */
 .detail-params-table {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--zinc-200);
+  border-radius: 8px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 12px 48px rgba(0, 0, 0, 0.08);
 }
 
 .params-table {
@@ -2758,6 +2764,453 @@
 }
 
 /* ========================================
+   Dual Planetary Mixer Page (PDM)
+   ======================================== */
+
+/* 产品主展示图 */
+.pdm-showcase {
+  overflow: hidden;
+  background: var(--zinc-50);
+  border: 1px solid var(--zinc-100);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pdm-showcase-img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.pdm-showcase:hover .pdm-showcase-img {
+  transform: scale(1.02);
+}
+
+/* 产品介绍布局 */
+.pdm-intro-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 56px;
+  align-items: start;
+}
+
+.pdm-intro-text p {
+  font-size: 16px;
+  line-height: 2;
+  color: var(--zinc-600);
+  margin-bottom: 16px;
+}
+
+.pdm-intro-text strong {
+  color: var(--zinc-900);
+  font-weight: 600;
+}
+
+.pdm-intro-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.pdm-app-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-200);
+  font-size: 13px;
+  color: var(--zinc-600);
+  letter-spacing: 0.3px;
+  transition: all 0.25s ease;
+}
+
+.pdm-app-tag:hover {
+  border-color: var(--hy-red);
+  color: var(--hy-red);
+  background: rgba(186, 12, 47, 0.04);
+}
+
+/* 可靠性承诺 */
+.pdm-reliability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid var(--zinc-100);
+}
+
+.pdm-reliability-card {
+  background: var(--hy-white);
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-right: 1px solid var(--zinc-100);
+}
+
+.pdm-reliability-card:last-child {
+  border-right: none;
+}
+
+.pdm-reliability-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: var(--hy-red);
+  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.pdm-reliability-card:hover::before {
+  width: 100%;
+}
+
+.pdm-reliability-card:hover {
+  background: var(--zinc-50);
+}
+
+.pdm-reliability-index {
+  font-size: 56px;
+  font-weight: 700;
+  font-family: 'DIN Pro', sans-serif;
+  background: linear-gradient(180deg, rgba(186, 12, 47, 0.14) 0%, transparent 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+  letter-spacing: -2px;
+}
+
+.pdm-reliability-content h3 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--zinc-900);
+  margin-bottom: 12px;
+}
+
+.pdm-reliability-content p {
+  font-size: 14px;
+  color: var(--zinc-500);
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* 产品优势 icon 区域 */
+.pdm-adv-icon {
+  color: var(--hy-red);
+  margin-bottom: 16px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.detail-feature-card:hover .pdm-adv-icon {
+  opacity: 1;
+  color: rgba(186, 12, 47, 0.8);
+}
+
+/* 产品型号展示 */
+.pdm-models-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.pdm-model-card {
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-100);
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.3s ease;
+}
+
+.pdm-model-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.10);
+  border-color: transparent;
+}
+
+.pdm-model-image-wrap {
+  position: relative;
+  overflow: hidden;
+  background: var(--zinc-50);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdm-model-image-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--hy-red);
+  transition: width 0.45s ease;
+  z-index: 2;
+}
+
+.pdm-model-card:hover .pdm-model-image-wrap::after {
+  width: 100%;
+}
+
+.pdm-model-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 20px;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.pdm-model-card:hover .pdm-model-img {
+  transform: scale(1.06);
+}
+
+.pdm-model-info {
+  padding: 24px 28px 28px;
+}
+
+.pdm-model-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--hy-red);
+  background: rgba(186, 12, 47, 0.08);
+  padding: 3px 10px;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.pdm-model-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--zinc-900);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.pdm-model-desc {
+  font-size: 13px;
+  color: var(--zinc-500);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* 技术参数 Tab */
+.pdm-table-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--zinc-200);
+}
+
+.pdm-table-tab {
+  padding: 12px 28px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--zinc-500);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: -1px;
+  letter-spacing: 0.3px;
+}
+
+.pdm-table-tab:hover {
+  color: var(--zinc-800);
+}
+
+.pdm-table-tab.active {
+  color: var(--hy-red);
+  border-bottom-color: var(--hy-red);
+  font-weight: 500;
+}
+
+/* 参数表格 */
+.pdm-params-table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: collapse;
+  background: var(--hy-white);
+}
+
+/* 表头 */
+.pdm-params-table thead th {
+  background: #ba0c2f;
+  color: #fff;
+  padding: 11px 9px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.pdm-params-table thead th:last-child {
+  border-right: none;
+}
+
+.pdm-params-table .th-sub {
+  font-size: 9px;
+  font-weight: 400;
+  opacity: 0.78;
+  display: block;
+  margin-top: 2px;
+  line-height: 1.3;
+  letter-spacing: 0.1px;
+  white-space: normal;
+}
+
+/* 单元格 */
+.pdm-params-table td {
+  padding: 8px 9px;
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--zinc-700);
+  text-align: center;
+  vertical-align: middle;
+  border-right: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+  line-height: 1.45;
+  white-space: nowrap;
+}
+
+.pdm-params-table td:last-child {
+  border-right: none;
+}
+
+.pdm-params-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 斑马纹：偶数型号组（0-based）背景稍暗 */
+.pdm-params-table tbody tr.tr-odd td {
+  background: #f9f9f9;
+}
+
+.pdm-params-table tbody tr.tr-even td {
+  background: #fff;
+}
+
+/* Hover：整个型号组两行高亮（通过兄弟选择器实现） */
+.pdm-params-table tbody tr:hover td,
+.pdm-params-table tbody tr:hover + tr td {
+  background: rgba(186, 12, 47, 0.04) !important;
+}
+
+/* rowspan 合并单元格 */
+.pdm-params-table .td-span {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--zinc-800);
+  background: inherit;
+}
+
+/* 型号列 */
+.pdm-params-table .td-model-code {
+  font-weight: 600;
+  color: var(--zinc-900);
+  font-size: 12.5px;
+  letter-spacing: 0.3px;
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  text-align: left;
+  padding-left: 14px;
+  white-space: nowrap;
+}
+
+.pdm-params-table .td-lift-type {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--zinc-600);
+  text-align: left;
+  padding-left: 14px;
+  white-space: nowrap;
+}
+
+/* 客户案例 */
+.pdm-case-group {
+  margin-bottom: 56px;
+}
+
+.pdm-case-group:last-child {
+  margin-bottom: 0;
+}
+
+.pdm-case-group-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--zinc-700);
+  margin-bottom: 16px;
+  padding-left: 12px;
+  border-left: 3px solid var(--hy-red);
+  letter-spacing: 0.3px;
+}
+
+.pdm-case-images {
+  display: grid;
+  gap: 16px;
+}
+
+.pdm-case-images--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.pdm-case-images--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.pdm-case-image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: var(--zinc-100);
+}
+
+.pdm-case-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.pdm-case-image-wrap:hover .pdm-case-img {
+  transform: scale(1.05);
+}
+
+.pdm-case-image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 16px 14px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.65) 100%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.pdm-case-image-wrap:hover .pdm-case-image-overlay {
+  opacity: 1;
+}
+
+.pdm-case-image-overlay span {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+/* ========================================
    Responsive - Pages
    ======================================== */
 
@@ -2864,6 +3317,33 @@
 
   .detail-contact-title {
     font-size: 26px;
+  }
+
+  /* PDM 页面 */
+  .pdm-intro-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .pdm-reliability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pdm-reliability-card {
+    border-right: none;
+    border-bottom: 1px solid var(--zinc-100);
+  }
+
+  .pdm-reliability-card:last-child {
+    border-bottom: none;
+  }
+
+  .pdm-models-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pdm-case-images--3 {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -3094,6 +3574,25 @@
 
   .deco-bg-text {
     font-size: 80px;
+  }
+
+  /* PDM 页面 mobile */
+  .pdm-models-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pdm-case-images--2,
+  .pdm-case-images--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .pdm-table-tab {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .pdm-reliability-card {
+    padding: 32px 24px;
   }
 }
 
