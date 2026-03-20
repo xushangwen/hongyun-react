@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import solutionsHeroImg from '../assets/img/IMG_4366.jpg'
+import prdSysImg from '../assets/img/prd-sys.png'
 
 /* ========== 行业数据 [AI生成描述] ========== */
 const industries = [
@@ -161,11 +162,21 @@ export default function SolutionsPage() {
                     key={sol.slug}
                   >
                     <div className="solutions-card-image">
-                      <ImagePlaceholder height="220px" label={sol.name} />
+                      {/* 高速循环制浆系统使用具体图片 */}
+                      {sol.name === '高速循环制浆系统' ? (
+                        <img 
+                          src={prdSysImg} 
+                          alt={sol.name}
+                        />
+                      ) : (
+                        <ImagePlaceholder height="220px" label={sol.name} />
+                      )}
                     </div>
                     <div className="solutions-card-content">
-                      <h3 className="solutions-card-title">{sol.name}</h3>
-                      {sol.brief && <p className="solutions-card-desc">{sol.brief}</p>}
+                      <div className="solutions-card-text">
+                        <h3 className="solutions-card-title">{sol.name}</h3>
+                        {sol.brief && <p className="solutions-card-desc">{sol.brief}</p>}
+                      </div>
                       <span className="solutions-card-more">
                         了解更多
                         <IconArrowRightOutline24 size={16} />
