@@ -5,6 +5,8 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import productsHeroImg from '../assets/img/产品中心.jpg'
+import productHeroImg from '../assets/img/行业产品.jpg'
+import dualPlanetaryMixerImg from '../assets/img/双行星动力混合机-removebg.png'
 
 /* ========== 产品分类数据 [AI生成描述] ========== */
 const productCategories = [
@@ -153,14 +155,22 @@ export default function ProductsPage() {
               </p>
 
               <div className="products-grid">
-                {category.products.map((product) => (
+                {category.products.map((product, index) => (
                   <Link
                     to={`/products/${category.id}/${product.slug}`}
                     className="product-card"
                     key={product.slug}
                   >
                     <div className="product-card-image">
-                      <ImagePlaceholder height="220px" label={product.name} />
+                      {/* 第一个行业的第一个产品使用具体图片 */}
+                      {category.id === 'new-energy' && index === 0 ? (
+                        <img 
+                          src={dualPlanetaryMixerImg} 
+                          alt={product.name}
+                        />
+                      ) : (
+                        <ImagePlaceholder height="100%" label={product.name} />
+                      )}
                     </div>
                     <div className="product-card-content">
                       <h3 className="product-card-title">{product.name}</h3>
