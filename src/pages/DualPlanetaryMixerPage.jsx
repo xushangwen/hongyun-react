@@ -1,10 +1,29 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
+import {
+  IconArrowRightOutline24,
+  IconGearNodesOutline24,
+  IconTargetOutline24,
+  IconAtomOutline24,
+  IconAwardPlaqueOutline24,
+  IconTestTubeOutline24,
+  IconFireFlameOutline24,
+  IconFlaskOutline24,
+  IconCarBatteryOutline24,
+  IconMedicineOutline24,
+  IconCutleryOutline24,
+  IconMicrochipOutline24,
+  IconArrowsInfinityOutline24,
+  IconEcoHouseOutline24,
+  IconRotateCubeOutline24,
+  IconShieldLockOutline24,
+  IconNetworkNodesOutline24,
+  IconNeuralGridOutline24,
+} from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ctaBgImg from '../assets/img/需要了解更多.jpg'
-import productHeroImg from '../assets/img/行业产品.jpg'
+import productHeroImg from '../assets/img/Generated Image March 20, 2026 - 10_16PM.jpg'
 
 /* ========== 技术参数数据（每个型号一个对象）========== */
 const allModels = [
@@ -132,7 +151,7 @@ export default function DualPlanetaryMixerPage() {
           if (entry.isIntersecting) entry.target.classList.add('visible')
         })
       },
-      { threshold: 0.12 }
+      { threshold: 0.1 }
     )
     document.querySelectorAll('.section-heading, .fade-up').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
@@ -153,70 +172,84 @@ export default function DualPlanetaryMixerPage() {
           { label: '双行星动力混合机' },
         ]} />
 
-        {/* ===== 产品展示 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <h2 className="section-heading fade-up">产品展示</h2>
-            <div className="pdm-showcase fade-up fade-up-delay-1">
-              <img
-                src="/assets/images/products/pd-mixer/main-product.jpg"
-                alt="双行星动力™混合机（PD搅拌机）"
-                className="pdm-showcase-img"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* ===== 产品介绍 ===== */}
-        <section className="page-section page-section--gray">
+        {/* ===== 产品展示 + 产品介绍（合并） ===== */}
+        <section className="page-section pdm-intro-section">
           <div className="page-container">
             <h2 className="section-heading fade-up">产品介绍</h2>
-            <div className="pdm-intro-layout">
-              <div className="pdm-intro-text fade-up fade-up-delay-1">
-                <p>
+            <div className="pdm-intro-grid">
+              <div className="pdm-intro-content">
+                <span className="pdm-intro-label fade-up">新能源行业核心装备</span>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">
+                  双行星动力<sup>™</sup>混合机
+                </h2>
+                <div className="pdm-intro-rule fade-up fade-up-delay-1"></div>
+                <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   双行星动力混合机（PD搅拌机）通常具有一个或多个搅拌桨和分散盘，它们围绕釜体轴线公转的同时，也围绕自身轴线自转。通过搅拌桨和分散盘的行星运动，使物料受到剪切和捏合作用，实现混合。是一种<strong>无死角的动力混合、分散设备</strong>。
                 </p>
-                <p>
+                <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   广泛应用于新能源浆料制备、粘合剂、化工涂料、塑料、制药、食品等行业的固-固相、固-液相、液-液相物料的混合、反应、分散、溶解、均质、乳化等工艺过程。
                 </p>
+                <div className="pdm-intro-apps fade-up fade-up-delay-3">
+                  {[
+                    { name: '新能源浆料', icon: IconCarBatteryOutline24 },
+                    { name: '粘合剂', icon: IconTestTubeOutline24 },
+                    { name: '化工涂料', icon: IconFlaskOutline24 },
+                    { name: '制药', icon: IconMedicineOutline24 },
+                    { name: '食品加工', icon: IconCutleryOutline24 },
+                    { name: '电子材料', icon: IconMicrochipOutline24 },
+                  ].map((item, i) => (
+                    <span key={i} className="pdm-app-tag">
+                      <item.icon size={16} />
+                      {item.name}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <div className="pdm-intro-tags fade-up fade-up-delay-2">
-                {['新能源浆料', '粘合剂', '化工涂料', '制药', '食品加工', '电子材料'].map((tag, i) => (
-                  <span key={i} className="pdm-app-tag">{tag}</span>
-                ))}
+              <div className="pdm-intro-visual fade-up fade-up-delay-2">
+                <div className="pdm-intro-image-frame">
+                  <img
+                    src="/assets/images/products/pd-mixer/双行星动力混合设备生图.jpg"
+                    alt="双行星动力™混合机（PD搅拌机）"
+                    className="pdm-intro-img"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ===== 可靠性承诺（产品特点） ===== */}
-        <section className="page-section">
+        {/* ===== 可靠性承诺（暗色高级区块） ===== */}
+        <section className="pdm-reliability-section">
           <div className="page-container">
             <h2 className="section-heading fade-up">可靠性承诺</h2>
-            <p className="section-desc fade-up fade-up-delay-1">
-              经长期生产验证，红运机械的双行星动力混合机以其卓越的可靠性保障生产安全，创下三项"从未"记录：
+            <p className="pdm-rel-lead fade-up fade-up-delay-1">
+              经长期生产验证，<br />
+              红运机械的双行星动力混合机以其卓越的可靠性保障生产安全。
             </p>
-            <div className="pdm-reliability-grid fade-up fade-up-delay-2">
-              <div className="pdm-reliability-card">
-                <div className="pdm-reliability-index">01</div>
-                <div className="pdm-reliability-content">
-                  <h3>金属零污染</h3>
-                  <p>从未因金属污染（铜、锌、镍、铁）、搅拌机刮壁、漏油而导致浆料报废。</p>
+            <div className="pdm-rel-grid fade-up fade-up-delay-2">
+              <div className="pdm-rel-card">
+                <div className="pdm-rel-card-top">
+                  <div className="pdm-rel-card-icon"><IconEcoHouseOutline24 size={30} /></div>
+                  <span className="pdm-rel-card-num">01</span>
                 </div>
+                <h3 className="pdm-rel-card-title">金属零污染</h3>
+                <p className="pdm-rel-card-desc">从未因金属污染（铜、锌、镍、铁）、搅拌机刮壁、漏油而导致浆料报废。</p>
               </div>
-              <div className="pdm-reliability-card">
-                <div className="pdm-reliability-index">02</div>
-                <div className="pdm-reliability-content">
-                  <h3>桶体结构稳定</h3>
-                  <p>从未出现因桶身内胆及桶底内胆变形导致的漏水问题。</p>
+              <div className="pdm-rel-card">
+                <div className="pdm-rel-card-top">
+                  <div className="pdm-rel-card-icon"><IconRotateCubeOutline24 size={30} /></div>
+                  <span className="pdm-rel-card-num">02</span>
                 </div>
+                <h3 className="pdm-rel-card-title">桶体结构稳定</h3>
+                <p className="pdm-rel-card-desc">从未出现因桶身内胆及桶底内胆变形导致的漏水问题。</p>
               </div>
-              <div className="pdm-reliability-card">
-                <div className="pdm-reliability-index">03</div>
-                <div className="pdm-reliability-content">
-                  <h3>电气安全防护</h3>
-                  <p>从未出现因粉尘进入电柜引起的电气火灾。</p>
+              <div className="pdm-rel-card">
+                <div className="pdm-rel-card-top">
+                  <div className="pdm-rel-card-icon"><IconShieldLockOutline24 size={30} /></div>
+                  <span className="pdm-rel-card-num">03</span>
                 </div>
+                <h3 className="pdm-rel-card-title">电气安全防护</h3>
+                <p className="pdm-rel-card-desc">从未出现因粉尘进入电柜引起的电气火灾。</p>
               </div>
             </div>
           </div>
@@ -229,39 +262,27 @@ export default function DualPlanetaryMixerPage() {
             <div className="detail-features-grid fade-up fade-up-delay-1">
               <div className="detail-feature-card">
                 <span className="detail-feature-index">01</span>
-                <div className="pdm-adv-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.2-6.8-2.1 2.1M7.3 16.7l-2.1 2.1m0-12.8 2.1 2.1m9.4 9.4 2.1 2.1"/>
-                  </svg>
-                </div>
-                <p>高效混合——行星公转+自转+高速分散三重动力，实现高粘度物料无死角均匀混合。</p>
+                <div className="pdm-adv-icon"><IconArrowsInfinityOutline24 size={28} /></div>
+                <h3 className="pdm-adv-title">高效混合</h3>
+                <p>行星公转+自转+高速分散三重动力，实现高粘度物料无死角均匀混合。</p>
               </div>
               <div className="detail-feature-card">
                 <span className="detail-feature-index">02</span>
-                <div className="pdm-adv-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/>
-                  </svg>
-                </div>
-                <p>精准控制——变频调速，公转、自转、分散转速独立可调，工艺参数精准复现。</p>
+                <div className="pdm-adv-icon"><IconTargetOutline24 size={28} /></div>
+                <h3 className="pdm-adv-title">精准控制</h3>
+                <p>变频调速，公转、自转、分散转速独立可调，工艺参数精准复现。</p>
               </div>
               <div className="detail-feature-card">
                 <span className="detail-feature-index">03</span>
-                <div className="pdm-adv-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m13 2-2 2.5h3L12 7"/><path d="M10 14c.5.5 1.5 1 2 1.5 1 1 1 2 .5 2.5s-1.5.5-2-.5l-1-2"/><path d="M16 12c1 1.5 2 3.5 1 5-.5 1.5-2 2-3 1.5"/><path d="m7 11 2 2m4-10-1 1"/><path d="M11 4c-1 1.5-2 4 0 6l2 2c2 2 5 2 6 0 1.5-2 .5-5-1-6.5"/><path d="M5 19c-1-1-1.5-3 0-4l3-3"/>
-                  </svg>
-                </div>
-                <p>强剪切分散——高速分散盘产生强剪切力，有效破碎团聚体，分散均匀度≥99%。</p>
+                <div className="pdm-adv-icon"><IconNeuralGridOutline24 size={28} /></div>
+                <h3 className="pdm-adv-title">强剪切分散</h3>
+                <p>高速分散盘产生强剪切力，有效破碎团聚体，分散均匀度≥99%。</p>
               </div>
               <div className="detail-feature-card">
                 <span className="detail-feature-index">04</span>
-                <div className="pdm-adv-icon">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                </div>
-                <p>稳定搅拌——液压升降、真空密封、防污染设计，长期运行零故障，保障生产连续性。</p>
+                <div className="pdm-adv-icon"><IconNetworkNodesOutline24 size={28} /></div>
+                <h3 className="pdm-adv-title">稳定搅拌</h3>
+                <p>液压升降、真空密封、防污染设计，长期运行零故障，保障生产连续性。</p>
               </div>
             </div>
           </div>
@@ -276,6 +297,7 @@ export default function DualPlanetaryMixerPage() {
                 <div key={i} className={`pdm-model-card fade-up fade-up-delay-${i + 1}`}>
                   <div className="pdm-model-image-wrap">
                     <img src={m.img} alt={m.fullName} className="pdm-model-img" />
+                    <span className="pdm-model-num">{String(i + 1).padStart(2, '0')}</span>
                   </div>
                   <div className="pdm-model-info">
                     <span className="pdm-model-badge">{m.name}</span>
@@ -295,11 +317,9 @@ export default function DualPlanetaryMixerPage() {
             <h3 className="pdm-table-subtitle fade-up fade-up-delay-1">
               双行星动力™混合机（PD搅拌机）覆盖从实验室级到工业级全系列规格，满足不同产线需求。
             </h3>
-
             <div className="fade-up fade-up-delay-2">
               <ParamsTable data={allModels} />
             </div>
-
             <p className="pdm-table-note fade-up fade-up-delay-3">
               * 以上参数仅供参考，实际规格以合同为准。可根据客户工艺需求进行定制化设计。
             </p>
@@ -315,11 +335,14 @@ export default function DualPlanetaryMixerPage() {
             </p>
             {cases.map((c, gi) => (
               <div key={gi} className={`pdm-case-group fade-up fade-up-delay-${gi + 2}`}>
-                <h3 className="pdm-case-group-title">{c.group}</h3>
+                <div className="pdm-case-group-header">
+                  <span className="pdm-case-group-index">{String(gi + 1).padStart(2, '0')}</span>
+                  <h3 className="pdm-case-group-title">{c.group}</h3>
+                </div>
                 <div className={`pdm-case-images pdm-case-images--${c.images.length}`}>
                   {c.images.map((img, ii) => (
                     <div key={ii} className="pdm-case-image-wrap">
-                      <img src={img.src} alt={img.alt} className="pdm-case-img" />
+                      <img src={img.src} alt={img.alt} className="pdm-case-img" loading="lazy" />
                       <div className="pdm-case-image-overlay">
                         <span>{img.alt}</span>
                       </div>
