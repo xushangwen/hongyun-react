@@ -987,9 +987,10 @@
 /* 全球化布局 */
 .about-global-map {
   margin-bottom: 0;
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid var(--zinc-100);
   border-bottom: none;
+  min-height: 480px;
 }
 
 .about-global-branches {

@@ -5,6 +5,8 @@ import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import VideoPlayer from '../components/VideoPlayer'
+import GlobalMap from '../components/GlobalMap'
 import heroImg from '../assets/img/DJI_20250418102124_0133_D-3 拷贝.jpg'
 import companyImg from '../assets/img/DJI_20250418103239_0149_D 拷贝.jpg'
 import videoImg from '../assets/img/IMG_4366.jpg'
@@ -149,12 +151,11 @@ export default function AboutPage() {
           <div className="page-container">
             <h2 className="section-heading">企业宣传片</h2>
             <div className="about-video-wrapper">
-              <div className="about-video-placeholder">
-                <img src={videoImg} alt="企业宣传片封面" style={{ width: '100%', height: '520px', objectFit: 'cover', display: 'block' }} />
-                <button className="about-video-play" aria-label="播放宣传片">
-                  <IconCircleMediaPlayFill24 size={36} />
-                </button>
-              </div>
+              <VideoPlayer
+                src="/assets/video/promo.mp4"
+                poster={videoImg}
+                title="红运机械 · 企业宣传片"
+              />
             </div>
           </div>
         </section>
@@ -272,7 +273,7 @@ export default function AboutPage() {
           <div className="page-container">
             <h2 className="section-heading">全球化布局</h2>
             <div className="about-global-map">
-              <ImagePlaceholder height="420px" label="全球布局地图 / 业务覆盖区域" />
+              <GlobalMap />
             </div>
             <div className="about-global-branches">
               {globalBranches.map((branch, index) => (

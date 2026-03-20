@@ -12,6 +12,8 @@
 @import './components/mobile-menu.css';
 @import './components/footer.css';
 @import './components/buttons.css';
+@import './components/video-player.css';
+@import './components/global-map.css';
 
 /* Sections */
 @import './sections/hero.css';
