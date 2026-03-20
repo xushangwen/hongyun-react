@@ -1094,6 +1094,26 @@
   transition: color 0.35s ease;
 }
 
+/* 第三个卡片特殊调整 - 彻底解决对齐问题 */
+.about-global-branches .about-global-branch:nth-child(3) .about-global-branch-address {
+  line-height: 1.2 !important;
+  min-height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-bottom: 8px !important;
+}
+
+.about-global-branches .about-global-branch:nth-child(3) .about-global-branch-address span[style*="font-size"] {
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.about-global-branches .about-global-branch:nth-child(3) .about-global-branch-role {
+  line-height: 1.7 !important;
+  margin-top: -8px !important;
+}
+
 /* font-din 工具类 */
 .font-din {
   font-family: 'DIN Pro', sans-serif;

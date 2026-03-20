@@ -60,7 +60,7 @@ const timelineData = [
 const globalBranches = [
   { name: '江苏红运智能装备有限公司', address: '江苏省常州市武进高新区南湖西路8-8号', role: '集团总部 · 研发中心 · 核心生产基地', index: '01' },
   { name: '广州红尚机械制造有限公司', address: '广州市南沙区东涌镇同裕街40号', role: '华南生产基地 · 区域服务中心', index: '02' },
-  { name: '海外服务', address: '覆盖东南亚、欧洲、北美', role: '全球技术支持 · 售后服务网络', index: '03' },
+  { name: '海外服务', address: '业务遍布<span style="font-size: 1.6em; font-weight: 700; color: var(--hy-red); margin: 0 0.2em; margin-top: -0.2em;">5</span>大洲，数十个国家', role: '全球技术支持 · 售后服务网络', index: '03' },
 ]
 
 /* ========== 企业文化数据 [AI生成] ========== */
@@ -280,7 +280,7 @@ export default function AboutPage() {
                 <div className={`about-global-branch fade-up fade-up-delay-${index + 1}`} key={index}>
                   <span className="about-global-branch-index font-din">{branch.index}</span>
                   <h3 className="about-global-branch-name">{branch.name}</h3>
-                  <p className="about-global-branch-address">{branch.address}</p>
+                  <p className="about-global-branch-address" dangerouslySetInnerHTML={{ __html: branch.address }}></p>
                   <p className="about-global-branch-role">{branch.role}</p>
                 </div>
               ))}
