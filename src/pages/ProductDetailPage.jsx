@@ -195,8 +195,9 @@ export default function ProductDetailPage() {
         {/* ===== 联系CTA - 全宽暗色 ===== */}
         <div className="detail-contact-cta">
           <div className="detail-contact-inner" style={{ backgroundImage: `url(${ctaBgImg})` }}>
-            <h2 className="detail-contact-title">需要了解更多？</h2>
-            <p className="detail-contact-desc">我们的专业团队随时为您提供技术咨询和定制化解决方案，助力您的生产工艺升级。</p>
+            <h2 className="detail-contact-title">获取专属解决方案</h2>
+            <p className="detail-contact-desc">我们的专业团队随时为您提供技术咨询和定制化解决方案，<br />
+              助力您的生产工艺升级。</p>
             <Link to="/contact" className="btn-primary">
               联系我们
               <IconArrowRightOutline24 size={18} />

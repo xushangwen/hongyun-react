@@ -6,6 +6,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import solutionsHeroImg from '../assets/img/IMG_4366.jpg'
 import prdSysImg from '../assets/img/prd-sys.png'
+import ctaBgImg from '../assets/img/IMG_5036.jpg'
 
 /* ========== 行业数据 [AI生成描述] ========== */
 const industries = [
@@ -188,6 +189,19 @@ export default function SolutionsPage() {
             </div>
           </section>
         ))}
+      </div>
+
+      {/* ===== 联系 CTA ===== */}
+      <div className="detail-contact-cta">
+        <div className="detail-contact-inner" style={{ backgroundImage: `url(${ctaBgImg})` }}>
+          <h2 className="detail-contact-title">获取专属解决方案</h2>
+          <p className="detail-contact-desc">我们的专业团队随时为您提供技术咨询和定制化解决方案，<br />
+            助力您的生产工艺升级。</p>
+          <Link to="/contact" className="btn-primary">
+            联系我们
+            <IconArrowRightOutline24 size={18} />
+          </Link>
+        </div>
       </div>
     </>
   )

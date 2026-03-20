@@ -4,9 +4,10 @@ import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
-import productsHeroImg from '../assets/img/产品中心.jpg'
+import productsHeroImg from '../assets/img/IMG_4280.jpg'
 import productHeroImg from '../assets/img/行业产品.jpg'
 import dualPlanetaryMixerImg from '../assets/img/双行星动力混合机-removebg.png'
+import ctaBgImg from '../assets/img/IMG_5036.jpg'
 
 /* ========== 产品分类数据 [AI生成描述] ========== */
 const productCategories = [
@@ -185,6 +186,19 @@ export default function ProductsPage() {
             </div>
           </section>
         ))}
+      </div>
+
+      {/* ===== 联系 CTA ===== */}
+      <div className="detail-contact-cta">
+        <div className="detail-contact-inner" style={{ backgroundImage: `url(${ctaBgImg})` }}>
+          <h2 className="detail-contact-title">获取专属解决方案</h2>
+          <p className="detail-contact-desc">我们的专业团队随时为您提供技术咨询和定制化解决方案，<br />
+            助力您的生产工艺升级。</p>
+          <Link to="/contact" className="btn-primary">
+            联系我们
+            <IconArrowRightOutline24 size={18} />
+          </Link>
+        </div>
       </div>
     </>
   )

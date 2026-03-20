@@ -2114,6 +2114,7 @@
   background-color: var(--zinc-800);
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   padding: 96px 40px;
   text-align: center;
   position: relative;
