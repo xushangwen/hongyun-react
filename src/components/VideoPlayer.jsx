@@ -1,4 +1,5 @@
 import { useRef, useState, useCallback } from 'react'
+import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 
 export default function VideoPlayer({
   src = '/assets/video/promo.mp4',
@@ -89,10 +90,7 @@ export default function VideoPlayer({
           <img src={poster} alt={title} className="vp-poster" />
           <div className="vp-cover-overlay" />
           <button className="vp-play-btn" aria-label="播放宣传片">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="12" fill="currentColor" opacity="0.95" />
-              <path d="M9.5 7.5L16.5 12L9.5 16.5V7.5Z" fill="white" />
-            </svg>
+            <IconCircleMediaPlayFill24 size={36} />
           </button>
         </div>
       )}
