@@ -42,7 +42,7 @@ export default function DropdownContact({ isActive, onMouseEnter, onMouseLeave }
               className="dropdown-contact-item"
             >
               <div className="dropdown-contact-icon">
-                <item.icon size={24} />
+                <item.icon size={20} />
               </div>
               <div className="dropdown-contact-info">
                 <h3 className="dropdown-contact-title">{item.title}</h3>

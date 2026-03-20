@@ -1606,25 +1606,20 @@
   background: var(--hy-white);
   border: 1px solid var(--zinc-100);
   padding: 40px;
-  border-radius: 0;
   position: relative;
+  overflow: hidden;
   transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
 }
 
 .contact-info-card::before {
   content: '';
   position: absolute;
-  top: 0;
+  bottom: -1px;
   left: 0;
   width: 0;
-  height: 2px;
+  height: 3px;
   background: var(--hy-red);
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.contact-info-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
+  transition: width 0.35s ease;
 }
 
 .contact-info-card:hover::before {
@@ -1632,8 +1627,8 @@
 }
 
 .contact-info-card-icon {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 0;
   background: var(--zinc-50);
   display: flex;
@@ -2651,9 +2646,8 @@
 .job-card::before {
   content: '';
   position: absolute;
-  top: -1px; left: 0;
-  height: 3px;
-  width: 0;
+  bottom: -1px; left: 0;
+  width: 0; height: 2px;
   background: var(--hy-red);
   transition: width 0.35s ease;
 }
@@ -2806,7 +2800,7 @@
   font-size: 16px; font-weight: 600; color: var(--zinc-900); margin-bottom: 20px;
 }
 .resume-dropzone {
-  border: 2px dashed var(--zinc-200);
+  border: 1px dashed var(--zinc-200);
   padding: 40px 24px; text-align: center; cursor: pointer;
   transition: all 0.25s ease; position: relative; overflow: hidden;
   display: flex; flex-direction: column; align-items: center; gap: 8px;

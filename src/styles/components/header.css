@@ -725,7 +725,7 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--hy-white);
+  background: var(--zinc-50);
   border-top: 1px solid var(--zinc-100);
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   opacity: 0;
@@ -757,24 +757,34 @@
   display: flex;
   gap: 16px;
   padding: 24px;
-  background: var(--zinc-50);
+  background: var(--hy-white);
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
-  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  border: 1px solid var(--zinc-100);
+  position: relative;
+  overflow: hidden;
 }
 
-.dropdown-contact-item:hover {
-  background: var(--hy-white);
-  border-color: var(--zinc-200);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+.dropdown-contact-item::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--hy-red);
+  transition: width 0.35s ease;
+}
+
+.dropdown-contact-item:hover::before {
+  width: 100%;
 }
 
 .dropdown-contact-icon {
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
