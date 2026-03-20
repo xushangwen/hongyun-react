@@ -14,12 +14,12 @@ import {
   IconCutleryOutline24,
   IconMicrochipOutline24,
   IconArrowsInfinityOutline24,
-  IconEcoHouseOutline24,
   IconRotateCubeOutline24,
   IconShieldLockOutline24,
   IconNetworkNodesOutline24,
   IconNeuralGridOutline24,
 } from 'nucleo-core-outline-24'
+import { IconGreenhouseOutline48, IconRotateCubeOutline48, IconFirewallOutline48 } from 'nucleo-core-outline-48'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ctaBgImg from '../assets/img/需要了解更多.jpg'
@@ -54,19 +54,19 @@ const productModels = [
   {
     name: '实验室型',
     fullName: '实验室型双行星动力混合机',
-    img: '/assets/images/products/pd-mixer/model-lab.jpg',
+    img: '/assets/img/prd-02.jpg',
     desc: '适用于研发、小批量实验及工艺验证，紧凑轻便，操作简洁，与量产机型保持工艺一致性。',
   },
   {
     name: '桶体翻转型',
     fullName: '桶体翻转型双行星动力混合机',
-    img: '/assets/images/products/pd-mixer/model-flip.jpg',
+    img: '/assets/img/prd-01.jpg',
     desc: '桶体可翻转出料，适用于高粘度物料的便捷出料作业，显著减少残料损耗与清洗时间。',
   },
   {
     name: '450L 小型',
     fullName: '450L 小型双行星动力混合机',
-    img: '/assets/images/products/pd-mixer/model-450l.jpg',
+    img: '/assets/img/prd-03.jpeg',
     desc: '面向中小批量生产设计，集成液压升降系统，兼顾产能与灵活性，是量产产线的高性价比之选。',
   },
 ]
@@ -229,7 +229,7 @@ export default function DualPlanetaryMixerPage() {
             <div className="pdm-rel-grid fade-up fade-up-delay-2">
               <div className="pdm-rel-card">
                 <div className="pdm-rel-card-top">
-                  <div className="pdm-rel-card-icon"><IconEcoHouseOutline24 size={30} /></div>
+                  <div className="pdm-rel-card-icon"><IconGreenhouseOutline48 /></div>
                   <span className="pdm-rel-card-num">01</span>
                 </div>
                 <h3 className="pdm-rel-card-title">金属零污染</h3>
@@ -237,7 +237,7 @@ export default function DualPlanetaryMixerPage() {
               </div>
               <div className="pdm-rel-card">
                 <div className="pdm-rel-card-top">
-                  <div className="pdm-rel-card-icon"><IconRotateCubeOutline24 size={30} /></div>
+                  <div className="pdm-rel-card-icon"><IconRotateCubeOutline48 /></div>
                   <span className="pdm-rel-card-num">02</span>
                 </div>
                 <h3 className="pdm-rel-card-title">桶体结构稳定</h3>
@@ -245,7 +245,7 @@ export default function DualPlanetaryMixerPage() {
               </div>
               <div className="pdm-rel-card">
                 <div className="pdm-rel-card-top">
-                  <div className="pdm-rel-card-icon"><IconShieldLockOutline24 size={30} /></div>
+                  <div className="pdm-rel-card-icon"><IconFirewallOutline48 /></div>
                   <span className="pdm-rel-card-num">03</span>
                 </div>
                 <h3 className="pdm-rel-card-title">电气安全防护</h3>

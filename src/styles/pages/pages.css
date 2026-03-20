@@ -2982,8 +2982,7 @@
 .pdm-model-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  padding: 20px;
+  object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -2999,11 +2998,12 @@
   display: inline-block;
   font-size: 11px;
   font-weight: 500;
-  color: var(--hy-red);
-  background: rgba(186, 12, 47, 0.08);
-  padding: 3px 10px;
+  color: var(--hy-white);
+  background: var(--hy-red);
+  padding: 4px 12px;
   letter-spacing: 0.5px;
   margin-bottom: 10px;
+  border-radius: 20px;
 }
 
 .pdm-model-title {
@@ -3122,10 +3122,21 @@
   background: #fff;
 }
 
-/* Hover：整个型号组两行高亮（通过兄弟选择器实现） */
-.pdm-params-table tbody tr:hover td,
-.pdm-params-table tbody tr:hover + tr td {
-  background: rgba(186, 12, 47, 0.04) !important;
+/* Hover：整个型号组两行高亮 */
+/* 悬停在第一行时，高亮第一行和第二行 */
+.pdm-params-table tbody tr.tr-even:hover td,
+.pdm-params-table tbody tr.tr-even:hover + tr.tr-even td,
+.pdm-params-table tbody tr.tr-odd:hover td,
+.pdm-params-table tbody tr.tr-odd:hover + tr.tr-odd td {
+  background: rgba(186, 12, 47, 0.08) !important;
+}
+
+/* 悬停在第二行时，高亮第一行和第二行（使用前一个兄弟选择器） */
+.pdm-params-table tbody tr.tr-even:has(+ tr.tr-even:hover) td,
+.pdm-params-table tbody tr.tr-even + tr.tr-even:hover td,
+.pdm-params-table tbody tr.tr-odd:has(+ tr.tr-odd:hover) td,
+.pdm-params-table tbody tr.tr-odd + tr.tr-odd:hover td {
+  background: rgba(186, 12, 47, 0.08) !important;
 }
 
 /* rowspan 合并单元格 */
@@ -3140,11 +3151,11 @@
 .pdm-params-table .td-model-code {
   font-weight: 700;
   color: var(--zinc-900);
-  font-size: 12.5px;
+  font-size: 14px;
   letter-spacing: 0.3px;
   font-family: 'Space Grotesk', -apple-system, sans-serif;
   text-align: left;
-  padding-left: 14px;
+  padding-left: 20px;
   white-space: nowrap;
 }
 
@@ -3153,7 +3164,7 @@
   font-weight: 400;
   color: var(--zinc-600);
   text-align: left;
-  padding-left: 14px;
+  padding-left: 20px;
   white-space: nowrap;
 }
 
@@ -3481,15 +3492,7 @@
 }
 
 .pdm-rel-card-num {
-  font-family: 'DIN Pro', 'Space Grotesk', sans-serif;
-  font-size: 52px;
-  font-weight: 700;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1;
-  letter-spacing: -2px;
+  display: none;
 }
 
 .pdm-rel-card-title {
@@ -3528,25 +3531,7 @@
 
 /* --- 产品型号 num overlay --- */
 .pdm-model-num {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  font-family: 'DIN Pro', 'Space Grotesk', sans-serif;
-  font-size: 36px;
-  font-weight: 700;
-  background: linear-gradient(180deg, rgba(186, 12, 47, 0.22) 0%, transparent 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1;
-  z-index: 2;
-  letter-spacing: -1px;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.pdm-model-card:hover .pdm-model-num {
-  opacity: 0;
+  display: none;
 }
 
 /* --- 客户案例 V2 --- */
