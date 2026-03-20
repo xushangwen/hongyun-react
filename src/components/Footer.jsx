@@ -81,19 +81,19 @@ export default function Footer() {
               <div className="footer-qrcodes">
                 <div className="footer-qrcode-item">
                   <div className="footer-qrcode-box">
-                    <img src="/src/assets/qr-code/wechat-gzh.svg" alt="微信公众号二维码" className="footer-qrcode-img" />
+                    <img src="/assets/qr-code/wechat-gzh.svg" alt="微信公众号二维码" className="footer-qrcode-img" />
                   </div>
                   <p className="footer-qrcode-label">微信公众号</p>
                 </div>
                 <div className="footer-qrcode-item">
                   <div className="footer-qrcode-box">
-                    <img src="/src/assets/qr-code/wechat-fwh.svg" alt="微信服务号二维码" className="footer-qrcode-img" />
+                    <img src="/assets/qr-code/wechat-fwh.svg" alt="微信服务号二维码" className="footer-qrcode-img" />
                   </div>
                   <p className="footer-qrcode-label">微信服务号</p>
                 </div>
                 <div className="footer-qrcode-item">
                   <div className="footer-qrcode-box">
-                    <img src="/src/assets/qr-code/dy.svg" alt="抖音二维码" className="footer-qrcode-img" />
+                    <img src="/assets/qr-code/dy.svg" alt="抖音二维码" className="footer-qrcode-img" />
                   </div>
                   <p className="footer-qrcode-label">抖音</p>
                 </div>
