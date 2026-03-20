@@ -16,7 +16,7 @@ import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 const solutionCategories = [
   {
     Icon: IconCarBatteryOutline24,
-    label: '新能源',
+    label: '新能源行业',
     id: 'new-energy',
     desc: '面向锂电池正负极浆料制备，提供从投料、制浆到输送的全流程自动化解决方案，已服务宁德时代、比亚迪等头部客户。',
     items: [
@@ -39,7 +39,7 @@ const solutionCategories = [
   },
   {
     Icon: IconFlaskOutline24,
-    label: '化工',
+    label: '化工行业',
     id: 'chemical',
     desc: '为精细化工、涂料、胶粘剂等领域提供自动化混合生产系统，满足高粘度、多组分物料的精准配比与均匀混合需求。',
     items: [

@@ -11,7 +11,7 @@ import productHeroImg from '../assets/img/行业产品.jpg'
 /* ========== 产品数据映射 [AI生成描述] ========== */
 const productMap = {
   'new-energy': {
-    name: '新能源',
+    name: '新能源行业',
     products: {
       'dual-planetary-mixer': {
         name: '双行星动力混合机',
@@ -40,7 +40,7 @@ const productMap = {
     },
   },
   'chemical': {
-    name: '化工',
+    name: '化工行业',
     products: {
       'chem-dual-planetary': { name: '双行星动力混合机', intro: '化工行业专用双行星搅拌设备，适用于涂料、胶粘剂等高粘度物料的混合。', features: ['适用超高粘度物料', '真空脱泡', '变频调速', '多容量可选'], components: ['搅拌桨叶', '分散盘', '搅拌缸', '真空系统'], params: [{ model: 'HY-CPD-500', capacity: '500L', power: '75kW', speed: '0-60rpm', size: '2400×2000×3600mm' }] },
       'reciprocating-mixer': { name: '往复式混合搅拌机', intro: '独特的往复运动搅拌方式，适合中低粘度物料的温和混合。', features: ['往复运动搅拌', '低剪切温和混合', '适合热敏物料', '清洗方便'], components: ['往复搅拌臂', '搅拌容器', '驱动系统', '控制面板'], params: [{ model: 'HY-RCM-200', capacity: '200L', power: '15kW', speed: '0-120次/min', size: '1400×1000×2000mm' }] },

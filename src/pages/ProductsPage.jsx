@@ -10,7 +10,7 @@ import productsHeroImg from '../assets/img/产品中心.jpg'
 const productCategories = [
   {
     id: 'new-energy',
-    name: '新能源',
+    name: '新能源行业',
     desc: '面向锂电池正负极浆料制备的核心装备，覆盖搅拌、分散、捏合、制浆全工艺环节。',
     products: [
       { name: '双行星动力混合机', slug: 'dual-planetary-mixer' },
@@ -32,7 +32,7 @@ const productCategories = [
   },
   {
     id: 'chemical',
-    name: '化工',
+    name: '化工行业',
     desc: '适用于涂料、胶粘剂、密封胶等高粘度多组分物料的专业混合搅拌设备。',
     products: [
       { name: '双行星动力混合机', slug: 'chem-dual-planetary' },

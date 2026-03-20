@@ -10,7 +10,7 @@ import solutionsHeroImg from '../assets/img/IMG_4366.jpg'
 const industries = [
   {
     id: 'new-energy',
-    name: '新能源',
+    name: '新能源行业',
     desc: '面向锂电池正负极浆料制备，提供从投料、制浆到输送的全流程自动化解决方案，已服务宁德时代、比亚迪等头部客户。',
     solutions: [
       { name: 'PD制浆系统', slug: 'pd-pulping', brief: '行星搅拌+高速分散一体化制浆，适用于正负极浆料批次生产。' },
@@ -31,7 +31,7 @@ const industries = [
   },
   {
     id: 'chemical',
-    name: '化工',
+    name: '化工行业',
     desc: '为精细化工、涂料、胶粘剂等领域提供自动化混合生产系统，满足高粘度、多组分物料的精准配比与均匀混合需求。',
     solutions: [
       { name: '全自动生产系统', slug: 'auto-production', brief: '从原料投入到成品输出的一键式全自动化生产线。' },

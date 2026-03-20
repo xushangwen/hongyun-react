@@ -15,7 +15,7 @@ import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 const categories = [
   {
     Icon: IconCarBatteryOutline24,
-    label: '新能源', id: 'new-energy',
+    label: '新能源行业', id: 'new-energy',
     desc: '面向锂电池正负极浆料制备的核心装备，覆盖搅拌、分散、捏合、制浆全工艺环节。',
     products: [
       { name: '双行星动力混合机', slug: 'dual-planetary-mixer' },
@@ -37,7 +37,7 @@ const categories = [
   },
   {
     Icon: IconFlaskOutline24,
-    label: '化工', id: 'chemical',
+    label: '化工行业', id: 'chemical',
     desc: '适用于涂料、胶粘剂等高粘度多组分物料的专业混合搅拌设备。',
     products: [
       { name: '双行星动力混合机',       slug: 'chem-dual-planetary' },

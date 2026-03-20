@@ -11,7 +11,7 @@ import ctaBgImg from '../assets/img/需要了解更多.jpg'
 /* ========== 方案数据映射 [AI生成描述] ========== */
 const solutionMap = {
   'new-energy': {
-    name: '新能源',
+    name: '新能源行业',
     solutions: {
       'pd-pulping': {
         name: 'PD制浆系统',
@@ -69,7 +69,21 @@ const solutionMap = {
       'dry-twin-screw-extruder': { name: '干法双螺杆挤出机', intro: '连续挤出成膜工艺设备，支持正极/负极电极膜片的干法制备，是固态电池产业化的关键装备。', features: ['干法连续挤出成膜', '无需溶剂和干燥', '膜厚均匀可控', '产能高、能耗低'], compositions: ['双螺杆挤出主机', '喂料系统', '辊压成膜单元', '在线测厚系统'], params: [{ name: '膜厚范围', value: '50~300μm', note: '' }, { name: '幅宽', value: '300~600mm', note: '' }] },
     },
   },
-  'chemical': { name: '化工', solutions: { 'auto-production': { name: '全自动生产系统', intro: '从原料投入到成品输出的一键式全自动化生产线，适用于涂料、胶粘剂、密封胶等化工产品的批量生产。', features: ['全自动投料/配料', '多物料精准计量', '远程监控操作', '数据记录可追溯'], compositions: ['自动投料系统', '计量配料系统', '混合搅拌系统', '灌装输出系统'], params: [{ name: '生产能力', value: '1~20吨/批次', note: '' }, { name: '计量精度', value: '±0.5%', note: '' }] } } },
+  'chemical': {
+    name: '化工行业',
+    solutions: {
+      'auto-production': {
+        name: '全自动生产系统',
+        intro: '从原料投入到成品输出的一键式全自动化生产线，适用于涂料、胶粘剂、密封胶等化工产品的批量生产。',
+        features: ['全自动投料/配料', '多物料精准计量', '远程监控操作', '数据记录可追溯'],
+        compositions: ['自动投料系统', '计量配料系统', '混合搅拌系统', '灌装输出系统'],
+        params: [
+          { name: '生产能力', value: '1~20吨/批次', note: '' },
+          { name: '计量精度', value: '±0.5%', note: '' },
+        ],
+      },
+    },
+  },
   'adhesive': { name: '制胶', solutions: { 'adhesive-overview': { name: '制胶解决方案', intro: '针对密封胶、结构胶、硅胶等高粘度物料，提供真空脱泡、行星搅拌等专业制胶工艺方案，产品气泡含量低、一致性高。', features: ['真空行星搅拌', '高粘度物料适用', '自动出料灌装', '温控精准'], compositions: ['双行星搅拌机', '真空系统', '温控系统', '出料灌装机'], params: [{ name: '工作粘度', value: '≤2,000,000mPa·s', note: '' }, { name: '真空度', value: '≤-0.098MPa', note: '' }] } } },
   'pyrotechnics': { name: '火工药剂', solutions: { 'pyro-overview': { name: '火工药剂方案', intro: '为含能材料提供防爆、防静电的安全混合生产方案，全封闭设计，远程操控，符合国防军工安全标准。', features: ['防爆防静电设计', '远程操控', '全封闭混合', '符合军工标准'], compositions: ['防爆捏合机', '防爆控制系统', '安全监控系统', '远程操作台'], params: [{ name: '防爆等级', value: 'ExdIIBT4', note: '' }] } } },
   'food': { name: '食品', solutions: { 'food-overview': { name: '食品行业方案', intro: '为调味品、烘焙预拌粉、功能食品等提供符合GMP标准的卫生级混合生产方案，全不锈钢设计。', features: ['全不锈钢卫生设计', 'CIP在线清洗', '符合食品安全标准', '粉体/液体均适用'], compositions: ['卫生级混合机', 'CIP清洗系统', '计量配料系统', '包装输出系统'], params: [{ name: '材质', value: 'SUS304/316L', note: '' }] } } },
