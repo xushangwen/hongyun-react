@@ -17,7 +17,8 @@ import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import MapboxMap from '../components/MapboxMap'
 import contactHeroImg from '../assets/img/DJI_20250418104522_0160_D 拷贝.jpg'
-import brandPanelBg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.png'
+import brandPanelBg from '../assets/img/IMG_4784.jpg'
+import inquiryBrandPanelBg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.png'
 
 /* ========== 联系方式数据 ========== */
 const contactCards = [
@@ -69,18 +70,12 @@ const talentValues = [
   },
   {
     index: '02',
-    title: '以奋斗者为本',
-    desc: '让实干者出彩，让有为者有位。奋斗精神是企业最宝贵的文化资产，我们为勇于担当、积极进取的员工提供充分的发展空间与激励机制。',
-    ref: '参考：华为核心价值观',
-  },
-  {
-    index: '03',
     title: '持续学习，共同成长',
     desc: '构建完善的人才培育体系，提供多维度的培训与发展机会，鼓励员工持续学习、勇于创新，与企业同频共振，携手成长。',
     ref: '参考：通用电气 / IBM 学习文化',
   },
   {
-    index: '04',
+    index: '03',
     title: '利他原则，协作共赢',
     desc: '秉承"利他"工作理念，以团队整体利益为先，相互支持、协作共赢，在开放包容的组织氛围中激发每个人的潜能，共同成就更好的红运。',
     ref: '参考：阿里巴巴价值观 / 稻盛和夫利他经营哲学',
@@ -237,12 +232,7 @@ const jobListings = [
 
 /* ========== HR 信息 ========== */
 const hrContact = {
-  name: '李晓华',
-  title: '人力资源负责人',
-  phone: '0519-86886896',
-  email: 'hr@gzhy.cn',
-  wechat: '请致电获取',
-  workTime: '周一至周五 09:00 - 17:30',
+  email: 'recruit@gzhy.cn',
 }
 
 /* ========== 简历上传弹窗 ========== */
@@ -409,6 +399,144 @@ function ResumeUploadModal({ job, onClose }) {
   )
 }
 
+/* ========== 简历投递模块 ========== */
+function ResumeSubmitSection() {
+  const [formData, setFormData] = useState({ name: '', phone: '', position: '', email: '' })
+  const [file, setFile] = useState(null)
+  const [dragOver, setDragOver] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState('')
+  const inputRef = useRef(null)
+
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
+
+  const validateFile = useCallback((f) => {
+    if (!f) return ''
+    const ext = f.name.split('.').pop().toLowerCase()
+    const allowed = ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'jpg', 'jpeg', 'png']
+    if (!allowed.includes(ext)) return '仅支持 PDF / Word / PPT / JPG 格式'
+    if (f.size > MAX_SIZE_MB * 1024 * 1024) return `文件大小不超过 ${MAX_SIZE_MB}MB`
+    return ''
+  }, [])
+
+  const handleFile = useCallback((f) => {
+    const err = validateFile(f)
+    setError(err)
+    if (!err) setFile(f)
+  }, [validateFile])
+
+  const handleDrop = (e) => {
+    e.preventDefault()
+    setDragOver(false)
+    const f = e.dataTransfer.files[0]
+    if (f) handleFile(f)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (!file) { setError('请先上传简历文件'); return }
+    setSubmitted(true)
+  }
+
+  if (submitted) {
+    return (
+      <div className="contact-submit-success">
+        <IconCircleCheckOutline24 size={56} className="contact-success-icon" />
+        <h3>简历投递成功！</h3>
+        <p>感谢您对红运机械的关注，我们的 HR 团队将在 3 个工作日内与您联系。</p>
+        <button className="btn-primary" onClick={() => setSubmitted(false)}>继续投递</button>
+      </div>
+    )
+  }
+
+  return (
+    <div className="contact-form-wrapper">
+      <div className="contact-brand-panel" style={{ backgroundImage: `url(${brandPanelBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <p className="contact-brand-tagline">加入红运<br />共创装备制造未来</p>
+        <div className="contact-brand-divider" />
+        <div className="contact-brand-items">
+          <div className="contact-brand-item">
+            <span className="contact-brand-item-label">招聘邮箱</span>
+            <span className="contact-brand-item-value">{hrContact.email}</span>
+          </div>
+          <div className="contact-brand-item">
+            <span className="contact-brand-item-label">响应时效</span>
+            <span className="contact-brand-item-value">3 个工作日内回复</span>
+          </div>
+          <div className="contact-brand-item">
+            <span className="contact-brand-item-label">工作时间</span>
+            <span className="contact-brand-item-value">周一至周五 09:00 – 17:30</span>
+          </div>
+        </div>
+      </div>
+      <form className="contact-form" onSubmit={handleSubmit}>
+        <div className="contact-form-row">
+          <div className="contact-form-field">
+            <label className="contact-form-label" htmlFor="apply-name">应聘者姓名 *</label>
+            <input type="text" id="apply-name" name="name" className="contact-form-input" placeholder="您的姓名" value={formData.name} onChange={handleChange} required />
+          </div>
+          <div className="contact-form-field">
+            <label className="contact-form-label" htmlFor="apply-phone">联系电话 *</label>
+            <input type="tel" id="apply-phone" name="phone" className="contact-form-input" placeholder="您的手机号码" value={formData.phone} onChange={handleChange} required />
+          </div>
+          <div className="contact-form-field">
+            <label className="contact-form-label" htmlFor="apply-email">电子邮箱</label>
+            <input type="email" id="apply-email" name="email" className="contact-form-input" placeholder="您的邮箱（选填）" value={formData.email} onChange={handleChange} />
+          </div>
+        </div>
+        <div className="contact-form-row">
+          <div className="contact-form-field">
+            <label className="contact-form-label" htmlFor="apply-position">应聘岗位 *</label>
+            <select id="apply-position" name="position" className="contact-form-select" value={formData.position} onChange={handleChange} required>
+              <option value="">请选择岗位</option>
+              {jobListings.map((job) => (
+                <option key={job.id} value={job.title}>{job.title}</option>
+              ))}
+              <option value="其他岗位">其他岗位（请在简历中说明）</option>
+            </select>
+          </div>
+          <div className="contact-form-field" />
+          <div className="contact-form-field" />
+        </div>
+        <div className="contact-form-field">
+          <label className="contact-form-label">上传简历 *</label>
+          <div
+            className={`resume-dropzone${dragOver ? ' dragover' : ''}${file ? ' has-file' : ''}`}
+            onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+            onDragLeave={() => setDragOver(false)}
+            onDrop={handleDrop}
+            onClick={() => inputRef.current?.click()}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && inputRef.current?.click()}
+          >
+            <input ref={inputRef} type="file" accept={ACCEPT_TYPES} className="resume-file-input" onChange={(e) => handleFile(e.target.files[0])} />
+            {file ? (
+              <>
+                <IconCircleCheckOutline24 size={32} className="resume-dropzone-icon resume-dropzone-icon--ok" />
+                <p className="resume-file-name">{file.name}</p>
+                <span className="resume-file-size">{(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                <button type="button" className="resume-remove-btn" onClick={(e) => { e.stopPropagation(); setFile(null); setError('') }}>重新选择</button>
+              </>
+            ) : (
+              <>
+                <IconCloudUploadOutline24 size={36} className="resume-dropzone-icon" />
+                <p className="resume-dropzone-text">点击或拖拽简历到此处</p>
+                <span className="resume-dropzone-hint">支持 PDF / Word / PPT / JPG，最大 {MAX_SIZE_MB}MB</span>
+              </>
+            )}
+          </div>
+        </div>
+        {error && <p className="resume-error">{error}</p>}
+        <button type="submit" className="btn-primary">
+          提交申请
+          <IconArrowRightOutline24 size={18} />
+        </button>
+      </form>
+    </div>
+  )
+}
+
 /* ========== 技术咨询 Tab ========== */
 function InquiryTab() {
   const [formData, setFormData] = useState({
@@ -436,7 +564,7 @@ function InquiryTab() {
 
   return (
     <div className="contact-form-wrapper">
-      <div className="contact-brand-panel" style={{ backgroundImage: `url(${brandPanelBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="contact-brand-panel" style={{ backgroundImage: `url(${inquiryBrandPanelBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <p className="contact-brand-tagline">专注混合工艺<br />三十年技术积淀</p>
         <div className="contact-brand-divider" />
         <div className="contact-brand-items">
@@ -581,30 +709,11 @@ function JoinUsTab() {
         </div>
       </section>
 
-      {/* HR 联系信息 */}
-      <section className="join-section">
-        <h2 className="section-heading">HR 联系方式</h2>
-        <p className="section-desc">有意向的候选人可直接联系我们的HR，快速开启您的红运之旅。</p>
-        <div className="hr-contact-card">
-          <div className="hr-contact-info">
-            <h3 className="hr-contact-name">{hrContact.name}</h3>
-            <span className="hr-contact-title">{hrContact.title}</span>
-            <div className="hr-contact-items">
-              <div className="hr-contact-item">
-                <IconPhoneOutline24 size={16} />
-                <a href={`tel:${hrContact.phone.replace(/-/g, '')}`}>{hrContact.phone}</a>
-              </div>
-              <div className="hr-contact-item">
-                <IconMessageBubbleUserOutline24 size={16} />
-                <a href={`mailto:${hrContact.email}`}>{hrContact.email}</a>
-              </div>
-              <div className="hr-contact-item">
-                <IconUsersShakingHandsOutline24 size={16} />
-                <span>工作时间：{hrContact.workTime}</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      {/* 简历投递 */}
+      <section className="join-section resume-submit-section">
+        <h2 className="section-heading">简历投递</h2>
+        <p className="section-desc">填写以下信息直接提交您的申请，HR 团队将在 3 个工作日内与您联系。</p>
+        <ResumeSubmitSection />
       </section>
 
       {/* 岗位详情弹窗 */}

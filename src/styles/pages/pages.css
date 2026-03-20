@@ -228,7 +228,7 @@
   font-size: 32px;
   font-weight: 700;
   color: var(--zinc-900);
-  margin-bottom: 48px;
+  margin-bottom: 32px;
   padding-left: 20px;
   position: relative;
   line-height: 1.3;
@@ -271,7 +271,7 @@
   font-size: 15px;
   color: var(--zinc-500);
   line-height: 1.9;
-  margin-bottom: 36px;
+  margin-top: 8px;
   max-width: 720px;
 }
 
@@ -1694,7 +1694,7 @@
 /* 咨询表单 - 分栏布局 */
 .contact-form-wrapper {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 420px 1fr;
   gap: 0;
   border: 1px solid var(--zinc-200);
   overflow: hidden;
@@ -1717,7 +1717,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.68);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 0;
 }
 
@@ -1772,12 +1772,12 @@
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--zinc-500);
+  color: var(--zinc-400);
 }
 
 .contact-brand-item-value {
   font-size: 14px;
-  color: var(--zinc-300);
+  color: var(--zinc-100);
 }
 
 .contact-brand-divider {
@@ -2590,10 +2590,11 @@
 }
 .join-section { padding: 64px 0; }
 .join-section--gray { background: var(--zinc-50); margin: 0 -40px; padding: 64px 40px; }
+.resume-submit-section .section-desc { margin-bottom: 40px; }
 
 .talent-values-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1px;
   background: var(--zinc-100);
   border: 1px solid var(--zinc-100);
@@ -2675,35 +2676,67 @@
 
 /* HR 联系卡片 */
 .hr-contact-card {
-  display: flex;
+  display: inline-flex;
   background: var(--hy-white);
   border: 1px solid var(--zinc-100);
-  padding: 48px 56px;
-  margin-top: 40px;
-  position: relative;
-  overflow: hidden;
-  background-image: url('/assets/img/hr-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  border-radius: 0;
+  padding: 32px 40px;
+  gap: 48px;
+  align-items: center;
 }
 .hr-contact-info { 
   display: flex; 
-  flex-direction: column; 
-  gap: 4px; 
-  position: relative; 
-  z-index: 1;
-  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
 }
-.hr-contact-name { font-size: 24px; font-weight: 700; color: var(--zinc-900); margin-bottom: 4px; }
-.hr-contact-title { font-size: 14px; color: var(--zinc-500); margin-bottom: 24px; }
-.hr-contact-items { display: flex; flex-direction: column; gap: 14px; }
+.hr-contact-items { display: flex; flex-direction: column; gap: 0; }
 .hr-contact-item {
   display: flex; align-items: center; gap: 10px;
   font-size: 15px; color: var(--zinc-700);
 }
-.hr-contact-item a { color: var(--hy-red); text-decoration: none; font-weight: 500; }
-.hr-contact-item a:hover { text-decoration: underline; }
+.hr-contact-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hr-contact-label {
+  font-size: 11px;
+  color: var(--zinc-400);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.hr-contact-item a { color: var(--zinc-900); text-decoration: none; font-weight: 500; font-size: 15px; }
+.hr-contact-item a:hover { color: var(--hy-red); }
+.hr-submit-btn {
+  width: fit-content;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 应聘表单弹窗 */
+.apply-modal {
+  max-width: 680px;
+  width: 90vw;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 48px;
+}
+.apply-form-header {
+  margin-bottom: 32px;
+}
+.apply-form-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--zinc-900);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.apply-form-subtitle {
+  font-size: 14px;
+  color: var(--zinc-500);
+}
 
 /* ========================================
    Modal — 弹窗基础
@@ -3767,7 +3800,6 @@
   .contact-tab-btn { padding: 16px 20px; font-size: 13px; }
 
   /* 加入我们 */
-  .talent-values-grid { grid-template-columns: repeat(2, 1fr); }
   .job-cards-grid { grid-template-columns: repeat(2, 1fr); }
   .join-section--gray { margin: 0 -24px; padding: 64px 24px; }
 
