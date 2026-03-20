@@ -78,20 +78,25 @@ export default function Footer() {
                 <IconEnvelopeOutline24 size={16} aria-hidden={true} />
                 <span>hy@gzhy.cn</span>
               </a>
-              <div className="footer-social">
-                <a href="#" className="social-icon social-wechat" aria-label="微信">
-                  <img src="/assets/icons/re/wechat-fill 2.svg" alt="微信" />
-                  <div className="wechat-qrcode">
-                    <img src="/assets/images/qrcode_HY34881055_1.jpg" alt="微信公众号" />
-                    <p>扫一扫关注微信公众号</p>
+              <div className="footer-qrcodes">
+                <div className="footer-qrcode-item">
+                  <div className="footer-qrcode-box">
+                    <img src="/src/assets/qr-code/wechat-gzh.svg" alt="微信公众号二维码" className="footer-qrcode-img" />
                   </div>
-                </a>
-                <a href="#" className="social-icon" aria-label="抖音">
-                  <img src="/assets/icons/re/tiktok 2.svg" alt="抖音" />
-                </a>
-                <a href="#" className="social-icon" aria-label="LinkedIn">
-                  <img src="/assets/icons/re/linkedin-box-fill 2.svg" alt="LinkedIn" />
-                </a>
+                  <p className="footer-qrcode-label">微信公众号</p>
+                </div>
+                <div className="footer-qrcode-item">
+                  <div className="footer-qrcode-box">
+                    <img src="/src/assets/qr-code/wechat-fwh.svg" alt="微信服务号二维码" className="footer-qrcode-img" />
+                  </div>
+                  <p className="footer-qrcode-label">微信服务号</p>
+                </div>
+                <div className="footer-qrcode-item">
+                  <div className="footer-qrcode-box">
+                    <img src="/src/assets/qr-code/dy.svg" alt="抖音二维码" className="footer-qrcode-img" />
+                  </div>
+                  <p className="footer-qrcode-label">抖音</p>
+                </div>
               </div>
             </div>
           </div>

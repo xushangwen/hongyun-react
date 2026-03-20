@@ -15,9 +15,9 @@ import {
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import MapboxMap from '../components/MapboxMap'
 import contactHeroImg from '../assets/img/DJI_20250418104522_0160_D 拷贝.jpg'
 import brandPanelBg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.png'
-import mapImage from '../assets/img/高德地图 - 精准专业的手机地图 拷贝.jpg'
 
 /* ========== 联系方式数据 ========== */
 const contactCards = [
@@ -523,11 +523,7 @@ function ContactInfoTab() {
         ))}
       </div>
       <div className="contact-map-section">
-        <img 
-          src={mapImage} 
-          alt="公司位置地图" 
-          style={{ width: '100%', height: 'auto', display: 'block' }}
-        />
+        <MapboxMap />
       </div>
     </>
   )
