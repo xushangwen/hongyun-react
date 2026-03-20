@@ -99,10 +99,10 @@ export const newsData = [
         images: [
           { src: 'performance_chinese_drums.png', alt: '现场演出：中华鼓魂', caption: '现场演出：中华鼓魂（右滑更多）' },
           { src: 'performance_singing.png', alt: '《你的答案》', caption: '《你的答案》' },
-          { src: 'performance_singing_png.png', alt: '歌曲表演《梦驼铃》《红梅赞》', caption: '歌曲表演《梦驼铃》《红梅赞》' },
-          { src: 'performance_song_most_dear_png.png', alt: '《最亲的人》', caption: '《最亲的人》' },
-          { src: 'performance_magic_png.png', alt: '魔术表演', caption: '魔术表演' },
-          { src: 'full_group_photo_png.png', alt: '全场合影', caption: '全场合影' },
+          { src: 'performance_singing.png', alt: '歌曲表演《梦驼铃》《红梅赞》', caption: '歌曲表演《梦驼铃》《红梅赞》' },
+          { src: 'performance_song_most_dear.png', alt: '《最亲的人》', caption: '《最亲的人》' },
+          { src: 'performance_magic.png', alt: '魔术表演', caption: '魔术表演' },
+          { src: 'full_group_photo.png', alt: '全场合影', caption: '全场合影' },
         ],
       },
       {
@@ -124,9 +124,9 @@ export const newsData = [
       {
         type: 'image_carousel',
         images: [
-          { src: 'celebration_toast_png.png', alt: '活动期间员工举杯庆祝的场景', caption: '活动期间员工举杯庆祝的场景' },
-          { src: 'celebration_clapping_png.png', alt: '员工在聚会活动中欢呼鼓掌的场景', caption: '员工在聚会活动中欢呼鼓掌的场景' },
-          { src: 'fireworks_display_png.png', alt: '欢聚时刻', caption: '欢聚时刻（右滑更多）' },
+          { src: 'celebration_toast.png', alt: '活动期间员工举杯庆祝的场景', caption: '活动期间员工举杯庆祝的场景' },
+          { src: 'celebration_clapping.png', alt: '员工在聚会活动中欢呼鼓掌的场景', caption: '员工在聚会活动中欢呼鼓掌的场景' },
+          { src: 'fireworks_display.png', alt: '欢聚时刻', caption: '欢聚时刻（右滑更多）' },
         ],
       },
     ],
