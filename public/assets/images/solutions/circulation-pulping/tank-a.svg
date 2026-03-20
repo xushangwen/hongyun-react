@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_2" data-name="图层 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215.45 189.68">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: 'HarmonyOS_Sans_SC', 'HarmonyOS Sans SC';
+        font-size: 8px;
+        letter-spacing: .05em;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #595757;
+      }
+
+      .cls-3 {
+        fill: #b5b5b6;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-2, .cls-8, .cls-9 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-2, .cls-8, .cls-9 {
+        stroke: #595757;
+        stroke-width: .12px;
+      }
+
+      .cls-4 {
+        fill: #c9caca;
+      }
+
+      .cls-5 {
+        fill: #727171;
+      }
+
+      .cls-6 {
+        fill: #3164af;
+      }
+
+      .cls-7 {
+        fill: none;
+        stroke: #c30d23;
+        stroke-width: 1.62px;
+      }
+
+      .cls-8 {
+        fill: #3e3a39;
+      }
+
+      .cls-9 {
+        fill: #898989;
+      }
+
+      .cls-10 {
+        fill: #c30d23;
+      }
+    </style>
+  </defs>
+  <g id="word">
+    <g>
+      <g>
+        <rect class="cls-3" x="76.45" y="95.98" width="5.94" height="91.51"/>
+        <rect class="cls-9" x="71.25" y="95.98" width="5.21" height="91.51"/>
+        <rect class="cls-9" x="133.61" y="95.98" width="5.94" height="91.51" transform="translate(273.15 283.47) rotate(-180)"/>
+        <rect class="cls-3" x="139.55" y="95.98" width="5.21" height="91.51" transform="translate(284.3 283.47) rotate(-180)"/>
+        <rect class="cls-5" x="63.9" y="38.33" width="87.55" height="2.36"/>
+        <rect class="cls-8" x="68.65" y="34.75" width="77.87" height="3.59"/>
+        <rect class="cls-4" x="67.67" y="40.69" width="80" height="43.43"/>
+        <polygon class="cls-9" points="67.67 57.4 63.9 60.41 63.9 85.01 99.98 143.59 103.44 143.59 67.67 84.12 67.67 57.4"/>
+        <polygon class="cls-3" points="109.88 146.95 147.67 84.12 147.67 74.03 67.67 74.03 67.67 84.12 105.46 146.95 109.88 146.95"/>
+        <polygon class="cls-9" points="147.67 57.4 151.44 60.41 151.44 85.01 115.36 143.59 111.9 143.59 147.67 84.12 147.67 57.4"/>
+        <rect class="cls-8" x="69.31" y="187.49" width="15.02" height="2.12"/>
+        <rect class="cls-8" x="131.67" y="187.49" width="15.02" height="2.12" transform="translate(278.36 377.11) rotate(-180)"/>
+        <rect class="cls-5" x="61.51" y="62.94" width="2.38" height="6.14"/>
+        <rect class="cls-5" x="147.67" y="46.07" width="5.06" height="6.14"/>
+        <rect class="cls-2" x="124.4" y="31.68" width="8.14" height="3.07"/>
+        <rect class="cls-8" x="124.4" y="25.31" width="8.14" height="6.37"/>
+        <rect class="cls-5" x="132.54" y="27.67" width="2.71" height="3.42"/>
+        <rect class="cls-9" x="132.54" y="31.09" width="2.71" height="7.24"/>
+        <rect class="cls-5" x="131.67" y="38.33" width="3.58" height="2.36"/>
+        <path class="cls-6" d="M131.48,24.15c0-1.66-1.35-3.01-3.01-3.01s-3.01,1.35-3.01,3.01v1.16h6.02v-1.16Z"/>
+        <rect class="cls-2" x="84.4" y="31.68" width="8.14" height="3.07"/>
+        <rect class="cls-8" x="84.4" y="25.31" width="8.14" height="6.37"/>
+        <rect class="cls-5" x="92.54" y="27.67" width="2.71" height="3.42"/>
+        <path class="cls-6" d="M91.48,24.15c0-1.66-1.35-3.01-3.01-3.01s-3.01,1.35-3.01,3.01v1.16h6.02v-1.16Z"/>
+        <g>
+          <path class="cls-5" d="M85.46,4.89h3.76c3.11,0,5.62,2.52,5.62,5.62v6.76c0,3.11-2.52,5.62-5.62,5.62h-3.76V4.89Z"/>
+          <polygon class="cls-9" points="116.73 38.33 116.73 26.34 98.86 26.34 98.86 38.33 95.54 38.33 95.54 39.51 120.1 39.51 120.1 38.33 116.73 38.33"/>
+          <rect class="cls-8" x="64.93" y="7.68" width="3.36" height="3.36"/>
+          <rect class="cls-2" x="64.93" y="11.04" width="3.36" height="7.79"/>
+          <rect class="cls-8" x="68.3" y="9.36" width=".97" height="8.67"/>
+          <rect class="cls-5" x="69.62" y="4.89" width="3.54" height="3"/>
+          <rect class="cls-9" x="69.62" y="7.89" width="3.54" height="3"/>
+          <rect class="cls-5" x="69.62" y="10.89" width="3.54" height="3"/>
+          <rect class="cls-9" x="69.62" y="13.89" width="3.54" height="3"/>
+          <rect class="cls-5" x="69.62" y="16.9" width="3.54" height="3"/>
+          <rect class="cls-9" x="69.62" y="19.9" width="3.54" height="3"/>
+          <rect class="cls-8" x="73.16" y="4.89" width="9.65" height="3.6"/>
+          <rect class="cls-2" x="73.16" y="8.49" width="9.65" height="3.6"/>
+          <rect class="cls-8" x="73.16" y="12.09" width="9.65" height="3.6"/>
+          <rect class="cls-2" x="73.16" y="15.7" width="9.65" height="3.6"/>
+          <rect class="cls-8" x="73.16" y="19.3" width="9.65" height="3.6"/>
+          <rect class="cls-8" x="82.81" y="4.89" width="2.65" height="18.01"/>
+          <rect class="cls-5" x="99.98" y="7.89" width="9.29" height="12.01"/>
+          <rect class="cls-5" x="109.27" y="7.89" width="6.19" height="12.01"/>
+          <rect class="cls-8" x="115.46" y="8.49" width="2.48" height="10.8"/>
+          <polygon class="cls-5" points="94.84 7.89 94.84 10.29 90.69 10.29 90.69 16.9 94.84 16.9 94.84 19.9 99.98 19.9 99.98 7.89 94.84 7.89"/>
+          <rect class="cls-8" x="100.34" y="5.59" width="14.95" height="2.21"/>
+          <rect class="cls-8" x="100.34" y="19.99" width="14.95" height="3.17"/>
+          <rect class="cls-5" x="95.54" y="23.17" width="24.56" height="3.17"/>
+          <path class="cls-9" d="M85.46,22.9c2.81,0,5.09-4.03,5.09-9s-2.28-9-5.09-9v18.01Z"/>
+          <rect class="cls-8" x="69.27" y=".06" width="3.73" height="3.73" rx=".6" ry=".6"/>
+          <rect class="cls-5" x="103.36" y="35.54" width="8.92" height="2.21"/>
+          <rect class="cls-9" x="68.3" y="3.79" width="4.87" height="2.21"/>
+          <rect class="cls-8" x="111.18" y="9.77" width="2.1" height="2.1"/>
+          <rect class="cls-8" x="111.18" y="15.92" width="2.1" height="2.1"/>
+          <rect class="cls-8" x="96.36" y="9.77" width="2.1" height="2.1"/>
+          <rect class="cls-8" x="96.36" y="15.92" width="2.1" height="2.1"/>
+        </g>
+        <rect class="cls-5" x="84.4" y="27.67" width="8.14" height="2.3"/>
+        <rect class="cls-5" x="124.4" y="27.67" width="8.14" height="2.3"/>
+        <polygon class="cls-5" points="98.72 141.54 91.72 141.54 91.72 137.28 96.09 137.28 98.72 141.54"/>
+        <rect class="cls-4" x="105.11" y="26.25" width="5.19" height="55.45"/>
+        <rect class="cls-3" x="104.16" y="81.7" width="7.08" height="5.31"/>
+        <rect class="cls-3" x="104.16" y="129.37" width="7.08" height="5.31"/>
+        <polygon class="cls-4" points="104.16 86.19 104.16 82.18 76.97 82.18 76.97 76.51 73.16 76.51 73.16 91.5 99.27 134.68 104.11 134.68 104.11 130.55 101.04 130.55 76.97 91.5 76.97 86.19 104.16 86.19"/>
+        <polygon class="cls-4" points="138.38 76.51 138.38 82.18 111.18 82.18 111.18 86.19 138.38 86.19 138.38 91.5 114.31 130.55 111.24 130.55 111.24 134.68 116.08 134.68 142.19 91.5 142.19 76.51 138.38 76.51"/>
+        <rect class="cls-4" x="105.11" y="87.01" width="5.19" height="42.36"/>
+        <g>
+          <rect class="cls-2" x="103.19" y="162.17" width="9.1" height="11.06"/>
+          <rect class="cls-9" x="103.19" y="163.14" width="9.1" height="1.24"/>
+          <rect class="cls-9" x="103.19" y="171.11" width="9.1" height="1.24"/>
+          <rect class="cls-2" x="90.59" y="158.1" width="3.36" height="1.42"/>
+          <rect class="cls-9" x="93.95" y="157.21" width="4.32" height="3.27"/>
+          <rect class="cls-2" x="87.49" y="161.58" width="12.92" height="11.68" rx="1.21" ry="1.21"/>
+          <rect class="cls-9" x="88.64" y="163.44" width="9.63" height="7.96" rx="1.74" ry="1.74"/>
+          <rect class="cls-9" x="84.31" y="164.33" width="3.19" height="6.19"/>
+          <rect class="cls-5" x="81.95" y="163.26" width="2.36" height="8.32"/>
+          <path class="cls-4" d="M81.91,171.58c-1.81,0-3.27-1.86-3.27-4.16s1.47-4.16,3.27-4.16v8.32Z"/>
+          <path class="cls-4" d="M117.79,184.47h-4.25c-4.37,0-7.93-3.56-7.93-7.93v-29.59h4.25v29.59c0,2.03,1.65,3.68,3.68,3.68h4.25v4.25Z"/>
+          <rect class="cls-3" x="103.51" y="151.55" width="8.46" height="2.21"/>
+          <polygon class="cls-9" points="101.55 153.76 101.55 156.15 105.08 159.16 110.41 159.16 113.94 156.15 113.94 153.76 101.55 153.76"/>
+          <rect class="cls-9" x="105.04" y="165.71" width="5.41" height="4.25"/>
+          <rect class="cls-2" x="101.55" y="153.14" width="12.39" height=".62"/>
+          <rect class="cls-8" x="94.77" y="160.49" width="2.87" height="1.1"/>
+          <rect class="cls-9" x="99" y="166.5" width="5.22" height="2.21"/>
+        </g>
+      </g>
+      <text class="cls-1" transform="translate(8.05 15.5)"><tspan x="0" y="0">搅拌电机</tspan></text>
+      <g>
+        <line class="cls-7" x1="41.36" y1="12.39" x2="53.31" y2="12.39"/>
+        <polygon class="cls-10" points="52.84 14.01 55.64 12.39 52.84 10.78 52.84 14.01"/>
+      </g>
+      <text class="cls-1" transform="translate(0 67.57)"><tspan x="0" y="0">冷却水出口</tspan></text>
+      <g>
+        <line class="cls-7" x1="41.36" y1="64.46" x2="53.31" y2="64.46"/>
+        <polygon class="cls-10" points="52.84 66.07 55.64 64.46 52.84 62.84 52.84 66.07"/>
+      </g>
+      <text class="cls-1" transform="translate(25.91 140.96)"><tspan x="0" y="0">冷却水进口</tspan></text>
+      <g>
+        <line class="cls-7" x1="68.3" y1="137.86" x2="82.06" y2="137.86"/>
+        <polygon class="cls-10" points="81.58 139.47 84.38 137.86 81.58 136.24 81.58 139.47"/>
+      </g>
+      <text class="cls-1" transform="translate(39.39 163.14)"><tspan x="0" y="0">出料口</tspan></text>
+      <g>
+        <line class="cls-7" x1="68.3" y1="160.03" x2="105.15" y2="160.03"/>
+        <polygon class="cls-10" points="104.68 161.64 107.47 160.03 104.68 158.41 104.68 161.64"/>
+      </g>
+      <text class="cls-1" transform="translate(174.57 50.78)"><tspan x="0" y="0">进料口</tspan></text>
+      <g>
+        <line class="cls-7" x1="172.12" y1="49.2" x2="160.17" y2="49.2"/>
+        <polygon class="cls-10" points="160.64 47.59 157.85 49.2 160.64 50.82 160.64 47.59"/>
+      </g>
+      <text class="cls-1" transform="translate(174.57 96)"><tspan x="0" y="0">搅拌桨</tspan></text>
+      <g>
+        <line class="cls-7" x1="172.12" y1="94.43" x2="140.69" y2="94.43"/>
+        <polygon class="cls-10" points="141.16 92.81 138.36 94.43 141.16 96.04 141.16 92.81"/>
+      </g>
+      <text class="cls-1" transform="translate(173.87 118.08)"><tspan x="0" y="0">冷却水夹套</tspan></text>
+      <g>
+        <line class="cls-7" x1="172.12" y1="116.5" x2="133.09" y2="116.5"/>
+        <polygon class="cls-10" points="133.56 114.88 130.77 116.5 133.56 118.11 133.56 114.88"/>
+      </g>
+      <text class="cls-1" transform="translate(174.22 29.99)"><tspan x="0" y="0">机械密封</tspan></text>
+      <g>
+        <line class="cls-7" x1="172.12" y1="28.41" x2="110.07" y2="28.41"/>
+        <polygon class="cls-10" points="110.54 26.8 107.74 28.41 110.54 30.03 110.54 26.8"/>
+      </g>
+    </g>
+  </g>
+</svg>

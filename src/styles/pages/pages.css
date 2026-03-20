@@ -36,7 +36,11 @@
 .page-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.58) 50%, rgba(0,0,0,0.82) 100%);
+  background: 
+    url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.5' fill='rgba(0,0,0,0.15)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.58) 50%, rgba(0,0,0,0.82) 100%);
+  background-size: 2px 2px, cover;
+  mix-blend-mode: multiply;
   pointer-events: none;
 }
 
@@ -271,7 +275,7 @@
   font-size: 15px;
   color: var(--zinc-500);
   line-height: 1.9;
-  margin-top: 8px;
+  margin-bottom: 32px;
   max-width: 720px;
 }
 
@@ -2125,7 +2129,11 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.62);
+  background: 
+    url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.5' fill='rgba(0,0,0,0.15)'/%3E%3C/svg%3E"),
+    rgba(0, 0, 0, 0.62);
+  background-size: 2px 2px, cover;
+  mix-blend-mode: multiply;
   z-index: 0;
 }
 
@@ -2848,7 +2856,7 @@
 /* section-desc 通用 */
 .section-desc {
   font-size: 15px; color: var(--zinc-500); line-height: 1.8;
-  max-width: 680px; margin-bottom: 0;
+  max-width: 680px; margin-bottom: 32px;
 }
 
 /* ========================================
@@ -4218,5 +4226,771 @@
 
   .contact-info-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   CirculationPulpingPage (高效循环制浆系统)
+   前缀：cp-
+   ======================================== */
+
+/* 系统介绍图片稍微增高 */
+.pdm-intro-section .pdm-intro-image-frame {
+  aspect-ratio: 4 / 3.5;
+}
+
+.pdm-intro-section .pdm-intro-img {
+  object-fit: cover;
+  height: 100%;
+}
+
+/* ===== 设备配置图 ===== */
+.cp-diagram-wrap {
+  padding: 32px;
+  overflow: hidden;
+}
+
+.cp-diagram-wrap--inset {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 24px;
+}
+
+.cp-diagram-img {
+  width: 100%;
+  max-width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ===== 高速分散机（亮色模式）===== */
+.cp-subheading-wrapper {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.cp-subheading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--hy-white);
+  line-height: 1.4;
+  display: block;
+  padding: 12px 16px;
+  background: var(--hy-red);
+}
+
+.cp-disperser-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--zinc-100);
+  border: 1px solid var(--zinc-100);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 56px;
+}
+
+.cp-disperser-feat-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 32px 28px;
+  background: var(--hy-white);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cp-disperser-feat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--hy-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cp-disperser-feat-card:hover {
+  background: var(--zinc-50);
+}
+
+.cp-disperser-feat-card:hover::after {
+  transform: scaleX(1);
+}
+
+.cp-disperser-feat-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hy-red);
+  background: rgba(186,12,47,0.08);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.cp-disperser-feat-card:hover .cp-disperser-feat-icon {
+  background: var(--hy-red);
+  color: var(--hy-white);
+  transform: scale(1.1);
+}
+
+.cp-disperser-feat-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cp-disperser-feat-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--zinc-900);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.cp-disperser-feat-desc {
+  font-size: 13px;
+  color: var(--zinc-600);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.cp-disperser-diagrams {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: stretch;
+}
+
+.cp-disperser-diagram-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-diagram-card {
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-100);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.cp-diagram-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--hy-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cp-diagram-card:hover {
+  background: var(--zinc-50);
+}
+
+.cp-diagram-card:hover::after {
+  transform: scaleX(1);
+}
+
+.cp-diagram-card img {
+  width: 100%;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* 结构示意图：图片保持原尺寸并垂直居中 */
+.cp-disperser-diagram-block:first-child .cp-diagram-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.cp-disperser-diagram-block:first-child .cp-diagram-card img {
+  height: auto;
+  max-width: 70%;
+}
+
+/* 工作原理：图片缩小以完整显示 */
+.cp-disperser-diagram-block:last-child .cp-diagram-card img {
+  max-height: 320px;
+  object-fit: contain;
+}
+
+.cp-principle-card {
+  padding: 24px 28px;
+}
+
+.cp-principle-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  counter-reset: principle-counter;
+}
+
+.cp-principle-list li {
+  position: relative;
+  font-size: 13.5px;
+  color: var(--zinc-600);
+  line-height: 1.8;
+  padding-left: 28px;
+  counter-increment: principle-counter;
+}
+
+.cp-principle-list li::before {
+  content: counter(principle-counter);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--hy-red);
+  color: var(--hy-white);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* ===== 循环罐 A & B ===== */
+.cp-tanks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.cp-tank-block {
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-100);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-tank-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px 12px;
+}
+
+.cp-tank-badge {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: var(--hy-red);
+  color: var(--hy-white);
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DIN Pro', 'Space Grotesk', sans-serif;
+  letter-spacing: -1px;
+}
+
+.cp-tank-badge--b {
+  background: var(--zinc-800);
+}
+
+.cp-tank-type {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--hy-red);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.cp-tank-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--zinc-800);
+  margin: 0;
+}
+
+.cp-tank-features {
+  list-style: none;
+  padding: 20px 28px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cp-tank-feat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cp-tank-feat-num {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--hy-white);
+  background: var(--hy-red);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  font-family: 'DIN Pro', 'Space Grotesk', sans-serif;
+}
+
+.cp-tank-feat-text {
+  font-size: 13.5px;
+  color: var(--zinc-600);
+  line-height: 1.75;
+}
+
+.cp-tank-diagram-wrap {
+  padding: 28px 28px 24px;
+  background: var(--hy-white);
+  border-bottom: 1px solid var(--zinc-100);
+  order: -1;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cp-tank-img {
+  width: 100%;
+  max-width: 60%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ===== 产品型号参数表 ===== */
+.cp-params-table {
+  min-width: 760px;
+}
+
+.cp-table-subtitle {
+  font-size: 15px;
+  color: var(--zinc-500);
+  font-weight: 400;
+  margin-bottom: 28px;
+  line-height: 1.7;
+}
+
+.cp-table-note {
+  font-size: 13px;
+  color: var(--zinc-400);
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* 工艺验证表格 */
+.cp-process-table {
+  min-width: 900px;
+}
+
+.cp-note-cell {
+  font-size: 12px;
+  color: var(--zinc-500);
+  line-height: 1.6;
+  max-width: 180px;
+}
+
+/* ===== 客户案例流程图 ===== */
+.cp-case-flow-wrap {
+  background: #1a1a1a;
+  border-radius: 4px;
+  overflow: hidden;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.cp-case-flow-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== 工艺验证区块 ===== */
+.cp-verify-block {
+  margin-bottom: 48px;
+}
+
+.cp-verify-block:last-child {
+  margin-bottom: 0;
+}
+
+.cp-verify-subheading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--zinc-900);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--zinc-100);
+}
+
+.cp-verify-num {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  background: var(--hy-red);
+  color: var(--hy-white);
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DIN Pro', 'Space Grotesk', sans-serif;
+}
+
+.cp-verify-note {
+  font-size: 13px;
+  color: var(--zinc-400);
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+/* 来料信息 */
+.cp-incoming-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--zinc-100);
+  border: 1px solid var(--zinc-100);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cp-incoming-item {
+  background: var(--hy-white);
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background 0.2s ease;
+}
+
+.cp-incoming-item:hover {
+  background: var(--zinc-50);
+}
+
+.cp-incoming-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--hy-red);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.cp-incoming-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--zinc-800);
+  line-height: 1.4;
+}
+
+/* 工艺过程数据列表 */
+.cp-data-steps {
+  padding-left: 0;
+  margin: 0 0 32px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  counter-reset: step-counter;
+}
+
+.cp-data-steps li {
+  position: relative;
+  font-size: 14px;
+  color: var(--zinc-600);
+  line-height: 1.8;
+  padding: 14px 20px 14px 52px;
+  background: var(--zinc-50);
+  border-radius: 4px;
+  border-left: 3px solid var(--zinc-200);
+  counter-increment: step-counter;
+}
+
+.cp-data-steps li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  width: 22px;
+  height: 22px;
+  background: var(--zinc-200);
+  color: var(--zinc-600);
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DIN Pro', 'Space Grotesk', sans-serif;
+}
+
+.cp-data-steps li strong {
+  color: var(--zinc-900);
+  font-weight: 700;
+}
+
+/* ===== 图表网格 ===== */
+.cp-charts-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.cp-charts-grid-5 .cp-chart-card:nth-child(4),
+.cp-charts-grid-5 .cp-chart-card:nth-child(5) {
+  grid-column: span 1;
+}
+
+.cp-charts-grid-5 .cp-chart-card:nth-child(4) {
+  grid-column-start: 1;
+}
+
+.cp-charts-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.cp-chart-card {
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-100);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.page-section--gray .cp-chart-card {
+  background: var(--hy-white);
+}
+
+.cp-chart-card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.cp-chart-img-wrap {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--hy-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cp-chart-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  padding: 8px;
+}
+
+.cp-chart-caption {
+  padding: 10px 14px 12px;
+  font-size: 12.5px;
+  color: var(--zinc-500);
+  line-height: 1.5;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid var(--zinc-100);
+  background: var(--zinc-50);
+}
+
+.cp-chart-label-num {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--hy-white);
+  background: var(--hy-red);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DIN Pro', 'Space Grotesk', sans-serif;
+}
+
+/* ===== 极片电镜 ===== */
+.cp-sem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.cp-sem-card {
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-100);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cp-sem-img-wrap {
+  background: var(--hy-white);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cp-sem-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cp-sem-caption {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--zinc-600);
+  text-align: center;
+  margin: 0;
+  background: var(--zinc-50);
+  border-top: 1px solid var(--zinc-100);
+  letter-spacing: 0.3px;
+}
+
+/* ========================================
+   CirculationPulpingPage — 响应式
+   ======================================== */
+@media (max-width: 1024px) {
+  .cp-intro-grid {
+    gap: 48px;
+  }
+
+  .cp-disperser-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cp-disperser-diagrams {
+    gap: 28px;
+  }
+
+  .cp-incoming-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cp-charts-grid-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cp-charts-grid-5 .cp-chart-card:nth-child(4),
+  .cp-charts-grid-5 .cp-chart-card:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  .cp-charts-grid-5 .cp-chart-card:nth-child(4) {
+    grid-column-start: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .cp-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .cp-disperser-features {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-disperser-diagrams {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .cp-tanks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-incoming-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cp-charts-grid-5,
+  .cp-charts-grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cp-sem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-verify-subheading {
+    font-size: 16px;
+  }
+
+  .cp-disperser-feat-card {
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cp-intro-tags {
+    gap: 8px;
+  }
+
+  .cp-incoming-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-charts-grid-5,
+  .cp-charts-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-tank-header {
+    padding: 18px 20px 16px;
+  }
+
+  .cp-tank-features {
+    padding: 16px 20px;
+  }
+
+  .cp-tank-diagram-wrap {
+    padding: 16px 20px 20px;
+  }
+
+  .cp-diagram-wrap {
+    padding: 16px;
   }
 }
