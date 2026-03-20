@@ -77,7 +77,7 @@ const cases = [
     group: '全自动加投料系统解决方案',
     images: [
       { src: '/assets/images/products/pd-mixer/case-system-1.jpg', alt: '全自动加投料系统设备' },
-      { src: '/assets/images/products/pd-mixer/case-system-2.jpg', alt: '全自动加投料系统现场' },
+      { src: '/assets/images/products/pd-mixer/case-system-2.jpg', alt: '全自动加投料系统现场', className: 'pdm-case-img--fill-height' },
     ],
   },
   {
@@ -342,7 +342,7 @@ export default function DualPlanetaryMixerPage() {
                 <div className={`pdm-case-images pdm-case-images--${c.images.length}`}>
                   {c.images.map((img, ii) => (
                     <div key={ii} className="pdm-case-image-wrap">
-                      <img src={img.src} alt={img.alt} className="pdm-case-img" loading="lazy" />
+                      <img src={img.src} alt={img.alt} className={`pdm-case-img ${img.className || ''}`} loading="lazy" />
                       <div className="pdm-case-image-overlay">
                         <span>{img.alt}</span>
                       </div>
