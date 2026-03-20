@@ -292,9 +292,9 @@ export default function DualPlanetaryMixerPage() {
         <section className="page-section page-section--gray">
           <div className="page-container">
             <h2 className="section-heading fade-up">技术参数</h2>
-            <p className="section-desc fade-up fade-up-delay-1">
+            <h3 className="pdm-table-subtitle fade-up fade-up-delay-1">
               双行星动力™混合机（PD搅拌机）覆盖从实验室级到工业级全系列规格，满足不同产线需求。
-            </p>
+            </h3>
 
             <div className="fade-up fade-up-delay-2">
               <ParamsTable data={allModels} />
