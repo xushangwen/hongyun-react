@@ -357,13 +357,14 @@ export default function DualPlanetaryMixerPage() {
               <img src={productImg} alt="双行星动力™混合机（PD搅拌机）" className="pdm-hero-product-img" />
             </div>
           </div>
-          <Breadcrumb items={[
-            { label: '产品中心', path: '/products' },
-            { label: '新能源行业', path: '/products#products-new-energy' },
-            { label: '双行星动力混合机' },
-          ]} />
         </div>
       </section>
+
+      <Breadcrumb items={[
+        { label: '产品中心', path: '/products' },
+        { label: '新能源行业', path: '/products#products-new-energy' },
+        { label: '双行星动力混合机' },
+      ]} />
 
       <div className="page-body">
 

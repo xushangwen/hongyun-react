@@ -3417,7 +3417,7 @@
 
 .pdm-hero {
   background: var(--zinc-200, #e4e4e7);
-  padding: 80px 0 0;
+  padding: 80px 0 64px;
   min-height: 640px;
   display: flex;
   align-items: center;
@@ -3425,23 +3425,6 @@
 
 .pdm-hero-body {
   padding-top: 32px;
-}
-
-.pdm-hero .breadcrumb {
-  margin-top: 48px;
-  padding-top: 0;
-  background: transparent;
-  border-top: none;
-}
-
-.pdm-hero .breadcrumb .page-container {
-  max-width: none;
-  padding: 0;
-}
-
-.pdm-hero .breadcrumb-list {
-  border-top: 1px solid var(--zinc-200, #e4e4e7);
-  padding-top: 20px;
 }
 
 .pdm-hero-product-img {
