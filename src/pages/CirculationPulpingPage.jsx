@@ -394,8 +394,6 @@ export default function CirculationPulpingPage() {
           <div className="page-container">
             <div className="cp-sol-hero-tag-row fade-up">
               <span className="cp-sol-hero-industry">新能源行业</span>
-              <span className="cp-sol-hero-sep">·</span>
-              <span className="cp-sol-hero-type">高效制浆解决方案</span>
             </div>
             <h1 className="cp-sol-hero-title fade-up fade-up-delay-1">高效循环制浆系统</h1>
             <p className="cp-intro-desc fade-up fade-up-delay-2">
