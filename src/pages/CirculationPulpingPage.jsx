@@ -48,22 +48,46 @@ function IconDevelopment() {
   )
 }
 
-/* 图标2：叶子（leaf — 灵活性）*/
+/* 图标2：叶子（leaf.svg — 全过程无金属无尘化）
+   叶片+茎+叶脉：深灰  |  循环弧线+角括号：品牌红 */
 function IconLeaf() {
   return (
-    <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
-      {/* 叶片轮廓 — 深灰 */}
-      <path stroke="#1E1E1E" strokeWidth="26" strokeLinecap="round" strokeLinejoin="round"
-        d="M136,424 C132,344 168,228 240,168 C312,108 406,98 422,118 C438,138 428,234 366,306 C304,378 198,424 136,424 Z" />
-      {/* 侧叶脉1 — 深灰 */}
-      <path stroke="#1E1E1E" strokeWidth="18" strokeLinecap="round"
-        d="M200,370 L326,216" />
-      {/* 侧叶脉2 — 深灰 */}
-      <path stroke="#1E1E1E" strokeWidth="16" strokeLinecap="round"
-        d="M246,302 L354,202" />
-      {/* 中茎 — 品牌红 */}
-      <path stroke="#BA0C2F" strokeWidth="26" strokeLinecap="round"
-        d="M136,424 C210,356 306,242 402,118" />
+    <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
+      <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+        {/* 叶片主体 */}
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(361.5459,234.5454)"
+          d="m 0,0 c 0,-58.291 -47.255,-105.545 -105.546,-105.545 -58.291,0 -105.546,47.254 -105.546,105.545 0,107.018 105.546,164.455 105.546,164.455 C -105.546,164.455 0,107.018 0,0 Z" />
+        {/* 中心茎 */}
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(256,399)" d="M 0,0 V -270" />
+        {/* 叶脉1 */}
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(154.8789,271.8809)" d="M 0,0 101.121,-78.732" />
+        {/* 叶脉2 */}
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(187.5967,338.647)" d="M 0,0 68.403,-53.259" />
+        {/* 叶脉3 */}
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(357.1211,271.8809)" d="M 0,0 -101.121,-78.732" />
+        {/* 叶脉4 */}
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(324.4033,338.647)" d="M 0,0 -68.403,-53.259" />
+        {/* 左下角括号 — 品牌红 */}
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(44.1855,475.9243)" d="M 0,0 91.314,-11.212 80.103,-102.526" />
+        {/* 右上角括号 — 品牌红 */}
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(467.8145,36.0757)" d="m 0,0 -91.314,11.212 11.211,91.314" />
+        {/* 循环大弧线1 — 品牌红 */}
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(318.375,23.2119)"
+          d="m 0,0 c -128.564,-34.449 -260.714,41.847 -295.163,170.413 -28.864,107.724 20.021,217.963 112.259,271.139" />
+        {/* 循环大弧线2 — 品牌红 */}
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(193.625,488.7881)"
+          d="M 0,0 C 128.564,34.449 260.714,-41.847 295.163,-170.413 324.027,-278.137 275.142,-388.376 182.904,-441.552" />
+      </g>
     </svg>
   )
 }
@@ -375,8 +399,8 @@ export default function CirculationPulpingPage() {
             </div>
             <h1 className="cp-sol-hero-title fade-up fade-up-delay-1">高效循环制浆系统</h1>
             <p className="cp-intro-desc fade-up fade-up-delay-2">
-              以"必然式"制浆工艺为核心，集粉料上料、混合、分散制浆、液体双循环于一体，
-              为新能源锂电池浆料制备提供高效、稳定、可扩展的全流程自动化解决方案。
+              自主研发专利技术，采用独特分散模块实现粉体与溶剂的快速充分混合。其独立的自循环分散系统可高效完成浆料均匀混合，确保稳定性和一致性。
+              系统采用简便传动结构，在保证高扭矩输出的同时显著降低故障率，极大提高了匀浆效率和设备稼动率。
             </p>
             <div className="cp-sol-hero-pills fade-up fade-up-delay-3">
               <span>高固含量浆料</span>
@@ -493,14 +517,18 @@ export default function CirculationPulpingPage() {
             <div className="cp-tech-grid">
               {techHighlights.map((item, i) => (
                 <div key={i} className={`cp-tech-card fade-up fade-up-delay-${(i % 3) + 1}`}>
-                  <div className="cp-tech-card-img-wrap">
-                    <img src={item.img} alt={item.title} className="cp-tech-card-img" loading="lazy" />
-                    <span className="cp-tech-card-num">{item.num}</span>
+                  <div className="cp-tech-card-img-outer">
+                    <div className="cp-tech-card-img-ring">
+                      <div className="cp-tech-card-img-wrap">
+                        <img src={item.img} alt={item.title} className="cp-tech-card-img" loading="lazy" />
+                      </div>
+                    </div>
                   </div>
                   <div className="cp-tech-card-body">
                     <h3 className="cp-tech-card-title">{item.title}</h3>
                     <p className="cp-tech-card-desc">{item.desc}</p>
                   </div>
+                  <span className="cp-tech-card-num">{item.num}</span>
                 </div>
               ))}
             </div>
