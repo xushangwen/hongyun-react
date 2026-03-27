@@ -25,28 +25,19 @@ import Breadcrumb from '../components/Breadcrumb'
 import ctaBgImg from '../assets/img/需要了解更多.jpg'
 import productHeroImg from '../assets/img/Generated Image March 20, 2026 - 10_16PM.jpg'
 
-/* ========== 技术参数数据（每个型号一个对象）========== */
+/* ========== 技术参数数据 ========== */
 const allModels = [
-  { model: 'HY-DLH1.5L',  liftType: '手摇升降', workVol: '1L',    designVol: '1.5L',  tankDim: 'Φ140×100',   mixerMotor: '0.75', revSpeed: '6-60',   ownSpeed: '17-170',  dissolverKW: '0.75', dissolverType: '伺服电机', dissolverRPM: '800-11000', dissolverLinear: '1-18m/s',  weight: '280kg',    dimension: '880×480×930'    },
-  { model: 'HY-DLH3L',    liftType: '手摇升降', workVol: '2L',    designVol: '3L',    tankDim: 'Φ180×120',   mixerMotor: '0.75', revSpeed: '7-75',   ownSpeed: '18-250',  dissolverKW: '1.5',  dissolverType: '伺服电机', dissolverRPM: '800-11000', dissolverLinear: '1-18m/s',  weight: '303kg',    dimension: '920×520×1100'   },
-  { model: 'HY-DLH4.5L',  liftType: '手摇升降', workVol: '3L',    designVol: '4.5L',  tankDim: 'Φ200×135',   mixerMotor: '1.0',  revSpeed: '6-63',   ownSpeed: '18-185',  dissolverKW: '1.5',  dissolverType: '伺服电机', dissolverRPM: '800-11000', dissolverLinear: '1-21m/s',  weight: '330kg',    dimension: '1100×520×1100'  },
-  { model: 'HY-DLH7.4L',  liftType: '手摇升降', workVol: '5L',    designVol: '7.4L',  tankDim: 'Φ250×150',   mixerMotor: '1.5',  revSpeed: '6-69',   ownSpeed: '16-210',  dissolverKW: '2.2',  dissolverType: '伺服电机', dissolverRPM: '800-9000',  dissolverLinear: '1-22m/s',  weight: '415kg',    dimension: '1200×520×1100'  },
-  { model: 'HY-DLH14L',   liftType: '电动升降', workVol: '10L',   designVol: '14L',   tankDim: 'Φ300×200',   mixerMotor: '2.2',  revSpeed: '0-48',   ownSpeed: '0-148',   dissolverKW: '2.2',  dissolverType: '变频电机', dissolverRPM: '0-7000',    dissolverLinear: '0-23m/s',  weight: '550kg',    dimension: '1300×800×1800'  },
-  { model: 'HY-DLH24L',   liftType: '电动升降', workVol: '15L',   designVol: '24L',   tankDim: 'Φ350×250',   mixerMotor: '2.2',  revSpeed: '0-44',   ownSpeed: '0-142',   dissolverKW: '3',    dissolverType: '变频电机', dissolverRPM: '0-5900',    dissolverLinear: '0-23m/s',  weight: '770kg',    dimension: '1500×800×1750'  },
-  { model: 'HY-DLH28L',   liftType: '电动升降', workVol: '20L',   designVol: '28L',   tankDim: 'Φ350×300',   mixerMotor: '2.2',  revSpeed: '0-45',   ownSpeed: '0-142',   dissolverKW: '3',    dissolverType: '变频电机', dissolverRPM: '0-5900',    dissolverLinear: '0-23m/s',  weight: '820kg',    dimension: '1500×800×2000'  },
-  { model: 'HY-DLH43L',   liftType: '电动升降', workVol: '30L',   designVol: '43L',   tankDim: 'Φ420×320',   mixerMotor: '4',    revSpeed: '0-44',   ownSpeed: '0-108',   dissolverKW: '4',    dissolverType: '变频电机', dissolverRPM: '0-5500',    dissolverLinear: '0-23m/s',  weight: '900kg',    dimension: '1700×660×1750'  },
-  { model: 'HY-DLH88L',   liftType: '液压升降', workVol: '60L',   designVol: '88L',   tankDim: 'Φ530×400',   mixerMotor: '5.5',  revSpeed: '0-41',   ownSpeed: '0-104',   dissolverKW: '7.5',  dissolverType: '变频电机', dissolverRPM: '0-4500',    dissolverLinear: '0-23m/s',  weight: '1700kg',   dimension: '1800×1100×2300' },
-  { model: 'HY-DLH149L',  liftType: '液压升降', workVol: '100L',  designVol: '149L',  tankDim: 'Φ650×450',   mixerMotor: '7.5',  revSpeed: '0-35',   ownSpeed: '0-90',    dissolverKW: '11',   dissolverType: '变频电机', dissolverRPM: '0-3700',    dissolverLinear: '0-23m/s',  weight: '2700kg',   dimension: '2200×1300×2500' },
-  { model: 'HY-DLH287L',  liftType: '液压升降', workVol: '200L',  designVol: '287L',  tankDim: 'Φ750×650',   mixerMotor: '15',   revSpeed: '0-25',   ownSpeed: '0-60',    dissolverKW: '22',   dissolverType: '变频电机', dissolverRPM: '0-2800',    dissolverLinear: '0-23m/s',  weight: '4200kg',   dimension: '2400×1600×3100' },
-  { model: 'HY-DLH368L',  liftType: '液压升降', workVol: '300L',  designVol: '368L',  tankDim: 'Φ850×650',   mixerMotor: '30',   revSpeed: '0-32',   ownSpeed: '0-82',    dissolverKW: '30',   dissolverType: '变频电机', dissolverRPM: '0-2200',    dissolverLinear: '0-23m/s',  weight: '7200kg',   dimension: '3400×1300×3500' },
-  { model: 'HY-DLH450L',  liftType: '液压升降', workVol: '350L',  designVol: '450L',  tankDim: 'Φ900×710',   mixerMotor: '30',   revSpeed: '0-26',   ownSpeed: '0-66',    dissolverKW: '37',   dissolverType: '变频电机', dissolverRPM: '0-2200',    dissolverLinear: '0-23m/s',  weight: '7200kg',   dimension: '2870×1800×3400' },
-  { model: 'HY-DLH670L',  liftType: '液压升降', workVol: '500L',  designVol: '670L',  tankDim: 'Φ1000×850',  mixerMotor: '45',   revSpeed: '0-23',   ownSpeed: '0-59',    dissolverKW: '45',   dissolverType: '变频电机', dissolverRPM: '0-2000',    dissolverLinear: '0-23m/s',  weight: '10500kg',  dimension: '3500×1500×4000' },
-  { model: 'HY-DLH820L',  liftType: '液压升降', workVol: '650L',  designVol: '820L',  tankDim: 'Φ1100×865',  mixerMotor: '45',   revSpeed: '0-23',   ownSpeed: '0-59',    dissolverKW: '45',   dissolverType: '变频电机', dissolverRPM: '0-2000',    dissolverLinear: '0-23m/s',  weight: '12500kg',  dimension: '3600×1600×4100' },
-  { model: 'HY-DLH1327L', liftType: '液压升降', workVol: '1000L', designVol: '1327L', tankDim: 'Φ1300×1000', mixerMotor: '75',   revSpeed: '0-18',   ownSpeed: '0-45',    dissolverKW: '75',   dissolverType: '变频电机', dissolverRPM: '0-1700',    dissolverLinear: '0-23m/s',  weight: '25000kg',  dimension: '4170×1800×4780' },
-  { model: 'HY-DLH1690L', liftType: '液压升降', workVol: '1200L', designVol: '1690L', tankDim: 'Φ1400×1100', mixerMotor: '75',   revSpeed: '0-18',   ownSpeed: '0-45',    dissolverKW: '75',   dissolverType: '变频电机', dissolverRPM: '0-1700',    dissolverLinear: '0-24m/s',  weight: '30000kg',  dimension: '5376×1874×5366' },
-  { model: 'HY-DLH2100L', liftType: '液压升降', workVol: '1500L', designVol: '2100L', tankDim: 'Φ1500×1200', mixerMotor: '90',   revSpeed: '0-18',   ownSpeed: '0-45',    dissolverKW: '90',   dissolverType: '变频电机', dissolverRPM: '0-1700',    dissolverLinear: '0-24m/s',  weight: '33000kg',  dimension: '4726×1870×5500' },
-  { model: 'HY-DLH2300L', liftType: '液压升降', workVol: '1600L', designVol: '2300L', tankDim: 'Φ1560×1210', mixerMotor: '110',  revSpeed: '0-19',   ownSpeed: '0-46',    dissolverKW: '110',  dissolverType: '变频电机', dissolverRPM: '0-1550',    dissolverLinear: '0-24m/s',  weight: '35000kg',  dimension: '5380×1930×5700' },
-  { model: 'HY-DLH3400L', liftType: '液压升降', workVol: '3000L', designVol: '3400L', tankDim: 'Φ1700×1500', mixerMotor: '132',  revSpeed: '0-12',   ownSpeed: '0-30',    dissolverKW: '132',  dissolverType: '变频电机', dissolverRPM: '0-1000',    dissolverLinear: '0-23m/s',  weight: '42000kg',  dimension: '5800×2300×6000' },
+  { model: 'HY-XJ-5L',    designVol: '7.4L',   workVol: '5L',    tankDim: 'Φ250↓150',   mixerKW: '1.5',  revSpeed: '0-40',  ownSpeed: '0-86',  dissolverKW: '1.5',  dissolverRPM: '0-5800', linearSpeed: '16.7' },
+  { model: 'HY-XJ-10L',   designVol: '14L',    workVol: '10L',   tankDim: 'Φ300↓200',   mixerKW: '2.2',  revSpeed: '0-42',  ownSpeed: '0-72',  dissolverKW: '3',    dissolverRPM: '0-5000', linearSpeed: '18.3' },
+  { model: 'HY-XJ-30L',   designVol: '44L',    workVol: '30L',   tankDim: 'Φ400↓350',   mixerKW: '3',    revSpeed: '0-34',  ownSpeed: '0-70',  dissolverKW: '5.5',  dissolverRPM: '0-4000', linearSpeed: '21'   },
+  { model: 'HY-XJ-60L',   designVol: '88L',    workVol: '60L',   tankDim: 'Φ500↓450',   mixerKW: '5.5',  revSpeed: '0-34',  ownSpeed: '0-68',  dissolverKW: '7.5',  dissolverRPM: '0-3300', linearSpeed: '21'   },
+  { model: 'HY-XJ-100L',  designVol: '149L',   workVol: '100L',  tankDim: 'Φ650↓450',   mixerKW: '15',   revSpeed: '0-34',  ownSpeed: '0-56',  dissolverKW: '18.5', dissolverRPM: '0-2930', linearSpeed: '23'   },
+  { model: 'HY-XJ-200L',  designVol: '265L',   workVol: '200L',  tankDim: 'Φ750↓650',   mixerKW: '22',   revSpeed: '0-33',  ownSpeed: '0-53',  dissolverKW: '30',   dissolverRPM: '0-2750', linearSpeed: '23'   },
+  { model: 'HY-XJ-300L',  designVol: '369L',   workVol: '300L',  tankDim: 'Φ850↓650',   mixerKW: '30',   revSpeed: '0-33',  ownSpeed: '0-53',  dissolverKW: '37',   dissolverRPM: '0-2200', linearSpeed: '23'   },
+  { model: 'HY-XJ-650L',  designVol: '822L',   workVol: '650L',  tankDim: 'Φ1100↓865',  mixerKW: '45',   revSpeed: '0-28',  ownSpeed: '0-47',  dissolverKW: '55',   dissolverRPM: '0-1750', linearSpeed: '23'   },
+  { model: 'HY-XJ-900L',  designVol: '1390L',  workVol: '900L',  tankDim: 'Φ1300↓1050', mixerKW: '75',   revSpeed: '0-24',  ownSpeed: '0-32',  dissolverKW: '75',   dissolverRPM: '0-1450', linearSpeed: '23'   },
+  { model: 'HY-XJ-1200L', designVol: '2126L',  workVol: '1200L', tankDim: 'Φ1500↓1150', mixerKW: '90',   revSpeed: '0-18',  ownSpeed: '0-28',  dissolverKW: '90',   dissolverRPM: '0-1375', linearSpeed: '23'   },
+  { model: 'HY-XJ-1500L', designVol: '2300L',  workVol: '1500L', tankDim: 'Φ1500↓1300', mixerKW: '110',  revSpeed: '0-18',  ownSpeed: '0-28',  dissolverKW: '110',  dissolverRPM: '0-1375', linearSpeed: '23'   },
 ]
 
 /* ========== 产品型号展示数据 ========== */
@@ -105,37 +96,31 @@ function ParamsTable({ data }) {
         <thead>
           <tr>
             <th>型号<br /><span className="th-sub">Model</span></th>
-            <th>工作容积<br />设计容积<br /><span className="th-sub">Work volume<br />Design volume</span></th>
-            <th>桶体内尺寸<br /><span className="th-sub">Tank internal<br />dimension (mm)</span></th>
-            <th>公转电机<br /><span className="th-sub">Mixer motor<br />(KW)</span></th>
-            <th>公转转速<br />浆转速<br /><span className="th-sub">Revolution speed<br />Own speed (Rpm)</span></th>
-            <th>分散电机<br /><span className="th-sub">Dissolver motor<br />(KW)</span></th>
-            <th>分散转速<br /><span className="th-sub">Dissolver speed<br />(Rpm)</span></th>
-            <th>重量<br />外形尺寸<br /><span className="th-sub">Weight<br />Dimension (mm)</span></th>
+            <th>设计容积<br /><span className="th-sub">Design volume</span></th>
+            <th>使用容积<br /><span className="th-sub">Working volume</span></th>
+            <th>搅拌桶内尺寸<br /><span className="th-sub">Tank dim (mm)</span></th>
+            <th>公转电机<br /><span className="th-sub">Mixer motor (kW)</span></th>
+            <th>公转转速<br /><span className="th-sub">Rev. speed (rpm)</span></th>
+            <th>搅拌转速<br /><span className="th-sub">Own speed (rpm)</span></th>
+            <th>分散电机<br /><span className="th-sub">Disperser motor (kW)</span></th>
+            <th>分散转速<br /><span className="th-sub">Disperser RPM</span></th>
+            <th>线速度<br /><span className="th-sub">Linear speed (m/s)</span></th>
           </tr>
         </thead>
         <tbody>
           {data.map((row, i) => (
-            <React.Fragment key={i}>
-              <tr className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
-                <td className="td-model-code">{row.model}</td>
-                <td>{row.workVol}</td>
-                <td rowSpan={2} className="td-span">{row.tankDim}</td>
-                <td rowSpan={2} className="td-span">{row.mixerMotor}</td>
-                <td>{row.revSpeed}</td>
-                <td>{row.dissolverKW}</td>
-                <td>{row.dissolverRPM}</td>
-                <td>{row.weight}</td>
-              </tr>
-              <tr className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
-                <td className="td-lift-type">{row.liftType}</td>
-                <td>{row.designVol}</td>
-                <td>{row.ownSpeed}</td>
-                <td>{row.dissolverType}</td>
-                <td>{row.dissolverLinear}</td>
-                <td>{row.dimension}</td>
-              </tr>
-            </React.Fragment>
+            <tr key={i} className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
+              <td className="td-model-code">{row.model}</td>
+              <td>{row.designVol}</td>
+              <td>{row.workVol}</td>
+              <td>{row.tankDim}</td>
+              <td>{row.mixerKW}</td>
+              <td>{row.revSpeed}</td>
+              <td>{row.ownSpeed}</td>
+              <td>{row.dissolverKW}</td>
+              <td>{row.dissolverRPM}</td>
+              <td>{row.linearSpeed}</td>
+            </tr>
           ))}
         </tbody>
       </table>
@@ -208,7 +193,7 @@ export default function DualPlanetaryMixerPage() {
               <div className="pdm-intro-visual fade-up fade-up-delay-2">
                 <div className="pdm-intro-image-frame">
                   <img
-                    src="/assets/images/products/pd-mixer/双行星动力混合设备生图.jpg"
+                    src="/ref-images/image_20240117_1705480936_405786.png"
                     alt="双行星动力™混合机（PD搅拌机）"
                     className="pdm-intro-img"
                   />
@@ -218,39 +203,29 @@ export default function DualPlanetaryMixerPage() {
           </div>
         </section>
 
-        {/* ===== 可靠性承诺（暗色高级区块） ===== */}
-        <section className="pdm-reliability-section">
+        {/* ===== 产品特点 ===== */}
+        <section className="page-section page-section--gray">
           <div className="page-container">
-            <h2 className="section-heading fade-up">可靠性承诺</h2>
-            <p className="pdm-rel-lead fade-up fade-up-delay-1">
-              经长期生产验证，<br />
-              红运机械的双行星动力混合机以其卓越的可靠性保障生产安全。
-            </p>
-            <div className="pdm-rel-grid fade-up fade-up-delay-2">
-              <div className="pdm-rel-card">
-                <div className="pdm-rel-card-top">
-                  <div className="pdm-rel-card-icon"><IconGreenhouseOutline48 /></div>
-                  <span className="pdm-rel-card-num">01</span>
+            <h2 className="section-heading fade-up">产品特点</h2>
+            <div className="cp-features-grid">
+              {[
+                { img: '/ref-images/image_20221017_1666000188_388257.png', title: '性能稳定，故障偶发率大幅降低', desc: '经长期量产验证，传动结构可靠，运转平稳，故障偶发率大幅降低，保障产线持续稳定运行。' },
+                { img: '/ref-images/image_20221013_1665646397_724591.png', title: '投料无粉尘，搅拌过程密封防尘', desc: '密封投料设计，搅拌过程中粉尘不外溢，有效优化使用环境，保障操作人员安全健康。' },
+                { img: '/ref-images/image_20221013_1665646460_98462.png', title: '搅拌均匀无死角，浆料均匀度提升', desc: '桨自转轨迹不重复，搅拌均匀无死角，大幅提升浆料均匀度，批次间一致性卓越。' },
+                { img: '/ref-images/image_20221013_1665645490_953123.png', title: '智能控制，无需人工干预', desc: '全自动 PLC 控制系统，工艺参数数字化设定与执行，无需人工操作，降低人工错误风险。' },
+                { img: '/ref-images/image_20221013_1665647940_132723.png', title: '不增加磁性异物，浆料洁净有保障', desc: '严格的材质选型与密封设计，全流程不引入磁性金属异物，电池浆料洁净度达标。' },
+                { img: '/ref-images/image_20221013_1665646501_164542.png', title: '高精度配料系统，配比精度高', desc: '配置高精度配料系统，计量精度≤±0.1%，确保每批次配方精准复现，品质稳定可控。' },
+              ].map((feat, i) => (
+                <div key={i} className={`cp-feature-card fade-up fade-up-delay-${(i % 3) + 1}`}>
+                  <div className="cp-feature-img-wrap">
+                    <img src={feat.img} alt={feat.title} className="cp-feature-img" loading="lazy" />
+                  </div>
+                  <div className="cp-feature-body">
+                    <h3 className="cp-feature-title">{feat.title}</h3>
+                    <p className="cp-feature-desc">{feat.desc}</p>
+                  </div>
                 </div>
-                <h3 className="pdm-rel-card-title">金属零污染</h3>
-                <p className="pdm-rel-card-desc">从未因金属污染（铜、锌、镍、铁）、搅拌机刮壁、漏油而导致浆料报废。</p>
-              </div>
-              <div className="pdm-rel-card">
-                <div className="pdm-rel-card-top">
-                  <div className="pdm-rel-card-icon"><IconRotateCubeOutline48 /></div>
-                  <span className="pdm-rel-card-num">02</span>
-                </div>
-                <h3 className="pdm-rel-card-title">桶体结构稳定</h3>
-                <p className="pdm-rel-card-desc">从未出现因桶身内胆及桶底内胆变形导致的漏水问题。</p>
-              </div>
-              <div className="pdm-rel-card">
-                <div className="pdm-rel-card-top">
-                  <div className="pdm-rel-card-icon"><IconFirewallOutline48 /></div>
-                  <span className="pdm-rel-card-num">03</span>
-                </div>
-                <h3 className="pdm-rel-card-title">电气安全防护</h3>
-                <p className="pdm-rel-card-desc">从未出现因粉尘进入电柜引起的电气火灾。</p>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -315,7 +290,7 @@ export default function DualPlanetaryMixerPage() {
           <div className="page-container">
             <h2 className="section-heading fade-up">技术参数</h2>
             <h3 className="pdm-table-subtitle fade-up fade-up-delay-1">
-              双行星动力™混合机（PD搅拌机）覆盖从实验室级到工业级全系列规格，满足不同产线需求。
+              双行星动力™混合机覆盖5 L–1500 L全系列规格，满足从实验室验证到GWh量产的全场景需求。
             </h3>
             <div className="fade-up fade-up-delay-2">
               <ParamsTable data={allModels} />

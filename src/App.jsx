@@ -10,6 +10,12 @@ import SolutionDetailPage from './pages/SolutionDetailPage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import DualPlanetaryMixerPage from './pages/DualPlanetaryMixerPage'
 import CirculationPulpingPage from './pages/CirculationPulpingPage'
+import SmartControlPage from './pages/SmartControlPage'
+import PneumaticConveyingPage from './pages/PneumaticConveyingPage'
+import MeteringDosingPage from './pages/MeteringDosingPage'
+import AgitationPulpingPage from './pages/AgitationPulpingPage'
+import UnpackingFeedingPage from './pages/UnpackingFeedingPage'
+import DustCleaningPage from './pages/DustCleaningPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 
@@ -23,6 +29,12 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/solutions/new-energy/circulation-pulping" element={<CirculationPulpingPage />} />
+          <Route path="/solutions/new-energy/smart-control" element={<SmartControlPage />} />
+          <Route path="/solutions/new-energy/pneumatic-conveying" element={<PneumaticConveyingPage />} />
+          <Route path="/solutions/new-energy/metering-dosing" element={<MeteringDosingPage />} />
+          <Route path="/solutions/new-energy/agitation-pulping" element={<AgitationPulpingPage />} />
+          <Route path="/solutions/new-energy/unpacking-feeding" element={<UnpackingFeedingPage />} />
+          <Route path="/solutions/new-energy/dust-cleaning" element={<DustCleaningPage />} />
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/new-energy/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
