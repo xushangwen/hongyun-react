@@ -5982,6 +5982,17 @@
   margin-top: 8px;
 }
 
+/* flex 变体：传入 columns prop 时启用，最后一行不满自动居中 */
+.cp-feat-icon-grid--flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+.cp-feat-icon-grid--flex .cp-feat-icon-card {
+  flex: 0 1 calc(33.333% - 16px);
+}
+
 .cp-feat-icon-card {
   background: white;
   border: 1px solid var(--zinc-100);
@@ -6698,6 +6709,9 @@ a.sol-form-contact-value:hover {
   .cp-tech-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .cp-feat-icon-grid--flex .cp-feat-icon-card {
+    flex: 0 1 calc(50% - 12px);
+  }
   .cp-carousel-body {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -6715,6 +6729,9 @@ a.sol-form-contact-value:hover {
   .cp-feat-icon-grid,
   .cp-tech-grid {
     grid-template-columns: 1fr;
+  }
+  .cp-feat-icon-grid--flex .cp-feat-icon-card {
+    flex: 0 1 100%;
   }
   .cp-carousel-header { flex-direction: column; align-items: flex-start; gap: 16px; }
   .cp-carousel-metrics { flex-direction: column; gap: 12px; }
@@ -6968,7 +6985,7 @@ a.sol-form-contact-value:hover {
 
 .pc-core-card-img-wrap {
   background: var(--hy-white);
-  aspect-ratio: 3 / 2.5;
+  aspect-ratio: 3 / 3;
   overflow: hidden;
   display: flex;
   align-items: center;

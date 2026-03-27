@@ -24,16 +24,21 @@ function getGridCols(n) {
   return 3
 }
 
-export default function SystemFeaturesSection({ features = [], title = '系统特点', grayBg = true }) {
-  const cols = getGridCols(features.length)
+/**
+ * columns prop（可选）：强制指定列数，并自动切换为 flex 布局使最后一行居中。
+ * 未传时保持原有 grid 自动算法，不影响已有页面。
+ */
+export default function SystemFeaturesSection({ features = [], title = '系统特点', grayBg = true, columns }) {
+  const useFlexCenter = columns !== undefined
+  const cols = useFlexCenter ? columns : getGridCols(features.length)
 
   return (
     <section className={`page-section${grayBg ? ' page-section--gray' : ''}`}>
       <div className="page-container">
         <h2 className="section-heading section-heading--center fade-up">{title}</h2>
         <div
-          className="cp-feat-icon-grid"
-          style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
+          className={`cp-feat-icon-grid${useFlexCenter ? ' cp-feat-icon-grid--flex' : ''}`}
+          style={useFlexCenter ? { '--flex-cols': cols } : { gridTemplateColumns: `repeat(${cols}, 1fr)` }}
         >
           {features.map(({ Icon, img, title: featTitle, desc }, i) => (
             <div

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" version="1.1" id="svg666" width="682.66669" height="682.66669" viewBox="0 0 682.66669 682.66669">
+  <defs id="defs670">
+    <clipPath clipPathUnits="userSpaceOnUse" id="clipPath684">
+      <path d="M 0,512 H 512 V 0 H 0 Z" id="path682"/>
+    </clipPath>
+  </defs>
+  <mask id="custom"><rect id="bg" x="0" y="0" width="100%" height="100%" fill="white"/><g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)"/></mask><g mask="url(#custom)"><g id="g672" transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+    <g id="g674" transform="translate(225.0479,225.0479)">
+      <path d="M 0,0 128.188,128.188" style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" id="path676"/>
+    </g>
+    <g id="g678">
+      <g id="g680" clip-path="url(#clipPath684)">
+        <g id="g686" transform="translate(427.5996,484.2139)">
+          <path d="m 0,0 -85.088,-85.089 10.724,-45.889 45.89,-10.724 85.088,85.088 -42.46,14.154 z" style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" id="path688"/>
+        </g>
+        <g id="g690" transform="translate(285.0957,225.0479)">
+          <path d="m 0,0 c 0,-33.164 -26.884,-60.048 -60.048,-60.048 -33.163,0 -60.048,26.884 -60.048,60.048 0,33.164 26.885,60.048 60.048,60.048 C -26.884,60.048 0,33.164 0,0 Z" style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" id="path692"/>
+        </g>
+        <g id="g694" transform="translate(360.0957,225.0479)">
+          <path d="m 0,0 c 0,-74.492 -60.556,-135.048 -135.048,-135.048 -74.492,0 -135.048,60.556 -135.048,135.048 0,74.492 60.556,135.048 135.048,135.048 C -60.556,135.048 0,74.492 0,0 Z" style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" id="path696"/>
+        </g>
+        <g id="g698" transform="translate(399.1255,342.5122)">
+          <path d="m 0,0 c 22.702,-33.545 35.97,-73.978 35.97,-117.464 0,-115.862 -94.186,-210.048 -210.048,-210.048 -115.861,0 -210.047,94.186 -210.047,210.048 0,115.861 94.186,210.047 210.047,210.047 43.449,0 83.849,-13.245 117.377,-35.911" style="fill:none;stroke:#000000;stroke-width:30;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" id="path700"/>
+        </g>
+      </g>
+    </g>
+  </g></g>
+</svg>
