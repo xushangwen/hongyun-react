@@ -5726,54 +5726,77 @@
   margin: 0;
 }
 
-/* 全宽产品图 */
+/* 全宽产品图 — 基础（供其他子页面继承） */
 .cp-sol-hero-img-full {
   width: 100%;
   background: #F2F3F5;
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  display: block;
 }
 
 .cp-sol-hero-product-img {
   display: block;
   width: 100%;
-  max-width: 1200px;
+  height: 480px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* ─────────────────────────────────────
+   SmartControlPage hero — 全幅 cover，高度提升
+   使用方式：<section class="cp-sol-hero cp-sol-hero--sc">
+   ───────────────────────────────────── */
+.cp-sol-hero--sc .cp-sol-hero-product-img {
+  height: 640px;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+/* ─────────────────────────────────────
+   CirculationPulpingPage hero — 产品图居中缩小，section 更高
+   使用方式：<section class="cp-sol-hero cp-sol-hero--cp">
+   ───────────────────────────────────── */
+.cp-sol-hero--cp {
+  display: flex;
+  flex-direction: column;
+  min-height: 780px;
+}
+
+.cp-sol-hero--cp .cp-sol-hero-img-full {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 40px 0 0;
+}
+
+.cp-sol-hero--cp .cp-sol-hero-product-img {
+  width: auto;
+  max-width: min(1100px, 88vw);
+  height: auto;
   max-height: 600px;
   object-fit: contain;
   object-position: center bottom;
-  margin: 0 auto;
 }
 
-/* 面包屑条 */
+/* 面包屑条：透明底留在灰色 Hero 内 */
 .cp-sol-hero-breadcrumb {
-  padding-top: 14px;
-  padding-bottom: 12px;
   background: transparent;
-  position: relative;
 }
 
-/* 面包屑容器 - 去掉左右边距 */
+/* 上下间距由 page-container 控制，水平与正文对齐 */
 .cp-sol-hero-breadcrumb .page-container {
-  padding: 0;
-  max-width: none;
-  margin: 0;
+  padding-top: 0;
+  padding-bottom: 12px;
 }
 
-.cp-sol-hero-breadcrumb::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: calc(100% - 80px);
-  max-width: calc(var(--max-width) - 80px);
-  height: 1px;
-  background: var(--zinc-200);
+/* 描边压在 breadcrumb-list 上：宽度 = page-container 内容区，与"首页"文字两端对齐 */
+.cp-sol-hero-breadcrumb .breadcrumb-list {
+  border-top: 1px solid var(--zinc-200);
+  padding-top: 14px;
 }
 
-/* 覆盖全局 .breadcrumb 的白底 */
+/* 覆盖全局 .breadcrumb 白底和 padding */
 .cp-sol-hero-breadcrumb .breadcrumb {
   background: transparent;
   padding: 0;
@@ -6687,7 +6710,7 @@ a.sol-form-contact-value:hover {
 
 @media (max-width: 768px) {
   .cp-sol-hero { padding-top: 56px; }
-  .cp-sol-hero-product-img { max-height: 280px; }
+  .cp-sol-hero-product-img { height: 240px; }
   .cp-intro-section { padding-top: 36px !important; padding-bottom: 32px !important; }
   .cp-feat-icon-grid,
   .cp-tech-grid {
@@ -6732,4 +6755,168 @@ a.sol-form-contact-value:hover {
   .sub-bento-main { grid-row: 1; grid-column: 1; }
   .sub-bento-accent { grid-row: 2; grid-column: 1; }
   .sub-bento-secondary { grid-row: 3; grid-column: 1; }
+}
+
+/* ================================================================
+   SmartControlPage — 应用行业 / 系统展示 Bento
+   前缀：sc-app-industry-  sc-bento-
+   ================================================================ */
+
+/* ───────────────────────────────────
+   应用行业 — 图片卡片网格
+   ─────────────────────────────────── */
+
+.sc-app-industry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.sc-app-industry-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--rounded-lg);
+  aspect-ratio: 4 / 3;
+  background: var(--zinc-100);
+  cursor: default;
+}
+
+.sc-app-industry-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.sc-app-industry-card:hover .sc-app-industry-img {
+  transform: scale(1.06);
+}
+
+.sc-app-industry-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 14px 14px;
+  background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, transparent 100%);
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.02em;
+}
+
+/* ───────────────────────────────────
+   BentoGallerySection — 系统展示 Bento
+   非对称三栏，红/灰对角分布（互不相邻）：
+     cols:   2fr      1.6fr     1fr
+     row1:  main     top-sm   [RED]   ← 红：右上角
+     row2:  main     mid      mid     ← 主图跨 rows 1-2
+     row3:  [GRAY]   bot      bot     ← 灰：左下角，宽度=主图列
+   ─────────────────────────────────── */
+.bento-gallery-grid {
+  display: grid;
+  /* 12 列等宽网格：每个格子独立控制跨列数，宽度组合灵活
+     main:7  gray:4  top-sm:3  red:2  mid:5  bot:8 — 每块宽度均不相同 */
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 230px 190px 155px;
+  gap: 10px;
+  margin-top: 8px;
+  grid-template-areas:
+    "main main main main main main main top-sm top-sm top-sm red    red"
+    "main main main main main main main mid    mid    mid    mid    mid"
+    "gray gray gray gray bot  bot  bot  bot    bot    bot    bot    bot";
+}
+
+/* 图片单元 */
+.bento-gallery-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--rounded-lg);
+}
+
+/* 占位符 */
+.bento-gallery-placeholder {
+  border-radius: var(--rounded-lg);
+  background: var(--zinc-100);
+  border: 1px solid var(--zinc-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--zinc-300);
+  width: 100%;
+  height: 100%;
+}
+
+/* 装饰色块基础 */
+.bento-accent {
+  border-radius: var(--rounded-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 右上角：品牌红装饰条 */
+.bento-accent--red {
+  grid-area: red;
+  background: var(--hy-red);
+}
+
+.bento-accent--red::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 75%, rgba(255,255,255,0.14) 0%, transparent 50%),
+    radial-gradient(circle at 75% 20%, rgba(0,0,0,0.10) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* 左下角：灰色装饰条（宽度同主图列 = 2fr，视觉加宽感） */
+.bento-accent--gray {
+  grid-area: gray;
+  background: var(--zinc-200);
+}
+
+.bento-accent--gray::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 40%, rgba(0,0,0,0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+/* 响应式 — 平板 */
+@media (max-width: 768px) {
+  .sc-app-industry-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .bento-gallery-grid {
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 190px 160px 130px;
+  }
+}
+
+/* 响应式 — 手机（折叠为纵向 flex） */
+@media (max-width: 480px) {
+  .sc-app-industry-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .bento-gallery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .bento-gallery-img,
+  .bento-gallery-placeholder { height: 180px; }
+
+  .bento-accent--red { height: 72px; }
+  .bento-accent--gray { height: 72px; }
 }

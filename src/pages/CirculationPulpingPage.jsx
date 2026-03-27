@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import {
-  IconArrowRightOutline24,
-  IconChevronLeftOutline24,
-  IconChevronRightOutline24,
-  IconCircleCheckOutline24,
-} from 'nucleo-core-outline-24'
+import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import Breadcrumb from '../components/Breadcrumb'
-import inquiryBgImg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.png'
+import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import CustomerCasesSection from '../components/CustomerCasesSection'
+import TechInquirySection from '../components/TechInquirySection'
 
 /* ──────────────────────────────────────────────────────────
    双色 SVG 图标组件
@@ -202,13 +199,6 @@ function IconLaptop() {
   )
 }
 
-/* ──────────────────────────────────────────────────────────
-   行业选项（技术咨询表单）
-   ────────────────────────────────────────────────────────── */
-const industryOptions = [
-  '新能源行业 / 锂电池', '固态电池', '化工行业 / 涂料', '制胶 / 密封胶',
-  '食品', '医药', '化妆品', '电子材料', '其他行业',
-]
 
 /* ──────────────────────────────────────────────────────────
    方案特点数据（对应上面6个图标组件）
@@ -338,10 +328,6 @@ const customerCases = [
    ────────────────────────────────────────────────────────── */
 export default function CirculationPulpingPage() {
   const [videoPlayed, setVideoPlayed] = useState(false)
-  const [caseIndex, setCaseIndex] = useState(0)
-  const totalCases = customerCases.length
-  const [formData, setFormData] = useState({ name: '', phone: '', company: '', email: '', industry: '', needs: '' })
-  const [formSubmitted, setFormSubmitted] = useState(false)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -356,20 +342,13 @@ export default function CirculationPulpingPage() {
     return () => observer.disconnect()
   }, [])
 
-  const prevCase = () => setCaseIndex((i) => (i - 1 + totalCases) % totalCases)
-  const nextCase = () => setCaseIndex((i) => (i + 1) % totalCases)
-
-  const currentCase = customerCases[caseIndex]
-
-  const handleFormChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
-  const handleFormSubmit = (e) => { e.preventDefault(); setFormSubmitted(true) }
 
   return (
     <>
       {/* ═══════════════════════════════════════
-          Hero：灰色背景 + 全宽产品图
+          Hero：cp 修饰类 — 产品图居中缩小，section 更高
           ═══════════════════════════════════════ */}
-      <section className="cp-sol-hero">
+      <section className="cp-sol-hero cp-sol-hero--cp">
         <div className="cp-sol-hero-img-full">
           <img
             src="/ref-images/upfile_image_20240117_1705474607_843293.png"
@@ -377,7 +356,7 @@ export default function CirculationPulpingPage() {
             className="cp-sol-hero-product-img"
           />
         </div>
-        <div className="cp-sol-hero-breadcrumb page-container">
+        <div className="cp-sol-hero-breadcrumb">
           <Breadcrumb items={[
             { label: '行业解决方案', path: '/solutions' },
             { label: '新能源行业', path: '/solutions#new-energy' },
@@ -455,24 +434,9 @@ export default function CirculationPulpingPage() {
         </section>
 
         {/* ═══════════════════════════════════════
-            方案特点（双色图标卡片，3列）
+            方案特点（可复用组件，智能列数）
             ═══════════════════════════════════════ */}
-        <section className="page-section">
-          <div className="page-container">
-            <h2 className="section-heading section-heading--center fade-up">方案特点</h2>
-            <div className="cp-feat-icon-grid">
-              {features.map(({ Icon, title, desc }, i) => (
-                <div key={i} className={`cp-feat-icon-card fade-up fade-up-delay-${(i % 3) + 1}`}>
-                  <div className="cp-feat-icon-wrap">
-                    <Icon />
-                  </div>
-                  <h3 className="cp-feat-icon-title">{title}</h3>
-                  <p className="cp-feat-icon-desc">{desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <SystemFeaturesSection features={features} title="方案特点" grayBg={false} />
 
         {/* ═══════════════════════════════════════
             包含系统（6个子系统跳转卡片）
@@ -534,143 +498,14 @@ export default function CirculationPulpingPage() {
         </section>
 
         {/* ═══════════════════════════════════════
-            客户案例（左右切换轮播）
+            客户案例（可复用组件）
             ═══════════════════════════════════════ */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <div className="cp-carousel-header fade-up">
-              <h2 className="section-heading cp-carousel-heading">客户案例</h2>
-              <div className="cp-carousel-nav">
-                <span className="cp-carousel-count">
-                  {String(caseIndex + 1).padStart(2, '0')} / {String(totalCases).padStart(2, '0')}
-                </span>
-                <button className="cp-carousel-btn" onClick={prevCase} aria-label="上一个案例">
-                  <IconChevronLeftOutline24 size={20} />
-                </button>
-                <button className="cp-carousel-btn" onClick={nextCase} aria-label="下一个案例">
-                  <IconChevronRightOutline24 size={20} />
-                </button>
-              </div>
-            </div>
-
-            <div className="cp-carousel-body" key={caseIndex}>
-              <div className="cp-carousel-img-col">
-                <img
-                  src={currentCase.img}
-                  alt={currentCase.client}
-                  className="cp-carousel-img"
-                  loading="lazy"
-                />
-              </div>
-              <div className="cp-carousel-content-col">
-                <span className="cp-carousel-tag">{currentCase.tag}</span>
-                <h3 className="cp-carousel-client">{currentCase.client}</h3>
-                <p className="cp-carousel-desc">{currentCase.desc}</p>
-                <div className="cp-carousel-metrics">
-                  {currentCase.metrics.map((m, i) => (
-                    <div key={i} className="cp-carousel-metric">
-                      <span className="cp-carousel-metric-value">{m.value}</span>
-                      <span className="cp-carousel-metric-label">{m.label}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="cp-carousel-dots fade-up fade-up-delay-2">
-              {customerCases.map((_, i) => (
-                <button
-                  key={i}
-                  className={`cp-carousel-dot ${i === caseIndex ? 'cp-carousel-dot--active' : ''}`}
-                  onClick={() => setCaseIndex(i)}
-                  aria-label={`切换到案例 ${i + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
+        <CustomerCasesSection cases={customerCases} />
 
         {/* ═══════════════════════════════════════
-            技术咨询表单（与联系页一致）
+            技术咨询（可复用组件）
             ═══════════════════════════════════════ */}
-        <section className="page-section cp-inquiry-section">
-          <div className="page-container">
-            <h2 className="section-heading section-heading--center fade-up">技术咨询</h2>
-            <p className="section-desc section-desc--center fade-up fade-up-delay-1">
-              留下您的联系方式,专业技术团队将在 24 小时内与您联系,为您量身定制解决方案。
-            </p>
-            {formSubmitted ? (
-              <div className="contact-submit-success fade-up">
-                <IconCircleCheckOutline24 size={56} className="contact-success-icon" />
-                <h3>咨询已提交！</h3>
-                <p>感谢您的咨询，我们的技术团队将在24小时内与您联系。</p>
-                <button className="btn-primary" onClick={() => setFormSubmitted(false)}>继续咨询</button>
-              </div>
-            ) : (
-              <div className="contact-form-wrapper fade-up fade-up-delay-2">
-                <div
-                  className="contact-brand-panel"
-                  style={{ backgroundImage: `url(${inquiryBgImg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-                >
-                  <p className="contact-brand-tagline">专注混合工艺<br />三十年技术积淀</p>
-                  <div className="contact-brand-divider" />
-                  <div className="contact-brand-items">
-                    <div className="contact-brand-item">
-                      <span className="contact-brand-item-label">响应时效</span>
-                      <span className="contact-brand-item-value">24小时内技术团队回复</span>
-                    </div>
-                    <div className="contact-brand-item">
-                      <span className="contact-brand-item-label">服务热线</span>
-                      <span className="contact-brand-item-value">400 915 3366</span>
-                    </div>
-                    <div className="contact-brand-item">
-                      <span className="contact-brand-item-label">商务邮箱</span>
-                      <span className="contact-brand-item-value">hy@gzhy.cn</span>
-                    </div>
-                  </div>
-                </div>
-                <form className="contact-form" onSubmit={handleFormSubmit}>
-                  <div className="contact-form-row">
-                    <div className="contact-form-field">
-                      <label className="contact-form-label" htmlFor="cp-name">姓名 *</label>
-                      <input type="text" id="cp-name" name="name" className="contact-form-input" placeholder="您的姓名" value={formData.name} onChange={handleFormChange} required />
-                    </div>
-                    <div className="contact-form-field">
-                      <label className="contact-form-label" htmlFor="cp-phone">联系电话 *</label>
-                      <input type="tel" id="cp-phone" name="phone" className="contact-form-input" placeholder="您的电话号码" value={formData.phone} onChange={handleFormChange} required />
-                    </div>
-                    <div className="contact-form-field">
-                      <label className="contact-form-label" htmlFor="cp-email">电子邮箱</label>
-                      <input type="email" id="cp-email" name="email" className="contact-form-input" placeholder="您的邮箱（选填）" value={formData.email} onChange={handleFormChange} />
-                    </div>
-                  </div>
-                  <div className="contact-form-row">
-                    <div className="contact-form-field">
-                      <label className="contact-form-label" htmlFor="cp-company">公司名称 *</label>
-                      <input type="text" id="cp-company" name="company" className="contact-form-input" placeholder="您所在的公司" value={formData.company} onChange={handleFormChange} required />
-                    </div>
-                    <div className="contact-form-field">
-                      <label className="contact-form-label" htmlFor="cp-industry">所属行业</label>
-                      <select id="cp-industry" name="industry" className="contact-form-select" value={formData.industry} onChange={handleFormChange}>
-                        <option value="">请选择行业</option>
-                        {industryOptions.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
-                      </select>
-                    </div>
-                    <div className="contact-form-field" />
-                  </div>
-                  <div className="contact-form-field">
-                    <label className="contact-form-label" htmlFor="cp-needs">需求描述 *</label>
-                    <textarea id="cp-needs" name="needs" className="contact-form-textarea" placeholder="请简要描述您的工艺需求、物料类型、产能要求等信息" rows={6} value={formData.needs} onChange={handleFormChange} required />
-                  </div>
-                  <button type="submit" className="btn-primary">
-                    提交咨询
-                    <IconArrowRightOutline24 size={18} />
-                  </button>
-                </form>
-              </div>
-            )}
-          </div>
-        </section>
+        <TechInquirySection />
       </div>
     </>
   )
