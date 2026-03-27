@@ -5,6 +5,7 @@ import BentoGallerySection from '../components/BentoGallerySection'
 import CustomerCasesSection from '../components/CustomerCasesSection'
 import TechInquirySection from '../components/TechInquirySection'
 import CoreEquipmentCarousel from '../components/CoreEquipmentCarousel'
+import pdmProductImg from '../assets/img/双行星动力混合机-removebg.png'
 
 /* ── 品牌色常量 ─────────────────────────── */
 const RED  = '#BA0C2F'
@@ -240,7 +241,7 @@ const features = [
 
 /* ── 核心设备数据 ─────────────────────────── */
 const coreEquipment = [
-  { name: '双行星动力搅拌机', img: '/ref-images/image_20240117_1705480936_405786.png' },
+  { name: '双行星动力搅拌机', img: pdmProductImg, link: '/products/new-energy/dual-planetary-mixer' },
   { name: '双螺杆连续制浆机', img: '/ref-images/image_20240117_1705478717_273925.png' },
 ]
 

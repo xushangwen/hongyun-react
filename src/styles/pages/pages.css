@@ -206,6 +206,10 @@
   background: var(--zinc-50);
 }
 
+.page-section--gray-deep {
+  background: var(--zinc-100, #f4f4f5);
+}
+
 .page-section--dark {
   background: var(--zinc-900);
   color: var(--hy-white);
@@ -261,6 +265,26 @@
 
 .section-heading--center::before {
   display: none;
+}
+
+/* 左对齐 + 下横线装饰（无左竖线）*/
+.section-heading--underline {
+  padding-left: 0;
+}
+
+.section-heading--underline::before {
+  display: none;
+}
+
+.section-heading--underline::after {
+  content: '';
+  display: block;
+  width: 68px;
+  height: 3px;
+  margin: 14px 0 0;
+  background:
+    linear-gradient(var(--hy-red), var(--hy-red)) 0 0 / 20px 3px no-repeat,
+    linear-gradient(var(--zinc-200), var(--zinc-200)) 24px 0 / 44px 3px no-repeat;
 }
 
 /* 居中标题下方装饰线：短红线 + 灰线 */
@@ -3046,6 +3070,7 @@
 .pdm-model-card {
   background: var(--hy-white);
   border: 1px solid var(--zinc-100);
+  border-radius: 12px;
   overflow: hidden;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.3s ease;
 }
@@ -3387,6 +3412,49 @@
 }
 
 /* ========================================
+   PDM Hero — 灰色背景大 Hero 区域
+   ======================================== */
+
+.pdm-hero {
+  background: var(--zinc-200, #e4e4e7);
+  padding: 80px 0 0;
+  min-height: 640px;
+  display: flex;
+  align-items: center;
+}
+
+.pdm-hero-body {
+  padding-top: 32px;
+}
+
+.pdm-hero .breadcrumb {
+  margin-top: 48px;
+  padding-top: 0;
+  background: transparent;
+  border-top: none;
+}
+
+.pdm-hero .breadcrumb .page-container {
+  max-width: none;
+  padding: 0;
+}
+
+.pdm-hero .breadcrumb-list {
+  border-top: 1px solid var(--zinc-200, #e4e4e7);
+  padding-top: 20px;
+}
+
+.pdm-hero-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  max-height: 580px;
+  transform: scale(1.1);
+  transform-origin: center center;
+}
+
+/* ========================================
    PDM Page — V2 Redesign Modules
    ======================================== */
 
@@ -3425,7 +3493,7 @@
 .pdm-intro-name {
   font-size: 44px;
   font-weight: 700;
-  color: var(--zinc-900);
+  color: var(--hy-red);
   line-height: 1.25;
   margin: 0 0 4px;
   letter-spacing: -0.5px;
@@ -3707,6 +3775,7 @@
 .pdm-case-image-wrap {
   position: relative;
   overflow: hidden;
+  border-radius: 12px;
   background: var(--zinc-100);
   border: 1px solid var(--zinc-200);
 }
@@ -3889,6 +3958,12 @@
 
   .pdm-case-images--3 {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* PDM Hero */
+  .pdm-hero {
+    padding: 72px 0 64px;
+    min-height: auto;
   }
 
   /* PDM V2 */
@@ -4181,6 +4256,15 @@
 
   .pdm-reliability-card {
     padding: 32px 24px;
+  }
+
+  /* PDM Hero mobile */
+  .pdm-hero {
+    padding: 56px 0 48px;
+  }
+
+  .pdm-hero-product-img {
+    max-height: 280px;
   }
 
   /* PDM V2 mobile */
@@ -6372,6 +6456,7 @@
   max-width: 560px;
   margin: 0 auto 48px;
   color: var(--zinc-500);
+  text-wrap: balance;
   font-size: 15px;
   line-height: 1.8;
 }

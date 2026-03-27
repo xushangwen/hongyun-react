@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function ChevronLeft() {
   return (
@@ -57,14 +58,25 @@ export default function CoreEquipmentCarousel({
             >
               {items.map((eq, i) => (
                 <div key={i} className="pc-core-card-outer">
-                  <div className="pc-core-card">
-                    <div className="pc-core-card-img-wrap">
-                      <img src={eq.img} alt={eq.name} className="pc-core-card-img" loading="lazy" />
+                  {eq.link ? (
+                    <Link to={eq.link} className="pc-core-card pc-core-card--link">
+                      <div className="pc-core-card-img-wrap">
+                        <img src={eq.img} alt={eq.name} className="pc-core-card-img" loading="lazy" />
+                      </div>
+                      <div className="pc-core-card-info">
+                        <h3 className="pc-core-card-name">{eq.name}</h3>
+                      </div>
+                    </Link>
+                  ) : (
+                    <div className="pc-core-card">
+                      <div className="pc-core-card-img-wrap">
+                        <img src={eq.img} alt={eq.name} className="pc-core-card-img" loading="lazy" />
+                      </div>
+                      <div className="pc-core-card-info">
+                        <h3 className="pc-core-card-name">{eq.name}</h3>
+                      </div>
                     </div>
-                    <div className="pc-core-card-info">
-                      <h3 className="pc-core-card-name">{eq.name}</h3>
-                    </div>
-                  </div>
+                  )}
                 </div>
               ))}
             </div>

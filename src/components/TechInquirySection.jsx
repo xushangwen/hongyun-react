@@ -21,7 +21,7 @@ export default function TechInquirySection({ industryOptions = defaultIndustryOp
       <div className="page-container">
         <h2 className="section-heading section-heading--center fade-up">技术咨询</h2>
         <p className="section-desc section-desc--center fade-up fade-up-delay-1">
-          留下您的联系方式，专业技术团队将在 24 小时内与您联系，为您量身定制解决方案。
+          留下您的联系方式，专业技术团队将在 24 小时内与您联系，<br />为您量身定制解决方案。
         </p>
         {formSubmitted ? (
           <div className="contact-submit-success fade-up">
