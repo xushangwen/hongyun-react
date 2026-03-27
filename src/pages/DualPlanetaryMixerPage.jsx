@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumb from '../components/Breadcrumb'
 import TechInquirySection from '../components/TechInquirySection'
+import DotGridCanvas from '../components/DotGridCanvas'
 import productImg from '../assets/img/双行星动力混合机-removebg.png'
 
 /* ══════════════════════════════════════════════════════════
@@ -338,6 +339,7 @@ export default function DualPlanetaryMixerPage() {
     <>
       {/* ===== Hero — 灰色背景，两栏布局 ===== */}
       <section className="pdm-hero">
+        <DotGridCanvas />
         <div className="page-container">
           <div className="pdm-intro-grid pdm-hero-body">
             <div className="pdm-intro-content">
@@ -345,7 +347,7 @@ export default function DualPlanetaryMixerPage() {
               <h1 className="pdm-intro-name fade-up fade-up-delay-1">
                 双行星动力<sup>™</sup>混合机
               </h1>
-              <div className="pdm-intro-rule fade-up fade-up-delay-1"></div>
+
               <p className="pdm-intro-desc fade-up fade-up-delay-2">
                 双行星动力混合机（PD搅拌机）通常具有一个或多个搅拌桨和分散盘，它们围绕釜体轴线公转的同时，也围绕自身轴线自转。通过搅拌桨和分散盘的行星运动，使物料受到剪切和捏合作用，实现混合。是一种<strong>无死角的动力混合、分散设备</strong>。
               </p>

@@ -137,6 +137,7 @@
   padding: 18px 0 16px;
   margin-bottom: 0;
   background: var(--hy-white);
+  border-bottom: 1px solid var(--zinc-100);
 }
 
 .breadcrumb-list {
@@ -3416,15 +3417,37 @@
    ======================================== */
 
 .pdm-hero {
-  background: var(--zinc-200, #e4e4e7);
-  padding: 80px 0 64px;
-  min-height: 640px;
+  position: relative;
+  background: var(--zinc-100, #f4f4f5);
+  padding: 80px 0 0;
+  min-height: 680px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+
+.dot-grid-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* 内容区占满剩余空间并垂直居中 */
+.pdm-hero > .page-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pdm-hero-body {
   padding-top: 32px;
+}
+
+/* pdm 专属面包屑边框色 */
+.pdm-hero .cp-sol-hero-breadcrumb .breadcrumb-list {
+  border-top-color: var(--zinc-100);
 }
 
 .pdm-hero-product-img {
@@ -3456,6 +3479,7 @@
 .pdm-intro-content {
   display: flex;
   flex-direction: column;
+  margin-top: -80px;
 }
 
 .pdm-intro-label {
@@ -3478,7 +3502,7 @@
   font-weight: 700;
   color: var(--hy-red);
   line-height: 1.25;
-  margin: 0 0 4px;
+  margin: 0 0 24px;
   letter-spacing: -0.5px;
 }
 
@@ -5847,6 +5871,7 @@
 }
 
 /* 面包屑条：透明底留在灰色 Hero 内 */
+
 .cp-sol-hero-breadcrumb {
   background: transparent;
 }
