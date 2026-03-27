@@ -35,13 +35,13 @@ export default function SystemFeaturesSection({ features = [], title = '系统�
           className="cp-feat-icon-grid"
           style={{ gridTemplateColumns: `repeat(${cols}, 1fr)` }}
         >
-          {features.map(({ Icon, title: featTitle, desc }, i) => (
+          {features.map(({ Icon, img, title: featTitle, desc }, i) => (
             <div
               key={i}
               className={`cp-feat-icon-card fade-up fade-up-delay-${(i % Math.min(cols, 3)) + 1}`}
             >
               <div className="cp-feat-icon-wrap">
-                <Icon />
+                {Icon ? <Icon /> : <img src={img} alt={featTitle} className="cp-feat-icon-img" loading="lazy" />}
               </div>
               <h3 className="cp-feat-icon-title">{featTitle}</h3>
               <p className="cp-feat-icon-desc">{desc}</p>

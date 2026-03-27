@@ -42,9 +42,9 @@ function ImageCell({ area, src, alt }) {
   )
 }
 
-export default function BentoGallerySection({ title = '系统展示', images = [] }) {
+export default function BentoGallerySection({ title = '系统展示', images = [], grayBg = true }) {
   return (
-    <section className="page-section page-section--gray">
+    <section className={`page-section${grayBg ? ' page-section--gray' : ''}`}>
       <div className="page-container">
         <h2 className="section-heading section-heading--center fade-up">{title}</h2>
         <div className="bento-gallery-grid fade-up fade-up-delay-1">
