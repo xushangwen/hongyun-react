@@ -52,7 +52,7 @@ function IconLeaf() {
         <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(361.5459,234.5454)"
           d="m 0,0 c 0,-58.291 -47.255,-105.545 -105.546,-105.545 -58.291,0 -105.546,47.254 -105.546,105.545 0,107.018 105.546,164.455 105.546,164.455 C -105.546,164.455 0,107.018 0,0 Z" />
-        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(256,399)" d="M 0,0 V -270" />
         <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(154.8789,271.8809)" d="M 0,0 101.121,-78.732" />
@@ -62,14 +62,14 @@ function IconLeaf() {
           transform="translate(357.1211,271.8809)" d="M 0,0 -101.121,-78.732" />
         <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(324.4033,338.647)" d="M 0,0 -68.403,-53.259" />
-        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(44.1855,475.9243)" d="M 0,0 91.314,-11.212 80.103,-102.526" />
-        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(467.8145,36.0757)" d="m 0,0 -91.314,11.212 11.211,91.314" />
-        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(318.375,23.2119)"
           d="m 0,0 c -128.564,-34.449 -260.714,41.847 -295.163,170.413 -28.864,107.724 20.021,217.963 112.259,271.139" />
-        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(193.625,488.7881)"
           d="M 0,0 C 128.564,34.449 260.714,-41.847 295.163,-170.413 324.027,-278.137 275.142,-388.376 182.904,-441.552" />
       </g>
@@ -153,6 +153,29 @@ function IconConnect() {
   )
 }
 
+function IconFilter() {
+  return (
+    <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
+      <polyline stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" points="437,497 437,255 286,255" />
+      <polyline stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" points="75,497 75,255 226,255" />
+      <polygon stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" points="286,316 286,255 346,195 346,135 166,135 166,195 226,255 226,316" />
+      <line stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" x1="166" y1="195" x2="346" y2="195" />
+      <line stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" x1="30" y1="497" x2="482" y2="497" />
+      {/* 柱内横线 — 品牌红 */}
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="377" x2="120" y2="377" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="377" x2="220.667" y2="377" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="377" x2="321.333" y2="377" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="437" x2="120" y2="437" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="437" x2="220.667" y2="437" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="437" x2="321.333" y2="437" />
+      {/* 顶部粒子短线 — 品牌红 */}
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="241" y1="75" x2="271" y2="75" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="211" y1="15" x2="241" y2="15" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="301" y1="45" x2="331" y2="45" />
+    </svg>
+  )
+}
+
 function IconLaptop() {
   return (
     <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
@@ -177,7 +200,7 @@ const features = [
   { Icon: IconConnect, title: '占用高度小，兼容性与灵活性提升' },
   { Icon: IconLike, title: '设备投资成本降低' },
   { Icon: IconLeaf, title: '全过程无金属无尘化生产' },
-  { Icon: IconCleanAir, title: '下粉顺畅，无堵料风险' },
+  { Icon: IconFilter, title: '下粉顺畅，无堵料风险' },
   { Icon: IconLaptop, title: '系统监控可视化管理' },
 ]
 
@@ -426,9 +449,7 @@ export default function CirculationPulpingPage() {
 
             {/* 01 来料信息 */}
             <div className="cp-verify-block fade-up fade-up-delay-1">
-              <h3 className="cp-verify-subheading">
-                <span className="cp-verify-num">01</span>来料信息
-              </h3>
+              <h3 className="cp-verify-subheading">来料信息</h3>
               <h4 className="cp-incoming-material-title">LFP：D50 = 0.5–1μm、SP、PVDF、分散剂</h4>
               <div className="cp-incoming-grid">
                 <div className="cp-incoming-item">
@@ -451,9 +472,7 @@ export default function CirculationPulpingPage() {
 
             {/* 02 浆料质量检测（原 04 浆料流变性 + 05 浆料稳定性数据 + 06 极片电镜） */}
             <div className="cp-verify-block fade-up fade-up-delay-2">
-              <h3 className="cp-verify-subheading">
-                <span className="cp-verify-num">02</span>浆料质量检测
-              </h3>
+              <h3 className="cp-verify-subheading">浆料质量检测</h3>
 
               {/* 浆料流变性（原04） */}
               <div className="cp-verify-subsection">
