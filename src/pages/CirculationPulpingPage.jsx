@@ -419,7 +419,7 @@ export default function CirculationPulpingPage() {
         </section>
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section page-section--gray">
+        <section className="page-section">
           <div className="page-container">
             <p className="section-en-label fade-up">Case</p>
             <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
@@ -429,20 +429,20 @@ export default function CirculationPulpingPage() {
               <h3 className="cp-verify-subheading">
                 <span className="cp-verify-num">01</span>来料信息
               </h3>
+              <h4 className="cp-incoming-material-title">LFP：D50 = 0.5–1μm、SP、PVDF、分散剂</h4>
               <div className="cp-incoming-grid">
                 <div className="cp-incoming-item">
-                  <span className="cp-incoming-label">材料体系</span>
-                  <span className="cp-incoming-value">LFP：D50 = 0.5–1μm、SP、PVDF、分散剂</span>
-                </div>
-                <div className="cp-incoming-item">
+                  <span className="cp-incoming-num">01</span>
                   <span className="cp-incoming-label">浆料粘度</span>
                   <span className="cp-incoming-value">9000 ± 3000 mPa·s</span>
                 </div>
                 <div className="cp-incoming-item">
+                  <span className="cp-incoming-num">02</span>
                   <span className="cp-incoming-label">细度</span>
                   <span className="cp-incoming-value">≤ 20 μm</span>
                 </div>
                 <div className="cp-incoming-item">
+                  <span className="cp-incoming-num">03</span>
                   <span className="cp-incoming-label">固含量</span>
                   <span className="cp-incoming-value">65%</span>
                 </div>

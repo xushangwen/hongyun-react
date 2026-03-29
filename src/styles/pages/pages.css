@@ -4708,9 +4708,17 @@
 }
 
 /* 来料信息 */
+.cp-incoming-material-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--zinc-900);
+  margin: 0 0 20px;
+  line-height: 1.4;
+}
+
 .cp-incoming-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--zinc-100);
   border: 1px solid var(--zinc-100);
@@ -4723,8 +4731,16 @@
   padding: 20px 24px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   transition: background 0.2s ease;
+}
+
+.cp-incoming-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--hy-red);
+  letter-spacing: 0.05em;
 }
 
 .cp-incoming-item:hover {
@@ -4732,11 +4748,10 @@
 }
 
 .cp-incoming-label {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
-  color: var(--hy-red);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  color: var(--zinc-700);
+  letter-spacing: 0;
 }
 
 .cp-incoming-value {
