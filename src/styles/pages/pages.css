@@ -4667,7 +4667,7 @@
 
 /* ===== 工艺验证区块 ===== */
 .cp-verify-block {
-  margin-bottom: 24px;
+  margin-bottom: 48px;
   background: var(--zinc-100);
   border: 1px solid var(--zinc-100);
   border-radius: 20px;
@@ -4862,8 +4862,28 @@
   transform: translateY(-2px);
 }
 
+.cp-chart-card--span2 {
+  grid-column: span 2;
+}
+
+.cp-chart-dual-imgs {
+  display: flex;
+  gap: 20px;
+}
+
+.cp-chart-dual-imgs .cp-chart-img {
+  width: calc(50% - 10px);
+  flex-shrink: 0;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  display: block;
+  padding: 8px;
+  background: var(--hy-white);
+}
+
 .cp-chart-img-wrap {
   aspect-ratio: 16 / 9;
+  flex-shrink: 0;
   overflow: hidden;
   background: var(--hy-white);
   display: flex;

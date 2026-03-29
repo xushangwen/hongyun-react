@@ -476,17 +476,12 @@ export default function CirculationPulpingPage() {
                     </div>
                     <p className="cp-chart-caption">剪切速率：过程剪切无突变，非牛顿流体特征</p>
                   </div>
-                  <div className="cp-chart-card">
-                    <div className="cp-chart-img-wrap">
+                  <div className="cp-chart-card cp-chart-card--span2">
+                    <div className="cp-chart-dual-imgs">
                       <img src={`${IMG}/chart-13.jpg`} alt="三区间及触变环图1" className="cp-chart-img" loading="lazy" />
-                    </div>
-                    <p className="cp-chart-caption">三区间及触变环（一）</p>
-                  </div>
-                  <div className="cp-chart-card">
-                    <div className="cp-chart-img-wrap">
                       <img src={`${IMG}/chart-14.jpg`} alt="三区间及触变环图2" className="cp-chart-img" loading="lazy" />
                     </div>
-                    <p className="cp-chart-caption">三区间及触变环（二）：浆料具备一定的触变恢复性，利于涂布</p>
+                    <p className="cp-chart-caption">三区间及触变环：浆料具备一定的触变恢复性，利于涂布</p>
                   </div>
                 </div>
               </div>
@@ -501,17 +496,12 @@ export default function CirculationPulpingPage() {
                     </div>
                     <p className="cp-chart-caption">背散射光曲线：浆料测试过程未出现颗粒团聚和沉降</p>
                   </div>
-                  <div className="cp-chart-card">
-                    <div className="cp-chart-img-wrap">
+                  <div className="cp-chart-card cp-chart-card--span2">
+                    <div className="cp-chart-dual-imgs">
                       <img src={`${IMG}/chart-16.jpg`} alt="稳定性指数图1" className="cp-chart-img" loading="lazy" />
-                    </div>
-                    <p className="cp-chart-caption">稳定性指数（一）</p>
-                  </div>
-                  <div className="cp-chart-card">
-                    <div className="cp-chart-img-wrap">
                       <img src={`${IMG}/chart-17.jpg`} alt="稳定性指数图2" className="cp-chart-img" loading="lazy" />
                     </div>
-                    <p className="cp-chart-caption">稳定性指数（二）：TSI = 0.08（行业内 &lt;0.2 为准）</p>
+                    <p className="cp-chart-caption">稳定性指数：TSI = 0.08（行业内 &lt;0.2 为准）</p>
                   </div>
                   <div className="cp-chart-card">
                     <div className="cp-chart-img-wrap">
