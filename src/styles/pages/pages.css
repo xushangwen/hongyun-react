@@ -5190,6 +5190,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-top: 8px;
+  counter-reset: feat-card;
 }
 
 .cp-feat-icon-grid--flex {
@@ -5197,6 +5198,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 24px;
+  counter-reset: feat-card;
 }
 
 .cp-feat-icon-grid--flex .cp-feat-icon-card {
@@ -5212,6 +5214,24 @@
   flex-direction: column;
   gap: 16px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  counter-increment: feat-card;
+}
+
+.cp-feat-icon-card::before {
+  content: counter(feat-card, decimal-leading-zero);
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-family: 'DINPro', 'Space Grotesk', sans-serif;
+  font-size: 80px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--zinc-50, #FAFAFA);
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.04em;
 }
 
 .cp-feat-icon-card:hover {
@@ -5222,8 +5242,8 @@
 }
 
 .cp-feat-icon-wrap {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   flex-shrink: 0;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -5233,8 +5253,8 @@
 }
 
 .cp-feat-icon-svg {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   display: block;
 }
 
