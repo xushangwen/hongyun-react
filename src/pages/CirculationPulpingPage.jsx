@@ -442,7 +442,7 @@ export default function CirculationPulpingPage() {
         </section>
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section">
+        <section className="page-section page-section--gray">
           <div className="page-container">
             <p className="section-en-label fade-up">Case</p>
             <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
@@ -538,7 +538,7 @@ export default function CirculationPulpingPage() {
 
               {/* 极片电镜（原06） */}
               <div className="cp-verify-subsection">
-                <h4 className="cp-verify-sub-title">极片电镜</h4>
+                <h4 className="cp-verify-sub-title">红运高速循环制浆极片电镜</h4>
                 <div className="cp-sem-grid">
                   <div className="cp-sem-card">
                     <div className="cp-sem-img-wrap">

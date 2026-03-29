@@ -4666,7 +4666,11 @@
 
 /* ===== 工艺验证区块 ===== */
 .cp-verify-block {
-  margin-bottom: 48px;
+  margin-bottom: 24px;
+  background: #fff;
+  border: 1px solid var(--zinc-100);
+  border-radius: 20px;
+  padding: 40px 44px;
 }
 
 .cp-verify-block:last-child {
