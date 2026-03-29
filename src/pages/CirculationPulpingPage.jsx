@@ -284,8 +284,8 @@ export default function CirculationPulpingPage() {
           { label: '高速循环制浆系统' },
         ]} />
 
-        {/* ===== 系统介绍 ===== */}
-        <section className="page-section page-section--gray pdm-intro-section">
+        {/* ===== 系统介绍 + 方案视频 ===== */}
+        <section className="page-section pdm-intro-section">
           <div className="page-container">
             <p className="section-en-label fade-up">System Introduction</p>
             <h2 className="section-heading section-heading--center fade-up">系统介绍</h2>
@@ -303,15 +303,7 @@ export default function CirculationPulpingPage() {
                 </p>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* ===== 方案视频 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Solution Video</p>
-            <h2 className="section-heading section-heading--center fade-up">方案视频</h2>
-            <div className="cp-video-mock fade-up fade-up-delay-1">
+            <div className="cp-video-mock fade-up fade-up-delay-2">
               <img src={`${IMG}/hero.jpeg`} alt="方案视频封面" className="cp-video-mock-poster" />
               <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
                 {!videoPlayed ? (
@@ -442,7 +434,7 @@ export default function CirculationPulpingPage() {
         </section>
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section page-section--gray">
+        <section className="page-section">
           <div className="page-container">
             <p className="section-en-label fade-up">Case</p>
             <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
