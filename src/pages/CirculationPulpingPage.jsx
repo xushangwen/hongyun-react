@@ -1,13 +1,5 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import {
-  IconArrowRightOutline24,
-  IconFindReplaceOutline24,
-  IconLockOutline24,
-  IconSortBottomToTopOutline24,
-  IconLayersOutline24,
-  IconFanOutline24,
-  IconTemperature2Outline24,
   IconArrowsInfinityOutline24,
   IconShieldLockOutline24,
   IconTargetOutline24,
@@ -15,11 +7,181 @@ import {
 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
-import ctaBgImg from '../assets/img/需要了解更多.jpg'
+import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import TechInquirySection from '../components/TechInquirySection'
+import prdSysImg from '../assets/img/prd-sys.png'
 
 const IMG = '/assets/images/solutions/circulation-pulping'
 
-/* ========== 产品型号参数（OCR）========== */
+/* ========== 系统特点 SVG 图标 ========== */
+
+function IconDevelopment() {
+  return (
+    <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
+      <path stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        d="M464.758,135.498C485.264,170.947,497,212.103,497,256c0,133.101-107.899,241-241,241
+           c-71.929,0-136.498-31.511-180.655-81.482" />
+      <polyline stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        points="135.5,415.408 75.25,415.408 75.25,475.658" />
+      <path stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        d="M47.242,376.501C26.736,341.053,15,299.897,15,256C15,122.899,122.899,15,256,15
+           c71.929,0,136.498,31.511,180.655,81.482" />
+      <polyline stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        points="376.5,96.592 436.75,96.592 436.75,36.342" />
+      <path stroke="#1E1E1E" strokeWidth="26" strokeMiterlimit="10"
+        d="M416.607,286.12c1.69-9.79,2.57-19.85,2.57-30.12s-0.88-20.33-2.57-30.12h-29.123
+           c-3.41-14.947-9.306-28.944-17.225-41.543l20.605-20.605c-5.728-8.118-12.219-15.853-19.481-23.115
+           s-14.998-13.753-23.115-19.481l-20.605,20.605c-12.599-7.919-26.597-13.816-41.543-17.225V95.393
+           c-9.79-1.69-19.85-2.57-30.12-2.57s-20.33,0.88-30.12,2.57v29.123c-14.947,3.41-28.944,9.307-41.543,17.225
+           l-20.605-20.605c-8.118,5.728-15.853,12.219-23.115,19.481s-13.753,14.998-19.481,23.115l20.605,20.605
+           c-7.919,12.599-13.816,26.597-17.225,41.543H95.393c-1.69,9.79-2.57,19.85-2.57,30.12s0.88,20.33,2.57,30.12h29.123
+           c3.41,14.947,9.307,28.944,17.225,41.543l-20.605,20.605c5.728,8.118,12.219,15.853,19.481,23.115
+           s14.998,13.753,23.115,19.481l20.605-20.605c12.599,7.919,26.597,13.816,41.543,17.225v29.123
+           c9.79,1.69,19.85,2.57,30.12,2.57s20.33-0.88,30.12-2.57v-29.123c14.947-3.41,28.944-9.307,41.543-17.225
+           l20.605,20.605c8.118-5.728,15.853-12.219,23.115-19.481s13.753-14.998,19.481-23.115l-20.605-20.605
+           c7.919-12.599,13.816-26.597,17.225-41.543H416.607z" />
+      <circle stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" cx="256" cy="256" r="73.342" />
+    </svg>
+  )
+}
+
+function IconLeaf() {
+  return (
+    <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
+      <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(361.5459,234.5454)"
+          d="m 0,0 c 0,-58.291 -47.255,-105.545 -105.546,-105.545 -58.291,0 -105.546,47.254 -105.546,105.545 0,107.018 105.546,164.455 105.546,164.455 C -105.546,164.455 0,107.018 0,0 Z" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(256,399)" d="M 0,0 V -270" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(154.8789,271.8809)" d="M 0,0 101.121,-78.732" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(187.5967,338.647)" d="M 0,0 68.403,-53.259" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(357.1211,271.8809)" d="M 0,0 -101.121,-78.732" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(324.4033,338.647)" d="M 0,0 -68.403,-53.259" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(44.1855,475.9243)" d="M 0,0 91.314,-11.212 80.103,-102.526" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(467.8145,36.0757)" d="m 0,0 -91.314,11.212 11.211,91.314" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(318.375,23.2119)"
+          d="m 0,0 c -128.564,-34.449 -260.714,41.847 -295.163,170.413 -28.864,107.724 20.021,217.963 112.259,271.139" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(193.625,488.7881)"
+          d="M 0,0 C 128.564,34.449 260.714,-41.847 295.163,-170.413 324.027,-278.137 275.142,-388.376 182.904,-441.552" />
+      </g>
+    </svg>
+  )
+}
+
+function IconLike() {
+  return (
+    <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
+      <path stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        d="M105.721,467H161.7l59.723,30h174.399c17.949,0,32.5-14.551,32.5-32.5s-14.551-32.5-32.5-32.5
+           h11c17.949,0,32.5-14.551,32.5-32.5s-14.551-32.5-32.5-32.5h12c17.949,0,32.5-14.551,32.5-32.5
+           c0-17.947-14.547-32.496-32.494-32.5h14.952c17.949,0,32.5-14.551,32.5-32.5s-14.551-32.5-32.5-32.5
+           h-99.458v-58.528c0-34.808-28.218-63.026-63.026-63.026l-12.793,83.414C252.05,240.933,215.856,272,173.29,272h-68.569" />
+      <rect x="45.721" y="242" stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10" width="60" height="255" />
+      <line stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" x1="177.321" y1="31" x2="223.321" y2="77" />
+      <line stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" x1="409.321" y1="31" x2="363.321" y2="77" />
+      <line stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" x1="293.321" y1="0" x2="293.321" y2="59" />
+    </svg>
+  )
+}
+
+function IconCleanAir() {
+  return (
+    <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
+      <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+        <path stroke="#1E1E1E" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(0,105)" d="M 0,0 H 411.5" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(497,210)" d="M 0,0 C 0,-24.853 -20.147,-45 -45,-45 H -497" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(497,0)" d="M 0,0 C 0,24.853 -20.147,45 -45,45 H -497" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(326,0)" d="M 0,0 C 0,24.853 -20.147,45 -45,45" />
+        <path stroke="#BA0C2F" strokeWidth="24" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(256,240)"
+          d="m 0,0 c 38.66,0 70,31.34 70,70 0,38.66 -31.34,70 -70,70 -0.616,0 -1.226,-0.03 -1.838,-0.046
+             C -8.907,179.762 -43.661,210 -85.5,210 c -41.839,0 -76.592,-30.238 -83.662,-70.046
+             c -0.612,0.016 -1.221,0.046 -1.838,0.046 c -38.66,0 -70,-31.34 -70,-70 0,-38.66 31.34,-70 70,-70
+             h 326.5 c 47.22,0 85.5,38.28 85.5,85.5 0,47.22 -38.28,85.5 -85.5,85.5
+             c -0.687,0 -1.365,-0.036 -2.048,-0.052 C 144.948,219.832 102.316,257 51,257
+             C 9.834,257 -25.724,233.07 -42.578,198.373" />
+      </g>
+    </svg>
+  )
+}
+
+function IconConnect() {
+  return (
+    <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
+      <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+        {[
+          'translate(106,436)', 'translate(106,76)',
+          'translate(466,436)', 'translate(466,76)',
+        ].map((t, i) => (
+          <path key={i} stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+            transform={t} d="m 0,0 c 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 C -13.432,30 0,16.568 0,0 Z" />
+        ))}
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(286,467)" d="m 0,0 c 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 C -13.432,30 0,16.568 0,0 Z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(286,45)" d="m 0,0 c 0,16.568 -13.432,30 -30,30 -16.568,0 -30,-13.432 -30,-30 0,-16.568 13.432,-30 30,-30 16.568,0 30,13.432 30,30 z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(45,286)" d="m 0,0 c 16.568,0 30,-13.432 30,-30 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(467,286)" d="m 0,0 c -16.568,0 -30,-13.432 -30,-30 0,-16.568 13.432,-30 30,-30 16.568,0 30,13.432 30,30 C 30,-13.432 16.568,0 0,0 Z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,75)" d="M 0,0 V 121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,437)" d="M 0,0 V -121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(75,256)" d="M 0,0 H 121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(437,256)" d="M 0,0 H -121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(97.2129,414.7866)" d="M 0,0 116.378,-116.377" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(213.5908,213.5908)" d="M 0,0 -116.378,-116.377" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(298.4092,213.5908)" d="M 0,0 116.378,-116.377" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(414.7871,414.7866)" d="M 0,0 -116.378,-116.377" />
+        <path stroke="#BA0C2F" strokeWidth="26" strokeMiterlimit="10"
+          transform="translate(256,196)"
+          d="m 0,0 c -33.091,0 -60,26.909 -60,60 0,33.091 26.909,60 60,60 C 33.091,120 60,93.091 60,60 60,26.909 33.091,0 0,0 Z" />
+      </g>
+    </svg>
+  )
+}
+
+function IconLaptop() {
+  return (
+    <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
+      <path fill="#1E1E1E" d="M509.297,432L472,245.516V0H40v245.516L2.703,432H0v80h512v-80H509.297z
+        M70,30h372v202H70V30z M67.297,262h377.406l34,170H33.297L67.297,262z M482,482H30v-20h452V482z" />
+      <rect fill="#1E1E1E" x="180" y="382" width="152" height="30" />
+      <rect fill="#1E1E1E" x="352" y="382" width="30" height="30" />
+      <rect fill="#1E1E1E" x="402" y="382" width="30" height="30" />
+      <rect fill="#1E1E1E" x="80" y="382" width="30" height="30" />
+      <rect fill="#1E1E1E" x="130" y="382" width="30" height="30" />
+      <rect fill="#BA0C2F" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -20.8368 223.4203)"
+        x="193.735" y="121.863" width="131.079" height="30" />
+      <polygon fill="#BA0C2F" points="176.292,96.87 155.467,75.274 98.391,130.313 155.467,185.352 176.292,163.756 141.609,130.313" />
+      <polygon fill="#BA0C2F" points="356.533,75.274 335.708,96.87 370.391,130.313 335.708,163.756 356.533,185.352 413.609,130.313" />
+    </svg>
+  )
+}
+
+/* ========== 系统特点数据 ========== */
+const features = [
+  { Icon: IconDevelopment, title: '制浆效率高' },
+  { Icon: IconConnect, title: '占用高度小，兼容性与灵活性提升' },
+  { Icon: IconLike, title: '设备投资成本降低' },
+  { Icon: IconLeaf, title: '全过程无金属无尘化生产' },
+  { Icon: IconCleanAir, title: '下粉顺畅，无堵料风险' },
+  { Icon: IconLaptop, title: '系统监控可视化管理' },
+]
+
+/* ========== 产品型号参数 ========== */
 const modelParams = [
   { model: 'HY-HXF60',   output: 60,   batchVol: 120,  flowRate: 40,   motorKW: 37,  linearSpeed: 30 },
   { model: 'HY-HXF120',  output: 120,  batchVol: 240,  flowRate: 80,   motorKW: 55,  linearSpeed: 30 },
@@ -31,19 +193,6 @@ const modelParams = [
   { model: 'HY-HXF1800', output: 1800, batchVol: 3600, flowRate: 1200, motorKW: 300, linearSpeed: 30 },
 ]
 
-/* ========== 工艺验证测试步骤（OCR）========== */
-const processSteps = [
-  { step: '投料到A罐',                     material: 'NMP',             addAmount: '45.699 kg',  pumpFlow: '—',  stirSpeed: '—',  disperseSpeed: '—',    linearSpeed: '—',    time: '—',   note: '手动投料' },
-  { step: 'A罐与主机循环',                  material: '—',               addAmount: '—',          pumpFlow: '27', stirSpeed: '35', disperseSpeed: '1500', linearSpeed: '11.4', time: '10',  note: '' },
-  { step: '粉体投料到储罐',                  material: 'LFP / SP / PVDF', addAmount: '90.00 / 0.928 / 1.856 kg', pumpFlow: '—', stirSpeed: '—', disperseSpeed: '—', linearSpeed: '—', time: '—', note: '负压上料至预混仓' },
-  { step: '粉体在储罐预混',                  material: '—',               addAmount: '—',          pumpFlow: '—',  stirSpeed: '35', disperseSpeed: '—',    linearSpeed: '—',    time: '10',  note: '粉体混合' },
-  { step: 'A罐与主机循环\n（循环时粉体下料）', material: '—',               addAmount: '—',          pumpFlow: '27', stirSpeed: '—', disperseSpeed: '2000', linearSpeed: '15.2', time: '50',  note: '' },
-  { step: '粉体下料结束后\nA罐与主机循环',    material: '—',               addAmount: '—',          pumpFlow: '27', stirSpeed: '—', disperseSpeed: '2000', linearSpeed: '15.2', time: '6',   note: '每个循环记录\n电流、压力、温度' },
-  { step: '转B罐分散',                       material: '—',               addAmount: '—',          pumpFlow: '—',  stirSpeed: '—', disperseSpeed: '—',    linearSpeed: '—',    time: '—',   note: '' },
-  { step: 'B罐自循环',                       material: '—',               addAmount: '—',          pumpFlow: '27', stirSpeed: '—', disperseSpeed: '2000', linearSpeed: '15.7', time: '30',  note: '根据实际情况增加循环次数，每个循环记录电流、压力、温度' },
-]
-
-/* ========== 参数表组件 ========== */
 function ParamsTable() {
   return (
     <div className="detail-params-table">
@@ -79,46 +228,10 @@ function ParamsTable() {
   )
 }
 
-/* ========== 工艺验证表格组件 ========== */
-function ProcessTable() {
-  return (
-    <div className="detail-params-table">
-      <table className="params-table pdm-params-table cp-process-table">
-        <thead>
-          <tr>
-            <th>工步</th>
-            <th>物料</th>
-            <th>加料</th>
-            <th>循环泵流量<br /><span className="th-sub">(L/min)</span></th>
-            <th>搅拌转速<br /><span className="th-sub">(rpm)</span></th>
-            <th>分散机转速<br /><span className="th-sub">(rpm)</span></th>
-            <th>分散机线速度<br /><span className="th-sub">(m/s)</span></th>
-            <th>时间<br /><span className="th-sub">(min)</span></th>
-            <th>备注</th>
-          </tr>
-        </thead>
-        <tbody>
-          {processSteps.map((row, i) => (
-            <tr key={i} className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
-              <td className="td-model-code" style={{ whiteSpace: 'pre-line' }}>{row.step}</td>
-              <td>{row.material}</td>
-              <td>{row.addAmount}</td>
-              <td>{row.pumpFlow}</td>
-              <td>{row.stirSpeed}</td>
-              <td>{row.disperseSpeed}</td>
-              <td>{row.linearSpeed}</td>
-              <td>{row.time}</td>
-              <td className="cp-note-cell" style={{ whiteSpace: 'pre-line' }}>{row.note}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
-}
-
 /* ========== 主页面 ========== */
 export default function CirculationPulpingPage() {
+  const [videoPlayed, setVideoPlayed] = useState(false)
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -135,9 +248,10 @@ export default function CirculationPulpingPage() {
   return (
     <>
       <PageHero
-        title="高效循环制浆系统"
-        subtitle="新能源行业 · 高固含量浆料高效制备解决方案"
-        bgImage={`${IMG}/hero-bg.jpg`}
+        title="行业解决方案"
+        subtitle="Industry Solutions"
+        bgImage={`${IMG}/hero-bg-new.jpg`}
+        noScroll
       />
 
       <div className="page-body">
@@ -148,190 +262,150 @@ export default function CirculationPulpingPage() {
         ]} />
 
         {/* ===== 系统介绍 ===== */}
-        <section className="page-section pdm-intro-section">
+        <section className="page-section page-section--gray pdm-intro-section">
           <div className="page-container">
-            <h2 className="section-heading fade-up">系统介绍</h2>
+            <p className="section-en-label fade-up">System Introduction</p>
+            <h2 className="section-heading section-heading--center fade-up">系统介绍</h2>
             <div className="pdm-intro-grid">
+              <div className="pdm-intro-visual fade-up fade-up-delay-1">
+                <img src={prdSysImg} alt="高效循环制浆系统" className="cp-intro-product-img" />
+              </div>
               <div className="pdm-intro-content">
-                <span className="pdm-intro-label fade-up">新能源行业 · 高效制浆解决方案</span>
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">
-                  高效循环制浆系统
-                </h2>
-                <div className="pdm-intro-rule fade-up fade-up-delay-1"></div>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">高效循环制浆系统</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   <strong>自主研发专利技术</strong>，采用独特分散模块实现粉体与溶剂的快速充分混合。其独立的自循环分散系统可高效完成浆料均匀混合，确保稳定性和一致性。
                 </p>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   系统采用简便传动结构，在保证高扭矩输出的同时显著降低故障率，极大提高了匀浆效率和设备稼动率。
                 </p>
-                <div className="pdm-intro-apps fade-up fade-up-delay-3">
-                  {[
-                    { name: '高效自循环分散', icon: IconArrowsInfinityOutline24 },
-                    { name: '专利气密密封', icon: IconShieldLockOutline24 },
-                    { name: '物料温度可控', icon: IconTargetOutline24 },
-                    { name: '高稼动率', icon: IconRotateCubeOutline24 },
-                  ].map((item, i) => (
-                    <span key={i} className="pdm-app-tag">
-                      <item.icon size={16} />
-                      {item.name}
-                    </span>
-                  ))}
-                </div>
               </div>
-              <div className="pdm-intro-visual fade-up fade-up-delay-2">
-                <div className="pdm-intro-image-frame">
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 方案视频 ===== */}
+        <section className="page-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Solution Video</p>
+            <h2 className="section-heading section-heading--center fade-up">方案视频</h2>
+            <div className="cp-video-mock fade-up fade-up-delay-1">
+              <img src={`${IMG}/hero.jpeg`} alt="方案视频封面" className="cp-video-mock-poster" />
+              <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
+                {!videoPlayed ? (
+                  <button className="cp-video-play-btn" onClick={() => setVideoPlayed(true)} aria-label="播放">
+                    <span className="cp-video-play-ring" />
+                    <span className="cp-video-play-icon">▶</span>
+                  </button>
+                ) : (
+                  <div className="cp-video-played-state">
+                    <p className="cp-video-played-text">视频制作中，敬请期待</p>
+                    <button className="cp-video-played-reset" onClick={() => setVideoPlayed(false)}>返回</button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 系统特点 ===== */}
+        <SystemFeaturesSection features={features} title="系统特点" enLabel="System Features" grayBg />
+
+        {/* ===== 核心设备 ===== */}
+        <section className="page-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Core Equipment</p>
+            <h2 className="section-heading section-heading--center fade-up">核心设备</h2>
+
+            <div className="cp-core-section">
+              {/* 高速分散机 */}
+              <div className="cp-core-device-row fade-up fade-up-delay-1">
+                <div className="cp-core-device-img-wrap">
                   <img
-                    src={`${IMG}/hero.jpeg`}
-                    alt="高效循环制浆系统"
-                    className="pdm-intro-img"
+                    src={`${IMG}/disperser-structure.svg`}
+                    alt="高速分散机结构示意图"
+                    className="cp-core-device-img"
+                    loading="lazy"
                   />
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== 设备配置图 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <h2 className="section-heading fade-up">设备配置</h2>
-            <p className="section-desc fade-up fade-up-delay-1">高效循环制浆系统各单元协同运行，实现粉体预混、高速分散、循环研磨、在线检测全流程集成。</p>
-            <div className="cp-diagram-wrap fade-up fade-up-delay-2">
-              <img
-                src={`${IMG}/equipment-config.svg`}
-                alt="高效循环制浆系统设备配置图"
-                className="cp-diagram-img"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* ===== 高速分散机 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <h2 className="section-heading fade-up">高速分散机</h2>
-
-            {/* 主要特点 */}
-            <div className="cp-subheading-wrapper fade-up fade-up-delay-1">
-              <h3 className="cp-subheading">主要特点</h3>
-            </div>
-            <div className="cp-disperser-features fade-up fade-up-delay-2">
-              {[
-                { icon: IconFindReplaceOutline24,    title: '一体化预混分散', desc: '集预混分散一体，设计线速度30m/s，伺服电机驱动，效率卓越' },
-                { icon: IconLockOutline24,           title: '专利机械密封',   desc: '采用自主专利设计机械密封，保障设备持续高气密性' },
-                { icon: IconSortBottomToTopOutline24, title: '侧面螺杆喂料',  desc: '侧面螺杆喂料，液料下进上出，进料连续顺畅' },
-                { icon: IconLayersOutline24,         title: '双层分散剪切',  desc: '分散腔体设计双层分散剪切，带增压叶片，分散效率倍增' },
-                { icon: IconFanOutline24,            title: '专利设计叶轮',  desc: '预混腔采用自主专利叶轮，可迅速将粉液预混并快速排出' },
-                { icon: IconTemperature2Outline24,   title: '温度在线监控', desc: '带冷却水夹套，物料温度在线监测，全程保障物料温度可控' },
-              ].map((item, i) => (
-                <div key={i} className="cp-disperser-feat-card">
-                  <div className="cp-disperser-feat-icon"><item.icon size={22} /></div>
-                  <div className="cp-disperser-feat-body">
-                    <h4 className="cp-disperser-feat-title">{item.title}</h4>
-                    <p className="cp-disperser-feat-desc">{item.desc}</p>
+                <div className="cp-core-device-info">
+                  <div className="cp-core-device-badge">
+                    <span className="cp-core-device-badge-num">01</span>
+                    <h3 className="cp-core-device-name">高速分散机</h3>
                   </div>
-                </div>
-              ))}
-            </div>
-
-            {/* 结构示意图 + 工作原理 */}
-            <div className="cp-disperser-diagrams fade-up fade-up-delay-3">
-              <div className="cp-disperser-diagram-block">
-                <div className="cp-subheading-wrapper">
-                  <h3 className="cp-subheading">结构示意图</h3>
-                </div>
-                <div className="cp-diagram-card">
-                  <img src={`${IMG}/disperser-structure.svg`} alt="高速分散机结构示意图" className="cp-diagram-img" loading="lazy" />
+                  <div className="cp-core-device-divider" />
+                  <ul className="cp-core-device-features">
+                    <li>集预混分散一体，设计线速度30m/s，伺服电机驱动，效率卓越</li>
+                    <li>采用自主专利设计机械密封，保障设备持续高气密性</li>
+                    <li>侧面螺杆喂料，液料下进上出，进料连续顺畅</li>
+                    <li>分散腔体设计双层分散剪切，带增压叶片，分散效率倍增</li>
+                    <li>预混腔采用自主专利叶轮，可迅速将粉液预混并快速排出</li>
+                    <li>带冷却水夹套，物料温度在线监测，全程保障物料温度可控</li>
+                  </ul>
                 </div>
               </div>
-              <div className="cp-disperser-diagram-block">
-                <div className="cp-subheading-wrapper">
-                  <h3 className="cp-subheading">工作原理</h3>
-                </div>
-                <div className="cp-diagram-card">
-                  <img src={`${IMG}/disperser-principle.svg`} alt="高速分散机工作原理" className="cp-diagram-img" loading="lazy" />
-                  <div className="cp-principle-card">
-                    <ol className="cp-principle-list">
-                      <li>下层离心转子的弧形叶片在高速旋转下产生强大离心流场，在转子中心形成相对低压区，浆料从定转子中心被吸入，在离心力作用下由中心向四周扩散，二次加压通过定子齿槽，将浆料进行首次分散剪切；</li>
-                      <li>首次分散剪切后的浆料再聚拢进入上层分散腔，进行第二次分散剪切，浆料得到再次离心散开，聚拢后由出料口排出。</li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* ===== 循环罐 A & B ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <h2 className="section-heading fade-up">循环罐组成</h2>
-            <p className="section-desc fade-up fade-up-delay-1">
-              系统由循环罐A与循环罐B协同工作，分别承担预混循环与在线分散功能，实现浆料的充分均质。
-            </p>
-            <div className="cp-tanks-grid">
+              <hr className="cp-core-divider" />
+
               {/* 循环罐A */}
-              <div className="cp-tank-block fade-up fade-up-delay-2">
-                <div className="cp-tank-header">
-                  <span className="cp-tank-badge">A</span>
-                  <div>
-                    <span className="cp-tank-type">循环罐A</span>
-                    <h3 className="cp-tank-title">主要特点</h3>
-                  </div>
+              <div className="cp-core-device-row cp-core-device-row--reverse fade-up fade-up-delay-1">
+                <div className="cp-core-device-img-wrap">
+                  <img
+                    src={`${IMG}/tank-a.svg`}
+                    alt="循环罐A结构示意图"
+                    className="cp-core-device-img"
+                    loading="lazy"
+                  />
                 </div>
-                <ul className="cp-tank-features">
-                  {[
-                    '带慢速搅拌，转速0–40rpm/min，锚式搅拌桨，变频电机驱动',
-                    '带冷却水夹套，桶内物料温度在线监测，保障物料温度可控',
-                    '采用自主专利设计机械密封，保障设备高气密性',
-                    '桶底锥形夹角60°设计，物料上进下出，保障物料100%循环分散',
-                  ].map((feat, i) => (
-                    <li key={i} className="cp-tank-feat-item">
-                      <span className="cp-tank-feat-num">{i + 1}</span>
-                      <span className="cp-tank-feat-text">{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="cp-tank-diagram-wrap">
-                  <img src={`${IMG}/tank-a.svg`} alt="循环罐A结构示意图" className="cp-tank-img" loading="lazy" />
+                <div className="cp-core-device-info">
+                  <div className="cp-core-device-badge">
+                    <span className="cp-core-device-badge-num">02</span>
+                    <h3 className="cp-core-device-name">循环罐 A</h3>
+                  </div>
+                  <div className="cp-core-device-divider" />
+                  <ul className="cp-core-device-features">
+                    <li>带慢速搅拌，转速0–40rpm/min，锚式搅拌桨，变频电机驱动</li>
+                    <li>带冷却水夹套，桶内物料温度在线监测，保障物料温度可控</li>
+                    <li>采用自主专利设计机械密封，保障设备高气密性</li>
+                    <li>桶底锥形夹角60°设计，物料上进下出，保障物料100%循环分散</li>
+                  </ul>
                 </div>
               </div>
+
+              <hr className="cp-core-divider" />
 
               {/* 循环罐B */}
-              <div className="cp-tank-block fade-up fade-up-delay-3">
-                <div className="cp-tank-header">
-                  <span className="cp-tank-badge cp-tank-badge--b">B</span>
-                  <div>
-                    <span className="cp-tank-type">循环罐B</span>
-                    <h3 className="cp-tank-title">主要特点</h3>
-                  </div>
+              <div className="cp-core-device-row fade-up fade-up-delay-1">
+                <div className="cp-core-device-img-wrap">
+                  <img
+                    src={`${IMG}/tank-b.svg`}
+                    alt="循环罐B结构示意图"
+                    className="cp-core-device-img"
+                    loading="lazy"
+                  />
                 </div>
-                <ul className="cp-tank-features">
-                  {[
-                    '带在线分散功能，设计线速度30m/s，双层剪切，定转子间隙2mm，伺服电机驱动',
-                    '采用自主专利设计机械密封，保障设备高气密性',
-                    '桶底锥形夹角60°设计，保障物料100%分散，无死区残留',
-                    '带冷却水夹套，桶内物料温度在线监测，保障物料温度可控',
-                  ].map((feat, i) => (
-                    <li key={i} className="cp-tank-feat-item">
-                      <span className="cp-tank-feat-num">{i + 1}</span>
-                      <span className="cp-tank-feat-text">{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="cp-tank-diagram-wrap">
-                  <img src={`${IMG}/tank-b.svg`} alt="循环罐B结构示意图" className="cp-tank-img" loading="lazy" />
+                <div className="cp-core-device-info">
+                  <div className="cp-core-device-badge">
+                    <span className="cp-core-device-badge-num">03</span>
+                    <h3 className="cp-core-device-name">循环罐 B</h3>
+                  </div>
+                  <div className="cp-core-device-divider" />
+                  <ul className="cp-core-device-features">
+                    <li>带在线分散功能，设计线速度30m/s，双层剪切，定转子间隙2mm，伺服电机驱动</li>
+                    <li>采用自主专利设计机械密封，保障设备高气密性</li>
+                    <li>桶底锥形夹角60°设计，保障物料100%分散，无死区残留</li>
+                    <li>带冷却水夹套，桶内物料温度在线监测，保障物料温度可控</li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ===== 产品型号参数 ===== */}
-        <section className="page-section">
+        {/* ===== 参数汇总 ===== */}
+        <section className="page-section page-section--gray">
           <div className="page-container">
-            <h2 className="section-heading fade-up">产品型号参数</h2>
+            <p className="section-en-label fade-up">Parameters Overview</p>
+            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
             <h3 className="cp-table-subtitle fade-up fade-up-delay-1">
               高速循环制浆系统覆盖60–1800 L/H全系列规格，转子线速度统一30m/s，满足不同量产产能需求。
             </h3>
@@ -344,30 +418,13 @@ export default function CirculationPulpingPage() {
           </div>
         </section>
 
-        {/* ===== 客户案例——正极生产流程图 ===== */}
+        {/* ===== 客户案例 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
-            <h2 className="section-heading fade-up">客户案例</h2>
-            <p className="section-desc fade-up fade-up-delay-1">
-              高效循环制浆系统正极生产流程图
-            </p>
-            <div className="cp-case-flow-wrap fade-up fade-up-delay-2">
-              <img
-                src={`${IMG}/case-flow-diagram.png`}
-                alt="高效循环制浆系统正极生产流程图"
-                className="cp-case-flow-img"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </section>
+            <p className="section-en-label fade-up">Case</p>
+            <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
 
-        {/* ===== 工艺验证结果 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <h2 className="section-heading fade-up">某客户量产线与红运高速循环工艺验证结果</h2>
-
-            {/* 1. 来料信息 */}
+            {/* 01 来料信息 */}
             <div className="cp-verify-block fade-up fade-up-delay-1">
               <h3 className="cp-verify-subheading">
                 <span className="cp-verify-num">01</span>来料信息
@@ -392,149 +449,99 @@ export default function CirculationPulpingPage() {
               </div>
             </div>
 
-            {/* 2. 单次循环测试步骤表 */}
+            {/* 02 浆料质量检测（原 04 浆料流变性 + 05 浆料稳定性数据 + 06 极片电镜） */}
             <div className="cp-verify-block fade-up fade-up-delay-2">
               <h3 className="cp-verify-subheading">
-                <span className="cp-verify-num">02</span>红运高速循环工艺单次循环测试
+                <span className="cp-verify-num">02</span>浆料质量检测
               </h3>
-              <p className="cp-verify-note">此次验证配方中无添加分散剂</p>
-              <ProcessTable />
-            </div>
 
-            {/* 3. 工艺过程数据 */}
-            <div className="cp-verify-block fade-up fade-up-delay-3">
-              <h3 className="cp-verify-subheading">
-                <span className="cp-verify-num">03</span>红运高效循环制浆系统工艺过程数据
-              </h3>
-              <ol className="cp-data-steps">
-                <li>粉体从储罐下料到高速分散主机 <strong>50min</strong>；</li>
-                <li>粉体下料结束后，A罐与主机循环2次，总 <strong>6min</strong>，温度最高 <strong>59.6℃</strong>，循环2次后粘度 <strong>265,600 mPa·s</strong>，主机分散线速度为 <strong>15.2m/s</strong>；</li>
-                <li>A罐与主机循环结束后浆料进入B罐自循环10次，共 <strong>30min</strong>，最终粘度 <strong>14,720 mPa·s</strong>，浆料固含量 <strong>65.5%</strong>，细度 <strong>6μm</strong>（每个循环测试都是6μm）；</li>
-              </ol>
-              <div className="cp-charts-grid-5">
-                {[
-                  { src: `${IMG}/chart-7.jpg`,  label: '01', caption: '粘度变化曲线（mPa·s）' },
-                  { src: `${IMG}/chart-8.jpg`,  label: '02', caption: '分散电流变化曲线' },
-                  { src: `${IMG}/chart-9.jpg`,  label: '03', caption: '粒径 D50 变化曲线' },
-                  { src: `${IMG}/chart-11.jpg`, label: '04', caption: '分散口压力变化（bar）' },
-                  { src: `${IMG}/chart-10.jpg`, label: '05', caption: '过程温度变化（℃）' },
-                ].map((chart, i) => (
-                  <div key={i} className="cp-chart-card fade-up" style={{ transitionDelay: `${0.06 * (i + 1)}s` }}>
+              {/* 浆料流变性（原04） */}
+              <div className="cp-verify-subsection">
+                <h4 className="cp-verify-sub-title">浆料流变性</h4>
+                <div className="cp-charts-grid-3">
+                  <div className="cp-chart-card">
                     <div className="cp-chart-img-wrap">
-                      <img src={chart.src} alt={chart.caption} className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/chart-12.jpg`} alt="剪切速率曲线" className="cp-chart-img" loading="lazy" />
                     </div>
-                    <p className="cp-chart-caption">
-                      <span className="cp-chart-label-num">{chart.label}</span>
-                      {chart.caption}
-                    </p>
+                    <p className="cp-chart-caption">剪切速率：过程剪切无突变，非牛顿流体特征</p>
                   </div>
-                ))}
+                  <div className="cp-chart-card">
+                    <div className="cp-chart-img-wrap">
+                      <img src={`${IMG}/chart-13.jpg`} alt="三区间及触变环图1" className="cp-chart-img" loading="lazy" />
+                    </div>
+                    <p className="cp-chart-caption">三区间及触变环（一）</p>
+                  </div>
+                  <div className="cp-chart-card">
+                    <div className="cp-chart-img-wrap">
+                      <img src={`${IMG}/chart-14.jpg`} alt="三区间及触变环图2" className="cp-chart-img" loading="lazy" />
+                    </div>
+                    <p className="cp-chart-caption">三区间及触变环（二）：浆料具备一定的触变恢复性，利于涂布</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 浆料稳定性数据（原05） */}
+              <div className="cp-verify-subsection">
+                <h4 className="cp-verify-sub-title">浆料稳定性数据</h4>
+                <div className="cp-charts-grid-3">
+                  <div className="cp-chart-card">
+                    <div className="cp-chart-img-wrap">
+                      <img src={`${IMG}/chart-15.jpg`} alt="背散射光曲线" className="cp-chart-img" loading="lazy" />
+                    </div>
+                    <p className="cp-chart-caption">背散射光曲线：浆料测试过程未出现颗粒团聚和沉降</p>
+                  </div>
+                  <div className="cp-chart-card">
+                    <div className="cp-chart-img-wrap">
+                      <img src={`${IMG}/chart-16.jpg`} alt="稳定性指数图1" className="cp-chart-img" loading="lazy" />
+                    </div>
+                    <p className="cp-chart-caption">稳定性指数（一）</p>
+                  </div>
+                  <div className="cp-chart-card">
+                    <div className="cp-chart-img-wrap">
+                      <img src={`${IMG}/chart-17.jpg`} alt="稳定性指数图2" className="cp-chart-img" loading="lazy" />
+                    </div>
+                    <p className="cp-chart-caption">稳定性指数（二）：TSI = 0.08（行业内 &lt;0.2 为准）</p>
+                  </div>
+                  <div className="cp-chart-card">
+                    <div className="cp-chart-img-wrap">
+                      <img src={`${IMG}/chart-18.jpg`} alt="粒子迁移率" className="cp-chart-img" loading="lazy" />
+                    </div>
+                    <p className="cp-chart-caption">粒子迁移率</p>
+                  </div>
+                  <div className="cp-chart-card">
+                    <div className="cp-chart-img-wrap">
+                      <img src={`${IMG}/chart-19.jpg`} alt="分散均匀性指数" className="cp-chart-img" loading="lazy" />
+                    </div>
+                    <p className="cp-chart-caption">分散均匀性指数：0.0925（行业内 &lt;2 为最佳）</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 极片电镜（原06） */}
+              <div className="cp-verify-subsection">
+                <h4 className="cp-verify-sub-title">极片电镜</h4>
+                <div className="cp-sem-grid">
+                  <div className="cp-sem-card">
+                    <div className="cp-sem-img-wrap">
+                      <img src={`${IMG}/chart-20.jpg`} alt="极片SEM 20000倍" className="cp-sem-img" loading="lazy" />
+                    </div>
+                    <p className="cp-sem-caption">20,000× 倍 · 比例尺 1μm</p>
+                  </div>
+                  <div className="cp-sem-card">
+                    <div className="cp-sem-img-wrap">
+                      <img src={`${IMG}/chart-21.jpg`} alt="极片SEM 50000倍" className="cp-sem-img" loading="lazy" />
+                    </div>
+                    <p className="cp-sem-caption">50,000× 倍 · 比例尺 500nm</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* 4. 浆料流变性 */}
-            <div className="cp-verify-block fade-up fade-up-delay-4">
-              <h3 className="cp-verify-subheading">
-                <span className="cp-verify-num">04</span>浆料流变性
-              </h3>
-              <div className="cp-charts-grid-3">
-                <div className="cp-chart-card">
-                  <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/chart-12.jpg`} alt="剪切速率曲线" className="cp-chart-img" loading="lazy" />
-                  </div>
-                  <p className="cp-chart-caption">剪切速率：过程剪切无突变，非牛顿流体特征</p>
-                </div>
-                <div className="cp-chart-card">
-                  <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/chart-13.jpg`} alt="三区间及触变环图1" className="cp-chart-img" loading="lazy" />
-                  </div>
-                  <p className="cp-chart-caption">三区间及触变环（一）</p>
-                </div>
-                <div className="cp-chart-card">
-                  <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/chart-14.jpg`} alt="三区间及触变环图2" className="cp-chart-img" loading="lazy" />
-                  </div>
-                  <p className="cp-chart-caption">三区间及触变环（二）：浆料具备一定的触变恢复性，利于涂布</p>
-                </div>
-              </div>
-            </div>
-
-            {/* 5. 浆料稳定性 */}
-            <div className="cp-verify-block fade-up fade-up-delay-5">
-              <h3 className="cp-verify-subheading" style={{ marginTop: '56px' }}>
-                <span className="cp-verify-num">05</span>浆料稳定性数据
-              </h3>
-              <div className="cp-charts-grid-3">
-                <div className="cp-chart-card">
-                  <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/chart-15.jpg`} alt="背散射光曲线" className="cp-chart-img" loading="lazy" />
-                  </div>
-                  <p className="cp-chart-caption">背散射光曲线：浆料测试过程未出现颗粒团聚和沉降</p>
-                </div>
-                <div className="cp-chart-card">
-                  <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/chart-16.jpg`} alt="稳定性指数图1" className="cp-chart-img" loading="lazy" />
-                  </div>
-                  <p className="cp-chart-caption">稳定性指数（一）</p>
-                </div>
-                <div className="cp-chart-card">
-                  <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/chart-17.jpg`} alt="稳定性指数图2" className="cp-chart-img" loading="lazy" />
-                  </div>
-                  <p className="cp-chart-caption">稳定性指数（二）：TSI = 0.08（行业内 &lt;0.2 为准）</p>
-                </div>
-                <div className="cp-chart-card">
-                  <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/chart-18.jpg`} alt="粒子迁移率" className="cp-chart-img" loading="lazy" />
-                  </div>
-                  <p className="cp-chart-caption">粒子迁移率</p>
-                </div>
-                <div className="cp-chart-card">
-                  <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/chart-19.jpg`} alt="分散均匀性指数" className="cp-chart-img" loading="lazy" />
-                  </div>
-                  <p className="cp-chart-caption">分散均匀性指数：0.0925（行业内 &lt;2 为最佳）</p>
-                </div>
-              </div>
-            </div>
-
-            {/* 6. 极片电镜 */}
-            <div className="cp-verify-block fade-up fade-up-delay-6">
-              <h3 className="cp-verify-subheading" style={{ marginTop: '56px' }}>
-                <span className="cp-verify-num">06</span>红运高速循环制浆极片电镜
-              </h3>
-              <div className="cp-sem-grid">
-                <div className="cp-sem-card">
-                  <div className="cp-sem-img-wrap">
-                    <img src={`${IMG}/chart-20.jpg`} alt="极片SEM 20000倍" className="cp-sem-img" loading="lazy" />
-                  </div>
-                  <p className="cp-sem-caption">20,000× 倍 · 比例尺 1μm</p>
-                </div>
-                <div className="cp-sem-card">
-                  <div className="cp-sem-img-wrap">
-                    <img src={`${IMG}/chart-21.jpg`} alt="极片SEM 50000倍" className="cp-sem-img" loading="lazy" />
-                  </div>
-                  <p className="cp-sem-caption">50,000× 倍 · 比例尺 500nm</p>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* ===== 联系 CTA ===== */}
-        <div className="detail-contact-cta">
-          <div className="detail-contact-inner" style={{ backgroundImage: `url(${ctaBgImg})` }}>
-            <h2 className="detail-contact-title">获取专属解决方案</h2>
-            <p className="detail-contact-desc">
-              我们的专业团队随时为您提供技术咨询和定制化解决方案，<br />
-              助力您的生产工艺升级。
-            </p>
-            <Link to="/contact" className="btn-primary">
-              联系我们
-              <IconArrowRightOutline24 size={18} />
-            </Link>
-          </div>
-        </div>
+        {/* ===== 技术咨询 ===== */}
+        <TechInquirySection />
       </div>
     </>
   )
