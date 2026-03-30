@@ -18,17 +18,17 @@ const IMG = '/assets/images/solutions/circulation-pulping'
 function IconDevelopment() {
   return (
     <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
-      <path stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10"
+      <path stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10"
         d="M464.758,135.498C485.264,170.947,497,212.103,497,256c0,133.101-107.899,241-241,241
            c-71.929,0-136.498-31.511-180.655-81.482" />
-      <polyline stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10"
+      <polyline stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10"
         points="135.5,415.408 75.25,415.408 75.25,475.658" />
-      <path stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10"
+      <path stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10"
         d="M47.242,376.501C26.736,341.053,15,299.897,15,256C15,122.899,122.899,15,256,15
            c71.929,0,136.498,31.511,180.655,81.482" />
-      <polyline stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10"
+      <polyline stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10"
         points="376.5,96.592 436.75,96.592 436.75,36.342" />
-      <path stroke="#A1A1AA" strokeWidth="26" strokeMiterlimit="10"
+      <path stroke="#D4D4D8" strokeWidth="26" strokeMiterlimit="10"
         d="M416.607,286.12c1.69-9.79,2.57-19.85,2.57-30.12s-0.88-20.33-2.57-30.12h-29.123
            c-3.41-14.947-9.306-28.944-17.225-41.543l20.605-20.605c-5.728-8.118-12.219-15.853-19.481-23.115
            s-14.998-13.753-23.115-19.481l-20.605,20.605c-12.599-7.919-26.597-13.816-41.543-17.225V95.393
@@ -40,7 +40,7 @@ function IconDevelopment() {
            c9.79,1.69,19.85,2.57,30.12,2.57s20.33-0.88,30.12-2.57v-29.123c14.947-3.41,28.944-9.307,41.543-17.225
            l20.605,20.605c8.118-5.728,15.853-12.219,23.115-19.481s13.753-14.998,19.481-23.115l-20.605-20.605
            c7.919-12.599,13.816-26.597,17.225-41.543H416.607z" />
-      <circle stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10" cx="256" cy="256" r="73.342" />
+      <circle stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10" cx="256" cy="256" r="73.342" />
     </svg>
   )
 }
@@ -49,27 +49,27 @@ function IconLeaf() {
   return (
     <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
       <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(361.5459,234.5454)"
           d="m 0,0 c 0,-58.291 -47.255,-105.545 -105.546,-105.545 -58.291,0 -105.546,47.254 -105.546,105.545 0,107.018 105.546,164.455 105.546,164.455 C -105.546,164.455 0,107.018 0,0 Z" />
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(256,399)" d="M 0,0 V -270" />
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(154.8789,271.8809)" d="M 0,0 101.121,-78.732" />
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(187.5967,338.647)" d="M 0,0 68.403,-53.259" />
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(357.1211,271.8809)" d="M 0,0 -101.121,-78.732" />
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(324.4033,338.647)" d="M 0,0 -68.403,-53.259" />
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(44.1855,475.9243)" d="M 0,0 91.314,-11.212 80.103,-102.526" />
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(467.8145,36.0757)" d="m 0,0 -91.314,11.212 11.211,91.314" />
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(318.375,23.2119)"
           d="m 0,0 c -128.564,-34.449 -260.714,41.847 -295.163,170.413 -28.864,107.724 20.021,217.963 112.259,271.139" />
-        <path stroke="#A1A1AA" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(193.625,488.7881)"
           d="M 0,0 C 128.564,34.449 260.714,-41.847 295.163,-170.413 324.027,-278.137 275.142,-388.376 182.904,-441.552" />
       </g>
@@ -80,15 +80,15 @@ function IconLeaf() {
 function IconLike() {
   return (
     <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
-      <path stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10"
+      <path stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10"
         d="M105.721,467H161.7l59.723,30h174.399c17.949,0,32.5-14.551,32.5-32.5s-14.551-32.5-32.5-32.5
            h11c17.949,0,32.5-14.551,32.5-32.5s-14.551-32.5-32.5-32.5h12c17.949,0,32.5-14.551,32.5-32.5
            c0-17.947-14.547-32.496-32.494-32.5h14.952c17.949,0,32.5-14.551,32.5-32.5s-14.551-32.5-32.5-32.5
            h-99.458v-58.528c0-34.808-28.218-63.026-63.026-63.026l-12.793,83.414C252.05,240.933,215.856,272,173.29,272h-68.569" />
-      <rect x="45.721" y="242" stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10" width="60" height="255" />
-      <line stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10" x1="177.321" y1="31" x2="223.321" y2="77" />
-      <line stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10" x1="409.321" y1="31" x2="363.321" y2="77" />
-      <line stroke="#A1A1AA" strokeWidth="28" strokeMiterlimit="10" x1="293.321" y1="0" x2="293.321" y2="59" />
+      <rect x="45.721" y="242" stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10" width="60" height="255" />
+      <line stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10" x1="177.321" y1="31" x2="223.321" y2="77" />
+      <line stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10" x1="409.321" y1="31" x2="363.321" y2="77" />
+      <line stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10" x1="293.321" y1="0" x2="293.321" y2="59" />
     </svg>
   )
 }
@@ -97,15 +97,15 @@ function IconCleanAir() {
   return (
     <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
       <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
-        <path stroke="#A1A1AA" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(0,105)" d="M 0,0 H 411.5" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(497,210)" d="M 0,0 C 0,-24.853 -20.147,-45 -45,-45 H -497" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(497,0)" d="M 0,0 C 0,24.853 -20.147,45 -45,45 H -497" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(326,0)" d="M 0,0 C 0,24.853 -20.147,45 -45,45" />
-        <path stroke="#A1A1AA" strokeWidth="24" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="24" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(256,240)"
           d="m 0,0 c 38.66,0 70,31.34 70,70 0,38.66 -31.34,70 -70,70 -0.616,0 -1.226,-0.03 -1.838,-0.046
              C -8.907,179.762 -43.661,210 -85.5,210 c -41.839,0 -76.592,-30.238 -83.662,-70.046
@@ -126,26 +126,26 @@ function IconConnect() {
           'translate(106,436)', 'translate(106,76)',
           'translate(466,436)', 'translate(466,76)',
         ].map((t, i) => (
-          <path key={i} stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10"
+          <path key={i} stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10"
             transform={t} d="m 0,0 c 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 C -13.432,30 0,16.568 0,0 Z" />
         ))}
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10"
           transform="translate(286,467)" d="m 0,0 c 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 C -13.432,30 0,16.568 0,0 Z" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10"
           transform="translate(286,45)" d="m 0,0 c 0,16.568 -13.432,30 -30,30 -16.568,0 -30,-13.432 -30,-30 0,-16.568 13.432,-30 30,-30 16.568,0 30,13.432 30,30 z" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10"
           transform="translate(45,286)" d="m 0,0 c 16.568,0 30,-13.432 30,-30 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 z" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10"
           transform="translate(467,286)" d="m 0,0 c -16.568,0 -30,-13.432 -30,-30 0,-16.568 13.432,-30 30,-30 16.568,0 30,13.432 30,30 C 30,-13.432 16.568,0 0,0 Z" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,75)" d="M 0,0 V 121" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,437)" d="M 0,0 V -121" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10" transform="translate(75,256)" d="M 0,0 H 121" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10" transform="translate(437,256)" d="M 0,0 H -121" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10" transform="translate(97.2129,414.7866)" d="M 0,0 116.378,-116.377" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10" transform="translate(213.5908,213.5908)" d="M 0,0 -116.378,-116.377" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10" transform="translate(298.4092,213.5908)" d="M 0,0 116.378,-116.377" />
-        <path stroke="#A1A1AA" strokeWidth="22" strokeMiterlimit="10" transform="translate(414.7871,414.7866)" d="M 0,0 -116.378,-116.377" />
-        <path stroke="#A1A1AA" strokeWidth="26" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,75)" d="M 0,0 V 121" />
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,437)" d="M 0,0 V -121" />
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10" transform="translate(75,256)" d="M 0,0 H 121" />
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10" transform="translate(437,256)" d="M 0,0 H -121" />
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10" transform="translate(97.2129,414.7866)" d="M 0,0 116.378,-116.377" />
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10" transform="translate(213.5908,213.5908)" d="M 0,0 -116.378,-116.377" />
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10" transform="translate(298.4092,213.5908)" d="M 0,0 116.378,-116.377" />
+        <path stroke="#D4D4D8" strokeWidth="22" strokeMiterlimit="10" transform="translate(414.7871,414.7866)" d="M 0,0 -116.378,-116.377" />
+        <path stroke="#D4D4D8" strokeWidth="26" strokeMiterlimit="10"
           transform="translate(256,196)"
           d="m 0,0 c -33.091,0 -60,26.909 -60,60 0,33.091 26.909,60 60,60 C 33.091,120 60,93.091 60,60 60,26.909 33.091,0 0,0 Z" />
       </g>
@@ -156,22 +156,22 @@ function IconConnect() {
 function IconFilter() {
   return (
     <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
-      <polyline stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" points="437,497 437,255 286,255" />
-      <polyline stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" points="75,497 75,255 226,255" />
-      <polygon stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" points="286,316 286,255 346,195 346,135 166,135 166,195 226,255 226,316" />
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="166" y1="195" x2="346" y2="195" />
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="30" y1="497" x2="482" y2="497" />
+      <polyline stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" points="437,497 437,255 286,255" />
+      <polyline stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" points="75,497 75,255 226,255" />
+      <polygon stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" points="286,316 286,255 346,195 346,135 166,135 166,195 226,255 226,316" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="166" y1="195" x2="346" y2="195" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="30" y1="497" x2="482" y2="497" />
       {/* 柱内横线 — 品牌红 */}
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="377" x2="120" y2="377" />
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="377" x2="220.667" y2="377" />
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="377" x2="321.333" y2="377" />
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="437" x2="120" y2="437" />
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="437" x2="220.667" y2="437" />
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="437" x2="321.333" y2="437" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="377" x2="120" y2="377" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="377" x2="220.667" y2="377" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="377" x2="321.333" y2="377" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="437" x2="120" y2="437" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="437" x2="220.667" y2="437" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="437" x2="321.333" y2="437" />
       {/* 顶部粒子短线 — 品牌红 */}
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="241" y1="75" x2="271" y2="75" />
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="211" y1="15" x2="241" y2="15" />
-      <line stroke="#A1A1AA" strokeWidth="30" strokeMiterlimit="10" x1="301" y1="45" x2="331" y2="45" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="241" y1="75" x2="271" y2="75" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="211" y1="15" x2="241" y2="15" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="301" y1="45" x2="331" y2="45" />
     </svg>
   )
 }
@@ -179,17 +179,17 @@ function IconFilter() {
 function IconLaptop() {
   return (
     <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
-      <path fill="#A1A1AA" d="M509.297,432L472,245.516V0H40v245.516L2.703,432H0v80h512v-80H509.297z
+      <path fill="#D4D4D8" d="M509.297,432L472,245.516V0H40v245.516L2.703,432H0v80h512v-80H509.297z
         M70,30h372v202H70V30z M67.297,262h377.406l34,170H33.297L67.297,262z M482,482H30v-20h452V482z" />
-      <rect fill="#A1A1AA" x="180" y="382" width="152" height="30" />
-      <rect fill="#A1A1AA" x="352" y="382" width="30" height="30" />
-      <rect fill="#A1A1AA" x="402" y="382" width="30" height="30" />
-      <rect fill="#A1A1AA" x="80" y="382" width="30" height="30" />
-      <rect fill="#A1A1AA" x="130" y="382" width="30" height="30" />
-      <rect fill="#A1A1AA" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -20.8368 223.4203)"
+      <rect fill="#D4D4D8" x="180" y="382" width="152" height="30" />
+      <rect fill="#D4D4D8" x="352" y="382" width="30" height="30" />
+      <rect fill="#D4D4D8" x="402" y="382" width="30" height="30" />
+      <rect fill="#D4D4D8" x="80" y="382" width="30" height="30" />
+      <rect fill="#D4D4D8" x="130" y="382" width="30" height="30" />
+      <rect fill="#D4D4D8" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -20.8368 223.4203)"
         x="193.735" y="121.863" width="131.079" height="30" />
-      <polygon fill="#A1A1AA" points="176.292,96.87 155.467,75.274 98.391,130.313 155.467,185.352 176.292,163.756 141.609,130.313" />
-      <polygon fill="#A1A1AA" points="356.533,75.274 335.708,96.87 370.391,130.313 335.708,163.756 356.533,185.352 413.609,130.313" />
+      <polygon fill="#D4D4D8" points="176.292,96.87 155.467,75.274 98.391,130.313 155.467,185.352 176.292,163.756 141.609,130.313" />
+      <polygon fill="#D4D4D8" points="356.533,75.274 335.708,96.87 370.391,130.313 335.708,163.756 356.533,185.352 413.609,130.313" />
     </svg>
   )
 }
