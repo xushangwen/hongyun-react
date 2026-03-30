@@ -5276,7 +5276,7 @@
   background: #FAFAFA;
   box-shadow: 0 16px 48px rgba(0,0,0,0.08);
   transform: translateY(-6px);
-  border-color: var(--hy-red);
+  border-color: var(--zinc-300);
 }
 
 .cp-feat-icon-wrap {
@@ -5306,7 +5306,7 @@
 .cp-feat-icon-title {
   font-size: 17px;
   font-weight: 700;
-  color: var(--hy-red);
+  color: var(--zinc-900);
   margin: 0;
   line-height: 1.45;
 }

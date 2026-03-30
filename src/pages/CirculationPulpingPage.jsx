@@ -40,7 +40,7 @@ function IconDevelopment() {
            c9.79,1.69,19.85,2.57,30.12,2.57s20.33-0.88,30.12-2.57v-29.123c14.947-3.41,28.944-9.307,41.543-17.225
            l20.605,20.605c8.118-5.728,15.853-12.219,23.115-19.481s13.753-14.998,19.481-23.115l-20.605-20.605
            c7.919-12.599,13.816-26.597,17.225-41.543H416.607z" />
-      <circle stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" cx="256" cy="256" r="73.342" />
+      <circle stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10" cx="256" cy="256" r="73.342" />
     </svg>
   )
 }
@@ -52,7 +52,7 @@ function IconLeaf() {
         <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(361.5459,234.5454)"
           d="m 0,0 c 0,-58.291 -47.255,-105.545 -105.546,-105.545 -58.291,0 -105.546,47.254 -105.546,105.545 0,107.018 105.546,164.455 105.546,164.455 C -105.546,164.455 0,107.018 0,0 Z" />
-        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(256,399)" d="M 0,0 V -270" />
         <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(154.8789,271.8809)" d="M 0,0 101.121,-78.732" />
@@ -86,9 +86,9 @@ function IconLike() {
            c0-17.947-14.547-32.496-32.494-32.5h14.952c17.949,0,32.5-14.551,32.5-32.5s-14.551-32.5-32.5-32.5
            h-99.458v-58.528c0-34.808-28.218-63.026-63.026-63.026l-12.793,83.414C252.05,240.933,215.856,272,173.29,272h-68.569" />
       <rect x="45.721" y="242" stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10" width="60" height="255" />
-      <line stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" x1="177.321" y1="31" x2="223.321" y2="77" />
-      <line stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" x1="409.321" y1="31" x2="363.321" y2="77" />
-      <line stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" x1="293.321" y1="0" x2="293.321" y2="59" />
+      <line stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10" x1="177.321" y1="31" x2="223.321" y2="77" />
+      <line stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10" x1="409.321" y1="31" x2="363.321" y2="77" />
+      <line stroke="#D4D4D8" strokeWidth="28" strokeMiterlimit="10" x1="293.321" y1="0" x2="293.321" y2="59" />
     </svg>
   )
 }
@@ -105,7 +105,7 @@ function IconCleanAir() {
           transform="translate(497,0)" d="M 0,0 C 0,24.853 -20.147,45 -45,45 H -497" />
         <path stroke="#1E1E1E" strokeWidth="22" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(326,0)" d="M 0,0 C 0,24.853 -20.147,45 -45,45" />
-        <path stroke="#BA0C2F" strokeWidth="24" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="24" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
           transform="translate(256,240)"
           d="m 0,0 c 38.66,0 70,31.34 70,70 0,38.66 -31.34,70 -70,70 -0.616,0 -1.226,-0.03 -1.838,-0.046
              C -8.907,179.762 -43.661,210 -85.5,210 c -41.839,0 -76.592,-30.238 -83.662,-70.046
@@ -145,7 +145,7 @@ function IconConnect() {
         <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(213.5908,213.5908)" d="M 0,0 -116.378,-116.377" />
         <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(298.4092,213.5908)" d="M 0,0 116.378,-116.377" />
         <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(414.7871,414.7866)" d="M 0,0 -116.378,-116.377" />
-        <path stroke="#BA0C2F" strokeWidth="26" strokeMiterlimit="10"
+        <path stroke="#D4D4D8" strokeWidth="26" strokeMiterlimit="10"
           transform="translate(256,196)"
           d="m 0,0 c -33.091,0 -60,26.909 -60,60 0,33.091 26.909,60 60,60 C 33.091,120 60,93.091 60,60 60,26.909 33.091,0 0,0 Z" />
       </g>
@@ -162,16 +162,16 @@ function IconFilter() {
       <line stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" x1="166" y1="195" x2="346" y2="195" />
       <line stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" x1="30" y1="497" x2="482" y2="497" />
       {/* 柱内横线 — 品牌红 */}
-      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="377" x2="120" y2="377" />
-      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="377" x2="220.667" y2="377" />
-      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="377" x2="321.333" y2="377" />
-      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="437" x2="120" y2="437" />
-      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="437" x2="220.667" y2="437" />
-      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="437" x2="321.333" y2="437" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="377" x2="120" y2="377" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="377" x2="220.667" y2="377" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="377" x2="321.333" y2="377" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="437" x2="120" y2="437" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="437" x2="220.667" y2="437" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="437" x2="321.333" y2="437" />
       {/* 顶部粒子短线 — 品牌红 */}
-      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="241" y1="75" x2="271" y2="75" />
-      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="211" y1="15" x2="241" y2="15" />
-      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="301" y1="45" x2="331" y2="45" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="241" y1="75" x2="271" y2="75" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="211" y1="15" x2="241" y2="15" />
+      <line stroke="#D4D4D8" strokeWidth="30" strokeMiterlimit="10" x1="301" y1="45" x2="331" y2="45" />
     </svg>
   )
 }
@@ -186,10 +186,10 @@ function IconLaptop() {
       <rect fill="#1E1E1E" x="402" y="382" width="30" height="30" />
       <rect fill="#1E1E1E" x="80" y="382" width="30" height="30" />
       <rect fill="#1E1E1E" x="130" y="382" width="30" height="30" />
-      <rect fill="#BA0C2F" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -20.8368 223.4203)"
+      <rect fill="#D4D4D8" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -20.8368 223.4203)"
         x="193.735" y="121.863" width="131.079" height="30" />
-      <polygon fill="#BA0C2F" points="176.292,96.87 155.467,75.274 98.391,130.313 155.467,185.352 176.292,163.756 141.609,130.313" />
-      <polygon fill="#BA0C2F" points="356.533,75.274 335.708,96.87 370.391,130.313 335.708,163.756 356.533,185.352 413.609,130.313" />
+      <polygon fill="#D4D4D8" points="176.292,96.87 155.467,75.274 98.391,130.313 155.467,185.352 176.292,163.756 141.609,130.313" />
+      <polygon fill="#D4D4D8" points="356.533,75.274 335.708,96.87 370.391,130.313 335.708,163.756 356.533,185.352 413.609,130.313" />
     </svg>
   )
 }
