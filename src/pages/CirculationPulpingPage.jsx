@@ -336,7 +336,7 @@ export default function CirculationPulpingPage() {
               <div className="cp-core-device-row fade-up fade-up-delay-1">
                 <div className="cp-core-device-img-wrap">
                   <img
-                    src={`${IMG}/disperser-structure.svg`}
+                    src={`${IMG}/高速分散机-svg.svg`}
                     alt="高速分散机结构示意图"
                     className="cp-core-device-img"
                     loading="lazy"
@@ -364,7 +364,7 @@ export default function CirculationPulpingPage() {
               <div className="cp-core-device-row fade-up fade-up-delay-1">
                 <div className="cp-core-device-img-wrap">
                   <img
-                    src={`${IMG}/tank-a.svg`}
+                    src={`${IMG}/循环罐-A-svg.svg`}
                     alt="循环罐A结构示意图"
                     className="cp-core-device-img"
                     loading="lazy"
@@ -390,7 +390,7 @@ export default function CirculationPulpingPage() {
               <div className="cp-core-device-row fade-up fade-up-delay-1">
                 <div className="cp-core-device-img-wrap">
                   <img
-                    src={`${IMG}/tank-b.svg`}
+                    src={`${IMG}/循环罐-B-svg.svg`}
                     alt="循环罐B结构示意图"
                     className="cp-core-device-img"
                     loading="lazy"
