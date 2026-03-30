@@ -5400,7 +5400,7 @@
 .cp-core-device-img {
   width: 88%;
   height: auto;
-  max-height: 340px;
+  max-height: 320px;
   object-fit: contain;
   display: block;
 }
