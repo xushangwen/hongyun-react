@@ -3427,7 +3427,7 @@
 }
 
 .pdm-intro-name {
-  font-size: 44px;
+  font-size: 36px;
   font-weight: 700;
   color: var(--hy-red);
   line-height: 1.25;
@@ -4864,6 +4864,23 @@
 
 .cp-chart-card--span2 {
   grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* span2 单图：去掉 aspect-ratio，flex:1 填满行高减 caption 的剩余空间 */
+.cp-chart-card--span2 > .cp-chart-img-wrap {
+  flex: 1;
+  aspect-ratio: unset;
+  min-height: 0;
+  max-width: 80%;
+}
+
+.cp-chart-card--span2 > .cp-chart-img-wrap .cp-chart-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
 }
 
 .cp-chart-dual-imgs {
@@ -4910,6 +4927,15 @@
   gap: 8px;
   border-top: 1px solid var(--zinc-100);
   background: var(--zinc-50);
+}
+
+.cp-chart-caption::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--hy-red);
+  flex-shrink: 0;
 }
 
 .cp-chart-label-num {
@@ -5391,6 +5417,7 @@
   border-radius: 50%;
   background: var(--hy-red);
   color: white;
+  font-family: 'DINPro', 'Space Grotesk', sans-serif;
   font-size: 13px;
   font-weight: 700;
   display: flex;

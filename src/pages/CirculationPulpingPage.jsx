@@ -294,7 +294,7 @@ export default function CirculationPulpingPage() {
                 <img src={prdSysImg} alt="高效循环制浆系统" className="cp-intro-product-img" />
               </div>
               <div className="pdm-intro-content">
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">高效循环制浆系统</h2>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">红运高效循环制浆系统</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   <strong>自主研发专利技术</strong>，采用独特分散模块实现粉体与溶剂的快速充分混合。其独立的自循环分散系统可高效完成浆料均匀混合，确保稳定性和一致性。
                 </p>
@@ -362,7 +362,7 @@ export default function CirculationPulpingPage() {
               <hr className="cp-core-divider" />
 
               {/* 循环罐A */}
-              <div className="cp-core-device-row cp-core-device-row--reverse fade-up fade-up-delay-1">
+              <div className="cp-core-device-row fade-up fade-up-delay-1">
                 <div className="cp-core-device-img-wrap">
                   <img
                     src={`${IMG}/tank-a.svg`}
@@ -421,10 +421,7 @@ export default function CirculationPulpingPage() {
           <div className="page-container">
             <p className="section-en-label fade-up">Parameters Overview</p>
             <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
-            <h3 className="cp-table-subtitle fade-up fade-up-delay-1">
-              高速循环制浆系统覆盖60–1800 L/H全系列规格，转子线速度统一30m/s，满足不同量产产能需求。
-            </h3>
-            <div className="fade-up fade-up-delay-2">
+            <div className="fade-up fade-up-delay-1">
               <ParamsTable />
             </div>
             <p className="cp-table-note fade-up fade-up-delay-3">
@@ -509,7 +506,7 @@ export default function CirculationPulpingPage() {
                     </div>
                     <p className="cp-chart-caption">粒子迁移率</p>
                   </div>
-                  <div className="cp-chart-card">
+                  <div className="cp-chart-card cp-chart-card--span2">
                     <div className="cp-chart-img-wrap">
                       <img src={`${IMG}/chart-19.jpg`} alt="分散均匀性指数" className="cp-chart-img" loading="lazy" />
                     </div>
