@@ -198,7 +198,7 @@
 
 /* ========== Page Section（交替背景色） ========== */
 .page-section {
-  padding: 88px 0;
+  padding: 64px 0;
 }
 
 .page-section--gray {
@@ -3395,14 +3395,17 @@
 
 /* --- 产品介绍 + 展示 合并 --- */
 .pdm-intro-section {
-  padding: 100px 0 120px;
+  padding: 72px 0 80px;
 }
 
 .pdm-intro-grid {
   display: grid;
-  grid-template-columns: 48% 1fr;
-  gap: 40px;
+  grid-template-columns: 1fr minmax(auto, 420px);
+  gap: 60px;
   align-items: center;
+  max-width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 56px;
 }
 
@@ -3455,7 +3458,7 @@
   line-height: 1.8;
   color: var(--zinc-600);
   margin-bottom: 16px;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 .pdm-intro-desc:last-of-type {
@@ -3481,6 +3484,8 @@
 
 .pdm-intro-visual {
   position: relative;
+  max-width: 560px;
+  justify-self: center;
 }
 
 .pdm-intro-image-frame {
@@ -3895,7 +3900,7 @@
 
   /* PDM V2 */
   .pdm-intro-section {
-    padding: 72px 0 80px;
+    padding: 56px 0 64px;
   }
 
   .pdm-intro-grid {

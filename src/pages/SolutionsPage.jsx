@@ -17,7 +17,7 @@ const industries = [
     solutions: [
       { name: 'PD制浆系统', slug: 'pd-pulping', brief: '行星搅拌+高速分散一体化制浆，适用于正负极浆料批次生产。' },
       { name: '高效管线式制浆系统', slug: 'pipeline-pulping', brief: '管线式连续制浆工艺，生产效率高，浆料一致性好。' },
-      { name: '高速循环制浆系统', slug: 'circulation-pulping', brief: '循环分散+在线研磨，实现高固含量浆料高效制备。' },
+      { name: '红运高效循环制浆系统', slug: 'circulation-pulping', brief: '循环分散+在线研磨，实现高固含量浆料高效制备。' },
       { name: '双螺杆连续制浆系统', slug: 'twin-screw-pulping', brief: '双螺杆连续式工艺，产能大幅提升，适合规模化产线。' },
     ],
   },
@@ -164,7 +164,7 @@ export default function SolutionsPage() {
                   >
                     <div className="solutions-card-image">
                       {/* 高速循环制浆系统使用具体图片 */}
-                      {sol.name === '高速循环制浆系统' ? (
+                      {sol.name === '红运高效循环制浆系统' ? (
                         <img 
                           src={prdSysImg} 
                           alt={sol.name}

@@ -281,7 +281,7 @@ export default function CirculationPulpingPage() {
         <Breadcrumb items={[
           { label: '行业解决方案', path: '/solutions' },
           { label: '新能源行业', path: '/solutions#new-energy' },
-          { label: '高速循环制浆系统' },
+          { label: '红运高效循环制浆系统' },
         ]} />
 
         {/* ===== 系统介绍 + 方案视频 ===== */}
@@ -296,7 +296,7 @@ export default function CirculationPulpingPage() {
               <div className="pdm-intro-content">
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">红运高效循环制浆系统</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  <strong>自主研发专利技术</strong>，采用独特分散模块实现粉体与溶剂的快速充分混合。其独立的自循环分散系统可高效完成浆料均匀混合，确保稳定性和一致性。
+                  自主研发专利技术，采用独特分散模块实现粉体与溶剂的快速充分混合。其独立的自循环分散系统可高效完成浆料均匀混合，确保稳定性和一致性。
                 </p>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   系统采用简便传动结构，在保证高扭矩输出的同时显著降低故障率，极大提高了匀浆效率和设备稼动率。
