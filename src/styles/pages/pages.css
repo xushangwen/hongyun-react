@@ -5440,9 +5440,7 @@
 }
 
 .cp-core-device-divider {
-  width: 40px;
-  height: 2px;
-  background: var(--hy-red);
+  display: none;
 }
 
 .cp-core-device-features {
