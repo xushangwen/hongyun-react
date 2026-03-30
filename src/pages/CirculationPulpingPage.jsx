@@ -281,7 +281,7 @@ export default function CirculationPulpingPage() {
         <Breadcrumb items={[
           { label: '行业解决方案', path: '/solutions' },
           { label: '新能源行业', path: '/solutions#new-energy' },
-          { label: '红运高效循环制浆系统' },
+          { label: '高效循环制浆系统' },
         ]} />
 
         {/* ===== 系统介绍 + 方案视频 ===== */}
