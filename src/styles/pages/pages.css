@@ -5394,13 +5394,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 200px;
+  min-height: 280px;
 }
 
 .cp-core-device-img {
-  width: 70%;
+  width: 88%;
   height: auto;
-  max-height: 260px;
+  max-height: 340px;
   object-fit: contain;
   display: block;
 }
