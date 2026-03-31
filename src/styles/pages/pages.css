@@ -262,7 +262,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--hy-red);
-  margin: 0 0 10px;
+  margin: 0 0 2px;
 }
 
 .section-heading--center {
@@ -1719,7 +1719,7 @@
   grid-template-columns: 420px 1fr;
   gap: 0;
   border: 1px solid var(--zinc-200);
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
 }
 
@@ -2052,11 +2052,8 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   border: 1px solid var(--zinc-200);
-  border-radius: 8px;
-  box-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.04),
-    0 4px 16px rgba(0, 0, 0, 0.06),
-    0 12px 48px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  box-shadow: none;
 }
 
 .params-table {
@@ -4676,7 +4673,7 @@
   margin-bottom: 48px;
   background: var(--zinc-100);
   border: 1px solid var(--zinc-100);
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 40px 44px;
 }
 
@@ -5115,12 +5112,12 @@
    ─────────────────────────────────── */
 .cp-video-mock {
   position: relative;
-  border-radius: 16px;
+  border-radius: 10px;
   overflow: hidden;
-  width: 100%;
-  margin-top: 40px;
+  width: 80%;
+  margin: 40px auto 0;
   aspect-ratio: 21 / 9;
-  background: var(--zinc-200);
+  background: white;
 }
 
 .cp-video-mock-poster {
@@ -5128,6 +5125,7 @@
   height: 100%;
   object-fit: contain;
   display: block;
+  mix-blend-mode: multiply;
 }
 
 .cp-video-mock-overlay {
@@ -5136,12 +5134,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.1) 0%,
-    rgba(0,0,0,0.35) 50%,
-    rgba(0,0,0,0.15) 100%
-  );
+  background: rgba(0, 0, 0, 0.12);
   transition: background 0.3s ease;
 }
 
@@ -5246,7 +5239,7 @@
 .cp-feat-icon-card {
   background: white;
   border: 1px solid var(--zinc-100);
-  border-radius: 16px;
+  border-radius: 10px;
   padding: 32px 28px;
   display: flex;
   flex-direction: column;
@@ -5319,6 +5312,134 @@
 }
 
 /* ───────────────────────────────────
+   系统特点 — 区块背景
+   ─────────────────────────────────── */
+.cp-feat-section {
+  position: relative;
+  background: var(--zinc-50);
+}
+
+/* 背景图以 50% 透明度叠在 zinc-50 底色上 */
+.cp-feat-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/images/solutions/feat-section-bg.png') center bottom / cover no-repeat;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cp-feat-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ───────────────────────────────────
+   系统特点 — Flowbase 风格 Grid
+   ─────────────────────────────────── */
+.cp-feat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 860px;
+  margin: 48px auto 0;
+}
+
+.cp-feat-cell {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.25s ease;
+  cursor: default;
+}
+
+.cp-feat-cell:hover {
+  background: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Icon 方框 + 实线 & 虚线双圈装饰 */
+.cp-feat-cell-icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: var(--zinc-100);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.25s ease;
+}
+
+/* 实线内圈 */
+.cp-feat-cell-icon::before {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border: 1px solid var(--zinc-100);
+  border-radius: 17px;
+  pointer-events: none;
+}
+
+/* 虚线外圈 */
+.cp-feat-cell-icon::after {
+  content: '';
+  position: absolute;
+  inset: -13px;
+  border: 1px dashed var(--zinc-100);
+  border-radius: 23px;
+  pointer-events: none;
+}
+
+.cp-feat-cell:hover .cp-feat-cell-icon {
+  background: var(--zinc-200);
+}
+
+/* SVG 限尺寸 + 深灰色 */
+.cp-feat-cell-icon .cp-feat-icon-svg {
+  width: 30px;
+  height: 30px;
+  /* brightness(0) 全转黑色，opacity 调深度 → 深灰 */
+  filter: brightness(0) opacity(0.6);
+}
+
+.cp-feat-cell-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--zinc-900);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* 响应式 — tablet */
+@media (max-width: 900px) {
+  .cp-feat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 响应式 — mobile */
+@media (max-width: 540px) {
+  .cp-feat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-feat-cell {
+    padding: 28px 24px;
+  }
+}
+
+/* ───────────────────────────────────
    技术咨询区块
    ─────────────────────────────────── */
 .cp-inquiry-section {
@@ -5346,7 +5467,7 @@
   }
 
   .cp-video-mock {
-    border-radius: 10px;
+    border-radius: 8px;
   }
 }
 
@@ -5372,7 +5493,7 @@
 .cp-core-section {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 20px;
 }
 
 .cp-core-device-row {
@@ -5380,6 +5501,16 @@
   grid-template-columns: 1fr 1fr;
   gap: 64px;
   align-items: center;
+  background: var(--zinc-50);
+  border-radius: 10px;
+  padding: 40px 48px;
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cp-core-device-row:hover {
+  background: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
 }
 
 /* 偶数设备（循环罐B）图片在右 */
@@ -5472,9 +5603,7 @@
 }
 
 .cp-core-divider {
-  border: none;
-  border-top: 1px solid var(--zinc-100);
-  margin: 0;
+  display: none;
 }
 
 @media (max-width: 900px) {

@@ -197,7 +197,7 @@ function IconLaptop() {
 /* ========== 系统特点数据 ========== */
 const features = [
   { Icon: IconDevelopment, title: '制浆效率高' },
-  { Icon: IconConnect, title: '占用高度小，兼容性与灵活性提升' },
+  { Icon: IconConnect, title: <>占用高度小，<br />兼容性与灵活性提升</> },
   { Icon: IconLike, title: '设备投资成本降低' },
   { Icon: IconLeaf, title: '全过程无金属无尘化生产' },
   { Icon: IconFilter, title: '下粉顺畅，无堵料风险' },
@@ -304,7 +304,7 @@ export default function CirculationPulpingPage() {
               </div>
             </div>
             <div className="cp-video-mock fade-up fade-up-delay-2">
-              <img src={`${IMG}/hero.jpeg`} alt="方案视频封面" className="cp-video-mock-poster" />
+              <img src={prdSysImg} alt="方案视频封面" className="cp-video-mock-poster" />
               <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
                 {!videoPlayed ? (
                   <button className="cp-video-play-btn" onClick={() => setVideoPlayed(true)} aria-label="播放">
@@ -323,7 +323,22 @@ export default function CirculationPulpingPage() {
         </section>
 
         {/* ===== 系统特点 ===== */}
-        <SystemFeaturesSection features={features} title="系统特点" enLabel="System Features" grayBg />
+        <section className="page-section cp-feat-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">System Features</p>
+            <h2 className="section-heading section-heading--center fade-up">系统特点</h2>
+            <div className="cp-feat-grid fade-up fade-up-delay-1">
+              {features.map(({ Icon, title: featTitle }, i) => (
+                <div key={i} className="cp-feat-cell">
+                  <div className="cp-feat-cell-icon">
+                    <Icon />
+                  </div>
+                  <h3 className="cp-feat-cell-title">{featTitle}</h3>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* ===== 核心设备 ===== */}
         <section className="page-section">
