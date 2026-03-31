@@ -429,7 +429,7 @@ export default function CirculationPulpingPage() {
         </section>
 
         {/* ===== 参数汇总 ===== */}
-        <section className="page-section page-section--gray">
+        <section className="page-section page-section--gray cp-params-section">
           <div className="page-container">
             <p className="section-en-label fade-up">Parameters Overview</p>
             <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
