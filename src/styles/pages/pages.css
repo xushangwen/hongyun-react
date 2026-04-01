@@ -262,7 +262,7 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--hy-red);
-  margin: 0 0 10px;
+  margin: 0;
 }
 
 .section-heading--center {
