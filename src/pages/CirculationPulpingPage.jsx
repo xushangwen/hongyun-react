@@ -287,8 +287,6 @@ export default function CirculationPulpingPage() {
         {/* ===== 系统介绍 + 方案视频 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <p className="section-en-label fade-up">System Introduction</p>
-            <h2 className="section-heading section-heading--center fade-up">系统介绍</h2>
             <div className="pdm-intro-grid">
               <div className="pdm-intro-visual fade-up fade-up-delay-1">
                 <img src={prdSysImg} alt="高效循环制浆系统" className="cp-intro-product-img" />

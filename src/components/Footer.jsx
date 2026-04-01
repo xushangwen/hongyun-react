@@ -33,9 +33,9 @@ export default function Footer() {
             <div className="footer-col">
               <h4 className="footer-col-title">行业解决方案</h4>
               <ul className="footer-links">
-                <li><Link to="/solutions#new-energy">新能源</Link></li>
+                <li><Link to="/solutions#new-energy">新能源行业</Link></li>
                 <li><Link to="/solutions#solid-state-battery">固态电池</Link></li>
-                <li><Link to="/solutions#chemical">化工</Link></li>
+                <li><Link to="/solutions#chemical">化工行业</Link></li>
                 <li><Link to="/solutions#adhesive">制胶</Link></li>
                 <li><Link to="/solutions#pyrotechnics">火工药剂</Link></li>
                 <li><Link to="/solutions#food">食品</Link></li>
@@ -49,9 +49,9 @@ export default function Footer() {
             <div className="footer-col">
               <h4 className="footer-col-title">产品中心</h4>
               <ul className="footer-links">
-                <li><Link to="/products#products-new-energy">新能源</Link></li>
+                <li><Link to="/products#products-new-energy">新能源行业</Link></li>
                 <li><Link to="/products#products-solid-state-battery">固态电池</Link></li>
-                <li><Link to="/products#products-chemical">化工</Link></li>
+                <li><Link to="/products#products-chemical">化工行业</Link></li>
                 <li><Link to="/products#products-adhesive">制胶</Link></li>
                 <li><Link to="/products#products-pyrotechnics">火工药剂</Link></li>
                 <li><Link to="/products#products-food">食品</Link></li>
