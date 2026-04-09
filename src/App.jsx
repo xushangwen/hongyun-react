@@ -10,6 +10,7 @@ import SolutionDetailPage from './pages/SolutionDetailPage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import DualPlanetaryMixerPage from './pages/DualPlanetaryMixerPage'
 import CirculationPulpingPage from './pages/CirculationPulpingPage'
+import PDPulpingPage from './pages/PDPulpingPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/solutions/new-energy/circulation-pulping" element={<CirculationPulpingPage />} />
+          <Route path="/solutions/new-energy/pd-pulping" element={<PDPulpingPage />} />
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/new-energy/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
