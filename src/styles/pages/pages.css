@@ -4274,11 +4274,24 @@
   width: 100%;
 }
 
-/* 系统介绍右侧产品 SVG/PNG：无背景纯展示 */
+/* 系统介绍右侧产品图：基础样式，各页面按需加修饰类覆盖 */
 .cp-intro-product-img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* --photo：真实设备照片（JPG/不透明），固定容器高度 + cover 填满 */
+.pdm-intro-visual--photo {
+  height: 560px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.pdm-intro-visual--photo .cp-intro-product-img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* ===== 设备配置图 ===== */

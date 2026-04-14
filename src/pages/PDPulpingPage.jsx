@@ -4,7 +4,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import TechInquirySection from '../components/TechInquirySection'
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
-const PRODUCT_IMG = '/assets/images/products/pd-mixer/双行星动力混合设备生图-removebg.png'
+const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/main-product.webp'
 const IMG = '/assets/images/products/pd-mixer'
 
 /* ========== 系统特点 SVG 图标（内联，品牌色处理）========== */
@@ -300,7 +300,7 @@ export default function PDPulpingPage() {
         <section className="page-section pdm-intro-section">
           <div className="page-container">
             <div className="pdm-intro-grid">
-              <div className="pdm-intro-visual fade-up fade-up-delay-1">
+              <div className="pdm-intro-visual pdm-intro-visual--photo fade-up fade-up-delay-1">
                 <img
                   src={PRODUCT_IMG}
                   alt="双行星动力™混合机（PD制浆系统）"
