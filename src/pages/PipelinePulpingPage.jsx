@@ -1,0 +1,346 @@
+import React, { useEffect, useState } from 'react'
+import PageHero from '../components/PageHero'
+import Breadcrumb from '../components/Breadcrumb'
+import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import TechInquirySection from '../components/TechInquirySection'
+
+const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
+const PRODUCT_IMG = '/assets/images/solutions/pipeline-pulping/main-product.webp'
+const IMG = '/assets/images/solutions/pipeline-pulping'
+
+/* ========== 系统特点 SVG 图标（复用 circulation-pulping 图标）========== */
+
+/* 节能高效 — 循环效率 */
+function IconEnergy() {
+  return (
+    <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
+      <path stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        d="M464.758,135.498C485.264,170.947,497,212.103,497,256c0,133.101-107.899,241-241,241
+           c-71.929,0-136.498-31.511-180.655-81.482" />
+      <polyline stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        points="135.5,415.408 75.25,415.408 75.25,475.658" />
+      <path stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        d="M47.242,376.501C26.736,341.053,15,299.897,15,256C15,122.899,122.899,15,256,15
+           c71.929,0,136.498,31.511,180.655,81.482" />
+      <polyline stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        points="376.5,96.592 436.75,96.592 436.75,36.342" />
+      <path stroke="#1E1E1E" strokeWidth="26" strokeMiterlimit="10"
+        d="M416.607,286.12c1.69-9.79,2.57-19.85,2.57-30.12s-0.88-20.33-2.57-30.12h-29.123
+           c-3.41-14.947-9.306-28.944-17.225-41.543l20.605-20.605c-5.728-8.118-12.219-15.853-19.481-23.115
+           s-14.998-13.753-23.115-19.481l-20.605,20.605c-12.599-7.919-26.597-13.816-41.543-17.225V95.393
+           c-9.79-1.69-19.85-2.57-30.12-2.57s-20.33,0.88-30.12,2.57v29.123c-14.947,3.41-28.944,9.307-41.543,17.225
+           l-20.605-20.605c-8.118,5.728-15.853,12.219-23.115,19.481s-13.753,14.998-19.481,23.115l20.605,20.605
+           c-7.919,12.599-13.816,26.597-17.225,41.543H95.393c-1.69,9.79-2.57,19.85-2.57,30.12s0.88,20.33,2.57,30.12h29.123
+           c3.41,14.947,9.307,28.944,17.225,41.543l-20.605,20.605c5.728,8.118,12.219,15.853,19.481,23.115
+           s14.998,13.753,23.115,19.481l20.605-20.605c12.599,7.919,26.597,13.816,41.543,17.225v29.123
+           c9.79,1.69,19.85,2.57,30.12,2.57s20.33-0.88,30.12-2.57v-29.123c14.947-3.41,28.944-9.307,41.543-17.225
+           l20.605,20.605c8.118-5.728,15.853-12.219,23.115-19.481s13.753-14.998,19.481-23.115l-20.605-20.605
+           c7.919-12.599,13.816-26.597,17.225-41.543H416.607z" />
+      <circle stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" cx="256" cy="256" r="73.342" />
+    </svg>
+  )
+}
+
+/* 工艺优势 — 网络连接 */
+function IconProcess() {
+  return (
+    <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
+      <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+        {[
+          'translate(106,436)', 'translate(106,76)',
+          'translate(466,436)', 'translate(466,76)',
+        ].map((t, i) => (
+          <path key={i} stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+            transform={t} d="m 0,0 c 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 C -13.432,30 0,16.568 0,0 Z" />
+        ))}
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(286,467)" d="m 0,0 c 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 C -13.432,30 0,16.568 0,0 Z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(286,45)" d="m 0,0 c 0,16.568 -13.432,30 -30,30 -16.568,0 -30,-13.432 -30,-30 0,-16.568 13.432,-30 30,-30 16.568,0 30,13.432 30,30 z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(45,286)" d="m 0,0 c 16.568,0 30,-13.432 30,-30 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(467,286)" d="m 0,0 c -16.568,0 -30,-13.432 -30,-30 0,-16.568 13.432,-30 30,-30 16.568,0 30,13.432 30,30 C 30,-13.432 16.568,0 0,0 Z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,75)" d="M 0,0 V 121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,437)" d="M 0,0 V -121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(75,256)" d="M 0,0 H 121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(437,256)" d="M 0,0 H -121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(97.2129,414.7866)" d="M 0,0 116.378,-116.377" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(213.5908,213.5908)" d="M 0,0 -116.378,-116.377" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(298.4092,213.5908)" d="M 0,0 116.378,-116.377" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(414.7871,414.7866)" d="M 0,0 -116.378,-116.377" />
+        <path stroke="#BA0C2F" strokeWidth="26" strokeMiterlimit="10"
+          transform="translate(256,196)"
+          d="m 0,0 c -33.091,0 -60,26.909 -60,60 0,33.091 26.909,60 60,60 C 33.091,120 60,93.091 60,60 60,26.909 33.091,0 0,0 Z" />
+      </g>
+    </svg>
+  )
+}
+
+/* 浆料品质 — 过滤精度 */
+function IconQuality() {
+  return (
+    <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
+      <polyline stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" points="437,497 437,255 286,255" />
+      <polyline stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" points="75,497 75,255 226,255" />
+      <polygon stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" points="286,316 286,255 346,195 346,135 166,135 166,195 226,255 226,316" />
+      <line stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" x1="166" y1="195" x2="346" y2="195" />
+      <line stroke="#1E1E1E" strokeWidth="30" strokeMiterlimit="10" x1="30" y1="497" x2="482" y2="497" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="377" x2="120" y2="377" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="377" x2="220.667" y2="377" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="377" x2="321.333" y2="377" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="190.667" y1="437" x2="120" y2="437" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="291.333" y1="437" x2="220.667" y2="437" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="392" y1="437" x2="321.333" y2="437" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="241" y1="75" x2="271" y2="75" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="211" y1="15" x2="241" y2="15" />
+      <line stroke="#BA0C2F" strokeWidth="30" strokeMiterlimit="10" x1="301" y1="45" x2="331" y2="45" />
+    </svg>
+  )
+}
+
+/* 设备性能 — 数字监控 */
+function IconPerformance() {
+  return (
+    <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
+      <path fill="#1E1E1E" d="M509.297,432L472,245.516V0H40v245.516L2.703,432H0v80h512v-80H509.297z
+        M70,30h372v202H70V30z M67.297,262h377.406l34,170H33.297L67.297,262z M482,482H30v-20h452V482z" />
+      <rect fill="#1E1E1E" x="180" y="382" width="152" height="30" />
+      <rect fill="#1E1E1E" x="352" y="382" width="30" height="30" />
+      <rect fill="#1E1E1E" x="402" y="382" width="30" height="30" />
+      <rect fill="#1E1E1E" x="80" y="382" width="30" height="30" />
+      <rect fill="#1E1E1E" x="130" y="382" width="30" height="30" />
+      <rect fill="#BA0C2F" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -20.8368 223.4203)"
+        x="193.735" y="121.863" width="131.079" height="30" />
+      <polygon fill="#BA0C2F" points="176.292,96.87 155.467,75.274 98.391,130.313 155.467,185.352 176.292,163.756 141.609,130.313" />
+      <polygon fill="#BA0C2F" points="356.533,75.274 335.708,96.87 370.391,130.313 335.708,163.756 356.533,185.352 413.609,130.313" />
+    </svg>
+  )
+}
+
+/* ========== 系统特点详细说明（品牌红序列点）========== */
+function FeatList({ items }) {
+  return (
+    <ul className="pp-feat-list">
+      {items.map((item, i) => <li key={i}>{item}</li>)}
+    </ul>
+  )
+}
+
+const features = [
+  {
+    Icon: IconEnergy,
+    title: '节能高效',
+    desc: <FeatList items={[
+      <>{'制浆能耗低：正极制浆 <40 KWh/t，'}<br />{'负极制浆 <33 KWh/t'}</>,
+      '制浆效率高：60 分钟快速制浆',
+    ]} />,
+  },
+  {
+    Icon: IconProcess,
+    title: '工艺优势',
+    desc: <FeatList items={[
+      '完整保持活性物质包覆层及粘结剂特性',
+      '适用于所有材料体系的制浆混合工艺',
+      '独创捏合工艺于粉体与液体的浸润混合',
+    ]} />,
+  },
+  {
+    Icon: IconQuality,
+    title: '浆料品质',
+    desc: <FeatList items={[
+      '浆料一致性高：粘度/固含量/细度极差 <1%',
+      '稳定性（TSI）指数 <0.09，分散均匀性 <0.5',
+      '流变性、流动性、流平性好，利于涂布',
+    ]} />,
+  },
+  {
+    Icon: IconPerformance,
+    title: '设备性能',
+    desc: <FeatList items={[
+      '稼动率高：传动系统全面简化，维护成本低',
+      '紧凑型设计，占用空间小',
+      '精准温控系统，出料温度可控',
+    ]} />,
+  },
+]
+
+/* ========== 主页面 ========== */
+export default function PipelinePulpingPage() {
+  const [videoPlayed, setVideoPlayed] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('visible')
+        })
+      },
+      { threshold: 0.1 }
+    )
+    document.querySelectorAll('.section-heading, .fade-up').forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <>
+      <PageHero
+        title="行业解决方案"
+        subtitle="Industry Solutions"
+        bgImage={HERO_IMG}
+        noScroll
+      />
+
+      <div className="page-body">
+        <Breadcrumb items={[
+          { label: '行业解决方案', path: '/solutions' },
+          { label: '新能源行业', path: '/solutions#new-energy' },
+          { label: '管线式制浆系统' },
+        ]} />
+
+        {/* ===== 系统介绍（与 pd-pulping 同 section 类，padding/margin 一致）===== */}
+        <section className="page-section pdm-intro-section">
+          <div className="page-container">
+            {/* banner：与视频等宽，图片靠底左缩放，文字右侧浮层 */}
+            <div className="pp-intro-banner fade-up fade-up-delay-1">
+              <img
+                src={PRODUCT_IMG}
+                alt="高效管线式制浆系统"
+                className="pp-intro-banner-img"
+              />
+              <div className="pp-intro-banner-content">
+                <h2 className="pdm-intro-name">红运管线式制浆系统</h2>
+                <p className="pdm-intro-desc">
+                  基于 PD 搅拌机制浆系统升级研发，创新采用分离式捏合与稀释分散工艺，实现对配方工艺的精准调控与各组分的高效混合，确保成品浆料高质量，显著提升电池性能及循环寿命。
+                </p>
+                <p className="pdm-intro-desc">
+                  该方案是电池行业高固含量制浆工艺的首选解决方案。
+                </p>
+              </div>
+            </div>
+
+            {/* 视频模块 */}
+            <div className="cp-video-mock pp-video-mock fade-up fade-up-delay-2">
+              <img src={PRODUCT_IMG} alt="方案视频封面" className="cp-video-mock-poster" />
+              <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
+                {!videoPlayed ? (
+                  <button className="cp-video-play-btn" onClick={() => setVideoPlayed(true)} aria-label="播放">
+                    <span className="cp-video-play-ring" />
+                    <span className="cp-video-play-icon">▶</span>
+                  </button>
+                ) : (
+                  <div className="cp-video-played-state">
+                    <p className="cp-video-played-text">视频制作中，敬请期待</p>
+                    <button className="cp-video-played-reset" onClick={() => setVideoPlayed(false)}>返回</button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 系统特点 ===== */}
+        <SystemFeaturesSection features={features} title="系统特点" enLabel="System Features" grayBg columns={4} />
+
+        {/* ===== 核心设备 ===== */}
+        <section className="page-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Core Equipment</p>
+            <h2 className="section-heading section-heading--center fade-up">核心设备</h2>
+
+            <div className="cp-core-section">
+
+              {/* —— 01 管线捏合罐：全宽 2×2 Bento —— */}
+              <div className="fade-up fade-up-delay-1">
+                <div className="cp-core-device-badge" style={{ marginBottom: '20px' }}>
+                  <h3 className="cp-core-device-name">管线捏合罐</h3>
+                </div>
+                <div className="pp-tank-bento">
+                  {/* 左列：photo-main（上）+ deco-02（下） */}
+                  <div className="pp-tank-col">
+                    <div className="pp-bento-photo">
+                      <img src={`${IMG}/tank-main.webp`} alt="管线捏合罐" className="pp-bento-img" loading="lazy" />
+                    </div>
+                    <div className="pp-bento-deco">
+                      <img src={`${IMG}/tank-deco-02.svg`} alt="" className="pp-bento-deco-img" aria-hidden="true" />
+                    </div>
+                  </div>
+                  {/* 右列：deco-01（上）+ photo-02（下） */}
+                  <div className="pp-tank-col">
+                    <div className="pp-bento-deco">
+                      <img src={`${IMG}/tank-deco-01.svg`} alt="" className="pp-bento-deco-img" aria-hidden="true" />
+                    </div>
+                    <div className="pp-bento-photo">
+                      <img src={`${IMG}/tank-02.webp`} alt="管线捏合罐截面图" className="pp-bento-img" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <hr className="cp-core-divider" />
+
+              {/* —— 02 高速分散机：左图 + 右侧 2×3 部件 SVG —— */}
+              <div className="fade-up fade-up-delay-1">
+                <div className="cp-core-device-badge" style={{ marginBottom: '20px' }}>
+                  <h3 className="cp-core-device-name">高速分散机</h3>
+                </div>
+                <div className="pp-disperser-row">
+                  {/* 左：分散机产品图 */}
+                  <div className="pp-disperser-main">
+                    <img
+                      src={`${IMG}/disperser-view.webp`}
+                      alt="高速分散机"
+                      className="pp-disperser-img"
+                      loading="lazy"
+                    />
+                  </div>
+                  {/* 右：2×3 部件 SVG 网格 */}
+                  <div className="pp-disperser-components">
+                    {[1, 2, 3, 4, 5, 6].map((n) => (
+                      <div key={n} className="pp-component-cell">
+                        <img
+                          src={`${IMG}/component-0${n}.svg`}
+                          alt={`部件 ${n}`}
+                          className="pp-component-img"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 客户案例：灰底单容器，2×2 卡片 ===== */}
+        <section className="page-section page-section--gray">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Case</p>
+            <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
+
+            <div className="cp-verify-block fade-up fade-up-delay-1">
+              <div className="cp-charts-grid-2 pp-charts-grid">
+                {[
+                  { src: `${IMG}/case-workshop-01.webp`, alt: '管线式制浆车间全景' },
+                  { src: `${IMG}/case-workshop-02.webp`, alt: '设备运行细节' },
+                  { src: `${IMG}/case-workshop-03.webp`, alt: '车间现场实况' },
+                  { src: `${IMG}/case-workshop-04.jpg`,  alt: '管线式制浆系统现场' },
+                ].map((item, i) => (
+                  <div key={i} className="cp-chart-card">
+                    <img src={item.src} alt={item.alt} className="cp-chart-img" loading="lazy" />
+                    <p className="cp-chart-caption">{item.alt}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 技术咨询 ===== */}
+        <TechInquirySection />
+      </div>
+    </>
+  )
+}

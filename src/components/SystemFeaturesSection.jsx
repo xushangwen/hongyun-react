@@ -39,7 +39,7 @@ export default function SystemFeaturesSection({ features = [], title = '系统�
                 {Icon ? <Icon /> : <img src={img} alt={featTitle} className="cp-feat-icon-img" loading="lazy" />}
               </div>
               <h3 className="cp-feat-icon-title">{featTitle}</h3>
-              {desc && <p className="cp-feat-icon-desc">{desc}</p>}
+              {desc && <div className="cp-feat-icon-desc">{desc}</div>}
             </div>
           ))}
         </div>
