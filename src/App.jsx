@@ -12,6 +12,7 @@ import DualPlanetaryMixerPage from './pages/DualPlanetaryMixerPage'
 import CirculationPulpingPage from './pages/CirculationPulpingPage'
 import PDPulpingPage from './pages/PDPulpingPage'
 import PipelinePulpingPage from './pages/PipelinePulpingPage'
+import TwinScrewPulpingPage from './pages/TwinScrewPulpingPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/solutions/new-energy/circulation-pulping" element={<CirculationPulpingPage />} />
           <Route path="/solutions/new-energy/pd-pulping" element={<PDPulpingPage />} />
           <Route path="/solutions/new-energy/pipeline-pulping" element={<PipelinePulpingPage />} />
+          <Route path="/solutions/new-energy/twin-screw-pulping" element={<TwinScrewPulpingPage />} />
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/new-energy/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
