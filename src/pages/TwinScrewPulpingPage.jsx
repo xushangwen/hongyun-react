@@ -232,12 +232,12 @@ function StabilityTable() {
       <table className="tsp-stability-table">
         <thead>
           <tr>
-            <th rowSpan={2}>组别</th>
+            <th rowSpan={2} className="tsp-th-rowspan">组别</th>
             <th colSpan={4}>整体稳定性指数（TSI）</th>
-            <th rowSpan={2}>是否有沉降</th>
-            <th rowSpan={2}>是否有颗粒团聚</th>
-            <th rowSpan={2}>粒子迁移速率</th>
-            <th rowSpan={2}>分散均匀性指数</th>
+            <th rowSpan={2} className="tsp-th-rowspan">是否有沉降</th>
+            <th rowSpan={2} className="tsp-th-rowspan">是否有颗粒团聚</th>
+            <th rowSpan={2} className="tsp-th-rowspan">粒子迁移速率</th>
+            <th rowSpan={2} className="tsp-th-rowspan">分散均匀性指数</th>
           </tr>
           <tr>
             <th>整体</th>
