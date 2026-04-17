@@ -15,10 +15,10 @@ const industries = [
     name: '新能源行业',
     desc: '面向锂电池正负极浆料制备，提供从投料、制浆到输送的全流程自动化解决方案，已服务宁德时代、比亚迪等头部客户。',
     solutions: [
-      { name: 'PD制浆系统', slug: 'pd-pulping', brief: '行星搅拌+高速分散一体化制浆，适用于正负极浆料批次生产。' },
-      { name: '高效管线式制浆系统', slug: 'pipeline-pulping', brief: '管线式连续制浆工艺，生产效率高，浆料一致性好。' },
-      { name: '高效循环制浆系统', slug: 'circulation-pulping', brief: '循环分散+在线研磨，实现高固含量浆料高效制备。' },
-      { name: '双螺杆连续制浆系统', slug: 'twin-screw-pulping', brief: '双螺杆连续式工艺，产能大幅提升，适合规模化产线。' },
+      { name: 'PD制浆系统', slug: 'pd-pulping', brief: '行星搅拌+高速分散一体化制浆，适用于正负极浆料批次生产。', image: '/assets/images/solutions/pd-pulping/main-product.webp' },
+      { name: '高效管线式制浆系统', slug: 'pipeline-pulping', brief: '管线式连续制浆工艺，生产效率高，浆料一致性好。', image: '/assets/images/solutions/pipeline-pulping/main-product.webp' },
+      { name: '高效循环制浆系统', slug: 'circulation-pulping', brief: '循环分散+在线研磨，实现高固含量浆料高效制备。', image: prdSysImg },
+      { name: '双螺杆连续制浆系统', slug: 'twin-screw-pulping', brief: '双螺杆连续式工艺，产能大幅提升，适合规模化产线。', image: '/assets/images/solutions/twin-screw-pulping/product.webp' },
     ],
   },
   {
@@ -163,12 +163,8 @@ export default function SolutionsPage() {
                     key={sol.slug}
                   >
                     <div className="solutions-card-image">
-                      {/* 高速循环制浆系统使用具体图片 */}
-                      {sol.name === '高效循环制浆系统' ? (
-                        <img 
-                          src={prdSysImg} 
-                          alt={sol.name}
-                        />
+                      {sol.image ? (
+                        <img src={sol.image} alt={sol.name} loading="lazy" />
                       ) : (
                         <ImagePlaceholder height="220px" label={sol.name} />
                       )}

@@ -1437,16 +1437,15 @@
 
 .solutions-card {
   background: var(--zinc-50);
-  overflow: hidden;
   text-decoration: none;
   color: inherit;
   border: none;
   border-radius: 0;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  height: 440px;
   display: flex;
   flex-direction: column;
+  height: 420px;
 }
 
 .solutions-industry:nth-child(even) .solutions-card {
@@ -1460,22 +1459,29 @@
 .solutions-card-image {
   position: relative;
   flex: 1;
+  min-height: 0;
   overflow: hidden;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: var(--zinc-100);
 }
 
-.solutions-card-image .img-placeholder,
-.solutions-card-image img {
+.solutions-card-image .img-placeholder {
   width: 100%;
-  height: 280px;
+  height: 100%;
   object-fit: cover;
+}
+
+.solutions-card-image img {
+  width: 90%;
+  height: 90%;
+  display: block;
+  object-fit: contain;
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.solutions-card:hover .solutions-card-image .img-placeholder,
 .solutions-card:hover .solutions-card-image img {
   transform: scale(1.06);
 }
@@ -1488,6 +1494,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 88px;
+  flex-shrink: 0;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
