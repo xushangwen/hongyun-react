@@ -1,31 +1,188 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import {
-  IconArrowRightOutline24,
-  IconGearNodesOutline24,
-  IconTargetOutline24,
-  IconAtomOutline24,
-  IconAwardPlaqueOutline24,
-  IconTestTubeOutline24,
-  IconFireFlameOutline24,
-  IconFlaskOutline24,
-  IconCarBatteryOutline24,
-  IconMedicineOutline24,
-  IconCutleryOutline24,
-  IconMicrochipOutline24,
-  IconArrowsInfinityOutline24,
-  IconRotateCubeOutline24,
-  IconShieldLockOutline24,
-  IconNetworkNodesOutline24,
-  IconNeuralGridOutline24,
-} from 'nucleo-core-outline-24'
-import { IconGreenhouseOutline48, IconRotateCubeOutline48, IconFirewallOutline48 } from 'nucleo-core-outline-48'
+import React, { useEffect, useState } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
-import ctaBgImg from '../assets/img/需要了解更多.jpg'
-import productHeroImg from '../assets/img/Generated Image March 20, 2026 - 10_16PM.jpg'
+import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import TechInquirySection from '../components/TechInquirySection'
 
-/* ========== 技术参数数据（每个型号一个对象）========== */
+const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
+const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/main-product.webp'
+const IMG = '/assets/images/products/pd-mixer'
+
+/* ========== 系统特点图标 ========== */
+
+function IconDevelopment() {
+  return (
+    <svg viewBox="0 0 512 512" fill="none" className="cp-feat-icon-svg">
+      <path stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        d="M464.758,135.498C485.264,170.947,497,212.103,497,256c0,133.101-107.899,241-241,241
+           c-71.929,0-136.498-31.511-180.655-81.482" />
+      <polyline stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        points="135.5,415.408 75.25,415.408 75.25,475.658" />
+      <path stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        d="M47.242,376.501C26.736,341.053,15,299.897,15,256C15,122.899,122.899,15,256,15
+           c71.929,0,136.498,31.511,180.655,81.482" />
+      <polyline stroke="#1E1E1E" strokeWidth="28" strokeMiterlimit="10"
+        points="376.5,96.592 436.75,96.592 436.75,36.342" />
+      <path stroke="#1E1E1E" strokeWidth="26" strokeMiterlimit="10"
+        d="M416.607,286.12c1.69-9.79,2.57-19.85,2.57-30.12s-0.88-20.33-2.57-30.12h-29.123
+           c-3.41-14.947-9.306-28.944-17.225-41.543l20.605-20.605c-5.728-8.118-12.219-15.853-19.481-23.115
+           s-14.998-13.753-23.115-19.481l-20.605,20.605c-12.599-7.919-26.597-13.816-41.543-17.225V95.393
+           c-9.79-1.69-19.85-2.57-30.12-2.57s-20.33,0.88-30.12,2.57v29.123c-14.947,3.41-28.944,9.307-41.543,17.225
+           l-20.605-20.605c-8.118,5.728-15.853,12.219-23.115,19.481s-13.753,14.998-19.481,23.115l20.605,20.605
+           c-7.919,12.599-13.816,26.597-17.225,41.543H95.393c-1.69,9.79-2.57,19.85-2.57,30.12s0.88,20.33,2.57,30.12h29.123
+           c3.41,14.947,9.307,28.944,17.225,41.543l-20.605,20.605c5.728,8.118,12.219,15.853,19.481,23.115
+           s14.998,13.753,23.115,19.481l20.605-20.605c12.599,7.919,26.597,13.816,41.543,17.225v29.123
+           c9.79,1.69,19.85,2.57,30.12,2.57s20.33-0.88,30.12-2.57v-29.123c14.947-3.41,28.944-9.307,41.543-17.225
+           l20.605,20.605c8.118-5.728,15.853-12.219,23.115-19.481s13.753-14.998,19.481-23.115l-20.605-20.605
+           c7.919-12.599,13.816-26.597,17.225-41.543H416.607z" />
+      <circle stroke="#BA0C2F" strokeWidth="28" strokeMiterlimit="10" cx="256" cy="256" r="73.342" />
+    </svg>
+  )
+}
+
+function IconTarget() {
+  return (
+    <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
+      <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(470.1377,256)"
+          d="m 0,0 c 0,-118.265 -95.873,-214.138 -214.138,-214.138 -118.265,0 -214.137,95.873 -214.137,214.138
+             0,118.265 95.872,214.138 214.137,214.138 C -95.873,214.138 0,118.265 0,0 Z" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(407.3745,256)"
+          d="m 0,0 c 0,-83.602 -67.772,-151.375 -151.375,-151.375 -83.602,0 -151.374,67.773 -151.374,151.375
+             0,83.602 67.772,151.375 151.374,151.375 C -67.772,151.375 0,83.602 0,0 Z" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(297.5889,179.4053)"
+          d="m 0,0 c -12.359,-6.726 -26.528,-10.546 -41.589,-10.546 -15.06,0 -29.228,3.82 -41.588,10.545" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(214.4111,332.5947)"
+          d="M 0,0 C 12.36,6.726 26.528,10.546 41.589,10.546 56.649,10.546 70.818,6.726 83.178,0" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(179.4053,214.4111)"
+          d="m 0,0 c -6.725,12.359 -10.546,26.528 -10.546,41.589 0,15.06 3.82,29.228 10.546,41.588" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(332.5952,297.5889)"
+          d="M 0,0 C 6.725,-12.359 10.546,-26.528 10.546,-41.589 10.546,-56.649 6.725,-70.817 0,-83.178" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(256,343.1406)" d="M 0,0 V 168.859" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(256,0)" d="M 0,0 V 168.859" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(343.1411,256)" d="M 0,0 H 168.859" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(0,256)" d="M 0,0 H 168.859" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(241,256)" d="M 0,0 H 30" />
+      </g>
+    </svg>
+  )
+}
+
+function IconConnect() {
+  return (
+    <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
+      <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+        {[
+          'translate(106,436)', 'translate(106,76)',
+          'translate(466,436)', 'translate(466,76)',
+        ].map((t, i) => (
+          <path key={i} stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+            transform={t} d="m 0,0 c 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 C -13.432,30 0,16.568 0,0 Z" />
+        ))}
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(286,467)" d="m 0,0 c 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 C -13.432,30 0,16.568 0,0 Z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(286,45)" d="m 0,0 c 0,16.568 -13.432,30 -30,30 -16.568,0 -30,-13.432 -30,-30 0,-16.568 13.432,-30 30,-30 16.568,0 30,13.432 30,30 z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(45,286)" d="m 0,0 c 16.568,0 30,-13.432 30,-30 0,-16.568 -13.432,-30 -30,-30 -16.568,0 -30,13.432 -30,30 0,16.568 13.432,30 30,30 z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10"
+          transform="translate(467,286)" d="m 0,0 c -16.568,0 -30,-13.432 -30,-30 0,-16.568 13.432,-30 30,-30 16.568,0 30,13.432 30,30 C 30,-13.432 16.568,0 0,0 Z" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,75)" d="M 0,0 V 121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(256,437)" d="M 0,0 V -121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(75,256)" d="M 0,0 H 121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(437,256)" d="M 0,0 H -121" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(97.2129,414.7866)" d="M 0,0 116.378,-116.377" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(213.5908,213.5908)" d="M 0,0 -116.378,-116.377" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(298.4092,213.5908)" d="M 0,0 116.378,-116.377" />
+        <path stroke="#1E1E1E" strokeWidth="22" strokeMiterlimit="10" transform="translate(414.7871,414.7866)" d="M 0,0 -116.378,-116.377" />
+        <path stroke="#BA0C2F" strokeWidth="26" strokeMiterlimit="10"
+          transform="translate(256,196)"
+          d="m 0,0 c -33.091,0 -60,26.909 -60,60 0,33.091 26.909,60 60,60 C 33.091,120 60,93.091 60,60 60,26.909 33.091,0 0,0 Z" />
+      </g>
+    </svg>
+  )
+}
+
+function IconLeaf() {
+  return (
+    <svg viewBox="0 0 682.66669 682.66669" fill="none" className="cp-feat-icon-svg">
+      <g transform="matrix(1.3333333,0,0,-1.3333333,0,682.66667)">
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(361.5459,234.5454)"
+          d="m 0,0 c 0,-58.291 -47.255,-105.545 -105.546,-105.545 -58.291,0 -105.546,47.254 -105.546,105.545 0,107.018 105.546,164.455 105.546,164.455 C -105.546,164.455 0,107.018 0,0 Z" />
+        <path stroke="#BA0C2F" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(256,399)" d="M 0,0 V -270" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(154.8789,271.8809)" d="M 0,0 101.121,-78.732" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(187.5967,338.647)" d="M 0,0 68.403,-53.259" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(357.1211,271.8809)" d="M 0,0 -101.121,-78.732" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(324.4033,338.647)" d="M 0,0 -68.403,-53.259" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(44.1855,475.9243)" d="M 0,0 91.314,-11.212 80.103,-102.526" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(467.8145,36.0757)" d="m 0,0 -91.314,11.212 11.211,91.314" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(318.375,23.2119)"
+          d="m 0,0 c -128.564,-34.449 -260.714,41.847 -295.163,170.413 -28.864,107.724 20.021,217.963 112.259,271.139" />
+        <path stroke="#1E1E1E" strokeWidth="30" strokeLinecap="butt" strokeLinejoin="miter" strokeMiterlimit="10"
+          transform="translate(193.625,488.7881)"
+          d="M 0,0 C 128.564,34.449 260.714,-41.847 295.163,-170.413 324.027,-278.137 275.142,-388.376 182.904,-441.552" />
+      </g>
+    </svg>
+  )
+}
+
+const features = [
+  { Icon: IconDevelopment, title: '高效混合' },
+  { Icon: IconTarget,      title: '精准控制' },
+  { Icon: IconConnect,     title: '强剪切分散' },
+  { Icon: IconLeaf,        title: '密封防污染' },
+]
+
+const coreEquipment = [
+  {
+    name: '实验室型双行星动力混合机',
+    img: '/assets/img/prd-02.jpg',
+    features: [
+      '适用于研发、小批量实验及工艺验证，紧凑轻便，操作简洁',
+      '与量产机型保持工艺一致性，可直接复用工艺参数',
+      '手摇升降，容积范围 1L–20L，伺服电机驱动',
+    ],
+  },
+  {
+    name: '桶体翻转型双行星动力混合机',
+    img: '/assets/img/prd-01.jpg',
+    features: [
+      '桶体可翻转出料，适用于高粘度物料的便捷出料作业',
+      '显著减少残料损耗与清洗时间，提升生产连续性',
+      '电动升降，容积范围 20L–150L，变频电机驱动',
+    ],
+  },
+  {
+    name: '工业量产型双行星动力混合机',
+    img: '/assets/img/prd-03.jpeg',
+    features: [
+      '面向中大批量生产设计，集成液压升降系统，兼顾产能与灵活性',
+      '真空密封防污染设计，金属零污染，保障浆料品质',
+      '液压升降，容积范围 150L–3400L，变频电机驱动',
+    ],
+  },
+]
+
 const allModels = [
   { model: 'HY-DLH1.5L',  liftType: '手摇升降', workVol: '1L',    designVol: '1.5L',  tankDim: 'Φ140×100',   mixerMotor: '0.75', revSpeed: '6-60',   ownSpeed: '17-170',  dissolverKW: '0.75', dissolverType: '伺服电机', dissolverRPM: '800-11000', dissolverLinear: '1-18m/s',  weight: '280kg',    dimension: '880×480×930'    },
   { model: 'HY-DLH3L',    liftType: '手摇升降', workVol: '2L',    designVol: '3L',    tankDim: 'Φ180×120',   mixerMotor: '0.75', revSpeed: '7-75',   ownSpeed: '18-250',  dissolverKW: '1.5',  dissolverType: '伺服电机', dissolverRPM: '800-11000', dissolverLinear: '1-18m/s',  weight: '303kg',    dimension: '920×520×1100'   },
@@ -49,56 +206,7 @@ const allModels = [
   { model: 'HY-DLH3400L', liftType: '液压升降', workVol: '3000L', designVol: '3400L', tankDim: 'Φ1700×1500', mixerMotor: '132',  revSpeed: '0-12',   ownSpeed: '0-30',    dissolverKW: '132',  dissolverType: '变频电机', dissolverRPM: '0-1000',    dissolverLinear: '0-23m/s',  weight: '42000kg',  dimension: '5800×2300×6000' },
 ]
 
-/* ========== 产品型号展示数据 ========== */
-const productModels = [
-  {
-    name: '实验室型',
-    fullName: '实验室型双行星动力混合机',
-    img: '/assets/img/prd-02.jpg',
-    desc: '适用于研发、小批量实验及工艺验证，紧凑轻便，操作简洁，与量产机型保持工艺一致性。',
-  },
-  {
-    name: '桶体翻转型',
-    fullName: '桶体翻转型双行星动力混合机',
-    img: '/assets/img/prd-01.jpg',
-    desc: '桶体可翻转出料，适用于高粘度物料的便捷出料作业，显著减少残料损耗与清洗时间。',
-  },
-  {
-    name: '450L 小型',
-    fullName: '450L 小型双行星动力混合机',
-    img: '/assets/img/prd-03.jpeg',
-    desc: '面向中小批量生产设计，集成液压升降系统，兼顾产能与灵活性，是量产产线的高性价比之选。',
-  },
-]
-
-/* ========== 客户案例数据 ========== */
-const cases = [
-  {
-    group: '全自动加投料系统解决方案',
-    images: [
-      { src: '/assets/images/products/pd-mixer/case-system-1.jpg', alt: '全自动加投料系统设备' },
-      { src: '/assets/images/products/pd-mixer/case-system-2.jpg', alt: '全自动加投料系统现场', className: 'pdm-case-img--fill-height' },
-    ],
-  },
-  {
-    group: 'EV 电池匀浆车间',
-    images: [
-      { src: '/assets/images/products/pd-mixer/case-ev-equipment.jpg', alt: 'EV电池匀浆车间设备' },
-      { src: '/assets/images/products/pd-mixer/case-ev-site.jpg',      alt: 'EV电池匀浆车间现场照' },
-      { src: '/assets/images/products/pd-mixer/case-ev-full.jpg',      alt: 'EV电池匀浆车间全套设备' },
-    ],
-  },
-  {
-    group: '3C 电池匀浆车间',
-    images: [
-      { src: '/assets/images/products/pd-mixer/case-3c-equipment.jpg', alt: '3C电池匀浆车间半自动加投料系统设备' },
-      { src: '/assets/images/products/pd-mixer/case-3c-site.jpg',      alt: '3C电池匀浆车间现场照' },
-    ],
-  },
-]
-
-/* ========== 参数表组件 ========== */
-function ParamsTable({ data }) {
+function ParamsTable() {
   return (
     <div className="detail-params-table">
       <table className="params-table pdm-params-table">
@@ -115,7 +223,7 @@ function ParamsTable({ data }) {
           </tr>
         </thead>
         <tbody>
-          {data.map((row, i) => (
+          {allModels.map((row, i) => (
             <React.Fragment key={i}>
               <tr className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
                 <td className="td-model-code">{row.model}</td>
@@ -144,6 +252,8 @@ function ParamsTable({ data }) {
 }
 
 export default function DualPlanetaryMixerPage() {
+  const [videoPlayed, setVideoPlayed] = useState(false)
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -160,9 +270,10 @@ export default function DualPlanetaryMixerPage() {
   return (
     <>
       <PageHero
-        title="双行星动力™混合机"
+        title="双行星动力混合机"
         subtitle="PD 搅拌机 · 新能源行业核心装备"
-        bgImage={productHeroImg}
+        bgImage={HERO_IMG}
+        noScroll
       />
 
       <div className="page-body">
@@ -172,155 +283,94 @@ export default function DualPlanetaryMixerPage() {
           { label: '双行星动力混合机' },
         ]} />
 
-        {/* ===== 产品展示 + 产品介绍（合并） ===== */}
+        {/* ===== 产品介绍 + 视频模块 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <h2 className="section-heading fade-up">产品介绍</h2>
             <div className="pdm-intro-grid">
+              <div className="pdm-intro-visual pdm-intro-visual--photo fade-up fade-up-delay-1">
+                <img
+                  src={PRODUCT_IMG}
+                  alt="双行星动力™混合机"
+                  className="cp-intro-product-img"
+                />
+              </div>
               <div className="pdm-intro-content">
-                <span className="pdm-intro-label fade-up">新能源行业核心装备</span>
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">
-                  双行星动力<sup>™</sup>混合机
-                </h2>
-                <div className="pdm-intro-rule fade-up fade-up-delay-1"></div>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">双行星动力™混合机</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  双行星动力混合机（PD搅拌机）通常具有一个或多个搅拌桨和分散盘，它们围绕釜体轴线公转的同时，也围绕自身轴线自转。通过搅拌桨和分散盘的行星运动，使物料受到剪切和捏合作用，实现混合。是一种<strong>无死角的动力混合、分散设备</strong>。
+                  以双行星动力混合机（PD搅拌机）为核心，集成行星公转、自转与高速分散三重动力，实现高粘度浆料无死角均匀混合，适用于锂电池正负极浆料批次生产。
                 </p>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  广泛应用于新能源浆料制备、粘合剂、化工涂料、塑料、制药、食品等行业的固-固相、固-液相、液-液相物料的混合、反应、分散、溶解、均质、乳化等工艺过程。
+                  系统覆盖从实验室级（1L）到工业量产级（3400L）全系列规格，搅拌桨与分散盘的行星运动使物料受到充分剪切和捏合，确保浆料均匀性与批次一致性。
                 </p>
-                <div className="pdm-intro-apps fade-up fade-up-delay-3">
-                  {[
-                    { name: '新能源浆料', icon: IconCarBatteryOutline24 },
-                    { name: '粘合剂', icon: IconTestTubeOutline24 },
-                    { name: '化工涂料', icon: IconFlaskOutline24 },
-                    { name: '制药', icon: IconMedicineOutline24 },
-                    { name: '食品加工', icon: IconCutleryOutline24 },
-                    { name: '电子材料', icon: IconMicrochipOutline24 },
-                  ].map((item, i) => (
-                    <span key={i} className="pdm-app-tag">
-                      <item.icon size={16} />
-                      {item.name}
-                    </span>
-                  ))}
-                </div>
               </div>
-              <div className="pdm-intro-visual fade-up fade-up-delay-2">
-                <div className="pdm-intro-image-frame">
-                  <img
-                    src="/assets/images/products/pd-mixer/双行星动力混合设备生图.jpg"
-                    alt="双行星动力™混合机（PD搅拌机）"
-                    className="pdm-intro-img"
-                  />
-                </div>
+            </div>
+
+            <div className="cp-video-mock fade-up fade-up-delay-2">
+              <img src={PRODUCT_IMG} alt="产品视频封面" className="cp-video-mock-poster" />
+              <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
+                {!videoPlayed ? (
+                  <button className="cp-video-play-btn" onClick={() => setVideoPlayed(true)} aria-label="播放">
+                    <span className="cp-video-play-ring" />
+                    <span className="cp-video-play-icon">▶</span>
+                  </button>
+                ) : (
+                  <div className="cp-video-played-state">
+                    <p className="cp-video-played-text">视频制作中，敬请期待</p>
+                    <button className="cp-video-played-reset" onClick={() => setVideoPlayed(false)}>返回</button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </section>
 
-        {/* ===== 可靠性承诺（暗色高级区块） ===== */}
-        <section className="pdm-reliability-section">
-          <div className="page-container">
-            <h2 className="section-heading fade-up">可靠性承诺</h2>
-            <p className="pdm-rel-lead fade-up fade-up-delay-1">
-              经长期生产验证，<br />
-              红运机械的双行星动力混合机以其卓越的可靠性保障生产安全。
-            </p>
-            <div className="pdm-rel-grid fade-up fade-up-delay-2">
-              <div className="pdm-rel-card">
-                <div className="pdm-rel-card-top">
-                  <div className="pdm-rel-card-icon"><IconGreenhouseOutline48 /></div>
-                  <span className="pdm-rel-card-num">01</span>
-                </div>
-                <h3 className="pdm-rel-card-title">金属零污染</h3>
-                <p className="pdm-rel-card-desc">从未因金属污染（铜、锌、镍、铁）、搅拌机刮壁、漏油而导致浆料报废。</p>
-              </div>
-              <div className="pdm-rel-card">
-                <div className="pdm-rel-card-top">
-                  <div className="pdm-rel-card-icon"><IconRotateCubeOutline48 /></div>
-                  <span className="pdm-rel-card-num">02</span>
-                </div>
-                <h3 className="pdm-rel-card-title">桶体结构稳定</h3>
-                <p className="pdm-rel-card-desc">从未出现因桶身内胆及桶底内胆变形导致的漏水问题。</p>
-              </div>
-              <div className="pdm-rel-card">
-                <div className="pdm-rel-card-top">
-                  <div className="pdm-rel-card-icon"><IconFirewallOutline48 /></div>
-                  <span className="pdm-rel-card-num">03</span>
-                </div>
-                <h3 className="pdm-rel-card-title">电气安全防护</h3>
-                <p className="pdm-rel-card-desc">从未出现因粉尘进入电柜引起的电气火灾。</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ===== 产品特点 ===== */}
+        <SystemFeaturesSection features={features} title="产品特点" enLabel="Product Features" grayBg />
 
-        {/* ===== 产品优势 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <h2 className="section-heading fade-up">产品优势</h2>
-            <div className="detail-features-grid fade-up fade-up-delay-1">
-              <div className="detail-feature-card">
-                <span className="detail-feature-index">01</span>
-                <div className="pdm-adv-icon"><IconArrowsInfinityOutline24 size={28} /></div>
-                <h3 className="pdm-adv-title">高效混合</h3>
-                <p>行星公转+自转+高速分散三重动力，实现高粘度物料无死角均匀混合。</p>
-              </div>
-              <div className="detail-feature-card">
-                <span className="detail-feature-index">02</span>
-                <div className="pdm-adv-icon"><IconTargetOutline24 size={28} /></div>
-                <h3 className="pdm-adv-title">精准控制</h3>
-                <p>变频调速，公转、自转、分散转速独立可调，工艺参数精准复现。</p>
-              </div>
-              <div className="detail-feature-card">
-                <span className="detail-feature-index">03</span>
-                <div className="pdm-adv-icon"><IconNeuralGridOutline24 size={28} /></div>
-                <h3 className="pdm-adv-title">强剪切分散</h3>
-                <p>高速分散盘产生强剪切力，有效破碎团聚体，分散均匀度≥99%。</p>
-              </div>
-              <div className="detail-feature-card">
-                <span className="detail-feature-index">04</span>
-                <div className="pdm-adv-icon"><IconNetworkNodesOutline24 size={28} /></div>
-                <h3 className="pdm-adv-title">稳定搅拌</h3>
-                <p>液压升降、真空密封、防污染设计，长期运行零故障，保障生产连续性。</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== 产品型号展示 ===== */}
+        {/* ===== 核心设备 ===== */}
         <section className="page-section">
           <div className="page-container">
-            <h2 className="section-heading fade-up">产品型号</h2>
-            <div className="pdm-models-grid">
-              {productModels.map((m, i) => (
-                <div key={i} className={`pdm-model-card fade-up fade-up-delay-${i + 1}`}>
-                  <div className="pdm-model-image-wrap">
-                    <img src={m.img} alt={m.fullName} className="pdm-model-img" />
-                    <span className="pdm-model-num">{String(i + 1).padStart(2, '0')}</span>
+            <p className="section-en-label fade-up">Product Series</p>
+            <h2 className="section-heading section-heading--center fade-up">产品系列</h2>
+
+            <div className="cp-core-section">
+              {coreEquipment.map((device, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <hr className="cp-core-divider" />}
+                  <div className="cp-core-device-row fade-up fade-up-delay-1">
+                    <div className="cp-core-device-img-wrap">
+                      <img
+                        src={device.img}
+                        alt={device.name}
+                        className="cp-core-device-img"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="cp-core-device-info">
+                      <div className="cp-core-device-badge">
+                        <h3 className="cp-core-device-name">{device.name}</h3>
+                      </div>
+                      <div className="cp-core-device-divider" />
+                      <ul className="cp-core-device-features">
+                        {device.features.map((f, j) => <li key={j}>{f}</li>)}
+                      </ul>
+                    </div>
                   </div>
-                  <div className="pdm-model-info">
-                    <span className="pdm-model-badge">{m.name}</span>
-                    <h3 className="pdm-model-title">{m.fullName}</h3>
-                    <p className="pdm-model-desc">{m.desc}</p>
-                  </div>
-                </div>
+                </React.Fragment>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ===== 技术参数 ===== */}
+        {/* ===== 参数汇总 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
-            <h2 className="section-heading fade-up">技术参数</h2>
-            <h3 className="pdm-table-subtitle fade-up fade-up-delay-1">
-              双行星动力™混合机（PD搅拌机）覆盖从实验室级到工业级全系列规格，满足不同产线需求。
-            </h3>
-            <div className="fade-up fade-up-delay-2">
-              <ParamsTable data={allModels} />
+            <p className="section-en-label fade-up">Parameters Overview</p>
+            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
+            <div className="fade-up fade-up-delay-1">
+              <ParamsTable />
             </div>
-            <p className="pdm-table-note fade-up fade-up-delay-3">
+            <p className="cp-table-note fade-up fade-up-delay-3">
               * 以上参数仅供参考，实际规格以合同为准。可根据客户工艺需求进行定制化设计。
             </p>
           </div>
@@ -329,45 +379,73 @@ export default function DualPlanetaryMixerPage() {
         {/* ===== 客户案例 ===== */}
         <section className="page-section">
           <div className="page-container">
-            <h2 className="section-heading fade-up">客户案例</h2>
-            <p className="section-desc fade-up fade-up-delay-1">
-              服务全球新能源头部客户，从实验室验证到 GWh 量产产线，红运机械全程提供装备保障。
-            </p>
-            {cases.map((c, gi) => (
-              <div key={gi} className={`pdm-case-group fade-up fade-up-delay-${gi + 2}`}>
-                <div className="pdm-case-group-header">
-                  <span className="pdm-case-group-index">{String(gi + 1).padStart(2, '0')}</span>
-                  <h3 className="pdm-case-group-title">{c.group}</h3>
+            <p className="section-en-label fade-up">Case</p>
+            <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
+
+            <div className="cp-verify-block fade-up fade-up-delay-1">
+              <h3 className="cp-verify-subheading">全自动加投料系统解决方案</h3>
+              <div className="cp-charts-grid-3">
+                <div className="cp-chart-card">
+                  <div className="cp-chart-img-wrap">
+                    <img src={`${IMG}/case-system-1.jpg`} alt="全自动加投料系统设备" className="cp-chart-img" loading="lazy" />
+                  </div>
+                  <p className="cp-chart-caption">全自动加投料系统设备</p>
                 </div>
-                <div className={`pdm-case-images pdm-case-images--${c.images.length}`}>
-                  {c.images.map((img, ii) => (
-                    <div key={ii} className="pdm-case-image-wrap">
-                      <img src={img.src} alt={img.alt} className={`pdm-case-img ${img.className || ''}`} loading="lazy" />
-                      <div className="pdm-case-image-overlay">
-                        <span>{img.alt}</span>
-                      </div>
-                    </div>
-                  ))}
+                <div className="cp-chart-card cp-chart-card--span2">
+                  <div className="cp-chart-img-wrap">
+                    <img src={`${IMG}/case-system-2.jpg`} alt="全自动加投料系统现场" className="cp-chart-img" loading="lazy" />
+                  </div>
+                  <p className="cp-chart-caption">全自动加投料系统现场</p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="cp-verify-block fade-up fade-up-delay-2">
+              <h3 className="cp-verify-subheading">EV 电池匀浆车间</h3>
+              <div className="cp-charts-grid-3">
+                <div className="cp-chart-card">
+                  <div className="cp-chart-img-wrap">
+                    <img src={`${IMG}/case-ev-equipment-01.jpg`} alt="EV电池匀浆车间设备" className="cp-chart-img" loading="lazy" />
+                  </div>
+                  <p className="cp-chart-caption">EV 电池匀浆车间设备</p>
+                </div>
+                <div className="cp-chart-card">
+                  <div className="cp-chart-img-wrap">
+                    <img src={`${IMG}/case-ev-site-01.jpg`} alt="EV电池匀浆车间现场照" className="cp-chart-img" loading="lazy" />
+                  </div>
+                  <p className="cp-chart-caption">EV 电池匀浆车间现场</p>
+                </div>
+                <div className="cp-chart-card">
+                  <div className="cp-chart-img-wrap">
+                    <img src={`${IMG}/case-ev-full-01.jpg`} alt="EV电池匀浆车间全套设备" className="cp-chart-img" loading="lazy" />
+                  </div>
+                  <p className="cp-chart-caption">全套匀浆系统</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="cp-verify-block fade-up fade-up-delay-3">
+              <h3 className="cp-verify-subheading">3C 电池匀浆车间</h3>
+              <div className="cp-charts-grid-3">
+                <div className="cp-chart-card">
+                  <div className="cp-chart-img-wrap">
+                    <img src={`${IMG}/case-3c-equipment-01.jpg`} alt="3C电池匀浆车间设备" className="cp-chart-img" loading="lazy" />
+                  </div>
+                  <p className="cp-chart-caption">3C 电池匀浆车间半自动加投料系统设备</p>
+                </div>
+                <div className="cp-chart-card">
+                  <div className="cp-chart-img-wrap">
+                    <img src={`${IMG}/case-3c-site.jpg`} alt="3C电池匀浆车间现场照" className="cp-chart-img" loading="lazy" />
+                  </div>
+                  <p className="cp-chart-caption">3C 电池匀浆车间现场</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* ===== 联系 CTA ===== */}
-        <div className="detail-contact-cta">
-          <div className="detail-contact-inner" style={{ backgroundImage: `url(${ctaBgImg})` }}>
-            <h2 className="detail-contact-title">获取专属解决方案</h2>
-            <p className="detail-contact-desc">
-              我们的专业团队随时为您提供技术咨询和定制化解决方案，<br />
-              助力您的生产工艺升级。
-            </p>
-            <Link to="/contact" className="btn-primary">
-              联系我们
-              <IconArrowRightOutline24 size={18} />
-            </Link>
-          </div>
-        </div>
+        {/* ===== 技术咨询 ===== */}
+        <TechInquirySection />
       </div>
     </>
   )

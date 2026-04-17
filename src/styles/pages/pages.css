@@ -844,49 +844,69 @@
 
 /* 发展历程 */
 .about-timeline {
-  position: relative;
-  padding: 40px 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 40px 0 32px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--zinc-300) transparent;
 }
 
-.about-timeline-line {
+.about-timeline::-webkit-scrollbar {
+  height: 4px;
+}
+
+.about-timeline::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.about-timeline::-webkit-scrollbar-thumb {
+  background: var(--zinc-300);
+  border-radius: 2px;
+}
+
+.about-timeline-inner {
+  display: flex;
+  position: relative;
+  min-width: max-content;
+  padding-left: max(40px, calc((100vw - var(--max-width)) / 2 + 40px));
+  padding-right: 40px;
+}
+
+/* 横向时间线 — 穿过所有 dot 中心 */
+.about-timeline-inner::before {
+  content: '';
   position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
+  left: max(40px, calc((100vw - var(--max-width)) / 2 + 40px));
+  right: 40px;
+  /* image height(180px) + image margin-bottom(24px) + half dot(7px) */
+  top: calc(180px + 24px + 7px);
+  height: 2px;
   background: linear-gradient(
-    180deg,
+    90deg,
     transparent 0%,
-    var(--zinc-200) 10%,
-    var(--zinc-200) 90%,
+    var(--zinc-200) 4%,
+    var(--zinc-200) 96%,
     transparent 100%
   );
-  transform: translateX(-50%);
 }
 
 .about-timeline-item {
-  position: relative;
-  width: 50%;
-  padding: 0 0 56px;
+  flex: 0 0 280px;
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
 }
 
-.about-timeline-item.left {
-  padding-right: 60px;
-  flex-direction: row;
-}
-
-.about-timeline-item.right {
-  margin-left: 50%;
-  padding-left: 60px;
-  flex-direction: row-reverse;
+.about-timeline-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-bottom: 24px;
 }
 
 .about-timeline-dot {
-  position: absolute;
-  top: 10px;
   width: 14px;
   height: 14px;
   border-radius: 50%;
@@ -895,37 +915,20 @@
   box-shadow:
     0 0 0 2px var(--hy-red),
     0 0 12px rgba(186, 12, 47, 0.3);
-  z-index: 1;
   flex-shrink: 0;
-}
-
-.about-timeline-item.left .about-timeline-dot {
-  right: -8px;
-}
-
-.about-timeline-item.right .about-timeline-dot {
-  left: -8px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
 }
 
 .about-timeline-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.about-timeline-item.left .about-timeline-content {
-  text-align: right;
-}
-
-.about-timeline-image {
-  width: 260px;
-  flex-shrink: 0;
-  overflow: hidden;
+  text-align: center;
 }
 
 .about-timeline-year {
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 700;
-  font-family: "DIN Pro", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   background: linear-gradient(180deg, #e50004 0%, #ba0c2f 100%);
   background-clip: text;
   -webkit-background-clip: text;
@@ -934,16 +937,36 @@
   margin-bottom: 8px;
 }
 
-.about-timeline-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--zinc-900);
-  margin-bottom: 6px;
+.about-timeline-nav {
+  display: flex;
+  gap: 8px;
+  padding-top: 24px;
+  padding-left: max(40px, calc((100vw - var(--max-width)) / 2 + 40px));
 }
 
-.about-timeline-desc {
-  font-size: 14px;
-  color: var(--zinc-500);
+.about-timeline-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--zinc-200);
+  background: var(--hy-white);
+  color: var(--zinc-700);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.about-timeline-nav-btn:hover {
+  background: var(--hy-red);
+  border-color: var(--hy-red);
+  color: var(--hy-white);
+}
+
+.about-timeline-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--zinc-600);
   line-height: 1.7;
 }
 
@@ -1643,6 +1666,12 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card-image--contain img {
+  object-fit: contain;
+  padding: 24px;
+  background: #f8f8f8;
 }
 
 .product-card:hover .product-card-image .img-placeholder,
@@ -4695,29 +4724,22 @@
     font-size: 32px;
   }
 
-  /* 时间线变为单列 */
-  .about-timeline-line {
-    left: 20px;
+  .about-timeline-inner {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
-  .about-timeline-item,
-  .about-timeline-item.left,
-  .about-timeline-item.right {
-    width: 100%;
-    margin-left: 0;
-    padding-left: 52px;
-    padding-right: 0;
-    text-align: left;
+  .about-timeline-inner::before {
+    left: 24px;
+    right: 24px;
   }
 
-  .about-timeline-item.left .about-timeline-dot,
-  .about-timeline-item.right .about-timeline-dot {
-    left: 12px;
-    right: auto;
+  .about-timeline-item {
+    flex: 0 0 180px;
   }
 
   .about-timeline-year {
-    font-size: 28px;
+    font-size: 22px;
   }
 
   .about-production-gallery {
@@ -5346,6 +5368,17 @@
 /* ===== 产品型号参数表 ===== */
 .cp-params-table {
   min-width: 760px;
+}
+
+/* 干法粉体混合机参数表：列数多，切换为 auto 布局让型号列自适应宽度 */
+.dpm-params-table {
+  table-layout: auto;
+  min-width: 1100px;
+}
+
+.dpm-params-table .td-model-code {
+  white-space: nowrap;
+  min-width: 140px;
 }
 
 .cp-table-subtitle {
@@ -6300,10 +6333,14 @@
 }
 
 /* 视频内图片缩小（加内边距让图片视觉缩小）*/
+.pp-video-mock {
+  aspect-ratio: 16 / 9;
+}
+
 .pp-video-mock .cp-video-mock-poster {
-  object-fit: contain;
-  padding: 64px 128px;
-  background: var(--zinc-200);
+  object-fit: cover;
+  padding: 0;
+  background: #000;
 }
 
 /* 文字：右侧偏上 */

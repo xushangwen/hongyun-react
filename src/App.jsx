@@ -13,6 +13,9 @@ import CirculationPulpingPage from './pages/CirculationPulpingPage'
 import PDPulpingPage from './pages/PDPulpingPage'
 import PipelinePulpingPage from './pages/PipelinePulpingPage'
 import TwinScrewPulpingPage from './pages/TwinScrewPulpingPage'
+import DryPowderMixerPage from './pages/DryPowderMixerPage'
+import HighSpeedDisperserPage from './pages/HighSpeedDisperserPage'
+import KneaderPage from './pages/KneaderPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 
@@ -29,9 +32,12 @@ function App() {
           <Route path="/solutions/new-energy/pd-pulping" element={<PDPulpingPage />} />
           <Route path="/solutions/new-energy/pipeline-pulping" element={<PipelinePulpingPage />} />
           <Route path="/solutions/new-energy/twin-screw-pulping" element={<TwinScrewPulpingPage />} />
+          <Route path="/solutions/solid-state-battery/dry-powder-mixer" element={<DryPowderMixerPage />} />
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/new-energy/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
+          <Route path="/products/new-energy/high-speed-disperser" element={<HighSpeedDisperserPage />} />
+          <Route path="/products/new-energy/kneader" element={<KneaderPage />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/news" element={<NewsListPage />} />

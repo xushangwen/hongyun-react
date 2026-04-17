@@ -16,9 +16,9 @@ const productCategories = [
     name: '新能源行业',
     desc: '面向锂电池正负极浆料制备的核心装备，覆盖搅拌、分散、捏合、制浆全工艺环节。',
     products: [
-      { name: '双行星动力混合机', slug: 'dual-planetary-mixer' },
-      { name: '高速分散机', slug: 'high-speed-disperser' },
-      { name: '捏合机', slug: 'kneader' },
+      { name: '双行星动力混合机', slug: 'dual-planetary-mixer', image: '/assets/images/solutions/pd-pulping/main-product.webp', imgContain: true },
+      { name: '高速分散机', slug: 'high-speed-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-view.webp', imgContain: true },
+      { name: '捏合机', slug: 'kneader', image: '/assets/images/solutions/pipeline-pulping/tank-main.webp', imgContain: true },
       { name: '双螺杆制浆机', slug: 'twin-screw-pulper' },
     ],
   },
@@ -162,13 +162,9 @@ export default function ProductsPage() {
                     className="product-card"
                     key={product.slug}
                   >
-                    <div className="product-card-image">
-                      {/* 第一个行业的第一个产品使用具体图片 */}
-                      {category.id === 'new-energy' && index === 0 ? (
-                        <img 
-                          src={dualPlanetaryMixerImg} 
-                          alt={product.name}
-                        />
+                    <div className={`product-card-image${product.imgContain ? ' product-card-image--contain' : ''}`}>
+                      {product.image ? (
+                        <img src={product.image} alt={product.name} loading="lazy" />
                       ) : (
                         <ImagePlaceholder height="100%" label={product.name} />
                       )}

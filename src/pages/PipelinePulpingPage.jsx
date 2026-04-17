@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
@@ -167,8 +167,6 @@ const features = [
 
 /* ========== 主页面 ========== */
 export default function PipelinePulpingPage() {
-  const [videoPlayed, setVideoPlayed] = useState(false)
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -221,20 +219,15 @@ export default function PipelinePulpingPage() {
 
             {/* 视频模块 */}
             <div className="cp-video-mock pp-video-mock fade-up fade-up-delay-2">
-              <img src={PRODUCT_IMG} alt="方案视频封面" className="cp-video-mock-poster" />
-              <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
-                {!videoPlayed ? (
-                  <button className="cp-video-play-btn" onClick={() => setVideoPlayed(true)} aria-label="播放">
-                    <span className="cp-video-play-ring" />
-                    <span className="cp-video-play-icon">▶</span>
-                  </button>
-                ) : (
-                  <div className="cp-video-played-state">
-                    <p className="cp-video-played-text">视频制作中，敬请期待</p>
-                    <button className="cp-video-played-reset" onClick={() => setVideoPlayed(false)}>返回</button>
-                  </div>
-                )}
-              </div>
+              <video
+                className="cp-video-mock-poster"
+                controls
+                playsInline
+                poster={`${IMG}/video-poster.jpg`}
+                preload="metadata"
+              >
+                <source src={`${IMG}/product-video.mp4`} type="video/mp4" />
+              </video>
             </div>
           </div>
         </section>
