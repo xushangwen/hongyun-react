@@ -3116,12 +3116,20 @@
   width: 100%;
 }
 .talent-value-icon {
-  color: var(--zinc-900);
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  background: var(--zinc-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--hy-red);
   margin-bottom: 20px;
-  transition: color 0.35s ease;
+  transition: color 0.35s ease, background 0.35s ease;
 }
 .talent-value-card:hover .talent-value-icon {
   color: #fff;
+  background: rgba(255, 255, 255, 0.15);
 }
 .talent-value-title {
   font-size: 16px;

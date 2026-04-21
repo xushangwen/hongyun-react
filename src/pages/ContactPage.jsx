@@ -702,7 +702,7 @@ function JoinUsTab() {
               style={{ '--talent-bg': `url(${item.bg})` }}
             >
               <div className="talent-value-icon">
-                <item.Icon size={28} />
+                <item.Icon size={24} />
               </div>
               <h3 className="talent-value-title">{item.title}</h3>
               <p className="talent-value-desc">{item.desc}</p>
