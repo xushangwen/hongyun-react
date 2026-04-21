@@ -11,6 +11,9 @@ import {
   IconXmarkOutline24,
   IconCloudUploadOutline24,
   IconCircleCheckOutline24,
+  IconUserHeartOutline24,
+  IconBooksOutline24,
+  IconHandshakeOutline24,
 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
@@ -19,15 +22,18 @@ import MapboxMap from '../components/MapboxMap'
 import contactHeroImg from '../assets/img/DJI_20250418104522_0160_D 拷贝.jpg'
 import brandPanelBg from '../assets/img/IMG_4784.jpg'
 import inquiryBrandPanelBg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.png'
+import talentBg01 from '../assets/img/talent-value-01.jpg'
+import talentBg02 from '../assets/img/talent-value-02.jpg'
+import talentBg03 from '../assets/img/talent-value-03.jpg'
 
 /* ========== 联系方式数据 ========== */
 const contactCards = [
   {
     Icon: IconPhoneOutline24,
-    title: '全国服务热线',
+    title: '服务热线',
     items: [
       { label: '全国客服', value: '400 915 3366', isPhone: true },
-      { label: '常州总部', value: '0519-86886896', isPhone: true },
+      { label: '常州基地', value: '0519-86886896', isPhone: true },
       { label: '广州基地', value: '020-34881055', isPhone: true },
     ],
   },
@@ -63,22 +69,22 @@ const industryOptions = [
 /* ========== 人才理念 ========== */
 const talentValues = [
   {
-    index: '01',
+    Icon: IconUserHeartOutline24,
     title: '以人为本，尊重个体',
     desc: '员工是企业最宝贵的财富。我们致力于为每一位成员创造公平、尊重的成长环境，倾听每份声音，释放每种个性与创造力。',
-    ref: '参考：谷歌"以人为本"文化 / 华为"以客户为中心、以奋斗者为本"',
+    bg: talentBg01,
   },
   {
-    index: '02',
+    Icon: IconBooksOutline24,
     title: '持续学习，共同成长',
     desc: '构建完善的人才培育体系，提供多维度的培训与发展机会，鼓励员工持续学习、勇于创新，与企业同频共振，携手成长。',
-    ref: '参考：通用电气 / IBM 学习文化',
+    bg: talentBg02,
   },
   {
-    index: '03',
+    Icon: IconHandshakeOutline24,
     title: '利他原则，协作共赢',
     desc: '秉承"利他"工作理念，以团队整体利益为先，相互支持、协作共赢，在开放包容的组织氛围中激发每个人的潜能，共同成就更好的红运。',
-    ref: '参考：阿里巴巴价值观 / 稻盛和夫利他经营哲学',
+    bg: talentBg03,
   },
 ]
 
@@ -651,7 +657,26 @@ function ContactInfoTab() {
         ))}
       </div>
       <div className="contact-map-section">
-        <MapboxMap />
+        <div className="contact-map-grid">
+          <div className="contact-map-card">
+            <div className="contact-map-card-label">常州基地</div>
+            <MapboxMap
+              lng={119.959147}
+              lat={31.617021}
+              name="江苏红运智能装备有限公司"
+              address="江苏省常州市武进高新区<br/>南湖西路8-8号"
+            />
+          </div>
+          <div className="contact-map-card">
+            <div className="contact-map-card-label">广州基地</div>
+            <MapboxMap
+              lng={113.449059}
+              lat={22.843914}
+              name="广州红尚机械制造有限公司"
+              address="广州市南沙区东涌镇<br/>同裕街40号"
+            />
+          </div>
+        </div>
       </div>
     </>
   )
@@ -671,8 +696,14 @@ function JoinUsTab() {
         </p>
         <div className="talent-values-grid">
           {talentValues.map((item) => (
-            <div className="talent-value-card" key={item.index}>
-              <span className="talent-value-index">{item.index}</span>
+            <div
+              className="talent-value-card"
+              key={item.title}
+              style={{ '--talent-bg': `url(${item.bg})` }}
+            >
+              <div className="talent-value-icon">
+                <item.Icon size={28} />
+              </div>
               <h3 className="talent-value-title">{item.title}</h3>
               <p className="talent-value-desc">{item.desc}</p>
             </div>
@@ -730,8 +761,8 @@ function JoinUsTab() {
 /* ========== 子页面 Tab 配置 ========== */
 const TABS = [
   { key: 'inquiry', label: '技术咨询' },
-  { key: 'info',    label: '联系方式' },
   { key: 'join',    label: '加入我们' },
+  { key: 'info',    label: '联系方式' },
 ]
 
 /* ========== 主页面 ========== */
