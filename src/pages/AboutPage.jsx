@@ -45,15 +45,17 @@ function useCountUp(target, duration = 1800) {
   return [count, ref]
 }
 
-/* ========== 发展历程数据 [AI生成] ========== */
+/* ========== 发展历程数据 ========== */
 const timelineData = [
-  { year: '1993', title: '红运机械成立', desc: '公司在常州创立，专注混合设备研发制造，开启三十余年的技术积累之路。' },
-  { year: '2001', title: '首条产线交付', desc: '成功交付首套自动化混合生产线，标志着从单机设备向系统集成方向转型。' },
-  { year: '2008', title: '广州红尚机械制造有限公司成立', desc: '广州南沙生产基地投产运营，生产规模与产能实现大幅提升，服务辐射华南地区。' },
-  { year: '2013', title: '技术研发突破', desc: '双行星动力混合技术取得重大突破，核心专利突破50项，确立行业技术领先地位。' },
-  { year: '2018', title: '新能源战略布局', desc: '全面进军新能源锂电池制浆领域，推出PD制浆系统，迅速获得头部电池厂商认可。' },
-  { year: '2022', title: '智能制造升级', desc: '建成数字化智能工厂，引入MES系统与工业物联网，实现全流程智能管控。' },
-  { year: '2025', title: '固态电池新赛道', desc: '率先布局固态电池生产设备，推出干法电极连续挤出机等前沿产品，抢占技术制高点。' },
+  { year: '1990', title: '创始人经营代理油漆、油墨等化工、食品、制药设备' },
+  { year: '1993', title: '广州市海珠区红运机械厂成立' },
+  { year: '2000', title: '搬迁至广州市番禺区，更名为广州市番禺区红运机械厂' },
+  { year: '2007', title: '注册成立广州红运混合设备有限公司' },
+  { year: '2014', title: '搬迁至广州市南沙区东涌镇同裕街40号，注册成立广州红尚机械制造有限公司' },
+  { year: '2021', title: '在江苏常州成立江苏红运智能制造有限公司，并作为公司总部' },
+  { year: '2022', title: '建立日本京都办事处' },
+  { year: '2024', title: '建立印度办事处' },
+  { year: '2025', title: '建立海南、香港、新加坡分公司' },
 ]
 
 /* ========== 全球化布局数据 [AI生成] ========== */
@@ -75,6 +77,7 @@ const honorsTabs = ['资质认证', '专利技术', '荣誉奖项']
 
 export default function AboutPage() {
   const [activeHonorTab, setActiveHonorTab] = useState(0)
+  const timelineRef = useRef(null)
 
   const [count30, ref30] = useCountUp(30)
   const [count100, ref100] = useCountUp(100)
@@ -182,22 +185,30 @@ export default function AboutPage() {
         <section className="about-page-section" id="history">
           <div className="page-container">
             <h2 className="section-heading">发展历程</h2>
-            <div className="about-timeline">
-              <div className="about-timeline-line" />
+          </div>
+          <div className="about-timeline" ref={timelineRef}>
+            <div className="about-timeline-inner">
               {timelineData.map((item, index) => (
-                <div className={`about-timeline-item fade-up ${index % 2 === 0 ? 'left' : 'right'}`} key={index}>
+                <div className="about-timeline-item" key={index}>
+                  <div className="about-timeline-image">
+                    <ImagePlaceholder height="180px" showLabel={false} />
+                  </div>
                   <div className="about-timeline-dot" />
                   <div className="about-timeline-content">
                     <span className="about-timeline-year">{item.year}</span>
                     <h4 className="about-timeline-title">{item.title}</h4>
-                    <p className="about-timeline-desc">{item.desc}</p>
-                  </div>
-                  <div className="about-timeline-image">
-                    <ImagePlaceholder height="160px" label={item.title} />
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+          <div className="about-timeline-nav">
+            <button className="about-timeline-nav-btn" onClick={() => timelineRef.current?.scrollBy({ left: -300, behavior: 'smooth' })} aria-label="向左滚动">
+              <IconArrowRightOutline24 size={18} style={{ transform: 'rotate(180deg)' }} />
+            </button>
+            <button className="about-timeline-nav-btn" onClick={() => timelineRef.current?.scrollBy({ left: 300, behavior: 'smooth' })} aria-label="向右滚动">
+              <IconArrowRightOutline24 size={18} />
+            </button>
           </div>
         </section>
 

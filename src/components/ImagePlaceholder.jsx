@@ -1,4 +1,4 @@
-export default function ImagePlaceholder({ width = '100%', height = '200px', label = '图片占位', className = '' }) {
+export default function ImagePlaceholder({ width = '100%', height = '200px', label = '图片占位', showLabel = true, className = '' }) {
   return (
     <div
       className={`img-placeholder ${className}`}
@@ -9,7 +9,7 @@ export default function ImagePlaceholder({ width = '100%', height = '200px', lab
         <circle cx="8.5" cy="8.5" r="1.5" />
         <path d="M21 15l-5-5L5 21" />
       </svg>
-      <span>{label}</span>
+      {showLabel && <span>{label}</span>}
     </div>
   )
 }
