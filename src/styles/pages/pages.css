@@ -610,6 +610,16 @@
   scroll-margin-top: calc(var(--header-height) + 20px);
 }
 
+#history::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/images/history-bg-02@2x.webp') center / cover no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
 .about-page-section:nth-child(even) {
   background: var(--zinc-50);
 }
@@ -622,7 +632,7 @@
 /* 公司简介 */
 .about-intro-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 72px;
   align-items: stretch;
 }
@@ -697,6 +707,10 @@
   margin-bottom: 10px;
   display: block;
   flex-shrink: 0;
+}
+
+.about-rnd-stat-icon * {
+  stroke-width: 1.5px;
 }
 
 /* 企业宣传片 */
@@ -835,122 +849,256 @@
   overflow: hidden;
 }
 
-/* 发展历程 */
-.about-timeline {
-  overflow-x: hidden;
-  overflow-y: visible;
-  padding: 40px 0 32px;
-  cursor: default;
-}
-
-.about-timeline:hover {
-  cursor: grab;
-}
-
-.about-timeline-inner {
-  display: flex;
+/* ========== 发展历程 – 固定激活位时间轴 ========== */
+.tl-root {
   position: relative;
-  min-width: max-content;
-  padding-left: max(40px, calc((100vw - var(--max-width)) / 2 + 40px));
-  padding-right: 40px;
-}
-
-/* 横向时间线 — 穿过所有 dot 中心 */
-.about-timeline-inner::before {
-  content: '';
-  position: absolute;
-  left: max(40px, calc((100vw - var(--max-width)) / 2 + 40px));
-  right: 40px;
-  /* image height(180px) + image margin-bottom(24px) + half dot(7px) */
-  top: calc(180px + 24px + 7px);
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--zinc-200) 4%,
-    var(--zinc-200) 96%,
-    transparent 100%
-  );
-}
-
-.about-timeline-item {
-  flex: 0 0 280px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 16px;
-}
-
-.about-timeline-image {
-  width: 100%;
-  height: 180px;
   overflow: hidden;
-  flex-shrink: 0;
-  margin-bottom: 24px;
-}
-
-.about-timeline-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--hy-red);
-  border: 3px solid var(--hy-white);
-  box-shadow:
-    0 0 0 2px var(--hy-red),
-    0 0 12px rgba(186, 12, 47, 0.3);
-  flex-shrink: 0;
-  position: relative;
   z-index: 1;
-  margin-bottom: 20px;
 }
 
-.about-timeline-content {
-  text-align: center;
-}
 
-.about-timeline-year {
-  font-size: 28px;
+.tl-bg-text {
+  position: absolute;
+  bottom: 60px;
+  right: 40px;
+  font-size: 180px;
+  text-transform: uppercase;
   font-weight: 700;
-  font-family: "Space Grotesk", sans-serif;
-  background: linear-gradient(180deg, #e50004 0%, #ba0c2f 100%);
+  font-family: 'DIN Pro', sans-serif;
+  background: linear-gradient(90deg, rgba(186, 12, 47, 0.05) 0%, rgba(186, 12, 47, 0.02) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: block;
-  margin-bottom: 8px;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
 }
 
-.about-timeline-nav {
+/* 标题行 + 导航按钮 */
+.tl-header {
   display: flex;
-  gap: 8px;
-  padding-top: 24px;
-  padding-left: max(40px, calc((100vw - var(--max-width)) / 2 + 40px));
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 max(40px, calc((100vw - var(--max-width)) / 2 + 40px));
+  margin-bottom: 36px;
 }
 
-.about-timeline-nav-btn {
+.tl-header .section-heading {
+  margin: 0;
+}
+
+.tl-nav {
+  position: absolute;
+  bottom: 80px;
+  right: max(40px, calc((100vw - var(--max-width)) / 2 + 40px));
+  display: flex;
+  gap: 4px;
+}
+
+.tl-nav-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--hy-red);
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--zinc-200);
-  background: var(--hy-white);
-  color: var(--zinc-700);
-  cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.about-timeline-nav-btn:hover {
+.tl-nav-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+/* tl-body：承载贯穿全高红线的相对定位容器 */
+.tl-body {
+  position: relative;
+}
+
+/* 品牌红竖线：绝对定位，贯穿 tl-body 全高（年份 → 刻度 → 内容 → 图片） */
+.tl-border-line {
+  position: absolute;
+  left: var(--tl-x, 80px);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--hy-red) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 激活红线顶部圆点 + 外圈 */
+.tl-border-line::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
   background: var(--hy-red);
-  border-color: var(--hy-red);
-  color: var(--hy-white);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--hy-red), 0 0 0 4px #fff, 0 0 0 4.5px rgba(186, 12, 47, 0.5);
 }
 
-.about-timeline-title {
-  font-size: 13px;
-  font-weight: 500;
+/* 视口：仅水平裁剪，垂直方向允许溢出（非激活图片向下延伸） */
+.tl-viewport {
+  overflow-x: clip;
+  overflow-y: visible;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+/* 轨道：flex 水平排列，stretch 让所有 item 与激活 item 等高 */
+.tl-track {
+  display: flex;
+  align-items: stretch;
+  will-change: transform;
+  position: relative; /* ::after 定位基准 */
+}
+
+/* 刻度装饰：随 track 平移，向两侧延伸撑满视口（viewport overflow:hidden 裁边） */
+.tl-track::after {
+  content: '';
+  position: absolute;
+  left: -10000px;  /* 必须是 40 的倍数，与 background-position: 80px 配合保证刻度对齐 */
+  right: -10000px;
+  bottom: 8px;
+  height: 36px;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      var(--zinc-300) 0,
+      var(--zinc-300) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--zinc-300) 0,
+      var(--zinc-300) 1px,
+      transparent 1px,
+      transparent 8px
+    );
+  background-size: 40px 20px, 8px 10px;
+  background-repeat: repeat-x;
+  background-position: 80px top;
+  pointer-events: none;
+}
+
+/* 年份列 */
+.tl-item {
+  flex: 0 0 280px;
+  position: relative;
+  padding-left: 28px;
+  padding-right: 16px;
+  padding-top: 4px;
+  padding-bottom: 72px; /* 为底部刻度区留空间 */
+}
+
+/* 非激活：左侧灰线，延伸至图片顶部（item全高 + tl-content padding-top） */
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: calc(100% + 36px + 95px);
+  background: linear-gradient(180deg, var(--zinc-300) 0%, transparent 100%);
+}
+
+/* 非激活图片：绝对定位在 item 下方，顶部与激活文字顶部对齐 */
+.tl-item-img {
+  position: absolute;
+  top: calc(100% + 36px);
+  left: 28px;
+  width: 140px;
+}
+
+/* 非激活：顶部 6px 圆点，与线条居中对齐 */
+.tl-item::after {
+  content: '';
+  position: absolute;
+  left: -3px;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--zinc-300);
+}
+
+/* 激活：与非激活等宽，仅隐藏短灰线和圆点 */
+.tl-item--active {
+  flex: 0 0 400px;
+}
+
+.tl-item--active::before,
+.tl-item--active::after {
+  display: none;
+}
+
+/* 年份数字 – 非激活：小号 zinc-500 */
+.tl-year {
+  font-family: 'DIN Pro', sans-serif;
+  font-size: clamp(32px, 2.8vw, 48px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: var(--zinc-500);
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* 年份数字 – 激活：品牌红，比非激活大但不过分 */
+.tl-item--active .tl-year {
+  font-size: clamp(56px, 4.5vw, 80px);
+  color: var(--hy-red);
+  letter-spacing: -3px;
+  margin-bottom: 0;
+}
+
+@keyframes tl-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+
+/* 静态内容区：marginLeft 由 JS 控制与红线对齐 */
+.tl-content {
+  width: 320px;
+  box-sizing: border-box;
+  padding-left: 28px;
+  padding-top: 36px;
+  min-height: 460px; /* 最长文字+图片高度，防止切换跳动，空隙沉到底部 */
+  animation: tl-fade-in 0.4s ease;
+}
+
+.tl-desc {
+  font-size: 15px;
+  line-height: 1.9;
   color: var(--zinc-600);
-  line-height: 1.7;
+  width: 100%;
+  margin-bottom: 24px;
+  word-break: keep-all;
+  line-break: strict;
+  overflow-wrap: break-word;
+}
+
+.tl-img-wrap {
+  width: 100%;
+}
+
+.tl-img-wrap img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.tl-item-img img {
+  width: 100%;
+  height: 95px;
+  object-fit: cover;
+  display: block;
 }
 
 /* 生产实力 */
@@ -1068,34 +1216,209 @@
 }
 
 /* 研发实力 */
-.about-rnd-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 72px;
-  align-items: center;
+.about-page-section.about-rnd-section {
+  padding: 72px 0;
+  background: none;
 }
 
-.about-rnd-images {
+.about-page-section.about-rnd-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgba(255,255,255,0.50), rgba(255,255,255,0.50)),
+    url('/assets/images/hy-lab-bg.jpg') left / cover no-repeat;
+  z-index: 0;
+}
+
+/* 左右双列布局 */
+.about-rnd-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.about-rnd-inner {
+  /* 左列由 grid 控制宽度 */
+}
+
+/* 右侧图片画廊：flex 竖排，底对齐左列数据卡片 */
+.about-rnd-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-self: end;
+}
+
+/* 第一行：品牌红色卡，按高度撑满 */
+.about-rnd-brand-card {
+  background: var(--hy-red);
+  min-height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-rnd-brand-card img {
+  height: 90%;
+  width: auto;
+  display: block;
+  transform: scale(0.9);
+}
+
+/* 第二行：轮播容器，同时显示 2 张 */
+.about-rnd-carousel {
+  overflow: hidden;
   position: relative;
 }
 
-.about-rnd-images::before,
-.about-rnd-images::after {
-  content: none;
+.about-rnd-carousel-track {
+  display: flex;
+  width: 300%; /* 3组(2真实+1克隆) × 100% 容器宽 */
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.about-rnd-text h3 {
-  font-size: 20px;
+/* 每张图占 track 的 1/6（track=300% 容器宽），视觉宽 = 容器 50%，两张并排 = 满宽 */
+.about-rnd-img-card {
+  flex: 0 0 calc(100% / 6);
+  box-sizing: border-box;
+  padding: 0 4px;
+  aspect-ratio: 5 / 3;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 消除每组两端的外侧 padding：第1、3张去左 padding，第2、4张去右 padding */
+.about-rnd-carousel-track .about-rnd-img-card:nth-child(odd) {
+  padding-left: 0;
+}
+
+.about-rnd-carousel-track .about-rnd-img-card:nth-child(even) {
+  padding-right: 0;
+}
+
+.about-rnd-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-rnd-img-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.62));
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 32px 12px 12px;
+  letter-spacing: 0.02em;
+}
+
+.about-rnd-inner .section-heading {
+  margin-bottom: 16px;
+}
+
+.about-rnd-heading {
+  font-size: 18px;
   font-weight: 600;
   color: var(--zinc-900);
-  margin-bottom: 16px;
+  line-height: 1.45;
+  margin-bottom: 20px;
 }
 
-.about-rnd-text p {
-  font-size: 15px;
+.about-rnd-heading-light {
+  font-weight: 300;
+  color: var(--zinc-600);
+}
+
+.about-rnd-equip-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--zinc-900);
+  margin-bottom: 6px;
+}
+
+.about-rnd-equip-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px 0;
+}
+
+.about-rnd-equip-list li {
+  font-size: 13px;
+  color: var(--zinc-600);
+  line-height: 1.5;
+  padding: 3px 0 3px 13px;
+  position: relative;
+}
+
+.about-rnd-equip-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  background: var(--hy-red);
+  border-radius: 50%;
+}
+
+/* 研发数据卡片 */
+.about-rnd-stats {
+  display: flex;
+  gap: 96px;
+  margin-top: 28px;
+  padding-top: 24px;
+  position: relative;
+  width: fit-content;
+}
+
+.about-rnd-stats::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% + 32px);
+  height: 1px;
+  background: var(--zinc-300);
+}
+
+.about-rnd-stat {
+  flex: none;
+}
+
+.about-rnd-stat-icon {
+  color: var(--hy-red);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.about-rnd-stat-number {
+  font-size: 44px;
+  font-weight: 400;
+  font-family: "DIN Pro", "Space Grotesk", sans-serif;
+  background: linear-gradient(180deg, #e50004 0%, #ba0c2f 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.about-rnd-stat-suffix {
+  font-size: 20px;
+  font-family: "DIN Pro", "Space Grotesk", sans-serif;
+}
+
+.about-rnd-stat-label {
+  font-size: 13px;
   color: var(--zinc-500);
-  line-height: 1.8;
-  margin-bottom: 16px;
 }
 
 /* 全球化布局 */
@@ -4649,10 +4972,19 @@
   }
 
   .about-intro-grid,
-  .about-rnd-grid,
   .detail-intro-grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .about-rnd-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-page-section.about-rnd-section::before {
+    background:
+      linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
+      url('/assets/images/hy-lab-bg.jpg') center / cover no-repeat;
   }
 
   .about-production-grid {
@@ -4904,22 +5236,29 @@
     font-size: 32px;
   }
 
-  .about-timeline-inner {
-    padding-left: 24px;
-    padding-right: 24px;
+  .about-rnd-gallery {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .about-timeline-inner::before {
-    left: 24px;
-    right: 24px;
+  .about-rnd-stats {
+    flex-wrap: wrap;
+    gap: 20px 32px;
+    padding-top: 24px;
   }
 
-  .about-timeline-item {
-    flex: 0 0 180px;
+  .about-rnd-stat-number {
+    font-size: 36px;
   }
 
-  .about-timeline-year {
-    font-size: 22px;
+  .tl-header {
+    padding: 0 20px;
+    margin-bottom: 24px;
+  }
+
+  .tl-item {
+    flex: 0 0 160px;
+    padding-left: 20px;
+    padding-right: 12px;
   }
 
   .about-production-gallery {

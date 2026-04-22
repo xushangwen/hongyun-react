@@ -1,8 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
 import {
-  IconArrowRightOutline24,
-  IconAwardCertificateOutline24,
   IconEcoLightbulbOutline24,
   IconWrenchScrewdriverOutline24,
   IconDrawCompassOutline24,
@@ -10,7 +7,11 @@ import {
   IconFlask2Outline24,
   IconBatteryChargingOutline24,
   IconMedicineOutline24,
+  IconCoinsChartOutline24,
+  IconAwardCertificateOutline24,
+  IconPeopleOutline24,
 } from 'nucleo-core-outline-24'
+import { IconArrowLeftOutline48, IconArrowRightOutline48 } from 'nucleo-core-outline-48'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
@@ -19,7 +20,6 @@ import GlobalMap from '../components/GlobalMap'
 import heroImg from '../assets/img/DJI_20250418102124_0133_D-3 拷贝.jpg'
 import companyImg from '../assets/img/DJI_20250418103239_0149_D 拷贝.jpg'
 import videoImg from '../assets/img/IMG_4366.jpg'
-import rndImg from '../assets/img/IMG_4280.jpg'
 
 /* ========== 打字机效果组件 ========== */
 function TypewriterText({ text, speed = 40, delay = 0, className }) {
@@ -122,18 +122,187 @@ function PatentCount({ target, active, duration = 1500 }) {
   return <>{count}</>
 }
 
+/* 按中文标点切分，每段独行 */
+function splitByPunctuation(text) {
+  const parts = text.split(/(?<=[，。！？；：])/)
+  return parts.filter(Boolean).map((part, i) => (
+    <span key={i} style={{ display: 'block' }}>{part}</span>
+  ))
+}
+
 /* ========== 发展历程数据 ========== */
 const timelineData = [
-  { year: '1990', title: '企业法人经营代理油漆、油墨等化工、食品、制药设备' },
-  { year: '1993', title: '广州市海珠区红运机械厂成立' },
-  { year: '2000', title: '搬至广州市番禺区，更名为广州市番禺区红运机械厂' },
-  { year: '2007', title: '注册成立广州红运混合设备有限公司' },
-  { year: '2014', title: '搬至广州市南沙区东涌镇同裕街40号，注册成立广州红尚机械制造有限公司' },
-  { year: '2021', title: '在江苏常州成立江苏红运智能制造有限公司，并作为公司总部' },
-  { year: '2022', title: '建立日本京都办事处' },
-  { year: '2024', title: '建立印度办事处' },
-  { year: '2025', title: '建立海南、香港、新加坡分公司' },
+  { year: '1990', theme: '起步探索', desc: '企业法人经营代理油漆、油墨等化工、食品、制药设备，积累行业经验，奠定坚实发展基础。', img: '/assets/images/history/1990@2x.jpg' },
+  { year: '1993', theme: '正式成立', desc: '广州市海珠区红运机械厂正式成立，开启专业混合设备研发制造征程，迈出品牌建设第一步。', img: '/assets/images/history/1993@2x.jpg' },
+  { year: '2000', theme: '扩张迁址', desc: '迁至广州市番禺区，更名为广州市番禺区红运机械厂，规模持续壮大，产能显著提升。', img: '/assets/images/history/2000@2x.jpg' },
+  { year: '2007', theme: '公司化运营', desc: '注册成立广州红运混合设备有限公司，完成现代企业制度建设，规范化运营全面展开。', img: '/assets/images/history/2007@2x.jpg' },
+  { year: '2014', theme: '南沙新基地', desc: '迁至广州市南沙区东涌镇同裕街40号，注册成立广州红尚机械制造有限公司，华南制造能力全面升级。', img: '/assets/images/history/2014@2x.jpg' },
+  { year: '2021', theme: '智造总部', desc: '在江苏常州成立江苏红运智能制造有限公司并作为集团总部，全面迈入智能制造新时代，引领行业创新变革。', img: '/assets/images/history/2021@2x.jpg' },
+  { year: '2022', theme: '海外布局', desc: '建立日本京都办事处，迈出国际化战略重要一步，红运品牌正式进入亚太主流市场。', img: '/assets/images/history/2022@2x.jpg' },
+  { year: '2024', theme: '亚洲拓展', desc: '建立印度办事处，深化南亚市场战略布局，全球服务网络持续向纵深延伸。', img: '/assets/images/history/2024@2x.jpg' },
+  { year: '2025', theme: '全球网络', desc: '建立海南、香港、新加坡分公司，形成覆盖全球三大洲的完整服务网络，实现真正意义的全球化布局。', img: '/assets/images/history/2025@2x.jpg' },
 ]
+
+/* ========== 发展历程 – 固定激活位 + 可拖拽时间轴 ========== */
+const MAX_W = 1360 // 与 CSS --max-width 保持一致
+const ITEM_W = 280 // 非激活年份列宽度，必须与 CSS tl-item flex-basis 保持一致
+
+function HistoryTimeline({ data }) {
+  const [active, setActive] = useState(0) // 默认最早年份，从左往右展开
+  const [pageOffset, setPageOffset] = useState(80)
+  const [dragging, setDragging] = useState(false)
+  const [dragDelta, setDragDelta] = useState(0)
+  const dragStartX = useRef(0)
+  const isDragRef = useRef(false) // 区分点击与拖拽
+  const viewportRef = useRef(null)
+  const autoTimerRef = useRef(null)
+
+  // 自动轮播：4s 推进一格，循环
+  const startAutoPlay = () => {
+    clearInterval(autoTimerRef.current)
+    autoTimerRef.current = setInterval(() => {
+      setActive(i => (i + 1) % data.length)
+    }, 4000)
+  }
+
+  useEffect(() => {
+    startAutoPlay()
+    return () => clearInterval(autoTimerRef.current)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // 计算页面左侧内容区起始位置（与 page-container padding 对齐）
+  useEffect(() => {
+    const update = () => {
+      setPageOffset(Math.max(40, (window.innerWidth - MAX_W) / 2 + 40))
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+
+  const navigate = (dir) => {
+    startAutoPlay()
+    setActive(i => Math.max(0, Math.min(data.length - 1, i + dir)))
+  }
+
+  // 激活项始终对齐 pageOffset，track 整体平移
+  const baseX = pageOffset - active * ITEM_W
+  const trackX = baseX + (dragging ? dragDelta : 0)
+
+  const onPointerDown = (e) => {
+    startAutoPlay()
+    isDragRef.current = false
+    setDragging(true)
+    dragStartX.current = e.clientX
+    setDragDelta(0)
+    viewportRef.current?.setPointerCapture(e.pointerId)
+  }
+
+  const onPointerMove = (e) => {
+    if (!dragging) return
+    const delta = e.clientX - dragStartX.current
+    if (Math.abs(delta) > 5) isDragRef.current = true
+    setDragDelta(delta)
+  }
+
+  const onPointerUp = () => {
+    if (!dragging) return
+    setDragging(false)
+    // 拖拽结束后 snap 到最近年份
+    const snapped = Math.round(active - dragDelta / ITEM_W)
+    setActive(Math.max(0, Math.min(data.length - 1, snapped)))
+    setDragDelta(0)
+  }
+
+  return (
+    <div className="tl-root">
+      {/* 标题 */}
+      <div className="tl-header">
+        <h2 className="section-heading" style={{ margin: 0 }}>发展历程</h2>
+      </div>
+
+      {/*
+        tl-body: position relative，承载贯穿全高的红色竖线
+        --tl-x: 激活年份左边距，与 pageOffset 同步
+      */}
+      <div className="tl-body" style={{ '--tl-x': `${pageOffset}px` }}>
+        {/* 贯穿全高的品牌红竖线（绝对定位） */}
+        <div className="tl-border-line" aria-hidden="true" />
+
+        {/* 时间轴视口：仅滚动年份数字 */}
+        <div
+          className="tl-viewport"
+          ref={viewportRef}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerLeave={onPointerUp}
+          style={{ cursor: dragging ? 'grabbing' : 'grab' }}
+        >
+          <div
+            className="tl-track"
+            style={{
+              transform: `translateX(${trackX}px)`,
+              transition: dragging ? 'none' : 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)',
+            }}
+          >
+            {data.map((item, i) => (
+              <div
+                key={item.year}
+                className={`tl-item${i === active ? ' tl-item--active' : ''}`}
+                onClick={() => { if (!isDragRef.current) { startAutoPlay(); setActive(i) } }}
+              >
+                <div className="tl-year">{item.year}</div>
+                {i !== active && (
+                  <div className="tl-item-img">
+                    <img src={item.img} alt={item.theme} loading="lazy" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+
+        {/* 内容 + 图片：缩进与红线对齐，切换时淡入 */}
+        <div
+          className="tl-content"
+          key={active}
+          style={{ marginLeft: pageOffset }}
+        >
+          <p className="tl-desc">{splitByPunctuation(data[active].desc)}</p>
+          <div className="tl-img-wrap">
+            <img src={data[active].img} alt={data[active].theme} loading="lazy" />
+          </div>
+        </div>
+
+      </div>
+
+      {/* 右下角装饰大字 */}
+      <div className="tl-bg-text" aria-hidden="true">History</div>
+
+      {/* 右下角导航按钮：相对 tl-root 定位，落在 padding-bottom 区域 */}
+      <div className="tl-nav">
+        <button
+          className="tl-nav-btn"
+          onClick={() => navigate(-1)}
+          disabled={active === 0}
+          aria-label="上一年"
+        >
+          <IconArrowLeftOutline48 />
+        </button>
+        <button
+          className="tl-nav-btn"
+          onClick={() => navigate(1)}
+          disabled={active === data.length - 1}
+          aria-label="下一年"
+        >
+          <IconArrowRightOutline48 />
+        </button>
+      </div>
+    </div>
+  )
+}
 
 /* ========== 全球化布局数据 ========== */
 const globalBranches = [
@@ -237,6 +406,14 @@ const introStats = [
   },
 ]
 
+/* ========== 研发图片轮播数据（4张 = 2组，每组2张） ========== */
+const rndImages = [
+  { src: '/assets/images/rnd/hy-rnd-output.jpg',    label: '输出实验数据、测试报告' },
+  { src: '/assets/images/rnd/hy-rnd-rheometer.jpg', label: '德国赛默飞安东帕流变仪 Viscotester iQ Air' },
+  { src: '/assets/images/rnd/hy-rnd-turbiscan.jpg', label: '法国 TURBISCAN 浆料稳定性检测仪' },
+  { src: '/assets/images/rnd/hy-rnd-screw.jpg',     label: '红运双螺杆匀浆设备' },
+]
+
 /* ========== 合作伙伴数据 ========== */
 const P = '/assets/images/partner'
 const C = `${P}/clients`
@@ -335,30 +512,6 @@ const partnerGroups = [
 export default function AboutPage() {
   const [activeHonorTab, setActiveHonorTab] = useState(0)
 
-  /* 时间线自动滚动 */
-  const timelineRef = useRef(null)
-  const animFrameRef = useRef(null)
-  const pausedRef = useRef(false)
-  const posRef = useRef(0)
-
-  useEffect(() => {
-    const el = timelineRef.current
-    if (!el) return
-    const speed = 0.6
-
-    const tick = () => {
-      if (!pausedRef.current) {
-        posRef.current += speed
-        const half = el.scrollWidth / 2
-        if (posRef.current >= half) posRef.current -= half
-        el.scrollLeft = posRef.current
-      }
-      animFrameRef.current = requestAnimationFrame(tick)
-    }
-    animFrameRef.current = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(animFrameRef.current)
-  }, [])
-
   /* 企业简介统计数字动画 */
   const statRefs = useRef([])
   const [statCounts, setStatCounts] = useState(introStats.map(() => 0))
@@ -397,10 +550,40 @@ export default function AboutPage() {
     return () => observer.disconnect()
   }, [])
 
-  /* 生产实力统计（不变） */
+  /* 生产实力统计 */
   const [count50000, ref50000] = useCountUp(50000)
   const [count300, ref300] = useCountUp(300)
   const [count1000, ref1000] = useCountUp(1000)
+
+  /* 研发实力统计 */
+  const [rndCount15, rndRef15] = useCountUp(15, 1200)
+  const [rndCount200, rndRef200] = useCountUp(200, 1800)
+  const [rndCount20, rndRef20] = useCountUp(20, 1200)
+
+  /* 研发图片轮播：无缝单向循环 */
+  const rndTrackRef = useRef(null)
+  const [rndSlide, setRndSlide] = useState(0)
+
+  useEffect(() => {
+    // 每 3.5s 推进一格（0→1→2→0→...）
+    const timer = setInterval(() => setRndSlide(s => s + 1), 3500)
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    // slide=2 时正在显示克隆组，过渡结束后无感跳回 slide=0（视觉一致）
+    if (rndSlide !== 2) return
+    const timeout = setTimeout(() => {
+      const el = rndTrackRef.current
+      if (!el) return
+      el.style.transition = 'none'
+      setRndSlide(0)
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (rndTrackRef.current) rndTrackRef.current.style.transition = ''
+      }))
+    }, 650) // 比 CSS transition(600ms) 多 50ms 缓冲
+    return () => clearTimeout(timeout)
+  }, [rndSlide])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -510,31 +693,7 @@ export default function AboutPage() {
 
         {/* ===== 发展历程 ===== */}
         <section className="about-page-section" id="history">
-          <div className="page-container">
-            <h2 className="section-heading">发展历程</h2>
-          </div>
-          <div
-            className="about-timeline"
-            ref={timelineRef}
-            onMouseEnter={() => { pausedRef.current = true }}
-            onMouseLeave={() => { pausedRef.current = false }}
-          >
-            <div className="about-timeline-inner">
-              {/* 首尾各复制一份，实现无缝循环 */}
-              {[...timelineData, ...timelineData].map((item, index) => (
-                <div className="about-timeline-item" key={index}>
-                  <div className="about-timeline-image">
-                    <ImagePlaceholder height="180px" showLabel={false} />
-                  </div>
-                  <div className="about-timeline-dot" />
-                  <div className="about-timeline-content">
-                    <span className="about-timeline-year">{item.year}</span>
-                    <h4 className="about-timeline-title">{item.title}</h4>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <HistoryTimeline data={timelineData} />
         </section>
 
         {/* ===== 生产实力 ===== */}
@@ -578,26 +737,77 @@ export default function AboutPage() {
         </section>
 
         {/* ===== 研发实力 ===== */}
-        <section className="about-page-section" id="rnd">
+        <section className="about-page-section about-rnd-section" id="rnd">
           <div className="page-container">
-            <h2 className="section-heading">研发实力</h2>
-            <div className="about-rnd-grid">
-              <div className="about-rnd-text">
-                <h3>红运混合技术实验室</h3>
-                <p>
-                  公司设有省级企业技术中心和专业混合工艺实验室，拥有博士、硕士组成的百人研发团队，长期与多所高校及科研院所保持产学研合作。
+            <div className="about-rnd-layout">
+
+              {/* 左：文字内容 */}
+              <div className="about-rnd-inner">
+                <h2 className="section-heading">研发实力</h2>
+                <p className="about-rnd-heading">
+                  <span className="about-rnd-heading-light">实验室硬件完全满足锂电及化工行业的温度、湿度要求：</span><br />
+                  温度 25±3℃；湿度 ≤3% RH；洁净度 10 万级。
                 </p>
-                <p>
-                  累计获得国家专利超100项，主持和参与多项行业标准制定，在双行星搅拌、高速分散、连续制浆等核心技术领域处于国内领先水平。
-                </p>
-                <Link to="/contact" className="btn-primary" style={{ marginTop: '16px' }}>
-                  技术咨询
-                  <IconArrowRightOutline24 size={18} />
-                </Link>
+                <p className="about-rnd-equip-title">红运研发实验室检测设备：</p>
+                <ul className="about-rnd-equip-list">
+                  <li>粘度检测设备：美国 DV2T 博勒飞粘度计（61#/62#/63#/64# 转子）；</li>
+                  <li>细度检测：细度计刮板量程：0–50 μm；</li>
+                  <li>固含量检测设备：MB27 水分检测仪、烘箱及电子天平；</li>
+                  <li>流动性及稳定性检测设备：德国赛默飞安东帕流变仪 Viscotester iQ Air；</li>
+                  <li>稳定性检测设备：法国 TURBISCAN 多重光散射仪；</li>
+                  <li>桌面式涂布机：半自动涂布，间隙可调；</li>
+                  <li>拉力机：测试涂布及辊压后极片的剥离强度；</li>
+                  <li>验证产线：纽扣电池制造产线。</li>
+                </ul>
+                <div className="about-rnd-stats">
+                  <div className="about-rnd-stat" ref={rndRef15}>
+                    <IconCoinsChartOutline24 size={24} className="about-rnd-stat-icon" />
+                    <div className="about-rnd-stat-number">
+                      {rndCount15}<span className="about-rnd-stat-suffix">%</span>
+                    </div>
+                    <div className="about-rnd-stat-label">研发投入</div>
+                  </div>
+                  <div className="about-rnd-stat" ref={rndRef200}>
+                    <IconAwardCertificateOutline24 size={24} className="about-rnd-stat-icon" />
+                    <div className="about-rnd-stat-number">
+                      {rndCount200}<span className="about-rnd-stat-suffix">+</span>
+                    </div>
+                    <div className="about-rnd-stat-label">自主研发专利</div>
+                  </div>
+                  <div className="about-rnd-stat" ref={rndRef20}>
+                    <IconPeopleOutline24 size={24} className="about-rnd-stat-icon" />
+                    <div className="about-rnd-stat-number">
+                      {rndCount20}<span className="about-rnd-stat-suffix">%</span>
+                    </div>
+                    <div className="about-rnd-stat-label">研发成员占比</div>
+                  </div>
+                </div>
               </div>
-              <div className="about-rnd-images">
-                <img src={rndImg} alt="研发实验室" style={{ width: '100%', height: '320px', objectFit: 'cover', display: 'block' }} />
+
+              {/* 右：图片画廊 */}
+              <div className="about-rnd-gallery">
+                {/* 第一行：品牌红色卡 */}
+                <div className="about-rnd-brand-card">
+                  <img src="/assets/images/rnd/hy-rnd-brand.webp" alt="红运品牌" />
+                </div>
+                {/* 第二行：4张图平铺，track 宽 200%，每张占 25%（= 容器宽 50%），两张一组 */}
+                <div className="about-rnd-carousel">
+                  {/* track = 3组（2真实+1克隆），宽 300%，每张图占 track 的 1/6 = 容器的 50% */}
+                  <div
+                    ref={rndTrackRef}
+                    className="about-rnd-carousel-track"
+                    style={{ transform: `translateX(-${rndSlide * (100 / 3)}%)` }}
+                  >
+                    {[...rndImages, rndImages[0], rndImages[1]].map(({ src, label }, i) => (
+                      <div className="about-rnd-img-card" key={i}>
+                        <img src={src} alt={label} loading="lazy" />
+                        <span className="about-rnd-img-label">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
+
             </div>
           </div>
         </section>
