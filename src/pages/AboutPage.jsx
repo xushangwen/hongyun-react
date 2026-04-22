@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   IconArrowRightOutline24,
+  IconAwardCertificateOutline24,
+  IconEcoLightbulbOutline24,
+  IconWrenchScrewdriverOutline24,
+  IconDrawCompassOutline24,
 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
@@ -521,6 +525,26 @@ export default function AboutPage() {
                 </span>
               ))}
             </div>
+            {/* 专利统计行：仅专利 tab 显示，独立于卡片网格 */}
+            {activeHonorTab === 1 && (
+              <div className="patent-stats-bar-wrapper">
+              <div className="patent-stats-bar">
+                {[
+                  { Icon: IconAwardCertificateOutline24,  num: '200', label: '红运机械专利共有' },
+                  { Icon: IconEcoLightbulbOutline24,      num: '100', label: '发明专利' },
+                  { Icon: IconWrenchScrewdriverOutline24, num: '100', label: '实用新型专利' },
+                  { Icon: IconDrawCompassOutline24,       num: '20',  label: '外观设计专利' },
+                ].map(({ Icon, num, label }) => (
+                  <div className="patent-stats-bar-item" key={label}>
+                    <Icon size={20} className="patent-stats-bar-icon" />
+                    <div className="patent-stats-bar-label">{label}</div>
+                    <div className="patent-stats-bar-num">{num}<span className="patent-stats-bar-plus">+</span><span className="patent-stats-bar-unit">项</span></div>
+                  </div>
+                ))}
+              </div>
+              </div>
+            )}
+
             {/* gridClass 控制列数 */}
             {(() => {
               const gridClass = ['cert', 'patent', 'honor'][activeHonorTab]
@@ -539,7 +563,7 @@ export default function AboutPage() {
                             loading="lazy"
                           />
                         ) : (
-                          /* 资质/专利：两个 div，z-index 1(证书) < z-index 2(木框) */
+                          /* 资质/专利：证书图片叠在木框上方 */
                           <>
                             <div
                               className="about-honors-cert-layer"
