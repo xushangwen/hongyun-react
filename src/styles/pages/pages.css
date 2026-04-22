@@ -604,7 +604,7 @@
    ======================================== */
 
 .about-page-section {
-  padding: 100px 0;
+  padding: 72px 0;
   position: relative;
   overflow: hidden;
   scroll-margin-top: calc(var(--header-height) + 20px);
@@ -1217,7 +1217,6 @@
 
 /* 研发实力 */
 .about-page-section.about-rnd-section {
-  padding: 72px 0;
   background: none;
 }
 
@@ -1225,9 +1224,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(rgba(255,255,255,0.50), rgba(255,255,255,0.50)),
-    url('/assets/images/hy-lab-bg.jpg') left / cover no-repeat;
+  background: url('/assets/images/rnd-bg.png') center bottom / cover no-repeat;
   z-index: 0;
 }
 
@@ -4983,8 +4980,7 @@
 
   .about-page-section.about-rnd-section::before {
     background:
-      linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.92)),
-      url('/assets/images/hy-lab-bg.jpg') center / cover no-repeat;
+      url('/assets/images/rnd-bg.png') center bottom / cover no-repeat;
   }
 
   .about-production-grid {
