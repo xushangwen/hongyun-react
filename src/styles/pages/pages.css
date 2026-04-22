@@ -624,12 +624,18 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 72px;
-  align-items: center;
+  align-items: stretch;
 }
 
-/* 右侧图片红角装饰 */
+/* 右侧图片撑满网格高度 */
 .about-intro-image {
   position: relative;
+  height: 100%;
+}
+
+.about-intro-image img {
+  height: 100% !important;
+  min-height: 360px;
 }
 
 .about-intro-image::before,
@@ -649,33 +655,16 @@
   display: flex;
   gap: 0;
   margin-top: 40px;
-  border: 1px solid var(--zinc-100);
 }
 
 .about-intro-stats > div {
   flex: 1;
   padding: 24px 28px;
-  border-right: 1px solid var(--zinc-100);
   position: relative;
 }
 
-.about-intro-stats > div:last-child {
-  border-right: none;
-}
-
-.about-intro-stats > div::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--hy-red);
-  transition: width 0.6s ease;
-}
-
-.about-intro-stats > div:hover::before {
-  width: 100%;
+.about-intro-stats > div:first-child {
+  padding-left: 0;
 }
 
 .about-intro-stat-number {
@@ -696,9 +685,18 @@
 }
 
 .about-intro-stat-icon {
-  color: var(--hy-red);
-  margin-bottom: 6px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--hy-red);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  margin-bottom: 10px;
   display: block;
+  flex-shrink: 0;
 }
 
 /* 企业宣传片 */
@@ -795,22 +793,6 @@
   transform: scale(1.05);
 }
 
-.about-culture-card-icon {
-  width: 56px;
-  height: 56px;
-  background: rgba(186, 12, 47, 0.06);
-  color: var(--hy-red);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  font-weight: 700;
-  font-family: "DIN Pro", sans-serif;
-  margin-bottom: 28px;
-  letter-spacing: 1px;
-  transition: all 0.35s ease;
-}
-
 .about-culture.pdm-adv-title {
   font-size: 16px;
   font-weight: 600;
@@ -823,19 +805,30 @@
   color: var(--hy-white);
 }
 
+/* 标签小字 */
 .about-culture-card-title {
-  font-size: 20px;
+  font-size: 11px;
   font-weight: 600;
-  color: var(--zinc-900);
-  margin-bottom: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--zinc-400);
+  margin-bottom: 20px;
   transition: color 0.35s ease;
 }
 
-.about-culture-card-desc {
-  font-size: 14px;
+.about-culture-card:hover .about-culture-card-title {
   color: var(--zinc-500);
-  line-height: 1.9;
+}
+
+/* 大字主内容 + 打字效果 */
+.about-culture-card-desc {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--zinc-800);
+  line-height: 1.6;
+  white-space: pre-line;
   transition: color 0.35s ease;
+  min-height: 4.8em;
 }
 
 .about-culture-carousel {
@@ -844,24 +837,14 @@
 
 /* 发展历程 */
 .about-timeline {
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: visible;
   padding: 40px 0 32px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--zinc-300) transparent;
+  cursor: default;
 }
 
-.about-timeline::-webkit-scrollbar {
-  height: 4px;
-}
-
-.about-timeline::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.about-timeline::-webkit-scrollbar-thumb {
-  background: var(--zinc-300);
-  border-radius: 2px;
+.about-timeline:hover {
+  cursor: grab;
 }
 
 .about-timeline-inner {
@@ -1177,32 +1160,25 @@
   border-left: 1px solid var(--zinc-100);
 }
 
-.about-global-branch-index {
-  font-size: 36px;
-  font-weight: 700;
-  font-family: "DIN Pro", sans-serif;
-  background: linear-gradient(
-    180deg,
-    rgba(186, 12, 47, 0.15) 0%,
-    transparent 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* 地区标签（常州基地 / 广州基地）纯文字 */
+.about-global-branch-label,
+.about-global-branch-top-spacer {
   display: block;
-  margin-bottom: 16px;
-  line-height: 1;
-  transition: all 0.35s ease;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  min-height: 15px;
 }
 
-.about-global-branch:hover .about-global-branch-index {
-  background: linear-gradient(
-    180deg,
-    rgba(186, 12, 47, 0.6) 0%,
-    rgba(186, 12, 47, 0.2) 100%
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
+.about-global-branch-label {
+  color: var(--hy-red);
+}
+
+.about-global-branch-top-spacer {
+  visibility: hidden;
 }
 
 .about-global-branch-name {
@@ -1214,38 +1190,40 @@
 }
 
 .about-global-branch-address,
-.about-global-branch-role {
+.about-global-branch-role,
+.about-global-branch-contact {
   font-size: 14px;
   color: var(--zinc-500);
   line-height: 1.7;
   transition: color 0.35s ease;
+  margin: 0;
 }
 
-/* 第三个卡片特殊调整 - 彻底解决对齐问题 */
+.about-global-branch-contact {
+  margin-top: 8px;
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.about-global-branch:hover .about-global-branch-contact {
+  color: var(--zinc-500);
+}
+
+/* 第三个卡片 address 对齐 */
 .about-global-branches
   .about-global-branch:nth-child(3)
   .about-global-branch-address {
-  line-height: 1.2 !important;
-  min-height: 24px !important;
-  display: flex !important;
-  align-items: center !important;
-  margin-bottom: 8px !important;
-}
-
-.about-global-branches
-  .about-global-branch:nth-child(3)
-  .about-global-branch-address
-  span[style*="font-size"] {
-  line-height: 1 !important;
-  display: inline-flex !important;
-  align-items: center !important;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
 }
 
 .about-global-branches
   .about-global-branch:nth-child(3)
   .about-global-branch-role {
-  line-height: 1.7 !important;
-  margin-top: -8px !important;
+  margin-top: 8px;
 }
 
 /* font-din 工具类 */
@@ -1287,24 +1265,67 @@
 
 .about-honors-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 32px 24px;
 }
 
+/* 资质认证 3列 / 专利技术 4列 / 荣誉奖项 3列 */
+.about-honors-grid--cert   { grid-template-columns: repeat(3, 1fr); }
+.about-honors-grid--patent { grid-template-columns: repeat(4, 1fr); }
+.about-honors-grid--honor  { grid-template-columns: repeat(3, 1fr); }
+
+/* 4列时卡片更窄，用 4:3 保持与3列16:9相同的视觉高度 */
+.about-honors-grid--patent .about-honors-card { aspect-ratio: 4 / 3; }
+/* 资质认证卡片增高20% */
+.about-honors-grid--cert .about-honors-card { aspect-ratio: 40 / 27; }
+
 .about-honors-item {
-  overflow: hidden;
-  background: var(--hy-white);
-  border: 1px solid var(--zinc-100);
-  transition:
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.35s ease,
-    border-color 0.3s ease;
+  background: transparent;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .about-honors-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-  border-color: transparent;
+  transform: translateY(-6px);
+}
+
+/* 16:9 卡片容器
+   isolation: isolate 创建独立 stacking context，子层 z-index 仅在卡片内竞争 */
+.about-honors-card {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 16 / 9;
+  background: url('/assets/images/honors/honors-bg.webp') center / cover no-repeat;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+/* ── 资质/专利 双层架构 ──
+   layer 1 (z-index:1): 木框，作为装饰背景
+   layer 2 (z-index:2): 证书图片，叠在木框上方                                        */
+.about-honors-cert-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-size: auto 76%;
+  background-position: center 42%;
+  background-repeat: no-repeat;
+}
+
+.about-honors-frame-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* 保持木框原始比例：高度撑满卡片，宽度等比，水平居中 */
+  background: url('/assets/images/honors/certificate-frame.png') center / auto 100% no-repeat;
+  pointer-events: none;
+}
+
+/* ── 荣誉 无帧，图片完整显示不裁切 ── */
+.about-honors-honor-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 /* 合作伙伴 */
