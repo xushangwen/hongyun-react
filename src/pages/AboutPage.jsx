@@ -96,6 +96,28 @@ function useCountUp(target, duration = 1800) {
   return [count, ref]
 }
 
+/* ========== 专利数字滚动：tab 激活时触发 ========== */
+function PatentCount({ target, active, duration = 1500 }) {
+  const [count, setCount] = useState(0)
+  const playedRef = useRef(false)
+
+  useEffect(() => {
+    if (!active || playedRef.current) return
+    playedRef.current = true
+    let startTime = null
+    const step = (ts) => {
+      if (!startTime) startTime = ts
+      const progress = Math.min((ts - startTime) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.round(eased * target))
+      if (progress < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }, [active, target, duration])
+
+  return <>{count}</>
+}
+
 /* ========== 发展历程数据 ========== */
 const timelineData = [
   { year: '1990', title: '企业法人经营代理油漆、油墨等化工、食品、制药设备' },
@@ -150,7 +172,7 @@ const cultureItems = [
 ]
 
 /* ========== 资质荣誉数据 ========== */
-const honorsTabs = ['资质认证', '专利技术', '荣誉奖项']
+const honorsTabs = ['资质认证', '专利证书', '荣誉奖项']
 
 const honorsData = [
   /* 资质认证 */
@@ -528,20 +550,27 @@ export default function AboutPage() {
             {/* 专利统计行：仅专利 tab 显示，独立于卡片网格 */}
             {activeHonorTab === 1 && (
               <div className="patent-stats-bar-wrapper">
-              <div className="patent-stats-bar">
-                {[
-                  { Icon: IconAwardCertificateOutline24,  num: '200', label: '红运机械专利共有' },
-                  { Icon: IconEcoLightbulbOutline24,      num: '100', label: '发明专利' },
-                  { Icon: IconWrenchScrewdriverOutline24, num: '100', label: '实用新型专利' },
-                  { Icon: IconDrawCompassOutline24,       num: '20',  label: '外观设计专利' },
-                ].map(({ Icon, num, label }) => (
-                  <div className="patent-stats-bar-item" key={label}>
-                    <Icon size={20} className="patent-stats-bar-icon" />
-                    <div className="patent-stats-bar-label">{label}</div>
-                    <div className="patent-stats-bar-num">{num}<span className="patent-stats-bar-plus">+</span><span className="patent-stats-bar-unit">项</span></div>
-                  </div>
-                ))}
-              </div>
+                <div className="patent-stats-bar">
+                  {[
+                    { num: 200, label: '红运机械专利共有' },
+                    { num: 100, label: '发明专利' },
+                    { num: 100, label: '实用新型专利' },
+                    { num: 20,  label: '外观设计专利' },
+                  ].map(({ num, label }) => (
+                    <div className="patent-stats-bar-item" key={label}>
+                      <img src="/assets/icons/laurel-branch.webp" alt="" className="patent-laurel patent-laurel--left" aria-hidden="true" />
+                      <div className="patent-stats-bar-content">
+                        <div className="patent-stats-bar-label">{label}</div>
+                        <div className="patent-stats-bar-num">
+                          <PatentCount target={num} active={activeHonorTab === 1} />
+                          <span className="patent-stats-bar-plus">+</span>
+                          <span className="patent-stats-bar-unit">项</span>
+                        </div>
+                      </div>
+                      <img src="/assets/icons/laurel-branch.webp" alt="" className="patent-laurel patent-laurel--right" aria-hidden="true" />
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 
