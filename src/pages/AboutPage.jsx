@@ -6,6 +6,10 @@ import {
   IconEcoLightbulbOutline24,
   IconWrenchScrewdriverOutline24,
   IconDrawCompassOutline24,
+  IconCarBatteryOutline24,
+  IconFlask2Outline24,
+  IconBatteryChargingOutline24,
+  IconMedicineOutline24,
 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
@@ -230,6 +234,101 @@ const introStats = [
     unit: '年',
     label: '研发经验',
     isDecimalTimes10: false,
+  },
+]
+
+/* ========== 合作伙伴数据 ========== */
+const P = '/assets/images/partner'
+const C = `${P}/clients`
+
+const partnerGroups = [
+  {
+    label: '新能源行业',
+    Icon: IconCarBatteryOutline24,
+    items: [
+      { src: `${P}/par-logo-12.svg`,    name: '比亚迪' },
+      { src: `${P}/par-logo-11.svg`,    name: '远景动力' },
+      { src: `${P}/par-logo-08.svg`,    name: '三星' },
+      { src: `${P}/par-logo-09.svg`,    name: 'TDK' },
+      { src: `${C}/ne-calb.webp`,       name: '中航锂电' },
+      { src: `${C}/ne-eve.webp`,        name: '亿纬锂能' },
+      { src: `${C}/ne-svolt.webp`,      name: '蜂巢能源' },
+      { src: `${C}/ne-sunwoda.webp`,    name: '欣旺达' },
+      { src: `${C}/ne-rept.webp`,       name: '瑞浦能源' },
+      { src: `${C}/ne-dfd.webp`,        name: '多氟多新能源' },
+      { src: `${C}/ne-hithium.webp`,    name: '海辰储能' },
+      { src: `${C}/ne-trina.webp`,      name: '天合储能' },
+      { src: `${C}/ne-lithion.webp`,    name: '美国 Lithion' },
+      { src: `${C}/ne-foxconn.webp`,    name: '台湾鸿海' },
+      { src: `${C}/ne-ganfeng.webp`,    name: '赣锋锂电' },
+      { src: `${C}/ne-murata.webp`,     name: '村田制作所' },
+      { src: `${C}/ne-aec.webp`,        name: '广东国光' },
+      { src: `${C}/ne-univercell.webp`, name: '德国 Univercell' },
+      { src: `${C}/ne-atl.webp`,        name: 'ATL 新能源科技' },
+      { src: `${C}/ne-shaanxi.webp`,    name: '陕西煤业' },
+      { src: `${C}/ne-farasis.webp`,    name: '孚能科技' },
+    ],
+  },
+  {
+    label: '胶粘剂行业',
+    Icon: IconFlask2Outline24,
+    items: [
+      { src: `${P}/par-logo-01.svg`,   name: '埃肯' },
+      { src: `${P}/par-logo-02.svg`,   name: '巴斯夫' },
+      { src: `${P}/par-logo-06.svg`,   name: '汉高' },
+      { src: `${P}/par-logo-05.svg`,   name: '万华化学' },
+      { src: `${P}/par-logo-07.svg`,   name: '富乐科梅林' },
+      { src: `${P}/par-logo-04.svg`,   name: '陶氏化学' },
+      { src: `${P}/par-logo-03.svg`,   name: '华为' },
+      { src: `${C}/ad-sika.svg`,       name: '西卡' },
+      { src: `${C}/ad-foxconn.svg`,    name: '富士康' },
+      { src: `${C}/ad-honeywell.svg`,  name: '美国霍尼韦尔' },
+      { src: `${C}/ad-darbond.png`,    name: '德邦' },
+      { src: `${C}/ad-seayu.png`,      name: '信友' },
+      { src: `${C}/ad-johnson.png`,    name: '德昌电机' },
+      { src: `${C}/ad-itw.png`,        name: '依工聚合' },
+      { src: `${C}/ad-hanstars.png`,   name: '汉思' },
+      { src: `${C}/ad-casic.png`,      name: '中国航天' },
+      { src: `${C}/ad-aecc.png`,       name: '中国航发' },
+      { src: `${C}/ad-dec.png`,        name: '东方电气' },
+      { src: `${C}/ad-silande.png`,    name: '思蓝德' },
+      { src: `${C}/ad-pochely.png`,    name: '聚合' },
+      { src: `${C}/ad-bjpharma.png`,   name: '白金制药' },
+    ],
+  },
+  {
+    label: '银浆行业',
+    Icon: IconBatteryChargingOutline24,
+    items: [
+      { src: `${C}/sp-fusion.png`,  name: '聚和新材' },
+      { src: `${C}/sp-rutech.png`,  name: '儒兴科技' },
+      { src: `${C}/sp-heraeus.png`, name: '贺利氏' },
+      { src: `${C}/sp-ssp.png`,     name: '上海银浆' },
+      { src: `${C}/sp-riyu.png`,    name: '日御股份' },
+      { src: `${C}/sp-dec.png`,     name: '东方电气' },
+      { src: `${C}/sp-johnson.png`, name: '德昌电机' },
+    ],
+  },
+  {
+    label: '医药行业',
+    Icon: IconMedicineOutline24,
+    items: [
+      { src: `${C}/ph-jiudian.webp`,  name: '九典制药' },
+      { src: `${C}/ph-yabao.webp`,    name: '亚宝药业集团' },
+      { src: `${C}/ph-cr.webp`,       name: '华润' },
+      { src: `${C}/ph-sirio.webp`,    name: '仙乐健康' },
+      { src: `${C}/ph-tianbang.webp`, name: '天邦医疗' },
+      { src: `${C}/ph-amhwa.webp`,    name: '安华生物' },
+      { src: `${C}/ph-yuchun.webp`,   name: '广州雨纯' },
+      { src: `${C}/ph-yige.webp`,     name: '一格制药' },
+      { src: `${C}/ph-hongjou.webp`,  name: '泓友医药' },
+      { src: `${C}/ph-lingrui.webp`,  name: '羚锐' },
+      { src: `${C}/ph-khb.webp`,      name: '科华生物' },
+      { src: `${C}/ph-yifang.webp`,   name: '一方制药' },
+      { src: `${C}/ph-xianju.webp`,   name: '仙琚制药' },
+      { src: `${C}/ph-hengjian.webp`, name: '恒建制药' },
+      { src: `${C}/ph-yicheng.webp`,  name: '逸诚医药' },
+    ],
   },
 ]
 
@@ -617,27 +716,28 @@ export default function AboutPage() {
           <div className="page-container">
             <h2 className="section-heading">合作伙伴</h2>
             <p className="section-desc">
-              与宁德时代、比亚迪、中创新航、国轩高科等行业龙头企业建立长期战略合作关系，产品遍布全球30+国家和地区。
+              深耕新能源、胶粘剂、银浆及医药四大行业，与比亚迪、巴斯夫、汉高、贺利氏、华润等全球知名企业建立长期战略合作。覆盖国内头部动力电池制造商及巴斯夫、陶氏、埃肯等国际化工巨头，服务客户遍布亚洲、欧洲及北美市场。
             </p>
             <div className="about-partners-grid">
-              {[
-                { src: '/assets/images/partner/par-logo-01.svg', alt: '埃肯' },
-                { src: '/assets/images/partner/par-logo-02.svg', alt: '巴斯夫' },
-                { src: '/assets/images/partner/par-logo-03.svg', alt: '华为' },
-                { src: '/assets/images/partner/par-logo-04.svg', alt: '陶氏化学' },
-                { src: '/assets/images/partner/par-logo-05.svg', alt: '万华' },
-                { src: '/assets/images/partner/par-logo-06.svg', alt: '汉高' },
-                { src: '/assets/images/partner/par-logo-07.svg', alt: '富乐科梅林' },
-                { src: '/assets/images/partner/par-logo-08.svg', alt: '三星' },
-                { src: '/assets/images/partner/par-logo-09.svg', alt: 'TDK' },
-                { src: '/assets/images/partner/par-logo-10.svg', alt: '特斯拉' },
-                { src: '/assets/images/partner/par-logo-11.svg', alt: '远景动力' },
-                { src: '/assets/images/partner/par-logo-12.svg', alt: '比亚迪' },
-              ].map((partner) => (
-                <div className="about-partner-logo-item" key={partner.alt}>
-                  <img src={partner.src} alt={partner.alt} className="partner-logo-img" />
-                </div>
-              ))}
+              {partnerGroups.flatMap(({ label, Icon, items }) => {
+                const total = 1 + items.length
+                const pad = (8 - (total % 8)) % 8
+                return [
+                  <div className="about-partner-logo-item about-partner-category-card" key={`cat-${label}`}>
+                    <Icon size={24} className="partner-category-icon" />
+                    <span className="partner-category-name">{label}</span>
+                  </div>,
+                  ...items.map((p) => (
+                    <div className="about-partner-logo-item" key={p.name}>
+                      <img src={p.src} alt={p.name} className="partner-logo-img" loading="lazy" />
+                      <span className="partner-logo-name">{p.name}</span>
+                    </div>
+                  )),
+                  ...Array.from({ length: pad }, (_, i) => (
+                    <div className="about-partner-logo-item about-partner-empty-card" key={`empty-${label}-${i}`} />
+                  )),
+                ]
+              })}
             </div>
           </div>
         </section>
