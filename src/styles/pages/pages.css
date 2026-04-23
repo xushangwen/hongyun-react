@@ -37,7 +37,7 @@
   position: absolute;
   inset: 0;
   background:
-    url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2020/svg'%3E%3Ccircle cx='1' cy='1' r='0.5' fill='rgba(0,0,0,0.12)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg width='2' height='2' viewBox='0 0 2 2' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='0.5' fill='rgba(0,0,0,0.15)'/%3E%3C/svg%3E"),
     linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.72) 0%,
@@ -45,6 +45,7 @@
       rgba(0, 0, 0, 0.80) 100%
     );
   background-size: 2px 2px, cover;
+  mix-blend-mode: multiply;
   pointer-events: none;
 }
 
