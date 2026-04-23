@@ -6893,7 +6893,7 @@
 .cp-core-section {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 52px;
 }
 
 .cp-core-device-row {
@@ -6915,13 +6915,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 280px;
+  min-height: 220px;
 }
 
 .cp-core-device-img {
   width: 88%;
   height: auto;
-  max-height: 320px;
+  max-height: 260px;
   object-fit: contain;
   display: block;
 }
@@ -6929,7 +6929,7 @@
 .cp-core-device-info {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 }
 
 .cp-core-device-badge {
@@ -6970,13 +6970,13 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .cp-core-device-features li {
   font-size: 14px;
   color: var(--zinc-600);
-  line-height: 1.7;
+  line-height: 1.6;
   padding-left: 16px;
   position: relative;
 }

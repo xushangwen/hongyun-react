@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
@@ -391,90 +392,32 @@ export default function PipelinePulpingPage() {
         <SystemFeaturesSection features={features} title="系统特点" enLabel="System Features" grayBg columns={4} />
 
         {/* ===== 核心设备 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Core Equipment</p>
-            <h2 className="section-heading section-heading--center fade-up">核心设备</h2>
-
-            <div className="cp-core-section">
-
-              {/* —— 01 管线捏合罐 —— */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/tank-main.webp`}
-                    alt="管线捏合罐"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">管线捏合罐</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  {/* 设备介绍文字内容待提供 */}
-                  <p className="cp-core-device-tbd">设备介绍文字内容待提供</p>
-                </div>
-              </div>
-
-              <hr className="cp-core-divider" />
-
-              {/* —— 02 高速分散机 —— */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/disperser-view.webp`}
-                    alt="高速分散机"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">高速分散机</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  {/* 设备介绍文字内容待提供 */}
-                  <p className="cp-core-device-tbd">设备介绍文字内容待提供</p>
-                </div>
-              </div>
-
-              <hr className="cp-core-divider" />
-
-              {/* —— 03 管线分散罐 —— */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/管线分散罐.svg`}
-                    alt="管线分散罐"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">管线分散罐</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  <div>
-                    <h4 className="cp-core-device-desc-title">基本配置</h4>
-                    <p className="cp-core-device-desc-para">
-                      管线分散罐基本构成由搅拌系统模块、密封系统模块、分散系统模块及水冷系统组成，主体设备有观察口、加料口、进料口、抽真空口、放空口、取样口、出料口等，桶体带冷却夹套。控制系统包含：搅拌系统 1 套、定转子高速分散剪切系统 1 套、恒温控制系统 1 套。
-                    </p>
-                  </div>
-                  <div>
-                    <h4 className="cp-core-device-desc-title">基本原理</h4>
-                    <p className="cp-core-device-desc-para">
-                      搅拌桨正向旋转时，搅拌桨轴向将罐内两端的物料推向罐体中间，便于中部位置的高速分散系统将浆料进行分散。螺旋形桨叶将分散好的浆料径向散开，形成浆料大循环流动；分散系统定子的弧形叶片在高速旋转下，产生强大的离心流场，在转子中心形成相对低压区，浆料从定转子中心被吸入，在离心力的作用下，物料被分散剪切，由中心向四周扩散，配合螺旋搅拌桨的旋转，进行浆料循环分散。
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
+        <CoreEquipmentSection devices={[
+          {
+            name: '管线捏合罐',
+            img: `${IMG}/tank-main.webp`,
+            tbd: '设备介绍文字内容待提供',
+          },
+          {
+            name: '高速分散机',
+            img: `${IMG}/disperser-view.webp`,
+            tbd: '设备介绍文字内容待提供',
+          },
+          {
+            name: '管线分散罐',
+            img: `${IMG}/管线分散罐.svg`,
+            paragraphs: [
+              {
+                title: '基本配置',
+                text: '管线分散罐基本构成由搅拌系统模块、密封系统模块、分散系统模块及水冷系统组成，主体设备有观察口、加料口、进料口、抽真空口、放空口、取样口、出料口等，桶体带冷却夹套。控制系统包含：搅拌系统 1 套、定转子高速分散剪切系统 1 套、恒温控制系统 1 套。',
+              },
+              {
+                title: '基本原理',
+                text: '搅拌桨正向旋转时，搅拌桨轴向将罐内两端的物料推向罐体中间，便于中部位置的高速分散系统将浆料进行分散。螺旋形桨叶将分散好的浆料径向散开，形成浆料大循环流动；分散系统定子的弧形叶片在高速旋转下，产生强大的离心流场，在转子中心形成相对低压区，浆料从定转子中心被吸入，在离心力的作用下，物料被分散剪切，由中心向四周扩散，配合螺旋搅拌桨的旋转，进行浆料循环分散。',
+              },
+            ],
+          },
+        ]} />
 
         {/* ===== 客户案例 ===== */}
         <section className="page-section">

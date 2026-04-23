@@ -8,6 +8,7 @@ import {
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 import prdSysImg from '../assets/img/prd-sys.png'
 
@@ -330,92 +331,43 @@ export default function CirculationPulpingPage() {
         <SystemFeaturesSection features={features} title="系统特点" enLabel="System Features" grayBg />
 
         {/* ===== 核心设备 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Core Equipment</p>
-            <h2 className="section-heading section-heading--center fade-up">核心设备</h2>
-
-            <div className="cp-core-section">
-              {/* 高速分散机 */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/高速分散机-svg.svg`}
-                    alt="高速分散机结构示意图"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">高速分散机</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  <ul className="cp-core-device-features">
-                    <li>集预混分散一体，设计线速度30m/s，伺服电机驱动，效率卓越</li>
-                    <li>采用自主专利设计机械密封，保障设备持续高气密性</li>
-                    <li>侧面螺杆喂料，液料下进上出，进料连续顺畅</li>
-                    <li>分散腔体设计双层分散剪切，带增压叶片，分散效率倍增</li>
-                    <li>预混腔采用自主专利叶轮，可迅速将粉液预混并快速排出</li>
-                    <li>带冷却水夹套，物料温度在线监测，全程保障物料温度可控</li>
-                  </ul>
-                </div>
-              </div>
-
-              <hr className="cp-core-divider" />
-
-              {/* 循环罐A */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/循环罐-A-svg.svg`}
-                    alt="循环罐A结构示意图"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">循环罐 A</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  <ul className="cp-core-device-features">
-                    <li>带慢速搅拌，转速0–40rpm/min，锚式搅拌桨，变频电机驱动</li>
-                    <li>带冷却水夹套，桶内物料温度在线监测，保障物料温度可控</li>
-                    <li>采用自主专利设计机械密封，保障设备高气密性</li>
-                    <li>桶底锥形夹角60°设计，物料上进下出，保障物料100%循环分散</li>
-                  </ul>
-                </div>
-              </div>
-
-              <hr className="cp-core-divider" />
-
-              {/* 循环罐B */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/循环罐-B-svg.svg`}
-                    alt="循环罐B结构示意图"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">循环罐 B</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  <ul className="cp-core-device-features">
-                    <li>带在线分散功能，设计线速度30m/s，双层剪切，定转子间隙2mm，伺服电机驱动</li>
-                    <li>采用自主专利设计机械密封，保障设备高气密性</li>
-                    <li>桶底锥形夹角60°设计，保障物料100%分散，无死区残留</li>
-                    <li>带冷却水夹套，桶内物料温度在线监测，保障物料温度可控</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CoreEquipmentSection devices={[
+          {
+            name: '高速分散机',
+            img: `${IMG}/高速分散机-svg.svg`,
+            imgAlt: '高速分散机结构示意图',
+            features: [
+              '集预混分散一体，设计线速度30m/s，伺服电机驱动，效率卓越',
+              '采用自主专利设计机械密封，保障设备持续高气密性',
+              '侧面螺杆喂料，液料下进上出，进料连续顺畅',
+              '分散腔体设计双层分散剪切，带增压叶片，分散效率倍增',
+              '预混腔采用自主专利叶轮，可迅速将粉液预混并快速排出',
+              '带冷却水夹套，物料温度在线监测，全程保障物料温度可控',
+            ],
+          },
+          {
+            name: '循环罐 A',
+            img: `${IMG}/循环罐-A-svg.svg`,
+            imgAlt: '循环罐A结构示意图',
+            features: [
+              '带慢速搅拌，转速0–40rpm/min，锚式搅拌桨，变频电机驱动',
+              '带冷却水夹套，桶内物料温度在线监测，保障物料温度可控',
+              '采用自主专利设计机械密封，保障设备高气密性',
+              '桶底锥形夹角60°设计，物料上进下出，保障物料100%循环分散',
+            ],
+          },
+          {
+            name: '循环罐 B',
+            img: `${IMG}/循环罐-B-svg.svg`,
+            imgAlt: '循环罐B结构示意图',
+            features: [
+              '带在线分散功能，设计线速度30m/s，双层剪切，定转子间隙2mm，伺服电机驱动',
+              '采用自主专利设计机械密封，保障设备高气密性',
+              '桶底锥形夹角60°设计，保障物料100%分散，无死区残留',
+              '带冷却水夹套，桶内物料温度在线监测，保障物料温度可控',
+            ],
+          },
+        ]} />
 
         {/* ===== 参数汇总 ===== */}
         <section className="page-section page-section--gray">

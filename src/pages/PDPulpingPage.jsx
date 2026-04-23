@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
 const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/main-product.webp'
@@ -347,39 +348,7 @@ export default function PDPulpingPage() {
         <SystemFeaturesSection features={features} title="系统特点" enLabel="System Features" grayBg />
 
         {/* ===== 核心设备 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Core Equipment</p>
-            <h2 className="section-heading section-heading--center fade-up">核心设备</h2>
-
-            <div className="cp-core-section">
-              {coreEquipment.map((device, i) => (
-                <React.Fragment key={i}>
-                  {i > 0 && <hr className="cp-core-divider" />}
-                  <div className="cp-core-device-row fade-up fade-up-delay-1">
-                    <div className="cp-core-device-img-wrap">
-                      <img
-                        src={device.img}
-                        alt={device.name}
-                        className="cp-core-device-img"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="cp-core-device-info">
-                      <div className="cp-core-device-badge">
-                        <h3 className="cp-core-device-name">{device.name}</h3>
-                      </div>
-                      <div className="cp-core-device-divider" />
-                      <ul className="cp-core-device-features">
-                        {device.features.map((f, j) => <li key={j}>{f}</li>)}
-                      </ul>
-                    </div>
-                  </div>
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        </section>
+        <CoreEquipmentSection devices={coreEquipment} />
 
         {/* ===== 参数汇总 ===== */}
         <section className="page-section page-section--gray">
