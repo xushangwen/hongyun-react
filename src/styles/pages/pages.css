@@ -1108,9 +1108,9 @@
 
 .pw-root {
   display: grid;
-  grid-template-columns: 460px 1fr;
+  grid-template-columns: 380px 1fr;
   gap: 0 160px;
-  align-items: center;
+  align-items: start;
   margin-bottom: 48px;
 }
 
@@ -1118,11 +1118,12 @@
 .pw-tabs {
   display: flex;
   flex-direction: column;
+  margin-top: 88px;
 }
 
 .pw-tab {
   position: relative;
-  padding: 28px 24px;
+  padding: 16px 24px 16px 40px;
   cursor: pointer;
   border: none;
   /* 灰色 top 线用 inset box-shadow，与红色动画条同处 padding 内，完全重叠 */
@@ -1132,12 +1133,10 @@
   transition: background 0.3s ease;
 }
 
-.pw-tab + .pw-tab {
-  margin-top: 8px;
-}
 
 .pw-tab--active {
   background: linear-gradient(to bottom, #ffffff, transparent);
+  padding: 28px 24px 28px 40px;
 }
 
 /* 顶部单边描边 loading：从左到右 10s 线性填满 */
@@ -1163,15 +1162,32 @@
   font-size: 15px;
   font-weight: 600;
   color: var(--zinc-500);
-  margin-bottom: 10px;
+  margin-bottom: 0;
   transition: color 0.3s ease;
   position: relative;
   z-index: 3;
 }
 
 .pw-tab--active .pw-tab-name {
+  margin-bottom: 10px;
+}
+
+.pw-tab--active .pw-tab-name {
   color: var(--hy-red);
   font-size: 19px;
+}
+
+.pw-tab--active .pw-tab-name::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent var(--hy-red);
 }
 
 .pw-tab-desc {
@@ -1220,9 +1236,9 @@
   position: relative;
   width: 100%;
   aspect-ratio: 5 / 3;
-  border-radius: 10px;
+  border-radius: 20px;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.07);
+  border: 5px solid #ffffff;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
 }
 
@@ -1377,15 +1393,11 @@
 
 /* 研发实力 */
 .about-page-section.about-rnd-section {
-  background: none;
+  background: #ffffff;
 }
 
 .about-page-section.about-rnd-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: url('/assets/images/rnd-bg.png') center bottom / cover no-repeat;
-  z-index: 0;
+  display: none;
 }
 
 /* 左右双列布局 */
