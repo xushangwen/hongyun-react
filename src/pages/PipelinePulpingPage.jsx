@@ -265,6 +265,56 @@ function LfpTsiBarChart({ noCard = false }) {
     : <div className="tsp-bar-chart-card">{inner}</div>
 }
 
+/* ========== 石墨体系 TSI 柱状图（OCR 还原）========== */
+const graphiteTsiData = {
+  maxVal: 0.08,
+  yTicks: [0, 0.02, 0.04, 0.06, 0.08],
+  bars: [
+    { label: '整体', value: 0.06 },
+    { label: '底部', value: 0.06 },
+    { label: '中部', value: 0.06 },
+    { label: '顶部', value: 0.05 },
+  ],
+}
+
+function GraphiteTsiBarChart({ noCard = false }) {
+  const { maxVal, yTicks, bars } = graphiteTsiData
+  const inner = (
+    <>
+      <p className="cp-verify-sub-title" style={{ marginBottom: 20 }}>TSI稳定性指数</p>
+      <div className="tsp-bar-chart">
+        <div className="tsp-bar-chart-yaxis">
+          {[...yTicks].reverse().map((t) => (
+            <span key={t} className="tsp-bar-chart-ytick">{t.toFixed(2)}</span>
+          ))}
+        </div>
+        <div className="tsp-bar-chart-body">
+          <div className="tsp-bar-chart-gridlines">
+            {yTicks.map((t) => (
+              <div key={t} className="tsp-bar-chart-gridline" style={{ bottom: `${(t / maxVal) * 100}%` }} />
+            ))}
+          </div>
+          {bars.map((bar, i) => (
+            <div key={i} className="tsp-bar-group">
+              <div className="tsp-bar-item">
+                <span className="tsp-bar-val">{bar.value.toFixed(2)}</span>
+                <div
+                  className="tsp-bar"
+                  style={{ height: `${(bar.value / maxVal) * 100}%`, background: '#4472C4' }}
+                />
+              </div>
+              <p className="tsp-bar-group-label">{bar.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  )
+  return noCard
+    ? <div className="lfp-tsi-bar-inline">{inner}</div>
+    : <div className="tsp-bar-chart-card">{inner}</div>
+}
+
 /* ========== 主页面 ========== */
 // 视频模块开关：true = 显示，false = 隐藏
 const SHOW_VIDEO = true
@@ -486,7 +536,7 @@ export default function PipelinePulpingPage() {
                 {/* 匀浆总时长 */}
                 <div className="cp-verify-subsection">
                   <h4 className="cp-verify-sub-title">匀浆总时长：</h4>
-                  <p className="tsp-desc-para">粉体混合10min+捏合60min+高粘30min+稀释30min+高速分散5min，共135min。</p>
+                  <p className="cp-body-text">粉体混合10min+捏合60min+高粘30min+稀释30min+高速分散5min，共135min。</p>
                 </div>
 
                 {/* 铁锂浆料24h稳定性 */}
@@ -626,7 +676,6 @@ export default function PipelinePulpingPage() {
                 {/* 三元浆料10h稳定性 */}
                 <div className="cp-verify-subsection">
                   <h4 className="cp-verify-sub-title">三元浆料10h稳定性：</h4>
-                  <p className="tsp-desc-para">整体无团聚、无沉降</p>
 
                   {/* Row 1: scatter | 分散均匀性图+表 */}
                   <div className="lfp-stability-2col">
@@ -747,13 +796,103 @@ export default function PipelinePulpingPage() {
                 </div>
               </div>
 
-              {/* ── 03 石墨体系（内容待提供）── */}
+              {/* ── 03 石墨体系 ── */}
               <div className="cp-verify-block">
                 <h3 className="cp-verify-subheading">
                   <span className="cp-verify-num">03</span>
                   制浆解决方案——石墨体系
                 </h3>
-                <p className="cp-core-device-tbd">内容即将更新，敬请期待</p>
+
+                {/* 红运负极管线式工艺验证结果 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">红运负极管线式工艺验证结果</h4>
+                  <div className="lfp-result-cards">
+                    <div className="lfp-result-card">
+                      <p className="lfp-result-card-label">稀释搅拌后未加SBR，未开分散</p>
+                      <p className="lfp-result-card-val">10480 <span className="lfp-result-card-unit">mPas</span></p>
+                      <p className="lfp-result-card-meta">63# · 6 rpm · 30.3°C</p>
+                    </div>
+                    <div className="lfp-result-card">
+                      <p className="lfp-result-card-label">分散线速度 14.7 m/s，分散时间 20 min</p>
+                      <p className="lfp-result-card-val">6490 <span className="lfp-result-card-unit">mPas</span></p>
+                      <p className="lfp-result-card-meta">63# · 12 rpm · 26.8°C</p>
+                    </div>
+                    <div className="lfp-result-card">
+                      <p className="lfp-result-card-label">加SBR，分散线速度 8.1 m/s，分散时间 20 min</p>
+                      <p className="lfp-result-card-val">5300 <span className="lfp-result-card-unit">mPas</span></p>
+                      <p className="lfp-result-card-meta">63# · 12 rpm · 23°C</p>
+                      <p className="lfp-result-card-sub">固含量：55.4%（理论值 55.2%）</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 石墨浆料20h稳定性 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">石墨浆料20h稳定性</h4>
+                  <div className="tsp-charts-grid-3">
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/graphite-stability-scatter.png`} alt="背散射光曲线" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">背散射光曲线稳定，浆料未发生颗粒团聚及沉降现象</p>
+                    </div>
+                    <div className="cp-chart-card graphite-tsi-compact">
+                      <GraphiteTsiBarChart noCard />
+                      <p className="cp-chart-caption">整体TSI指数（TSI&lt;0.06），浆料具备较强的稳定性</p>
+                    </div>
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/graphite-dispersion.png`} alt="分散均匀性指数" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">分散均匀性指数0.19（＜2为标准），新型管线式制浆机分散性能满足浆料分散需求</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 石墨浆料流变性 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">石墨浆料流变性</h4>
+                  <div className="cp-chart-card graphite-rheology-card">
+                    <div className="tsp-card-dual-imgs">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/graphite-rheology-01.png`} alt="石墨浆料流变性图1" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/graphite-rheology-02.png`} alt="石墨浆料流变性图2" className="cp-chart-img" loading="lazy" />
+                      </div>
+                    </div>
+                    <p className="cp-chart-caption cp-chart-caption--multi">
+                      <span className="cp-chart-caption-item">浆料粘度随剪切速率升高呈降低趋势，且过程无剪切突变，具备非牛顿流体特征</span>
+                      <span className="cp-chart-caption-item">浆料的流动性、流平性和触变恢复性高，利于涂布工序</span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* 石墨浆料极片电镜 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">石墨浆料极片电镜</h4>
+                  <div className="tsp-charts-grid-3 lfp-sem-grid">
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/graphite-sem-2000x.png`} alt="电镜 2000倍" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">2000倍，10μm比例尺</p>
+                    </div>
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/graphite-sem-5000x.png`} alt="电镜 5000倍" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">5000倍，5μm比例尺</p>
+                    </div>
+                    <div className="cp-chart-card graphite-sem-text-card">
+                      <ol className="graphite-sem-desc-list">
+                        <li>石墨颗粒棱角分明，与匀浆前颗粒形貌基本一致。</li>
+                        <li>颗粒大小分布均匀，未有团聚现象。</li>
+                        <li>炭黑以颗粒状形貌均匀分布在石墨表面。</li>
+                      </ol>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

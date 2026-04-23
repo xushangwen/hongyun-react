@@ -6392,7 +6392,7 @@
 }
 
 .cp-chart-caption {
-  padding: 10px 18% 12px 14px;
+  padding: 10px 14px 12px 14px;
   font-size: 12.5px;
   color: var(--zinc-500);
   line-height: 1.5;
@@ -6412,6 +6412,30 @@
   background: var(--hy-red);
   flex-shrink: 0;
   /* 与第一行文字视觉中线对齐：(line-height 18.75 - dot 5) / 2 ≈ 7px */
+  margin-top: 7px;
+}
+
+/* 多条目 caption：纵向堆叠，每条各有红点 */
+.cp-chart-caption--multi {
+  flex-direction: column;
+  gap: 5px;
+  align-items: stretch;
+}
+.cp-chart-caption--multi::before {
+  display: none;
+}
+.cp-chart-caption-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.cp-chart-caption-item::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--hy-red);
+  flex-shrink: 0;
   margin-top: 7px;
 }
 
@@ -6840,6 +6864,18 @@
    ─────────────────────────────────── */
 .cp-verify-subsection {
   margin-top: 32px;
+}
+
+/* 标题下纯文字内容：白底圆角盒子，无左描边 */
+.cp-body-text {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--zinc-600);
+  line-height: 1.9;
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-100);
+  border-radius: 6px;
 }
 
 .cp-verify-sub-title {
@@ -7274,6 +7310,24 @@
   height: auto;
 }
 
+/* ── 案例区：grid 同行等高 + caption 贴底 ── */
+.pp-material-cases .cp-chart-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 图片区撑满剩余空间，让 caption 自然落底 */
+.pp-material-cases .cp-chart-img-wrap {
+  flex: 1;
+  aspect-ratio: unset;
+  min-height: 160px;
+}
+
+/* 非图片卡（TSI柱图等）也保证 caption 贴底 */
+.pp-material-cases .cp-chart-caption {
+  margin-top: auto;
+}
+
 /* ── 响应式 ── */
 @media (max-width: 900px) {
   .pp-tank-bento {
@@ -7471,6 +7525,13 @@
   overflow: hidden;
 }
 
+/* 三图卡内的图片列：恢复固定比例，不参与 flex:1 撑高 */
+.lfp-tsi-combined .cp-chart-img-wrap {
+  flex: unset;
+  aspect-ratio: 16 / 9;
+  min-height: unset;
+}
+
 .lfp-tsi-inner {
   display: flex;
 }
@@ -7488,6 +7549,19 @@
 /* 柱状图内联（无卡片外壳）- 保留 tsp-bar-chart 固定高度以确保柱体百分比计算正确 */
 .lfp-tsi-bar-inline {
   padding: 16px 16px 12px;
+}
+
+/* 石墨流变性卡：2/3 宽（对应三列网格两列） */
+.graphite-rheology-card {
+  width: calc((100% - 40px) / 3 * 2 + 20px);
+}
+.graphite-rheology-card .cp-chart-img-wrap {
+  max-height: 200px;
+}
+
+/* 石墨稳定性第二卡：图表高度收窄 */
+.graphite-tsi-compact .tsp-bar-chart {
+  height: 160px;
 }
 
 /* 内联时 title 去掉红色左边线，字号缩小 */
@@ -8292,5 +8366,45 @@
   }
   .cp-chart-caption {
     padding: 10px 14px 12px;
+  }
+}
+
+/* ══════════════════════════════════════════
+   石墨体系 专用样式
+══════════════════════════════════════════ */
+
+/* 极片电镜：文字描述替代第三张图 */
+.graphite-sem-text-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 220px;
+  padding: 28px 24px;
+}
+
+.graphite-sem-desc-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.graphite-sem-desc-list li {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--zinc-700);
+  padding-left: 4px;
+}
+
+.graphite-sem-desc-list li::marker {
+  color: var(--hy-red);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .graphite-sem-text-card {
+    min-height: unset;
+    padding: 20px 18px;
   }
 }
