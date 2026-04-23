@@ -6,7 +6,7 @@ import ParallaxCta from '../components/ParallaxCta'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import { productCategories, getCategoryById } from '../data/productCategories'
-import ctaBgImg from '../assets/img/IMG_5036.jpg'
+import ctaBgImg from '../assets/img/IMG_4883.webp'
 import productsHeroImg from '../assets/img/IMG_4280.jpg'
 
 export default function ProductCategoryPage() {
