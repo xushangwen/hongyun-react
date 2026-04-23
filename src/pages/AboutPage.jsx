@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import {
   IconEcoLightbulbOutline24,
   IconWrenchScrewdriverOutline24,
@@ -313,18 +313,17 @@ function HistoryTimeline({ data }) {
   const viewportRef = useRef(null)
   const autoTimerRef = useRef(null)
 
-  // 自动轮播：4s 推进一格，循环
-  const startAutoPlay = () => {
+  const startAutoPlay = useCallback(() => {
     clearInterval(autoTimerRef.current)
     autoTimerRef.current = setInterval(() => {
       setActive(i => (i + 1) % data.length)
     }, 4000)
-  }
+  }, [data.length])
 
   useEffect(() => {
     startAutoPlay()
     return () => clearInterval(autoTimerRef.current)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [startAutoPlay])
 
   // 计算页面左侧内容区起始位置（与 page-container padding 对齐）
   useEffect(() => {
@@ -478,7 +477,6 @@ const globalBranches = [
   },
   {
     name: '全球服务网络',
-    address: '业务遍布<span style="font-size: 1.6em; font-weight: 700; color: var(--hy-red); margin: 0 0.2em; margin-top: -0.2em;">3</span>大洲，数十个国家',
     role: '全球技术支持 · 售后服务网络',
     isGlobal: true,
   },
@@ -569,6 +567,8 @@ const rndImages = [
   { src: '/assets/images/rnd/hy-rnd-turbiscan.jpg', label: '法国 TURBISCAN 浆料稳定性检测仪' },
   { src: '/assets/images/rnd/hy-rnd-screw.jpg',     label: '红运双螺杆匀浆设备' },
 ]
+// 真实组数 = 图片数 ÷ 每组显示数(2)，到此值时说明显示的是克隆组，需无感归零
+const RND_SLIDE_RESET = rndImages.length / 2
 
 /* ========== 合作伙伴数据 ========== */
 const P = '/assets/images/partner'
@@ -727,8 +727,8 @@ export default function AboutPage() {
   }, [])
 
   useEffect(() => {
-    // slide=2 时正在显示克隆组，过渡结束后无感跳回 slide=0（视觉一致）
-    if (rndSlide !== 2) return
+    // 显示克隆组时，过渡结束后无感跳回 slide=0（视觉一致）
+    if (rndSlide !== RND_SLIDE_RESET) return
     const timeout = setTimeout(() => {
       const el = rndTrackRef.current
       if (!el) return
@@ -753,6 +753,9 @@ export default function AboutPage() {
     document.querySelectorAll('.section-heading, .fade-up').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
+
+  const honorsGridClass = ['cert', 'patent', 'honor'][activeHonorTab]
+  const isHonorTab = activeHonorTab === 2
 
   return (
     <>
@@ -952,7 +955,13 @@ export default function AboutPage() {
                     <span className="about-global-branch-label">{branch.label}</span>
                   )}
                   <h3 className="about-global-branch-name">{branch.name}</h3>
-                  <p className="about-global-branch-address" dangerouslySetInnerHTML={{ __html: branch.address }} />
+                  {branch.isGlobal ? (
+                    <p className="about-global-branch-address">
+                      业务遍布<span style={{ fontSize: '1.6em', fontWeight: 700, color: 'var(--hy-red)', margin: '0 0.2em', marginTop: '-0.2em' }}>3</span>大洲，数十个国家
+                    </p>
+                  ) : (
+                    <p className="about-global-branch-address">{branch.address}</p>
+                  )}
                   {branch.contact && (
                     <p className="about-global-branch-contact">Tel: {branch.contact}</p>
                   )}
@@ -1007,41 +1016,32 @@ export default function AboutPage() {
               </div>
             )}
 
-            {/* gridClass 控制列数 */}
-            {(() => {
-              const gridClass = ['cert', 'patent', 'honor'][activeHonorTab]
-              const isHonor = activeHonorTab === 2
-              return (
-                <div className={`about-honors-grid about-honors-grid--${gridClass}`}>
-                  {honorsData[activeHonorTab].map((item, i) => (
-                    <div className="about-honors-item" key={i}>
-                      <div className="about-honors-card">
-                        {isHonor ? (
-                          /* 荣誉：直接图片，contain 不裁切 */
-                          <img
-                            src={item.src}
-                            alt={item.alt}
-                            className="about-honors-honor-img"
-                            loading="lazy"
-                          />
-                        ) : (
-                          /* 资质/专利：证书图片叠在木框上方 */
-                          <>
-                            <div
-                              className="about-honors-cert-layer"
-                              style={{ backgroundImage: `url(${item.src})` }}
-                              role="img"
-                              aria-label={item.alt}
-                            />
-                            <div className="about-honors-frame-layer" aria-hidden="true" />
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+            <div className={`about-honors-grid about-honors-grid--${honorsGridClass}`}>
+              {honorsData[activeHonorTab].map((item, i) => (
+                <div className="about-honors-item" key={i}>
+                  <div className="about-honors-card">
+                    {isHonorTab ? (
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        className="about-honors-honor-img"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <>
+                        <div
+                          className="about-honors-cert-layer"
+                          style={{ backgroundImage: `url(${item.src})` }}
+                          role="img"
+                          aria-label={item.alt}
+                        />
+                        <div className="about-honors-frame-layer" aria-hidden="true" />
+                      </>
+                    )}
+                  </div>
                 </div>
-              )
-            })()}
+              ))}
+            </div>
           </div>
         </section>
 

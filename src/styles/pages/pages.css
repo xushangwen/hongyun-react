@@ -787,13 +787,13 @@
   top: 0;
   left: 0;
   width: 0;
-  height: 3px;
+  height: 2px;
   background: var(--hy-red);
   transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .about-culture-card:hover {
-  background: var(--zinc-100);
+  background: var(--zinc-50);
 }
 
 .about-culture-card:hover::before {
@@ -1138,7 +1138,7 @@
   cursor: pointer;
   border: none;
   /* 灰色 top 线用 inset box-shadow，与红色动画条同处 padding 内，完全重叠 */
-  box-shadow: inset 0 1px 0 var(--zinc-200);
+  box-shadow: inset 0 2px 0 var(--zinc-200);
   background: transparent;
   overflow: hidden;
   transition: background 0.3s ease;
@@ -1156,7 +1156,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
+  height: 2px;
   pointer-events: none;
   z-index: 2;
   background: var(--hy-red);
@@ -1626,7 +1626,7 @@
 }
 
 .about-global-branch:hover {
-  background: var(--zinc-100);
+  background: var(--zinc-50);
 }
 
 .about-global-branch:hover .about-global-branch-name {
@@ -1649,7 +1649,7 @@
   bottom: 0;
   left: 0;
   width: 0;
-  height: 3px;
+  height: 2px;
   background: var(--hy-red);
   transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

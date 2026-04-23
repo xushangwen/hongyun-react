@@ -16,7 +16,7 @@ const statsData = [
     target: 30,
     sup: '+',
     unit: '年',
-    desc: '注册资本（CNY）',
+    desc: '混合设备研发经验',
     isDecimal: false,
   },
   {
