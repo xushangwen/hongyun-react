@@ -12,6 +12,9 @@ export function LenisProvider({ children }) {
 
   // 初始化 Lenis
   useEffect(() => {
+    // 禁用浏览器自带滚动恢复，避免与 Lenis 手动控制产生竞争
+    history.scrollRestoration = 'manual'
+
     const lenis = new Lenis({
       lerp: 0.1,
       smoothWheel: true,
@@ -43,6 +46,7 @@ export function LenisProvider({ children }) {
     document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
+      history.scrollRestoration = 'auto'
       cancelAnimationFrame(rafId)
       document.removeEventListener('visibilitychange', handleVisibility)
       lenis.off('scroll', ScrollTrigger.update)

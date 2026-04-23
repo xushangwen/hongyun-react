@@ -19,6 +19,9 @@ import DryPowderMixerPage from './pages/DryPowderMixerPage'
 import HighSpeedDisperserPage from './pages/HighSpeedDisperserPage'
 import KneaderPage from './pages/KneaderPage'
 import PipelineDisperserPage from './pages/PipelineDisperserPage'
+import CpDisperserPage from './pages/CpDisperserPage'
+import CpTankAPage from './pages/CpTankAPage'
+import CpTankBPage from './pages/CpTankBPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 
@@ -44,6 +47,9 @@ function App() {
           <Route path="/products/new-energy/high-speed-disperser" element={<HighSpeedDisperserPage />} />
           <Route path="/products/new-energy/kneader" element={<KneaderPage />} />
           <Route path="/products/new-energy/pipeline-disperser" element={<PipelineDisperserPage />} />
+          <Route path="/products/new-energy/cp-disperser" element={<CpDisperserPage />} />
+          <Route path="/products/new-energy/cp-tank-a" element={<CpTankAPage />} />
+          <Route path="/products/new-energy/cp-tank-b" element={<CpTankBPage />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/news" element={<NewsListPage />} />

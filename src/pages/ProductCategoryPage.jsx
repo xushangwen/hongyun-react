@@ -71,7 +71,7 @@ export default function ProductCategoryPage() {
                   className="product-card"
                   key={product.slug}
                 >
-                  <div className={`product-card-image${product.imgContain ? ' product-card-image--contain' : ''}`}>
+                  <div className={['product-card-image', product.imgContain && 'product-card-image--contain', product.imgSm && 'product-card-image--sm'].filter(Boolean).join(' ')}>
                     {product.image ? (
                       <img src={product.image} alt={product.name} loading="lazy" />
                     ) : (

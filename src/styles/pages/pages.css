@@ -2319,9 +2319,19 @@
   background: #f8f8f8;
 }
 
+/* 卡片图片缩小到 90% */
+.product-card-image--sm img {
+  transform: scale(0.9);
+  transform-origin: center center;
+}
+
 .product-card:hover .product-card-image .img-placeholder,
 .product-card:hover .product-card-image img {
   transform: scale(1.06);
+}
+
+.product-card:hover .product-card-image--sm img {
+  transform: scale(0.95);
 }
 
 .product-card-content {

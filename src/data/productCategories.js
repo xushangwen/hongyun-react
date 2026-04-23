@@ -21,6 +21,9 @@ export const productCategories = [
       { name: '管线捏合罐',       slug: 'kneader',               image: '/assets/images/solutions/pipeline-pulping/tank-main.webp', imgContain: true },
       { name: '管线分散罐',       slug: 'pipeline-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-single.svg', imgContain: true },
       { name: '双螺杆制浆机',     slug: 'twin-screw-pulper' },
+      { name: '高速分散机（循环制浆）', slug: 'cp-disperser', image: '/assets/images/solutions/circulation-pulping/高速分散机-svg.svg', imgContain: true, imgSm: true },
+      { name: '循环罐 A',          slug: 'cp-tank-a',    image: '/assets/images/solutions/circulation-pulping/循环罐-A-svg.svg',   imgContain: true, imgSm: true },
+      { name: '循环罐 B',          slug: 'cp-tank-b',    image: '/assets/images/solutions/circulation-pulping/循环罐-B-svg.svg',   imgContain: true, imgSm: true },
     ],
   },
   {
