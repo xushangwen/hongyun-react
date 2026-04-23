@@ -98,30 +98,17 @@ export default function HighSpeedDisperserPage() {
           <div className="page-container">
             <p className="section-en-label fade-up">Core Parts</p>
             <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
-            <div className="cp-core-section">
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <div className="pp-disperser-components" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
-                    {[1, 2, 3, 4, 5, 6].map((n) => (
-                      <div key={n} className="pp-component-cell">
-                        <img
-                          src={`${IMG}/component-0${n}.svg`}
-                          alt={`部件 ${n}`}
-                          className="pp-component-img"
-                          loading="lazy"
-                        />
-                      </div>
-                    ))}
-                  </div>
+            <div className="fade-up fade-up-delay-1" style={{ display: 'flex', gap: '12px', marginTop: '40px' }}>
+              {[1, 2, 3, 4, 5, 6].map((n) => (
+                <div key={n} style={{ flex: 1, background: '#fff', borderRadius: '8px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <img
+                    src={`${IMG}/component-0${n}.svg`}
+                    alt={`部件 ${n}`}
+                    style={{ display: 'block', width: '100%', height: 'auto' }}
+                    loading="lazy"
+                  />
                 </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">核心部件</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  <p className="cp-core-device-tbd">核心部件介绍内容待提供</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
