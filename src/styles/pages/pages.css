@@ -618,7 +618,7 @@
   z-index: 0;
 }
 
-.about-page-section:nth-child(even) {
+.about-page-section:nth-child(odd) {
   background: var(--zinc-100);
 }
 
