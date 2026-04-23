@@ -98,16 +98,16 @@ export default function PipelineDisperserPage() {
         {/* ===== 产品介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <div className="pdm-intro-grid fade-up" style={{ gridTemplateColumns: '3fr 2fr', maxWidth: '1200px' }}>
-              <div className="pdm-intro-visual" style={{ maxWidth: '100%' }}>
+            <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'center', marginTop: '56px' }}>
+              <div style={{ flex: '0 0 55%' }}>
                 <img
                   src={`${IMG}/disperser-02.svg`}
                   alt="管线分散罐"
-                  className="cp-intro-product-img"
+                  style={{ display: 'block', width: '100%', height: 'auto' }}
                   loading="eager"
                 />
               </div>
-              <div className="pdm-intro-content">
+              <div style={{ flex: '1' }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">管线分散罐</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   管线分散罐基本构成由搅拌系统模块、密封系统模块、分散系统模块及水冷系统组成，主体设备有观察口、加料口、进料口、抽真空口、放空口、取样口、出料口等，桶体带冷却夹套。控制系统包含：搅拌系统 1 套、定转子高速分散剪切系统 1 套、恒温控制系统 1 套。
