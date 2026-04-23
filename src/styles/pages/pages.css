@@ -3095,7 +3095,7 @@
   left: 0;
   right: 0;
   background-size: cover;
-  background-position: center;
+  background-position: center 35%;
   will-change: transform;
   z-index: 0;
 }

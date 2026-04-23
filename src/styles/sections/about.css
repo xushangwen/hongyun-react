@@ -17,12 +17,12 @@
 
 .about-bg {
   position: absolute;
-  top: 0;
+  top: -30%;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: -30%;
   background: url('/assets/images/about-section-bgimg.jpg') center center / cover no-repeat;
-  background-attachment: scroll;
+  will-change: transform;
   z-index: 0;
 }
 

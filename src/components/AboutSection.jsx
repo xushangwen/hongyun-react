@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const statsData = [
   {
@@ -56,8 +60,29 @@ function animateNumber(element, target, isDecimal, duration = 2000) {
 
 export default function AboutSection() {
   const sectionRef = useRef(null)
+  const bgRef = useRef(null)
   const numberRefs = useRef([])
   const [animated, setAnimated] = useState(false)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        bgRef.current,
+        { yPercent: -15 },
+        {
+          yPercent: 15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      )
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
 
   useEffect(() => {
     const section = sectionRef.current
@@ -86,7 +111,7 @@ export default function AboutSection() {
 
   return (
     <section className="about" ref={sectionRef}>
-      <div className="about-bg" />
+      <div className="about-bg" ref={bgRef} />
       <div className="about-container">
         {/* Top Content */}
         <div className="about-content">
