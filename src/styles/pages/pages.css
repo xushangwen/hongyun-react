@@ -7125,8 +7125,8 @@
   font-size: 13px;
   font-style: italic;
   font-weight: 500;
-  color: #fff;
-  background: var(--hy-red);
+  color: #1a1a1a;
+  background: rgba(186, 12, 47, 0.12);
   text-align: center;
   margin: 0;
   padding: 10px 20px;
