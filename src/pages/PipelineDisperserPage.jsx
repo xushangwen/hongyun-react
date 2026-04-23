@@ -98,31 +98,23 @@ export default function PipelineDisperserPage() {
         {/* ===== 产品介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <h2 className="section-heading fade-up">产品介绍</h2>
-
-            <div className="pp-tank-bento fade-up fade-up-delay-1">
-              <div className="pp-tank-col">
-                <div className="pp-bento-photo">
-                  <img src={`${IMG}/disperser-view.webp`} alt="管线分散罐" className="pp-bento-img" loading="lazy" />
-                </div>
-                <div className="pp-bento-deco">
-                  <img src={`${IMG}/tank-deco-02.svg`} alt="" className="pp-bento-deco-img" aria-hidden="true" />
-                </div>
+            <div className="pdm-intro-grid fade-up">
+              <div className="pdm-intro-visual">
+                <img
+                  src={`${IMG}/disperser-02.svg`}
+                  alt="管线分散罐"
+                  className="cp-intro-product-img"
+                  loading="eager"
+                />
               </div>
-              <div className="pp-tank-col">
-                <div className="pp-bento-deco">
-                  <img src={`${IMG}/管线分散罐.svg`} alt="" className="pp-bento-deco-img" aria-hidden="true" />
-                </div>
-                <div className="pp-bento-intro fade-up fade-up-delay-2">
-                  <h3 className="cp-core-device-desc-title">基本配置</h3>
-                  <p className="cp-core-device-desc-para">
-                    管线分散罐基本构成由搅拌系统模块、密封系统模块、分散系统模块及水冷系统组成，主体设备有观察口、加料口、进料口、抽真空口、放空口、取样口、出料口等，桶体带冷却夹套。控制系统包含：搅拌系统 1 套、定转子高速分散剪切系统 1 套、恒温控制系统 1 套。
-                  </p>
-                  <h3 className="cp-core-device-desc-title" style={{ marginTop: '20px' }}>基本原理</h3>
-                  <p className="cp-core-device-desc-para">
-                    搅拌桨正向旋转时，搅拌桨轴向将罐内两端的物料推向罐体中间，便于中部位置的高速分散系统将浆料进行分散。螺旋形桨叶将分散好的浆料径向散开，形成浆料大循环流动；分散系统定子的弧形叶片在高速旋转下，产生强大的离心流场，在转子中心形成相对低压区，浆料从定转子中心被吸入，在离心力的作用下，物料被分散剪切，由中心向四周扩散，配合螺旋搅拌桨的旋转，进行浆料循环分散。
-                  </p>
-                </div>
+              <div className="pdm-intro-content">
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">管线分散罐</h2>
+                <p className="pdm-intro-desc fade-up fade-up-delay-2">
+                  管线分散罐基本构成由搅拌系统模块、密封系统模块、分散系统模块及水冷系统组成，主体设备有观察口、加料口、进料口、抽真空口、放空口、取样口、出料口等，桶体带冷却夹套。控制系统包含：搅拌系统 1 套、定转子高速分散剪切系统 1 套、恒温控制系统 1 套。
+                </p>
+                <p className="pdm-intro-desc fade-up fade-up-delay-2">
+                  搅拌桨正向旋转时，搅拌桨轴向将罐内两端的物料推向罐体中间，便于中部位置的高速分散系统将浆料进行分散。螺旋形桨叶将分散好的浆料径向散开，形成浆料大循环流动；分散系统定子的弧形叶片在高速旋转下，产生强大的离心流场，在转子中心形成相对低压区，浆料从定转子中心被吸入，在离心力的作用下，物料被分散剪切，由中心向四周扩散，配合螺旋搅拌桨的旋转，进行浆料循环分散。
+                </p>
               </div>
             </div>
           </div>
