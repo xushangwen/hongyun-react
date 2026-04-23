@@ -12,7 +12,14 @@ export default function PageHero({ title, subtitle, bgImage, bgPosition = 'cente
         {subtitle && <p className="page-hero-subtitle">{subtitle}</p>}
         <div className="page-hero-divider" />
       </div>
-      {!noScroll && <div className="page-hero-scroll" aria-hidden="true" />}
+      {!noScroll && (
+        <div className="page-hero-scroll" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="7" y="2" width="10" height="18" rx="5" />
+            <line x1="12" y1="7" x2="12" y2="10" />
+          </svg>
+        </div>
+      )}
     </section>
   )
 }

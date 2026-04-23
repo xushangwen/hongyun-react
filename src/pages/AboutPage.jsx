@@ -866,11 +866,11 @@ export default function AboutPage() {
         {/* ===== 研发实力 ===== */}
         <section className="about-page-section about-rnd-section" id="rnd">
           <div className="page-container">
+            <h2 className="section-heading">研发实力</h2>
             <div className="about-rnd-layout">
 
               {/* 左：文字内容 */}
               <div className="about-rnd-inner">
-                <h2 className="section-heading">研发实力</h2>
                 <p className="about-rnd-heading">
                   <span className="about-rnd-heading-light">实验室硬件完全满足锂电及化工行业的温度、湿度要求：</span><br />
                   温度 25±3℃；湿度 ≤3% RH；洁净度 10 万级。
