@@ -44,7 +44,7 @@ export default function CoreEquipmentSection({ devices = [] }) {
 
                   {device.paragraphs && device.paragraphs.map((p, j) => (
                     <div key={j}>
-                      <h4 className="cp-core-device-desc-title">{p.title}</h4>
+                      {p.title && <h4 className="cp-core-device-desc-title">{p.title}</h4>}
                       <p className="cp-core-device-desc-para">{p.text}</p>
                     </div>
                   ))}

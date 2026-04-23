@@ -27,6 +27,9 @@ import SsbDryMixerPage from './pages/SsbDryMixerPage'
 import SsbFeederPage from './pages/SsbFeederPage'
 import SsbExtruderPage from './pages/SsbExtruderPage'
 import SsbCoaterPage from './pages/SsbCoaterPage'
+import SsbPipelineMixerPage from './pages/SsbPipelineMixerPage'
+import SsbMultiMixerPage from './pages/SsbMultiMixerPage'
+import SsbHighPressureWasherPage from './pages/SsbHighPressureWasherPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 
@@ -56,10 +59,14 @@ function App() {
           <Route path="/products/new-energy/cp-disperser" element={<CpDisperserPage />} />
           <Route path="/products/new-energy/cp-tank-a" element={<CpTankAPage />} />
           <Route path="/products/new-energy/cp-tank-b" element={<CpTankBPage />} />
+          <Route path="/products/solid-state-battery/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
           <Route path="/products/solid-state-battery/dry-electrode-mixer" element={<SsbDryMixerPage />} />
           <Route path="/products/solid-state-battery/electromagnetic-feeder" element={<SsbFeederPage />} />
           <Route path="/products/solid-state-battery/twin-screw-dry-extruder" element={<SsbExtruderPage />} />
           <Route path="/products/solid-state-battery/solid-electrolyte-coater" element={<SsbCoaterPage />} />
+          <Route path="/products/solid-state-battery/ssb-pipeline-mixer" element={<SsbPipelineMixerPage />} />
+          <Route path="/products/solid-state-battery/ssb-multi-mixer" element={<SsbMultiMixerPage />} />
+          <Route path="/products/solid-state-battery/ssb-high-pressure-washer" element={<SsbHighPressureWasherPage />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/news" element={<NewsListPage />} />

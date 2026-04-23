@@ -20,10 +20,10 @@ export const productCategories = [
       { name: '高速分散机',       slug: 'high-speed-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-view.webp', imgContain: true },
       { name: '管线捏合罐',       slug: 'kneader',               image: '/assets/images/solutions/pipeline-pulping/tank-main.webp', imgContain: true },
       { name: '管线分散罐',       slug: 'pipeline-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-single.svg', imgContain: true },
-      { name: '双螺杆制浆机',     slug: 'twin-screw-pulper' },
       { name: '高速分散机（循环制浆）', slug: 'cp-disperser', image: '/assets/images/solutions/circulation-pulping/高速分散机-svg.svg', imgContain: true, imgSm: true },
       { name: '循环罐 A',          slug: 'cp-tank-a',    image: '/assets/images/solutions/circulation-pulping/循环罐-A-svg.svg',   imgContain: true, imgSm: true },
       { name: '循环罐 B',          slug: 'cp-tank-b',    image: '/assets/images/solutions/circulation-pulping/循环罐-B-svg.svg',   imgContain: true, imgSm: true },
+      { name: '双螺杆制浆机',     slug: 'twin-screw-pulper' },
     ],
   },
   {
@@ -32,11 +32,15 @@ export const productCategories = [
     name: '固态电池',
     desc: '面向下一代固态电池干法电极制备工艺的前沿装备，涵盖包覆、混合、挤出等关键工序。',
     products: [
-      { name: '湿法PD搅拌机',             slug: 'wet-pd-mixer' },
+      { name: '双行星动力混合机',           slug: 'dual-planetary-mixer',      image: '/assets/images/solutions/pd-pulping/main-product.webp',              imgContain: true },
       { name: '干法电极粉体高速混合机',   slug: 'dry-electrode-mixer',      image: '/assets/images/solutions/dry-powder-mixer/product-main.png',      imgContain: true },
       { name: '电磁给料机',               slug: 'electromagnetic-feeder',    image: '/assets/images/solutions/dry-powder-mixer/core-device-01.webp',   imgContain: true },
       { name: '双螺杆干法电极连续挤出机', slug: 'twin-screw-dry-extruder',   image: '/assets/images/solutions/dry-powder-mixer/core-device-02.webp',   imgContain: true },
       { name: '固态电解质包覆机',         slug: 'solid-electrolyte-coater',  image: '/assets/images/solutions/dry-powder-mixer/core-device-03.webp',   imgContain: true },
+      { name: '管线式混合机',             slug: 'ssb-pipeline-mixer',        image: '/assets/images/solutions/wet-electrode-system/pipeline-mixer.webp', imgContain: true },
+      { name: '多功能混合机',             slug: 'ssb-multi-mixer',           image: '/assets/images/solutions/wet-electrode-system/multi-mixer.webp',    imgContain: true },
+      { name: '高压清洗机',               slug: 'ssb-high-pressure-washer',  image: '/assets/images/solutions/wet-electrode-system/high-pressure-washer.webp', imgContain: true },
+      { name: '湿法PD搅拌机',             slug: 'wet-pd-mixer' },
     ],
   },
   {

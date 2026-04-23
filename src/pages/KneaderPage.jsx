@@ -4,7 +4,8 @@ import Breadcrumb from '../components/Breadcrumb'
 import TechInquirySection from '../components/TechInquirySection'
 import productHeroImg from '../assets/img/Generated Image March 20, 2026 - 10_16PM.jpg'
 
-const IMG = '/assets/images/solutions/pipeline-pulping'
+const PP_IMG = '/assets/images/solutions/pipeline-pulping'
+const SIM_IMG = '/assets/images/products/kneader'
 
 const modelParams = [
   { vol: 55,   id: 400,  len: 460,  ratio: 1.150, designVol: 58,   mixKw: 3,  mixRpm: 150, slurryV: 3.14, gap: '3±1', dispKw: 3,  rotorDia: 70,  dispRpm: 6300, lineV: 23 },
@@ -102,24 +103,122 @@ export default function KneaderPage() {
         {/* ===== 产品介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <h2 className="section-heading fade-up">产品介绍</h2>
+            <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'center', marginTop: '56px' }}>
+              <div style={{ flex: '0 0 50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <img
+                  src={`${PP_IMG}/tank-main.webp`}
+                  alt="管线捏合罐"
+                  style={{ display: 'block', width: '70%', height: 'auto' }}
+                  loading="eager"
+                />
+              </div>
+              <div style={{ flex: '1 1 0', minWidth: 0 }}>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">管线捏合罐</h2>
+                <p className="cp-core-device-tbd fade-up fade-up-delay-2">产品介绍内容待提供</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <div className="pp-tank-bento fade-up fade-up-delay-1">
-              <div className="pp-tank-col">
-                <div className="pp-bento-photo">
-                  <img src={`${IMG}/tank-main.webp`} alt="管线捏合罐" className="pp-bento-img" loading="lazy" />
-                </div>
-                <div className="pp-bento-deco">
-                  <img src={`${IMG}/tank-deco-02.svg`} alt="" className="pp-bento-deco-img" aria-hidden="true" />
+        {/* ===== 核心部件 ===== */}
+        <section className="page-section page-section--gray">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Core Parts</p>
+            <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
+            <p className="cp-core-device-tbd fade-up fade-up-delay-1">核心部件内容待补充</p>
+          </div>
+        </section>
+
+        {/* ===== 管线式匀浆机流体仿真 ===== */}
+        <section className="page-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">CFD Simulation</p>
+            <h2 className="section-heading section-heading--center fade-up">管线式匀浆机流体仿真</h2>
+
+            {/* 01 粘度云图 */}
+            <div className="cp-verify-block fade-up fade-up-delay-1">
+              <h3 className="cp-verify-subheading">「捏合罐」粘度云图</h3>
+
+              <div style={{ border: '1px solid #e2e8f0', borderRadius: '8px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex' }}>
+                  <div style={{ flex: '0 0 66%', padding: '28px 24px', borderRight: '1px solid #e2e8f0', background: '#fff' }}>
+                    <img
+                      src={`${SIM_IMG}/cfd-viscosity.png`}
+                      alt="捏合罐粘度云图"
+                      style={{ display: 'block', width: '80%', height: 'auto', margin: '0 auto' }}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div style={{ flex: 1, padding: '28px 24px', display: 'flex', alignItems: 'center' }}>
+                    <ul className="cp-core-device-features">
+                      <li>假塑性流体在高剪切下，粘度降低；</li>
+                      <li>此模型中静止未受剪切的流体粘度约 14000 CP；</li>
+                      <li>30 rpm 匀速搅拌下，最低粘度约 3500 cP。</li>
+                      <li>（由 STAR-CCM+ 仿真模拟）</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-              <div className="pp-tank-col">
-                <div className="pp-bento-deco">
-                  <img src={`${IMG}/tank-deco-01.svg`} alt="" className="pp-bento-deco-img" aria-hidden="true" />
+            </div>
+
+            {/* 02 剪切应力云图 */}
+            <div className="cp-verify-block fade-up fade-up-delay-2">
+              <h3 className="cp-verify-subheading">「捏合罐」剪切应力云图</h3>
+
+              {/* 2行×(左图区+右文字区) grid */}
+              <div style={{ border: '1px solid #e2e8f0', borderRadius: '8px', overflow: 'hidden' }}>
+
+                {/* Row 1: 壁面 + 搅拌桨表面 | 2条要点 */}
+                <div style={{ display: 'flex', borderBottom: '1px solid #e2e8f0' }}>
+                  <div style={{ flex: '0 0 66%', padding: '28px 24px', borderRight: '1px solid #e2e8f0', display: 'flex', gap: '16px', alignItems: 'stretch', background: '#fff' }}>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 600, color: '#374151', marginBottom: '12px' }}>罐体壁面剪切应力</span>
+                      <img
+                        src={`${SIM_IMG}/cfd-shear-wall.png`}
+                        alt="罐体壁面剪切应力云图"
+                        style={{ display: 'block', width: '100%', height: 'auto' }}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 600, color: '#374151', marginBottom: '12px' }}>搅拌桨表面剪切应力</span>
+                      <img
+                        src={`${SIM_IMG}/cfd-shear-blade-surface.png`}
+                        alt="搅拌桨表面剪切应力云图"
+                        style={{ flex: 1, minHeight: 0, width: 'auto', maxWidth: '100%', objectFit: 'contain', objectPosition: 'top left' }}
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div style={{ flex: 1, padding: '28px 24px', display: 'flex', alignItems: 'center' }}>
+                    <ul className="cp-core-device-features">
+                      <li>罐体壁面浆料受到搅拌桨的周期性剪切应力；</li>
+                      <li>搅拌桨外边缘线速度越大，搅拌桨表面流体受到的剪切应力越大。</li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="pp-bento-photo">
-                  <img src={`${IMG}/tank-02.webp`} alt="管线捏合罐截面图" className="pp-bento-img" loading="lazy" />
+
+                {/* Row 2: 截面分析 4图 | 5条要点 */}
+                <div style={{ display: 'flex' }}>
+                  <div style={{ flex: '0 0 66%', padding: '28px 24px', borderRight: '1px solid #e2e8f0', background: '#fff' }}>
+                    <img
+                      src={`${SIM_IMG}/cfd-shear-blade.png`}
+                      alt="搅拌桨截面剪切应力云图"
+                      style={{ display: 'block', width: '80%', height: 'auto', margin: '0 auto' }}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div style={{ flex: 1, padding: '28px 24px', display: 'flex', alignItems: 'center' }}>
+                    <ul className="cp-core-device-features">
+                      <li>前后桨叶对浆料产生强剪切；</li>
+                      <li>正转阶段，Section A 与 Section B 的汇聚作用不断将罐体内两侧浆料推入该关键截面，使浆料在此处充分捏合。</li>
+                      <li>匀速阶段转速为 30 rpm，搅拌桨转动一周的时间为 2 秒；</li>
+                      <li>匀速转动后，截面上的流体流动周期为 0.5 秒；</li>
+                      <li>正转阶段，此截面上，搅拌桨以 0.5 秒的周期，持续把两侧浆料推向中间剪切捏合，并将上侧浆料推入底部。</li>
+                    </ul>
+                  </div>
                 </div>
+
               </div>
             </div>
           </div>

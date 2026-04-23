@@ -41,9 +41,7 @@ const industries = [
     desc: '针对固态电池干法电极制备工艺，提供包覆、混合、挤出全套设备方案，助力下一代电池技术产业化落地。',
     solutions: [
       { name: '干法电极系统', slug: 'dry-powder-mixer', brief: '高速干法混合工艺，适用于电极粉体的均匀分散。', image: '/assets/images/solutions/dry-powder-mixer/干法电极系统-01.webp' },
-      { name: '湿法电极系统', slug: 'wet-electrode-system', brief: '湿法双行星混合工艺，精准匹配湿法、干法混合工艺路径。' },
-      { name: '材料包覆机', slug: 'material-coating', brief: '固态电解质材料精密包覆，实现均匀涂层与高附着力。' },
-      { name: '干法双螺杆挤出机', slug: 'dry-twin-screw-extruder', brief: '连续挤出成膜工艺，支持正极/负极电极膜片生产。' },
+      { name: '湿法电极系统', slug: 'wet-electrode-system', brief: '湿法双行星混合工艺，精准匹配湿法、干法混合工艺路径。', images: ['/assets/images/solutions/pd-pulping/main-product.webp', '/assets/images/solutions/wet-electrode-system/pipeline-mixer.webp', '/assets/images/solutions/wet-electrode-system/multi-mixer.webp'] },
     ],
   },
   {
@@ -186,7 +184,13 @@ export default function SolutionsPage() {
                     key={sol.slug}
                   >
                     <div className="solutions-card-image">
-                      {sol.image ? (
+                      {sol.images ? (
+                        <div style={{ display: 'flex', width: '100%', height: '100%', alignItems: 'center', gap: '4px', padding: '12px' }}>
+                          {sol.images.map((src, i) => (
+                            <img key={i} src={src} alt={sol.name} loading="lazy" style={{ flex: 1, minWidth: 0, height: '100%', objectFit: 'contain', objectPosition: 'center' }} />
+                          ))}
+                        </div>
+                      ) : sol.image ? (
                         <img src={sol.image} alt={sol.name} loading="lazy" />
                       ) : (
                         <ImagePlaceholder height="220px" label={sol.name} />
