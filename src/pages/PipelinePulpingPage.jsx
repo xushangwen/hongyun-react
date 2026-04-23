@@ -5,7 +5,7 @@ import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 
-const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
+const HERO_IMGS = ['/assets/images/solutions/circulation-pulping/hero-bg-new.jpg', '/assets/images/solutions/battery-manufacturing.webp']
 const PRODUCT_IMG = '/assets/images/solutions/pipeline-pulping/main-product.webp'
 const IMG = '/assets/images/solutions/pipeline-pulping'
 
@@ -339,7 +339,7 @@ export default function PipelinePulpingPage() {
       <PageHero
         title="行业解决方案"
         subtitle="Industry Solutions"
-        bgImage={HERO_IMG}
+        bgImages={HERO_IMGS}
       />
 
       <div className="page-body">

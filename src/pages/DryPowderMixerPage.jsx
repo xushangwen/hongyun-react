@@ -210,7 +210,7 @@ export default function DryPowderMixerPage() {
       <PageHero
         title="行业解决方案"
         subtitle="Industry Solutions"
-        bgImage="/assets/images/solutions/circulation-pulping/hero-bg-new.jpg"
+        bgImages={['/assets/images/solutions/circulation-pulping/hero-bg-new.jpg', '/assets/images/solutions/battery-manufacturing.webp']}
       />
 
       <div className="page-body">
