@@ -7123,11 +7123,14 @@
 
 .cp-core-device-tbd {
   font-size: 13px;
-  color: var(--zinc-400);
   font-style: italic;
+  font-weight: 500;
+  color: #fff;
+  background: var(--hy-red);
+  text-align: center;
   margin: 0;
-  padding: 10px 14px;
-  border-left: 3px solid var(--zinc-100);
+  padding: 10px 20px;
+  border-radius: 4px;
   line-height: 1.6;
 }
 

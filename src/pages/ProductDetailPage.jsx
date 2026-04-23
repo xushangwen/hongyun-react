@@ -113,9 +113,10 @@ export default function ProductDetailPage() {
             <h2 className="section-heading">产品介绍</h2>
             <div className="detail-intro-grid">
               <div className="detail-intro-text">
-                <p>
-                  {product?.intro || `${productName}详细介绍内容待补充。`}
-                </p>
+                {product?.intro
+                  ? <p>{product.intro}</p>
+                  : <p className="cp-core-device-tbd">{`${productName}详细介绍内容待补充。`}</p>
+                }
                 {product?.features && (
                   <>
                     <h3 className="detail-subtitle" style={{ marginTop: '24px' }}>产品特点</h3>

@@ -134,9 +134,10 @@ export default function SolutionDetailPage() {
             <h2 className="section-heading">方案概览</h2>
             <div className="detail-intro-grid">
               <div className="detail-intro-text">
-                <p>
-                  {solution?.intro || `${solutionName}详细介绍内容待补充。`}
-                </p>
+                {solution?.intro
+                  ? <p>{solution.intro}</p>
+                  : <p className="cp-core-device-tbd">{`${solutionName}详细介绍内容待补充。`}</p>
+                }
               </div>
               <div className="detail-intro-image">
                 <ImagePlaceholder height="340px" label={`${solutionName} 系统图`} />
@@ -228,7 +229,7 @@ export default function SolutionDetailPage() {
               {[1, 2, 3].map((i) => (
                 <div className="detail-case-card" key={i}>
                   <ImagePlaceholder height="180px" label={`${industryName}客户案例 ${i}`} />
-                  <p>客户案例详情待补充</p>
+                  <p className="cp-core-device-tbd">客户案例详情待补充</p>
                 </div>
               ))}
             </div>
