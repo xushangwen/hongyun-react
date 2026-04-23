@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 
 export default function ContactSection() {
@@ -12,10 +13,10 @@ export default function ContactSection() {
             <p>我们有义务并乐意随时回答您提出的任何问题</p>
             <p>给您拿出经济、且符合您实际的建议、或方案</p>
           </div>
-          <a href="#" className="contact-btn">
+          <Link to="/contact" className="contact-btn">
             联系我们
             <IconArrowRightOutline24 className="contact-btn-arrow" size={18} />
-          </a>
+          </Link>
         </div>
         {/* Right Image */}
         <div className="contact-right">
