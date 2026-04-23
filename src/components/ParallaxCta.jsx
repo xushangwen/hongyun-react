@@ -9,21 +9,32 @@ export default function ParallaxCta({ bgImage, title, desc, linkTo = '/contact',
 
   useEffect(() => {
     const lenis = lenisRef?.current
-    if (!lenis) return
+    const section = sectionRef.current
+    if (!lenis || !section) return
 
-    function onScroll() {
-      if (!sectionRef.current) return
-      const rect = sectionRef.current.getBoundingClientRect()
-      // progress: 正数=在视口下方, 负数=在视口上方, 0=居中
-      const progress = (rect.top + rect.height / 2) / window.innerHeight
-      // background-position Y 从 30%（进入时）过渡到 70%（离开时）
-      const yPercent = Math.round(50 - progress * 20)
-      sectionRef.current.style.backgroundPosition = `center ${yPercent}%`
+    // 缓存元素中心的文档坐标，避免 scroll handler 里触发 reflow
+    let sectionMidY = section.offsetTop + section.offsetHeight / 2
+
+    const handleResize = () => {
+      sectionMidY = section.offsetTop + section.offsetHeight / 2
+    }
+    window.addEventListener('resize', handleResize, { passive: true })
+
+    function onScroll({ scroll }) {
+      const viewMid = scroll + window.innerHeight / 2
+      const progress = (sectionMidY - viewMid) / window.innerHeight
+      // progress > 0: 元素在视口下方; < 0: 在视口上方
+      const yPercent = 50 - progress * 20
+      section.style.backgroundPosition = `center ${yPercent}%`
     }
 
     lenis.on('scroll', onScroll)
-    onScroll()
-    return () => lenis.off('scroll', onScroll)
+    onScroll({ scroll: lenis.scroll ?? 0 })
+
+    return () => {
+      lenis.off('scroll', onScroll)
+      window.removeEventListener('resize', handleResize)
+    }
   }, [lenisRef])
 
   return (
