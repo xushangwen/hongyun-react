@@ -10,8 +10,26 @@
 
 html {
   font-size: 18px;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   background-color: var(--zinc-100);
+}
+
+/* Lenis 平滑滚动配套样式 */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
