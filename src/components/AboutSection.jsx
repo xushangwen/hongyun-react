@@ -105,7 +105,7 @@ export default function AboutSection() {
             <p className="about-desc">
               我们的产品广泛应用于新能源、电子电极浆料、各种胶粘剂、火工药剂、涂料、食品、医药及化妆品等行业。
             </p>
-            <a href="#" className="about-btn">
+            <a href="/about" className="about-btn">
               进一步探索
               <IconArrowRightOutline24 className="about-btn-arrow" size={18} />
             </a>
