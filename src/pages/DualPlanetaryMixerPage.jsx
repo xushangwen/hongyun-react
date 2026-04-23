@@ -251,6 +251,9 @@ function ParamsTable() {
   )
 }
 
+// 视频模块开关：true = 显示，false = 隐藏
+const SHOW_VIDEO = true
+
 export default function DualPlanetaryMixerPage() {
   const [videoPlayed, setVideoPlayed] = useState(false)
 
@@ -305,22 +308,25 @@ export default function DualPlanetaryMixerPage() {
               </div>
             </div>
 
-            <div className="cp-video-mock fade-up fade-up-delay-2">
-              <img src={PRODUCT_IMG} alt="产品视频封面" className="cp-video-mock-poster" />
-              <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
-                {!videoPlayed ? (
-                  <button className="cp-video-play-btn" onClick={() => setVideoPlayed(true)} aria-label="播放">
-                    <span className="cp-video-play-ring" />
-                    <span className="cp-video-play-icon">▶</span>
-                  </button>
-                ) : (
-                  <div className="cp-video-played-state">
-                    <p className="cp-video-played-text">视频制作中，敬请期待</p>
-                    <button className="cp-video-played-reset" onClick={() => setVideoPlayed(false)}>返回</button>
-                  </div>
-                )}
+            {/* 视频模块（SHOW_VIDEO 控制显隐） */}
+            {SHOW_VIDEO && (
+              <div className="cp-video-mock fade-up fade-up-delay-2">
+                <img src={PRODUCT_IMG} alt="产品视频封面" className="cp-video-mock-poster" />
+                <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
+                  {!videoPlayed ? (
+                    <button className="cp-video-play-btn" onClick={() => setVideoPlayed(true)} aria-label="播放">
+                      <span className="cp-video-play-ring" />
+                      <span className="cp-video-play-icon">▶</span>
+                    </button>
+                  ) : (
+                    <div className="cp-video-played-state">
+                      <p className="cp-video-played-text">视频制作中，敬请期待</p>
+                      <button className="cp-video-played-reset" onClick={() => setVideoPlayed(false)}>返回</button>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </section>
 

@@ -166,6 +166,9 @@ const features = [
 ]
 
 /* ========== 主页面 ========== */
+// 视频模块开关：true = 显示，false = 隐藏
+const SHOW_VIDEO = true
+
 export default function PipelinePulpingPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -217,18 +220,20 @@ export default function PipelinePulpingPage() {
               </div>
             </div>
 
-            {/* 视频模块 */}
-            <div className="cp-video-mock pp-video-mock fade-up fade-up-delay-2">
-              <video
-                className="cp-video-mock-poster"
-                controls
-                playsInline
-                poster={`${IMG}/video-poster.jpg`}
-                preload="metadata"
-              >
-                <source src={`${IMG}/product-video.mp4`} type="video/mp4" />
-              </video>
-            </div>
+            {/* 视频模块（SHOW_VIDEO 控制显隐） */}
+            {SHOW_VIDEO && (
+              <div className="cp-video-mock pp-video-mock fade-up fade-up-delay-2">
+                <video
+                  className="cp-video-mock-poster"
+                  controls
+                  playsInline
+                  poster={`${IMG}/video-poster.jpg`}
+                  preload="metadata"
+                >
+                  <source src={`${IMG}/product-video.mp4`} type="video/mp4" />
+                </video>
+              </div>
+            )}
           </div>
         </section>
 
@@ -243,62 +248,76 @@ export default function PipelinePulpingPage() {
 
             <div className="cp-core-section">
 
-              {/* —— 01 管线捏合罐：全宽 2×2 Bento —— */}
-              <div className="fade-up fade-up-delay-1">
-                <div className="cp-core-device-badge" style={{ marginBottom: '20px' }}>
-                  <h3 className="cp-core-device-name">管线捏合罐</h3>
+              {/* —— 01 管线捏合罐 —— */}
+              <div className="cp-core-device-row fade-up fade-up-delay-1">
+                <div className="cp-core-device-img-wrap">
+                  <img
+                    src={`${IMG}/tank-main.webp`}
+                    alt="管线捏合罐"
+                    className="cp-core-device-img"
+                    loading="lazy"
+                  />
                 </div>
-                <div className="pp-tank-bento">
-                  {/* 左列：photo-main（上）+ deco-02（下） */}
-                  <div className="pp-tank-col">
-                    <div className="pp-bento-photo">
-                      <img src={`${IMG}/tank-main.webp`} alt="管线捏合罐" className="pp-bento-img" loading="lazy" />
-                    </div>
-                    <div className="pp-bento-deco">
-                      <img src={`${IMG}/tank-deco-02.svg`} alt="" className="pp-bento-deco-img" aria-hidden="true" />
-                    </div>
+                <div className="cp-core-device-info">
+                  <div className="cp-core-device-badge">
+                    <h3 className="cp-core-device-name">管线捏合罐</h3>
                   </div>
-                  {/* 右列：deco-01（上）+ photo-02（下） */}
-                  <div className="pp-tank-col">
-                    <div className="pp-bento-deco">
-                      <img src={`${IMG}/tank-deco-01.svg`} alt="" className="pp-bento-deco-img" aria-hidden="true" />
-                    </div>
-                    <div className="pp-bento-photo">
-                      <img src={`${IMG}/tank-02.webp`} alt="管线捏合罐截面图" className="pp-bento-img" loading="lazy" />
-                    </div>
-                  </div>
+                  <div className="cp-core-device-divider" />
+                  {/* 设备介绍文字内容待提供 */}
+                  <p className="cp-core-device-tbd">设备介绍文字内容待提供</p>
                 </div>
               </div>
 
               <hr className="cp-core-divider" />
 
-              {/* —— 02 高速分散机：左图 + 右侧 2×3 部件 SVG —— */}
-              <div className="fade-up fade-up-delay-1">
-                <div className="cp-core-device-badge" style={{ marginBottom: '20px' }}>
-                  <h3 className="cp-core-device-name">高速分散机</h3>
+              {/* —— 02 高速分散机 —— */}
+              <div className="cp-core-device-row fade-up fade-up-delay-1">
+                <div className="cp-core-device-img-wrap">
+                  <img
+                    src={`${IMG}/disperser-view.webp`}
+                    alt="高速分散机"
+                    className="cp-core-device-img"
+                    loading="lazy"
+                  />
                 </div>
-                <div className="pp-disperser-row">
-                  {/* 左：分散机产品图 */}
-                  <div className="pp-disperser-main">
-                    <img
-                      src={`${IMG}/disperser-view.webp`}
-                      alt="高速分散机"
-                      className="pp-disperser-img"
-                      loading="lazy"
-                    />
+                <div className="cp-core-device-info">
+                  <div className="cp-core-device-badge">
+                    <h3 className="cp-core-device-name">高速分散机</h3>
                   </div>
-                  {/* 右：2×3 部件 SVG 网格 */}
-                  <div className="pp-disperser-components">
-                    {[1, 2, 3, 4, 5, 6].map((n) => (
-                      <div key={n} className="pp-component-cell">
-                        <img
-                          src={`${IMG}/component-0${n}.svg`}
-                          alt={`部件 ${n}`}
-                          className="pp-component-img"
-                          loading="lazy"
-                        />
-                      </div>
-                    ))}
+                  <div className="cp-core-device-divider" />
+                  {/* 设备介绍文字内容待提供 */}
+                  <p className="cp-core-device-tbd">设备介绍文字内容待提供</p>
+                </div>
+              </div>
+
+              <hr className="cp-core-divider" />
+
+              {/* —— 03 管线分散罐 —— */}
+              <div className="cp-core-device-row fade-up fade-up-delay-1">
+                <div className="cp-core-device-img-wrap">
+                  <img
+                    src={`${IMG}/管线分散罐.svg`}
+                    alt="管线分散罐"
+                    className="cp-core-device-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="cp-core-device-info">
+                  <div className="cp-core-device-badge">
+                    <h3 className="cp-core-device-name">管线分散罐</h3>
+                  </div>
+                  <div className="cp-core-device-divider" />
+                  <div>
+                    <h4 className="cp-core-device-desc-title">基本配置</h4>
+                    <p className="cp-core-device-desc-para">
+                      管线分散罐基本构成由搅拌系统模块、密封系统模块、分散系统模块及水冷系统组成，主体设备有观察口、加料口、进料口、抽真空口、放空口、取样口、出料口等，桶体带冷却夹套。控制系统包含：搅拌系统 1 套、定转子高速分散剪切系统 1 套、恒温控制系统 1 套。
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="cp-core-device-desc-title">基本原理</h4>
+                    <p className="cp-core-device-desc-para">
+                      搅拌桨正向旋转时，搅拌桨轴向将罐内两端的物料推向罐体中间，便于中部位置的高速分散系统将浆料进行分散。螺旋形桨叶将分散好的浆料径向散开，形成浆料大循环流动；分散系统定子的弧形叶片在高速旋转下，产生强大的离心流场，在转子中心形成相对低压区，浆料从定转子中心被吸入，在离心力的作用下，物料被分散剪切，由中心向四周扩散，配合螺旋搅拌桨的旋转，进行浆料循环分散。
+                    </p>
                   </div>
                 </div>
               </div>
@@ -307,19 +326,19 @@ export default function PipelinePulpingPage() {
           </div>
         </section>
 
-        {/* ===== 客户案例：灰底单容器，2×2 卡片 ===== */}
-        <section className="page-section page-section--gray">
+        {/* ===== 客户案例 ===== */}
+        <section className="page-section">
           <div className="page-container">
             <p className="section-en-label fade-up">Case</p>
             <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
 
             <div className="cp-verify-block fade-up fade-up-delay-1">
-              <div className="cp-charts-grid-2 pp-charts-grid">
+              <div className="cp-charts-grid-4 pp-charts-grid">
                 {[
-                  { src: `${IMG}/case-workshop-01.webp`, alt: '管线式制浆车间全景' },
-                  { src: `${IMG}/case-workshop-02.webp`, alt: '设备运行细节' },
-                  { src: `${IMG}/case-workshop-03.webp`, alt: '车间现场实况' },
-                  { src: `${IMG}/case-workshop-04.jpg`,  alt: '管线式制浆系统现场' },
+                  { src: `${IMG}/case-workshop-01.webp`, alt: '管线式制浆车间' },
+                  { src: `${IMG}/case-workshop-02.webp`, alt: '管线式制浆车间' },
+                  { src: `${IMG}/case-workshop-03.webp`, alt: '管线式制浆车间' },
+                  { src: `${IMG}/case-workshop-04.jpg`,  alt: '吨包投料车间' },
                 ].map((item, i) => (
                   <div key={i} className="cp-chart-card">
                     <img src={item.src} alt={item.alt} className="cp-chart-img" loading="lazy" />
