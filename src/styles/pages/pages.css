@@ -3082,12 +3082,22 @@
 
 .detail-contact-inner {
   background-color: var(--zinc-800);
-  background-size: cover;
-  background-position: center 50%;
   padding: 96px 40px;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.detail-contact-parallax-bg {
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  z-index: 0;
 }
 
 .detail-contact-inner::before {
@@ -3100,12 +3110,12 @@
   background-size:
     2px 2px,
     cover;
-  z-index: 0;
+  z-index: 1;
 }
 
-.detail-contact-inner > * {
+.detail-contact-inner > *:not(.detail-contact-parallax-bg) {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .detail-contact-title {

@@ -1,49 +1,44 @@
 import { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
-import { useLenisInstance } from '../context/LenisContext'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function ParallaxCta({ bgImage, title, desc, linkTo = '/contact', linkLabel = '联系我们' }) {
-  const sectionRef = useRef(null)
-  const lenisRef = useLenisInstance()
+  const containerRef = useRef(null)
+  const bgRef = useRef(null)
 
   useEffect(() => {
-    const lenis = lenisRef?.current
-    const section = sectionRef.current
-    if (!lenis || !section) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        bgRef.current,
+        { yPercent: -15 },
+        {
+          yPercent: 15,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      )
+    }, containerRef)
 
-    // 缓存元素中心的文档坐标，避免 scroll handler 里触发 reflow
-    let sectionMidY = section.offsetTop + section.offsetHeight / 2
-
-    const handleResize = () => {
-      sectionMidY = section.offsetTop + section.offsetHeight / 2
-    }
-    window.addEventListener('resize', handleResize, { passive: true })
-
-    function onScroll({ scroll }) {
-      const viewMid = scroll + window.innerHeight / 2
-      const progress = (sectionMidY - viewMid) / window.innerHeight
-      // progress > 0: 元素在视口下方; < 0: 在视口上方
-      const yPercent = 50 - progress * 20
-      section.style.backgroundPosition = `center ${yPercent}%`
-    }
-
-    lenis.on('scroll', onScroll)
-    onScroll({ scroll: lenis.scroll ?? 0 })
-
-    return () => {
-      lenis.off('scroll', onScroll)
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [lenisRef])
+    return () => ctx.revert()
+  }, [])
 
   return (
     <div className="detail-contact-cta">
-      <div
-        className="detail-contact-inner"
-        ref={sectionRef}
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
+      <div className="detail-contact-inner" ref={containerRef}>
+        <div
+          ref={bgRef}
+          className="detail-contact-parallax-bg"
+          style={{ backgroundImage: `url(${bgImage})` }}
+        />
         <h2 className="detail-contact-title">{title}</h2>
         {desc && <p className="detail-contact-desc" dangerouslySetInnerHTML={{ __html: desc }} />}
         <Link to={linkTo} className="btn-primary">

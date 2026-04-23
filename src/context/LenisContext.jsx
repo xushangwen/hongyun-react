@@ -1,5 +1,9 @@
 import { createContext, useContext, useEffect, useRef } from 'react'
 import Lenis from 'lenis'
+import gsap from 'gsap'
+import ScrollTrigger from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const LenisContext = createContext(null)
 
@@ -19,6 +23,11 @@ export function LenisProvider({ children }) {
 
     lenisRef.current = lenis
 
+    // 同步 GSAP ScrollTrigger：Lenis 每帧通知 ScrollTrigger 当前滚动量
+    lenis.on('scroll', ScrollTrigger.update)
+    // 禁用 GSAP 卡顿补偿，防止与 Lenis 的缓动冲突
+    gsap.ticker.lagSmoothing(0)
+
     let rafId
     function raf(time) {
       lenis.raf(time)
@@ -36,6 +45,7 @@ export function LenisProvider({ children }) {
     return () => {
       cancelAnimationFrame(rafId)
       document.removeEventListener('visibilitychange', handleVisibility)
+      lenis.off('scroll', ScrollTrigger.update)
       lenis.destroy()
       lenisRef.current = null
     }
