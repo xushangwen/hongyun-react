@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
+import {
+  IconArrowRightOutline24,
+  IconCarBatteryOutline24,
+  IconBatteryChargingOutline24,
+  IconFlaskOutline24,
+  IconTestTubeOutline24,
+  IconFireFlameOutline24,
+  IconCutleryOutline24,
+  IconSoapDispenserOutline24,
+  IconMicrochipOutline24,
+} from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
@@ -13,6 +23,7 @@ import ctaBgImg from '../assets/img/IMG_5036.jpg'
 const productCategories = [
   {
     id: 'new-energy',
+    Icon: IconCarBatteryOutline24,
     name: '新能源行业',
     desc: '面向锂电池正负极浆料制备的核心装备，覆盖搅拌、分散、捏合、制浆全工艺环节。',
     products: [
@@ -24,6 +35,7 @@ const productCategories = [
   },
   {
     id: 'solid-state-battery',
+    Icon: IconBatteryChargingOutline24,
     name: '固态电池',
     desc: '面向下一代固态电池干法电极制备工艺的前沿装备，涵盖包覆、混合、挤出等关键工序。',
     products: [
@@ -35,6 +47,7 @@ const productCategories = [
   },
   {
     id: 'chemical',
+    Icon: IconFlaskOutline24,
     name: '化工行业',
     desc: '适用于涂料、胶粘剂、密封胶等高粘度多组分物料的专业混合搅拌设备。',
     products: [
@@ -52,6 +65,7 @@ const productCategories = [
   },
   {
     id: 'adhesive',
+    Icon: IconTestTubeOutline24,
     name: '制胶',
     desc: '针对密封胶、结构胶、硅胶等高粘度物料的真空搅拌与脱泡专用装备。',
     products: [
@@ -60,6 +74,7 @@ const productCategories = [
   },
   {
     id: 'pyrotechnics',
+    Icon: IconFireFlameOutline24,
     name: '火工药剂',
     desc: '符合国防安全标准的防爆型混合搅拌设备，适用于含能材料安全生产。',
     products: [
@@ -68,6 +83,7 @@ const productCategories = [
   },
   {
     id: 'food',
+    Icon: IconCutleryOutline24,
     name: '食品',
     desc: '符合食品安全标准的卫生级混合设备，全不锈钢设计，支持CIP在线清洗。',
     products: [
@@ -76,6 +92,7 @@ const productCategories = [
   },
   {
     id: 'cosmetics',
+    Icon: IconSoapDispenserOutline24,
     name: '化妆品',
     desc: '适用于乳液、膏霜等化妆品生产的真空乳化均质混合设备。',
     products: [
@@ -84,6 +101,7 @@ const productCategories = [
   },
   {
     id: 'electronics',
+    Icon: IconMicrochipOutline24,
     name: '电子材料',
     desc: '满足电子级材料纳米级粒径要求的超细研磨与真空脱泡混合装备。',
     products: [
@@ -135,6 +153,7 @@ export default function ProductsPage() {
                   href={`#products-${cat.id}`}
                   className={`solutions-nav-item${activeId === `products-${cat.id}` ? ' active' : ''}`}
                 >
+                  <cat.Icon size={14} />
                   {cat.name}
                 </a>
               ))}

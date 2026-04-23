@@ -1994,6 +1994,9 @@
 }
 
 .solutions-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   padding: 6px 18px;
   border-radius: 1000px;
   font-size: 13px;

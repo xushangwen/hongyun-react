@@ -10,6 +10,15 @@ import {
   IconCoinsChartOutline24,
   IconAwardCertificateOutline24,
   IconPeopleOutline24,
+  IconOffice2Outline24,
+  IconCircleMediaPlayOutline24,
+  IconTargetOutline24,
+  IconHistoryOutline24,
+  IconGearNodesOutline24,
+  IconAtomOutline24,
+  IconGlobeOutline24,
+  IconAwardPlaqueOutline24,
+  IconUsersShakingHandsOutline24,
 } from 'nucleo-core-outline-24'
 import { IconArrowLeftOutline48, IconArrowRightOutline48 } from 'nucleo-core-outline-48'
 import PageHero from '../components/PageHero'
@@ -666,15 +675,15 @@ const partnerGroups = [
 ]
 
 const aboutNavItems = [
-  { id: 'company-intro', label: '公司简介' },
-  { id: 'promo-video',   label: '企业宣传片' },
-  { id: 'culture',       label: '企业文化' },
-  { id: 'history',       label: '发展历程' },
-  { id: 'production',    label: '生产实力' },
-  { id: 'rnd',           label: '研发实力' },
-  { id: 'global',        label: '全球化布局' },
-  { id: 'honors',        label: '资质荣誉' },
-  { id: 'partners-page', label: '合作伙伴' },
+  { id: 'company-intro', label: '公司简介',   Icon: IconOffice2Outline24 },
+  { id: 'promo-video',   label: '企业宣传片', Icon: IconCircleMediaPlayOutline24 },
+  { id: 'culture',       label: '企业文化',   Icon: IconTargetOutline24 },
+  { id: 'history',       label: '发展历程',   Icon: IconHistoryOutline24 },
+  { id: 'production',    label: '生产实力',   Icon: IconGearNodesOutline24 },
+  { id: 'rnd',           label: '研发实力',   Icon: IconAtomOutline24 },
+  { id: 'global',        label: '全球化布局', Icon: IconGlobeOutline24 },
+  { id: 'honors',        label: '资质荣誉',   Icon: IconAwardPlaqueOutline24 },
+  { id: 'partners-page', label: '合作伙伴',   Icon: IconUsersShakingHandsOutline24 },
 ]
 
 export default function AboutPage() {
@@ -801,13 +810,14 @@ export default function AboutPage() {
         <div className="page-sticky-nav">
           <div className="page-container">
             <nav className="solutions-nav">
-              {aboutNavItems.map((item) => (
+              {aboutNavItems.map(({ id, label, Icon }) => (
                 <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  className={`solutions-nav-item${activeNavId === item.id ? ' active' : ''}`}
+                  key={id}
+                  href={`#${id}`}
+                  className={`solutions-nav-item${activeNavId === id ? ' active' : ''}`}
                 >
-                  {item.label}
+                  <Icon size={14} />
+                  {label}
                 </a>
               ))}
             </nav>

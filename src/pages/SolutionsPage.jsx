@@ -1,6 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
+import {
+  IconArrowRightOutline24,
+  IconCarBatteryOutline24,
+  IconBatteryChargingOutline24,
+  IconFlaskOutline24,
+  IconTestTubeOutline24,
+  IconFireFlameOutline24,
+  IconCutleryOutline24,
+  IconMedicineOutline24,
+  IconSoapDispenserOutline24,
+  IconMicrochipOutline24,
+} from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
@@ -12,6 +23,7 @@ import ctaBgImg from '../assets/img/IMG_5036.jpg'
 const industries = [
   {
     id: 'new-energy',
+    Icon: IconCarBatteryOutline24,
     name: '新能源行业',
     desc: '面向锂电池正负极浆料制备，提供从投料、制浆到输送的全流程自动化解决方案，已服务宁德时代、比亚迪等头部客户。',
     solutions: [
@@ -23,6 +35,7 @@ const industries = [
   },
   {
     id: 'solid-state-battery',
+    Icon: IconBatteryChargingOutline24,
     name: '固态电池',
     desc: '针对固态电池干法电极制备工艺，提供包覆、混合、挤出全套设备方案，助力下一代电池技术产业化落地。',
     solutions: [
@@ -33,6 +46,7 @@ const industries = [
   },
   {
     id: 'chemical',
+    Icon: IconFlaskOutline24,
     name: '化工行业',
     desc: '为精细化工、涂料、胶粘剂等领域提供自动化混合生产系统，满足高粘度、多组分物料的精准配比与均匀混合需求。',
     solutions: [
@@ -41,6 +55,7 @@ const industries = [
   },
   {
     id: 'adhesive',
+    Icon: IconTestTubeOutline24,
     name: '制胶',
     desc: '针对密封胶、结构胶、硅胶等高粘度物料，提供真空脱泡、行星搅拌等专业制胶工艺方案。',
     solutions: [
@@ -49,6 +64,7 @@ const industries = [
   },
   {
     id: 'pyrotechnics',
+    Icon: IconFireFlameOutline24,
     name: '火工药剂',
     desc: '为烟火药剂、推进剂等含能材料提供防爆、防静电的安全混合生产方案，符合国防军工安全标准。',
     solutions: [
@@ -57,6 +73,7 @@ const industries = [
   },
   {
     id: 'food',
+    Icon: IconCutleryOutline24,
     name: '食品',
     desc: '为调味品、烘焙预拌粉、功能食品等提供符合GMP标准的卫生级混合生产方案，确保食品安全。',
     solutions: [
@@ -65,6 +82,7 @@ const industries = [
   },
   {
     id: 'pharma',
+    Icon: IconMedicineOutline24,
     name: '医药',
     desc: '为制药企业提供符合GMP规范的混合、制粒、包衣等工艺设备，满足药品生产的高精度、高洁净度要求。',
     solutions: [
@@ -73,6 +91,7 @@ const industries = [
   },
   {
     id: 'cosmetics',
+    Icon: IconSoapDispenserOutline24,
     name: '化妆品',
     desc: '为乳液、膏霜、粉底等化妆品提供真空乳化、均质混合等专业生产方案，兼顾高效与品质稳定。',
     solutions: [
@@ -81,6 +100,7 @@ const industries = [
   },
   {
     id: 'electronics',
+    Icon: IconMicrochipOutline24,
     name: '电子材料',
     desc: '为电子浆料、导电胶、封装材料等高精度电子材料提供超细研磨、真空脱泡等专业混合工艺。',
     solutions: [
@@ -135,6 +155,7 @@ export default function SolutionsPage() {
                   href={`#${ind.id}`}
                   className={`solutions-nav-item${activeId === ind.id ? ' active' : ''}`}
                 >
+                  <ind.Icon size={14} />
                   {ind.name}
                 </a>
               ))}
