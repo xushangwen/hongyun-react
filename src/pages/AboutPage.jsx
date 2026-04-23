@@ -665,8 +665,21 @@ const partnerGroups = [
   },
 ]
 
+const aboutNavItems = [
+  { id: 'company-intro', label: '公司简介' },
+  { id: 'promo-video',   label: '企业宣传片' },
+  { id: 'culture',       label: '企业文化' },
+  { id: 'history',       label: '发展历程' },
+  { id: 'production',    label: '生产实力' },
+  { id: 'rnd',           label: '研发实力' },
+  { id: 'global',        label: '全球化布局' },
+  { id: 'honors',        label: '资质荣誉' },
+  { id: 'partners-page', label: '合作伙伴' },
+]
+
 export default function AboutPage() {
   const [activeHonorTab, setActiveHonorTab] = useState(0)
+  const [activeNavId, setActiveNavId] = useState('company-intro')
 
   /* 企业简介统计数字动画 */
   const statRefs = useRef([])
@@ -754,6 +767,20 @@ export default function AboutPage() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+    const navObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setActiveNavId(e.target.id) })
+      },
+      { rootMargin: '-20% 0px -60% 0px' }
+    )
+    aboutNavItems.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) navObserver.observe(el)
+    })
+    return () => navObserver.disconnect()
+  }, [])
+
   const honorsGridClass = ['cert', 'patent', 'honor'][activeHonorTab]
   const isHonorTab = activeHonorTab === 2
 
@@ -769,6 +796,23 @@ export default function AboutPage() {
       <div className="page-body">
         {/* ===== 面包屑 ===== */}
         <Breadcrumb items={[{ label: '关于红运' }]} />
+
+        {/* ===== 页内导航 ===== */}
+        <div className="page-sticky-nav">
+          <div className="page-container">
+            <nav className="solutions-nav">
+              {aboutNavItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  className={`solutions-nav-item${activeNavId === item.id ? ' active' : ''}`}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
 
         {/* ===== 公司简介 ===== */}
         <section className="about-page-section" id="company-intro">

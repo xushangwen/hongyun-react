@@ -605,7 +605,7 @@
   padding: 72px 0;
   position: relative;
   overflow: hidden;
-  scroll-margin-top: calc(var(--header-height) + 20px);
+  scroll-margin-top: calc(var(--header-height) + 54px);
 }
 
 #history::before {
