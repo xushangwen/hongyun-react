@@ -104,7 +104,7 @@ export default function HighSpeedDisperserPage() {
                   <img
                     src={`${IMG}/component-0${n}.svg`}
                     alt={`部件 ${n}`}
-                    style={{ display: 'block', width: '100%', height: 'auto' }}
+                    style={{ display: 'block', width: [2, 6].includes(n) ? '60%' : '100%', height: 'auto' }}
                     loading="lazy"
                   />
                 </div>
