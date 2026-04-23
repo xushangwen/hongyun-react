@@ -66,6 +66,10 @@
   animation: scrollRight 30s linear infinite;
 }
 
+.partners-scroll-row:hover .partners-scroll-track {
+  animation-play-state: paused;
+}
+
 @keyframes scrollLeft {
   0% {
     transform: translateX(0);

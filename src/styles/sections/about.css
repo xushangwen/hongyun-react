@@ -67,6 +67,7 @@
   line-height: 1.8;
   opacity: 0.9;
   margin-bottom: 16px;
+  word-break: keep-all;
 }
 
 .about-btn {

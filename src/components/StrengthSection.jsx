@@ -1,23 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
 
 const strengthStats = [
-  { target: 100, sup: '+', unit: '项', label: '累计专利技术' },
-  { target: 30, sup: '+', unit: '%', label: '研发人员占比' },
-  { target: 8, sup: '+', unit: '%', label: '年均研发投入' },
+  { target: 15, sup: '+', unit: '%', label: '研发投入' },
+  { target: 200, sup: '+', unit: '', label: '自主研发专利' },
+  { target: 20, sup: '+', unit: '%', label: '研发成员占比' },
 ]
 
 const certifications = [
-  { img: '/assets/images/str/au-01.svg', label: '国家高新技术企业' },
-  { img: '/assets/images/str/au-02.svg', label: '专精特新"小巨人"企业' },
-  { img: '/assets/images/str/au-03.svg', label: 'CNAS认证' },
-  { img: '/assets/images/str/au-04.svg', label: 'CE认证' },
-  { img: '/assets/images/str/au-05.svg', label: 'UL安全认证' },
-  { img: '/assets/images/str/au-06.svg', label: 'ISO9001' },
+  { img: '/assets/images/str/cert-iso9001.png', label: 'ISO 9001' },
+  { img: '/assets/images/str/cert-iso14001.png', label: 'ISO 14001' },
+  { img: '/assets/images/str/cert-sgs.svg', label: 'SGS认证' },
+  { img: '/assets/images/str/cert-patent.webp', label: '专利证书' },
 ]
 
 const certImages = [
-  '/assets/images/str/cr-01.jpg',
-  '/assets/images/str/cr-02.jpg',
+  '/assets/images/honors/certificate/ce-cert.webp',
+  '/assets/images/honors/certificate/iso9001.webp',
+  '/assets/images/honors/certificate/iso14001.webp',
+  '/assets/images/honors/patent/patent-01.webp',
+  '/assets/images/honors/patent/patent-02.webp',
+  '/assets/images/honors/patent/patent-03.webp',
+  '/assets/images/honors/patent/patent-04.webp',
+  '/assets/images/honors/patent/patent-05.webp',
+  '/assets/images/honors/patent/patent-06.webp',
+  '/assets/images/honors/patent/patent-07.webp',
+  '/assets/images/honors/patent/patent-08.webp',
 ]
 
 function animateNumber(element, target, duration = 2000) {
@@ -89,10 +96,10 @@ export default function StrengthSection() {
       <div className="strength-container">
         <div className="strength-left">
           <h2 className="strength-title">
-            以国家级专精特新实力<br />定义混合设备新高度
+            研发创新
           </h2>
           <p className="strength-desc">
-            红运机械坚持每年将高比例营收投入研发，依托CNAS级实验检测中心与全球顶尖技术团队，在全固态电池设备及流体自动化领域持续突破，以权威认证（CE/UL）对标国际严苛标准。
+            红运机械的研发体系致力于新材料与新工艺的开发、产品开发，以及样品的试制与测试验证。结合市场需求与行业前沿技术动态，专注于新能源电池材料、化工材料、电子材料、涂料、医疗药剂、火工炸药等多个应用领域的物料搅拌混合设备技术。通过持续创新打造性能卓越、质量可靠的搅拌混合设备产品系列，以满足不同领域客户的精准需求。
           </p>
 
           <div className="strength-divider" />
@@ -133,15 +140,15 @@ export default function StrengthSection() {
         {/* Right - Certificates Scroll */}
         <div className="strength-right">
           {renderScrollCol(
-            [certImages[0], certImages[1], certImages[0], certImages[1]],
+            [certImages[0], certImages[1], certImages[2], certImages[3], certImages[0], certImages[1], certImages[2], certImages[3]],
             'up'
           )}
           {renderScrollCol(
-            [certImages[1], certImages[0], certImages[1], certImages[0]],
+            [certImages[4], certImages[5], certImages[6], certImages[7], certImages[4], certImages[5], certImages[6], certImages[7]],
             'down'
           )}
           {renderScrollCol(
-            [certImages[0], certImages[1], certImages[0], certImages[1]],
+            [certImages[8], certImages[9], certImages[10], certImages[8], certImages[9], certImages[10]],
             'up'
           )}
         </div>
