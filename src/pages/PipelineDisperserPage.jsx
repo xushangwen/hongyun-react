@@ -107,7 +107,7 @@ export default function PipelineDisperserPage() {
                   loading="eager"
                 />
               </div>
-              <div style={{ flex: '0 0 50%' }}>
+              <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">管线分散罐</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   管线分散罐基本构成由搅拌系统模块、密封系统模块、分散系统模块及水冷系统组成，主体设备有观察口、加料口、进料口、抽真空口、放空口、取样口、出料口等，桶体带冷却夹套。控制系统包含：搅拌系统 1 套、定转子高速分散剪切系统 1 套、恒温控制系统 1 套。
