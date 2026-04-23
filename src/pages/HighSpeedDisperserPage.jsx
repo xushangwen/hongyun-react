@@ -100,13 +100,18 @@ export default function HighSpeedDisperserPage() {
             <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
             <div className="fade-up fade-up-delay-1" style={{ display: 'flex', gap: '12px', marginTop: '40px' }}>
               {[1, 2, 3, 4, 5, 6].map((n) => (
-                <div key={n} style={{ flex: 1, background: '#fff', borderRadius: '8px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img
-                    src={`${IMG}/component-0${n}.svg`}
-                    alt={`部件 ${n}`}
-                    style={{ display: 'block', width: [2, 6].includes(n) ? '70%' : n === 3 ? '86%' : '100%', height: 'auto' }}
-                    loading="lazy"
-                  />
+                <div key={n} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ width: '100%', background: '#fff', borderRadius: '8px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img
+                      src={`${IMG}/component-0${n}.svg`}
+                      alt={`部件 ${n}`}
+                      style={{ display: 'block', width: [2, 6].includes(n) ? '70%' : n === 3 ? '86%' : '100%', height: 'auto' }}
+                      loading="lazy"
+                    />
+                  </div>
+                  <span style={{ fontFamily: '"Space Grotesk", sans-serif', fontSize: '13px', fontWeight: 500, color: 'var(--zinc-400)', letterSpacing: '0.05em' }}>
+                    {String(n).padStart(2, '0')}
+                  </span>
                 </div>
               ))}
             </div>
