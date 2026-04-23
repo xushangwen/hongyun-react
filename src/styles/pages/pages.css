@@ -72,7 +72,7 @@
   align-items: center;
   gap: 16px;
   padding: 0 40px;
-  animation: heroContentIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: heroContentIn 0.8s var(--ease-spring) forwards;
 }
 
 @keyframes heroContentIn {
@@ -106,7 +106,7 @@
   width: 48px;
   height: 2px;
   background: var(--hy-red);
-  animation: dividerExpand 1s 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: dividerExpand 1s 0.3s var(--ease-smooth) forwards;
   transform: scaleX(0);
   transform-origin: center;
 }
@@ -127,7 +127,7 @@
   width: 1px;
   height: 56px;
   overflow: hidden;
-  animation: heroContentIn 1.4s 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: heroContentIn 1.4s 0.8s var(--ease-spring) both;
 }
 
 .page-hero-scroll::before {
@@ -270,7 +270,7 @@
   width: 2px;
   height: 0;
   background: var(--hy-red);
-  transition: height 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: height 0.6s var(--ease-smooth);
 }
 
 .section-heading.visible::before {
@@ -603,6 +603,15 @@
    About Page
    ======================================== */
 
+/* ── 全局动画 / 设计 token ──────────────────
+   统一 easing、渐变，消除散落的硬编码值
+   ──────────────────────────────────────── */
+:root {
+  --ease-spring:      var(--ease-spring);   /* 弹出感：卡片悬停、弹层 */
+  --ease-smooth:      var(--ease-smooth); /* 缓出：线条展开、轮播 */
+  --hy-red-gradient:  var(--hy-red-gradient); /* 品牌红渐变数字 */
+}
+
 .about-page-section {
   padding: 72px 0;
   position: relative;
@@ -688,7 +697,7 @@
   font-size: 48px;
   font-weight: 400;
   font-family: "DIN Pro", sans-serif;
-  background: linear-gradient(180deg, #e50004 0%, #ba0c2f 100%);
+  background: var(--hy-red-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -770,7 +779,7 @@
 .about-culture-card {
   background: var(--hy-white);
   padding: 48px 40px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-spring);
   position: relative;
   overflow: hidden;
   border-right: 1px solid var(--zinc-100);
@@ -789,7 +798,7 @@
   width: 0;
   height: 2px;
   background: var(--hy-red);
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: width 0.5s var(--ease-smooth);
 }
 
 .about-culture-card:hover {
@@ -944,7 +953,7 @@
   height: 9px;
   border-radius: 50%;
   background: var(--hy-red);
-  box-shadow: 0 0 0 2px #fff, 0 0 0 3px var(--hy-red), 0 0 0 4px #fff, 0 0 0 4.5px rgba(186, 12, 47, 0.5);
+  box-shadow: 0 0 0 2px var(--hy-white), 0 0 0 3px var(--hy-red), 0 0 0 4px var(--hy-white), 0 0 0 4.5px rgba(186, 12, 47, 0.5);
 }
 
 /* 视口：仅水平裁剪，垂直方向允许溢出（非激活图片向下延伸） */
@@ -1146,7 +1155,7 @@
 
 
 .pw-tab--active {
-  background: linear-gradient(to bottom, #ffffff, transparent);
+  background: linear-gradient(to bottom, var(--hy-white), transparent);
   padding: 28px 24px 28px 40px;
 }
 
@@ -1181,9 +1190,6 @@
 
 .pw-tab--active .pw-tab-name {
   margin-bottom: 10px;
-}
-
-.pw-tab--active .pw-tab-name {
   color: var(--hy-red);
   font-size: 19px;
 }
@@ -1249,7 +1255,7 @@
   aspect-ratio: 5 / 3;
   border-radius: 20px;
   overflow: hidden;
-  border: 5px solid #ffffff;
+  border: 5px solid var(--hy-white);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13);
 }
 
@@ -1382,7 +1388,7 @@
   font-size: 52px;
   font-weight: 400;
   font-family: "DIN Pro", sans-serif;
-  background: linear-gradient(180deg, #e50004, #ba0c2f);
+  background: var(--hy-red-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1404,7 +1410,7 @@
 
 /* 研发实力 */
 .about-page-section.about-rnd-section {
-  background: #ffffff;
+  background: var(--hy-white);
 }
 
 .about-page-section.about-rnd-section::before {
@@ -1457,7 +1463,7 @@
 .about-rnd-carousel-track {
   display: flex;
   width: 300%; /* 3组(2真实+1克隆) × 100% 容器宽 */
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.6s var(--ease-smooth);
 }
 
 /* 每张图占 track 的 1/6（track=300% 容器宽），视觉宽 = 容器 50%，两张并排 = 满宽 */
@@ -1492,7 +1498,7 @@
   left: 0;
   right: 0;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.62));
-  color: #fff;
+  color: var(--hy-white);
   font-size: 13px;
   line-height: 1.5;
   padding: 32px 12px 12px;
@@ -1583,7 +1589,7 @@
   font-size: 44px;
   font-weight: 400;
   font-family: "DIN Pro", "Space Grotesk", sans-serif;
-  background: linear-gradient(180deg, #e50004 0%, #ba0c2f 100%);
+  background: var(--hy-red-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1621,7 +1627,7 @@
   background: var(--hy-white);
   padding: 40px 36px;
   position: relative;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-spring);
   overflow: hidden;
 }
 
@@ -1651,7 +1657,7 @@
   width: 0;
   height: 2px;
   background: var(--hy-red);
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: width 0.5s var(--ease-smooth);
 }
 
 .about-global-branch:hover::after {
@@ -1783,7 +1789,7 @@
 
 .about-honors-item {
   background: transparent;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s var(--ease-spring);
 }
 
 .about-honors-item:hover {
@@ -1797,7 +1803,7 @@
   isolation: isolate;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--zinc-200);
   border-radius: 12px;
 }
 
@@ -1890,7 +1896,7 @@
   font-size: 56px;
   font-weight: 400;
   line-height: 1;
-  background: linear-gradient(180deg, #e50004 0%, #ba0c2f 100%);
+  background: var(--hy-red-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1977,13 +1983,13 @@
 }
 
 .partner-category-icon {
-  color: #fff;
+  color: var(--hy-white);
 }
 
 .partner-category-name {
   font-size: 12px;
   font-family: "IBM Plex Sans SC", sans-serif;
-  color: #fff;
+  color: var(--hy-white);
   text-align: center;
   line-height: 1.3;
 }
@@ -2111,7 +2117,7 @@
   color: inherit;
   border: none;
   border-radius: 0;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.5s var(--ease-spring);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -2149,7 +2155,7 @@
   height: 90%;
   display: block;
   object-fit: contain;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.7s var(--ease-smooth);
 }
 
 .solutions-card:hover .solutions-card-image img {
@@ -2165,7 +2171,7 @@
   justify-content: space-between;
   gap: 88px;
   flex-shrink: 0;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-spring);
   position: relative;
 }
 
@@ -2178,7 +2184,7 @@
   width: 0;
   height: 2px;
   background: var(--hy-red);
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: width 0.5s var(--ease-smooth);
 }
 
 .solutions-card:hover .solutions-card-content::after {
@@ -2220,7 +2226,7 @@
   background: transparent;
   border: none;
   padding: 0;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s var(--ease-spring);
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -2285,7 +2291,7 @@
   color: inherit;
   border: none;
   border-radius: 0;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.5s var(--ease-spring);
   position: relative;
   height: 400px;
   display: flex;
@@ -2312,7 +2318,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.7s var(--ease-smooth);
 }
 
 .product-card-image--contain img {
@@ -2335,7 +2341,7 @@
   justify-content: space-between;
   gap: 20px;
   flex: 1;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-spring);
   position: relative;
 }
 
@@ -2348,7 +2354,7 @@
   width: 0;
   height: 2px;
   background: var(--hy-red);
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: width 0.5s var(--ease-smooth);
 }
 
 .product-card:hover .product-card-content::after {
@@ -2379,7 +2385,7 @@
   background: transparent;
   border: none;
   padding: 0;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s var(--ease-spring);
   white-space: nowrap;
 }
 
@@ -2413,7 +2419,7 @@
   padding: 40px;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-spring);
 }
 
 .contact-info-card::before {
@@ -2753,7 +2759,7 @@
   padding: 36px 28px 32px;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-spring);
 }
 
 .detail-feature-card::after {
@@ -2764,7 +2770,7 @@
   width: 0;
   height: 2px;
   background: var(--hy-red);
-  transition: width 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: width 0.45s var(--ease-smooth);
 }
 
 .detail-feature-card:hover {
@@ -2835,7 +2841,7 @@
   border: 1px solid var(--zinc-100);
   overflow: hidden;
   transition:
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s var(--ease-spring),
     box-shadow 0.35s ease,
     border-color 0.3s ease;
   display: block;
@@ -3106,7 +3112,7 @@
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-spring);
   height: 100%;
 }
 .news-list-card-link:hover {
@@ -3124,7 +3130,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.6s var(--ease-smooth);
 }
 .news-list-card-link:hover .news-list-card-image img {
   transform: scale(1.06);
@@ -3967,7 +3973,7 @@
   width: 100%;
   max-width: 760px;
   position: relative;
-  animation: modal-panel-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: modal-panel-in 0.3s var(--ease-spring);
   margin: auto;
 }
 @keyframes modal-panel-in {
@@ -4237,7 +4243,7 @@
   width: 100%;
   display: block;
   object-fit: contain;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.7s var(--ease-smooth);
 }
 
 .pdm-showcase:hover .pdm-showcase-img {
@@ -4304,7 +4310,7 @@
   padding: 48px 40px;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s var(--ease-spring);
   border-right: 1px solid var(--zinc-100);
 }
 
@@ -4320,7 +4326,7 @@
   width: 0;
   height: 3px;
   background: var(--hy-red);
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: width 0.5s var(--ease-smooth);
 }
 
 .pdm-reliability-card:hover::before {
@@ -4392,7 +4398,7 @@
   border: 1px solid var(--zinc-100);
   overflow: hidden;
   transition:
-    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.45s var(--ease-spring),
     box-shadow 0.45s ease,
     border-color 0.3s ease;
 }
@@ -4433,7 +4439,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.7s var(--ease-smooth);
 }
 
 .pdm-model-card:hover .pdm-model-img {
@@ -4707,7 +4713,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.6s var(--ease-smooth);
 }
 
 .pdm-case-image-wrap:hover .pdm-case-img {
@@ -4844,7 +4850,7 @@
 .pdm-intro-img {
   width: 100%;
   display: block;
-  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.8s var(--ease-smooth);
 }
 
 .pdm-intro-visual:hover .pdm-intro-img {
@@ -4947,7 +4953,7 @@
   width: 0;
   height: 3px;
   background: var(--hy-red);
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: width 0.5s var(--ease-smooth);
 }
 
 .pdm-rel-card:hover {
@@ -5086,7 +5092,7 @@
   object-fit: cover;
   display: block;
   transform: scale(1.05);
-  transition: transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.75s var(--ease-smooth);
 }
 
 .pdm-case-img--fill-height {
@@ -5795,7 +5801,7 @@
   background: var(--hy-red);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.4s var(--ease-smooth);
 }
 
 .cp-disperser-feat-card:hover {
@@ -5878,7 +5884,7 @@
   background: var(--hy-red);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.4s var(--ease-smooth);
 }
 
 .cp-diagram-card:hover {
