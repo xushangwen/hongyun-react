@@ -10,7 +10,7 @@ export const newsData = [
     title: '匠心传承 智创未来｜红运机械司庆暨2025年度表彰颁奖典礼隆重举行',
     date: '2026-03-04',
     dateDisplay: '2026年3月4日',
-    category: '公司动态',
+    category: '公司新闻',
     image: '/news-images/awards-ceremony-2026/poster_awards_ceremony.png',
     summary: '2026年3月3日（正月十五），红运机械司庆暨2025年度表彰颁奖典礼在常州总部基地和广州基地同步隆重举行，公司管理团队与全体红运家人、供应商伙伴齐聚一堂，共同庆祝这一美好时刻。',
     blocks: [
@@ -138,7 +138,7 @@ export const newsData = [
     title: '红运机械亮相固态电池顶级盛会 分享固态电池量产前沿工艺',
     date: '2026-02-09',
     dateDisplay: '2026年2月9日',
-    category: '展会信息',
+    category: '行业新闻',
     image: '/news-images/solid-state-battery-summit-2026/cover_image.jpg',
     summary: '2月7日至8日，2026年中国全固态电池产学研协同创新平台年会在北京召开。红运机械总经理吕柏良受邀参会，固态电池工艺总工程师吴博在"工艺创新与关键装备"专题论坛上发表主题演讲。红运机械荣获"优秀合作伙伴"称号。',
     blocks: [
@@ -322,7 +322,7 @@ export const newsData = [
     title: '强强联合·共启新篇｜红运机械 × 赛科动力联合开发实验室揭幕',
     date: '2025-07-10',
     dateDisplay: '2025年7月10日',
-    category: '公司动态',
+    category: '公司新闻',
     image: '/assets/images/news/new-img-02.jpg',
     summary: '2025年6月25日，红运机械总经理吕柏良先生与赛科动力董事长朱高龙博士为"全固态电池关键设备联合开发实验室"的落地揭幕，标志着双方在固态电池装备领域的深度合作迈上新台阶。',
     blocks: [
@@ -347,7 +347,7 @@ export const newsData = [
     title: '红运机械2025新品重磅发布 | 从"浆芯之力"到"智链未来"',
     date: '2025-06-25',
     dateDisplay: '2025年6月25日',
-    category: '公司动态',
+    category: '公司新闻',
     image: '/assets/images/news/new-img-03.jpg',
     summary: '6月25日，红运机械2025新品发布会"浆芯之力·智链未来"在金坛圆满举办。本次发布会，红运机械发布了高效管线式制浆系统、固态电池干法双螺杆系统等多款重磅新品。',
     blocks: [

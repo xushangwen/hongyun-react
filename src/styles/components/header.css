@@ -160,7 +160,7 @@
 
 .lang-btn.active {
   color: var(--hy-white);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .header.scrolled .lang-btn {
@@ -505,12 +505,15 @@
   padding: 6px 16px;
   border-radius: 1000px;
   font-size: 13px;
+  font-weight: 400;
   text-decoration: none;
-  transition: background 0.3s ease;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .dropdown-preview-btn:hover {
   background: #9a0a28;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(186, 12, 47, 0.3);
 }
 
 /* Nucleo SVG 按钮箭头图标 */
@@ -518,6 +521,10 @@
   width: 18px;
   height: 18px;
   color: currentColor;
+}
+
+.dropdown-preview-btn:hover .dropdown-preview-btn-icon {
+  animation: hy-arrow-right 1s ease infinite;
 }
 
 .dropdown-preview-image {

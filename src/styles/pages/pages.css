@@ -404,23 +404,24 @@
   background: var(--hy-red);
   color: var(--hy-white);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   border: none;
   border-radius: 9999px;
   text-decoration: none;
   cursor: pointer;
-  transition:
-    background 0.3s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
   font-family: inherit;
   letter-spacing: 0.5px;
 }
 
 .btn-primary:hover {
   background: var(--hy-red-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(186, 12, 47, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(186, 12, 47, 0.3);
+}
+
+.btn-primary:hover svg {
+  animation: hy-arrow-right 1s ease infinite;
 }
 
 .btn-primary svg {
@@ -2211,7 +2212,7 @@
   gap: 6px;
   font-size: 12px;
   color: var(--zinc-900);
-  font-weight: 500;
+  font-weight: 400;
   background: transparent;
   border: none;
   padding: 0;
@@ -2221,8 +2222,11 @@
 }
 
 .solutions-card:hover .solutions-card-more {
-  gap: 10px;
   color: var(--zinc-700);
+}
+
+.solutions-card:hover .solutions-card-more svg {
+  animation: hy-arrow-right 1s ease infinite;
 }
 
 /* ========================================
@@ -2370,7 +2374,7 @@
   gap: 6px;
   font-size: 13px;
   color: var(--zinc-900);
-  font-weight: 500;
+  font-weight: 400;
   background: transparent;
   border: none;
   padding: 0;
@@ -2379,8 +2383,11 @@
 }
 
 .product-card:hover .product-card-more {
-  gap: 10px;
   color: var(--zinc-700);
+}
+
+.product-card:hover .product-card-more svg {
+  animation: hy-arrow-right 1s ease infinite;
 }
 
 /* ========================================
@@ -3183,15 +3190,15 @@
   gap: 6px;
   font-size: 12px;
   color: white;
-  font-weight: 500;
+  font-weight: 400;
   border: 1px solid rgba(255, 255, 255, 0.6);
   padding: 6px 12px;
   border-radius: 4px;
   transition: all 0.25s ease;
   white-space: nowrap;
 }
-.news-list-card-link:hover .news-list-card-more {
-  gap: 10px;
+.news-list-card-link:hover .news-list-card-more svg {
+  animation: hy-arrow-right 1s ease infinite;
 }
 
 .news-list-load-more {
@@ -3213,13 +3220,17 @@
   font-size: 15px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .news-load-more-btn:hover {
   background: var(--hy-red-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(186, 12, 47, 0.25);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(186, 12, 47, 0.3);
+}
+
+.news-load-more-btn:hover svg {
+  animation: hy-arrow-right 1s ease infinite;
 }
 
 .news-list-empty {
@@ -3613,12 +3624,17 @@
   gap: 6px;
   font-size: 13px;
   color: var(--hy-red);
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
-  transition: gap 0.2s ease;
+  transition: transform 0.25s ease;
 }
+
 .article-sidebar-cta:hover {
-  gap: 10px;
+  transform: translateY(-3px);
+}
+
+.article-sidebar-cta:hover svg {
+  animation: hy-arrow-right 1s ease infinite;
 }
 
 /* ========================================
