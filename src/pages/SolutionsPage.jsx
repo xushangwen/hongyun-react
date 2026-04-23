@@ -18,7 +18,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import solutionsHeroImg from '../assets/img/IMG_4366.jpg'
 import prdSysImg from '../assets/img/prd-sys.png'
-import ctaBgImg from '../assets/img/IMG_4280@2x.webp'
+import ctaBgImg from '../assets/img/IMG_4292.webp'
 
 /* ========== 行业数据 [AI生成描述] ========== */
 const industries = [
