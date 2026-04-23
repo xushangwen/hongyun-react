@@ -130,6 +130,162 @@ function splitByPunctuation(text) {
   ))
 }
 
+/* ========== 生产实力 – 车间数据 ========== */
+const WORKSHOP_DURATION = 10000
+
+const productionWorkshops = [
+  {
+    id: 'welding',
+    name: '焊接车间',
+    desc: '机器人焊接与激光切割协同作业，保障焊缝强度与工艺一致性。',
+    images: [
+      { src: '/assets/images/production/welding/全自动氩弧焊机焊接@2x.webp', alt: '全自动氩弧焊机焊接' },
+      { src: '/assets/images/production/welding/全自动焊接机器人焊接@2x.webp', alt: '全自动焊接机器人焊接' },
+      { src: '/assets/images/production/welding/双枪机器人焊接@2x.webp', alt: '双枪机器人焊接' },
+      { src: '/assets/images/production/welding/水刀切割机器人@2x.webp', alt: '水刀切割机器人' },
+      { src: '/assets/images/production/welding/激光切割机@2x.webp', alt: '激光切割机' },
+    ],
+  },
+  {
+    id: 'precision',
+    name: '精加工车间',
+    desc: '马扎克四轴加工中心精密成型，喷丸处理保障表面质量，关键尺寸公差严格可控。',
+    images: [
+      { src: '/assets/images/production/precision/喷丸加工中心@2x.webp', alt: '喷丸加工中心' },
+      { src: '/assets/images/production/precision/焊接件喷丸处理@2x.webp', alt: '焊接件喷丸处理' },
+      { src: '/assets/images/production/precision/精加工车间@2x.webp', alt: '精加工车间全景' },
+      { src: '/assets/images/production/precision/马扎克四轴加工中心@2x.webp', alt: '马扎克四轴加工中心' },
+      { src: '/assets/images/production/precision/马扎克精加工车间@2x.webp', alt: '马扎克精加工车间' },
+    ],
+  },
+  {
+    id: 'assembly',
+    name: '装配调试车间',
+    desc: '多类型大型设备整机装配与精密调试，每台出厂前经严格运行测试与工艺验证。',
+    images: [
+      { src: '/assets/images/production/assembly/双螺杆制浆系统@2x.webp', alt: '双螺杆制浆系统' },
+      { src: '/assets/images/production/assembly/炉壳设备安装@2x.webp', alt: '炉壳设备安装' },
+      { src: '/assets/images/production/assembly/粉体下料设备装配@2x.webp', alt: '粉体下料设备装配' },
+      { src: '/assets/images/production/assembly/罐体设备安装@2x.webp', alt: '罐体设备安装' },
+      { src: '/assets/images/production/assembly/高效管线式制浆系统@2x.webp', alt: '高效管线式制浆系统' },
+      { src: '/assets/images/production/assembly/2300L双行星搅拌机装配@2x.webp', alt: '2300L双行星搅拌机装配' },
+    ],
+  },
+]
+
+// 右列 1fr ≈ 740px（1280-380-160），卡片 aspect-ratio 5/3 → 高度 740×3/5 = 444px
+const PW_ITEM_H  = 444
+const PW_SCALE_A = 0.88
+const PW_SCALE_I = 0.68
+const PW_GAP     = 14
+// 每步位移 = 非激活项有效高度 + gap
+const PW_SLOT    = PW_ITEM_H * PW_SCALE_I + PW_GAP          // ≈ 243
+// 初始偏移，使 imgIndex=0 激活项视觉中心对齐 PW_CTR
+const PW_CTR     = 280                                        // 容器高度 560 / 2
+// PW_OFFSET = PW_CTR + ITEM_H*(1-SCALE_A)/2 - ITEM_H/2 ≈ 280+26.6-222 = 84.6
+const PW_OFFSET  = PW_CTR + PW_ITEM_H * (1 - PW_SCALE_A) / 2 - PW_ITEM_H / 2
+
+function ProductionWorkshop() {
+  const [activeTab, setActiveTab] = useState(0)
+  const [imgIndex, setImgIndex] = useState(0)
+
+  const currentWs = productionWorkshops[activeTab]
+  const images = currentWs.images
+  const n = images.length
+
+  // 10s 后自动切换到下一个车间
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setActiveTab(t => (t + 1) % productionWorkshops.length)
+      setImgIndex(0)
+    }, WORKSHOP_DURATION)
+    return () => clearTimeout(id)
+  }, [activeTab])
+
+  // 图片在 10s 内均匀循环
+  useEffect(() => {
+    const interval = WORKSHOP_DURATION / n
+    const id = setInterval(() => setImgIndex(i => (i + 1) % n), interval)
+    return () => clearInterval(id)
+  }, [activeTab, n])
+
+  const trackY = PW_OFFSET - imgIndex * PW_SLOT
+
+  function handleTabClick(i) {
+    setActiveTab(i)
+    setImgIndex(0)
+  }
+
+  return (
+    <div className="pw-root">
+      {/* 左：Tab 列表 */}
+      <div className="pw-tabs">
+        {productionWorkshops.map((ws, i) => {
+          const isActive = i === activeTab
+          return (
+            <div
+              key={ws.id}
+              className={`pw-tab${isActive ? ' pw-tab--active' : ''}`}
+              onClick={() => handleTabClick(i)}
+            >
+              {/* 激活时的描边 loading 动画层，mount 即播放 */}
+              {isActive && <span className="pw-tab-border" aria-hidden="true" />}
+              <h3 className="pw-tab-name">{ws.name}</h3>
+              <p className="pw-tab-desc">{ws.desc}</p>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* 右：竖向轮播 */}
+      <div className="pw-carousel-wrap">
+        <div
+          className="pw-carousel-track"
+          style={{
+            transform: `translateY(${trackY}px)`,
+            transition: 'transform 0.65s cubic-bezier(0.25, 1, 0.5, 1)',
+          }}
+        >
+          {images.map((img, i) => {
+            const rawDist = i - imgIndex
+            const dist = Math.min(
+              Math.abs(rawDist),
+              Math.abs(rawDist + n),
+              Math.abs(rawDist - n)
+            )
+            const isCenter   = dist === 0
+            const isAdjacent = dist === 1
+            // scale 缩小后布局盒保持原高，用负 margin 抵消上下空白
+            const scale = isCenter ? 0.88 : 0.68
+            const vMargin = -(PW_ITEM_H * (1 - scale) / 2)
+            return (
+              <div
+                key={img.src}
+                className="pw-carousel-item"
+                style={{
+                  transform:    `scale(${scale})`,
+                  marginTop:    `${vMargin}px`,
+                  marginBottom: `${vMargin}px`,
+                  opacity:      isCenter ? 1 : isAdjacent ? 0.5 : 0.1,
+                  filter:       isCenter ? 'none' : 'brightness(0.7)',
+                  transition:   'transform 0.65s ease, opacity 0.65s ease, filter 0.65s ease, margin 0.65s ease',
+                  cursor:       isCenter ? 'default' : 'pointer',
+                }}
+                onClick={() => !isCenter && setImgIndex(i)}
+              >
+                <div className="pw-carousel-card">
+                  <img src={img.src} alt={img.alt} loading="lazy" />
+                  <span className="pw-carousel-label">{img.alt}</span>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ========== 发展历程数据 ========== */
 const timelineData = [
   { year: '1990', theme: '起步探索', desc: '企业法人经营代理油漆、油墨等化工、食品、制药设备，积累行业经验，奠定坚实发展基础。', img: '/assets/images/history/1990@2x.jpg' },
@@ -700,39 +856,7 @@ export default function AboutPage() {
         <section className="about-page-section" id="production">
           <div className="page-container">
             <h2 className="section-heading">生产实力</h2>
-            <p className="section-desc">
-公司拥有江苏常州、广州南沙两大现代化生产基地，配备数百台精密加工设备，年产能超千台套，为客户提供从设计到交付的一站式服务。
-            </p>
-            <div className="about-production-grid">
-              <div className="about-production-card">
-                <ImagePlaceholder height="260px" label="江苏红运智能装备有限公司" />
-                <div className="about-production-card-info">
-                  <h3>江苏红运智能装备有限公司</h3>
-                  <p>位于江苏省常州市武进高新区，集团总部所在地，承担核心设备的研发设计与精密制造。</p>
-                </div>
-              </div>
-              <div className="about-production-card">
-                <ImagePlaceholder height="260px" label="广州红尚机械制造有限公司" />
-                <div className="about-production-card-info">
-                  <h3>广州红尚机械制造有限公司</h3>
-                  <p>位于广州市南沙区，华南核心制造基地，辐射珠三角及东南亚市场。</p>
-                </div>
-              </div>
-            </div>
-            <div className="about-production-stats">
-              <div className="about-production-stat" ref={ref50000}>
-                <div className="about-production-stat-num">{count50000.toLocaleString()}<span style={{ fontSize: '16px' }}>+</span></div>
-                <div className="about-production-stat-label">厂房面积（m²）</div>
-              </div>
-              <div className="about-production-stat" ref={ref300}>
-                <div className="about-production-stat-num">{count300}<span style={{ fontSize: '16px' }}>+</span></div>
-                <div className="about-production-stat-label">精密加工设备（台）</div>
-              </div>
-              <div className="about-production-stat" ref={ref1000}>
-                <div className="about-production-stat-num">{count1000}<span style={{ fontSize: '16px' }}>+</span></div>
-                <div className="about-production-stat-label">年产能（台套）</div>
-              </div>
-            </div>
+            <ProductionWorkshop />
           </div>
         </section>
 
