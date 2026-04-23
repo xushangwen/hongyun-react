@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
+import { LenisProvider } from './context/LenisContext'
 import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import SolutionsPage from './pages/SolutionsPage'
@@ -22,6 +23,7 @@ import NewsDetailPage from './pages/NewsDetailPage'
 function App() {
   return (
     <BrowserRouter>
+      <LenisProvider>
       <ScrollToTop />
       <Layout>
         <Routes>
@@ -44,6 +46,7 @@ function App() {
           <Route path="/news/:id" element={<NewsDetailPage />} />
         </Routes>
       </Layout>
+      </LenisProvider>
     </BrowserRouter>
   )
 }
