@@ -76,11 +76,11 @@
   gap: 10px;
   background: var(--hy-red);
   color: var(--hy-white);
-  padding: 8px 20px;
+  padding: 9px 22px;
   border-radius: 1000px;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   margin-top: 16px;
   transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }

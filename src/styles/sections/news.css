@@ -117,7 +117,7 @@
 
 .news-card-category {
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 400;
   color: var(--hy-red);
   background: rgba(186,12,47,0.08);
   padding: 4px 12px;
@@ -131,7 +131,7 @@
   gap: 6px;
   font-size: 12px;
   color: var(--hy-red);
-  font-weight: 500;
+  font-weight: 400;
   transition: gap 0.25s ease;
 }
 
@@ -168,11 +168,11 @@
   gap: 10px;
   background: var(--hy-red);
   color: var(--hy-white);
-  padding: 8px 20px;
+  padding: 9px 22px;
   border-radius: 1000px;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 

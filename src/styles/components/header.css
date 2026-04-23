@@ -502,9 +502,9 @@
   gap: 8px;
   background: var(--hy-red);
   color: var(--hy-white);
-  padding: 6px 16px;
+  padding: 8px 24px;
   border-radius: 1000px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   text-decoration: none;
   transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
@@ -518,8 +518,8 @@
 
 /* Nucleo SVG 按钮箭头图标 */
 .dropdown-preview-btn-icon {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   color: currentColor;
 }
 
