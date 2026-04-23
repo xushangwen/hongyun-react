@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import Header from './Header'
 import DropdownAbout from './DropdownAbout'
@@ -36,6 +36,10 @@ export default function Layout({ children }) {
       setActiveDropdown(null)
     }, 150)
   }, [])
+
+  useEffect(() => {
+    closeDropdown()
+  }, [location.pathname])
 
   // 非首页时 header 始终白底
   const isHome = location.pathname === '/'

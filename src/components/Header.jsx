@@ -66,7 +66,7 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
               onMouseEnter={() => handleNavEnter('products')}
               onMouseLeave={handleNavLeave}
             >
-              <Link to="/products" className="nav-link">产品中心</Link>
+              <Link to="/products/new-energy" className="nav-link">产品中心</Link>
             </li>
             <li
               className={`nav-item has-dropdown${activeDropdown === 'contact' ? ' active' : ''}`}

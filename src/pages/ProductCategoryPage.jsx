@@ -29,12 +29,11 @@ export default function ProductCategoryPage() {
         title={category.name}
         subtitle="产品中心"
         bgImage={productsHeroImg}
-        noScroll
       />
 
       <div className="page-body">
         <Breadcrumb items={[
-          { label: '产品中心', path: '/products' },
+          { label: '产品中心', path: '/products/new-energy' },
           { label: category.name },
         ]} />
 

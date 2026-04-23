@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
 import { LenisProvider } from './context/LenisContext'
@@ -37,7 +37,7 @@ function App() {
           <Route path="/solutions/new-energy/twin-screw-pulping" element={<TwinScrewPulpingPage />} />
           <Route path="/solutions/solid-state-battery/dry-powder-mixer" element={<DryPowderMixerPage />} />
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
-          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products" element={<Navigate to="/products/new-energy" replace />} />
           <Route path="/products/:categoryId" element={<ProductCategoryPage />} />
           <Route path="/products/new-energy/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
           <Route path="/products/new-energy/high-speed-disperser" element={<HighSpeedDisperserPage />} />
