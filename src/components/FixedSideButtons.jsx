@@ -1,25 +1,27 @@
 import { useState, useEffect } from 'react'
 import { IconUsersChatOutline24 } from 'nucleo-core-outline-24'
 import { IconChevronUpOutline24 } from 'nucleo-core-outline-24'
+import { useLenisInstance } from '../context/LenisContext'
 
 export default function FixedSideButtons() {
   const [visible, setVisible] = useState(false)
+  const lenisRef = useLenisInstance()
 
   useEffect(() => {
+    // 观察 .hero 是否离开视口，替代 scroll 事件，避免每帧触发 setState
     const heroEl = document.querySelector('.hero')
-    const heroHeight = heroEl?.offsetHeight || 660
+    if (!heroEl) { setVisible(true); return }
 
-    const handleScroll = () => {
-      setVisible(window.scrollY > heroHeight)
-    }
-
-    handleScroll()
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    )
+    observer.observe(heroEl)
+    return () => observer.disconnect()
   }, [])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    lenisRef?.current?.scrollTo(0, { duration: 1.2 })
   }
 
   return (

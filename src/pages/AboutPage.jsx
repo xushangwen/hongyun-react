@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, memo } from 'react'
 import {
   IconEcoLightbulbOutline24,
   IconWrenchScrewdriverOutline24,
@@ -23,7 +23,6 @@ import {
 import { IconArrowLeftOutline48, IconArrowRightOutline48 } from 'nucleo-core-outline-48'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
-import ImagePlaceholder from '../components/ImagePlaceholder'
 import VideoPlayer from '../components/VideoPlayer'
 import GlobalMap from '../components/GlobalMap'
 import heroImg from '../assets/img/DJI_20250418102124_0133_D-3 拷贝.jpg'
@@ -194,29 +193,43 @@ const PW_CTR     = 280                                        // 容器高度 56
 // PW_OFFSET = PW_CTR + ITEM_H*(1-SCALE_A)/2 - ITEM_H/2 ≈ 280+26.6-222 = 84.6
 const PW_OFFSET  = PW_CTR + PW_ITEM_H * (1 - PW_SCALE_A) / 2 - PW_ITEM_H / 2
 
-function ProductionWorkshop() {
+const ProductionWorkshop = memo(function ProductionWorkshop() {
   const [activeTab, setActiveTab] = useState(0)
   const [imgIndex, setImgIndex] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+  const rootRef = useRef(null)
 
   const currentWs = productionWorkshops[activeTab]
   const images = currentWs.images
   const n = images.length
 
-  // 10s 后自动切换到下一个车间
+  // 进入视口才启动，离开立即暂停
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    )
+    if (rootRef.current) observer.observe(rootRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  // 10s 后自动切换到下一个车间（仅可见时）
+  useEffect(() => {
+    if (!isVisible) return
     const id = setTimeout(() => {
       setActiveTab(t => (t + 1) % productionWorkshops.length)
       setImgIndex(0)
     }, WORKSHOP_DURATION)
     return () => clearTimeout(id)
-  }, [activeTab])
+  }, [activeTab, isVisible])
 
-  // 图片在 10s 内均匀循环
+  // 图片在 10s 内均匀循环（仅可见时）
   useEffect(() => {
+    if (!isVisible) return
     const interval = WORKSHOP_DURATION / n
     const id = setInterval(() => setImgIndex(i => (i + 1) % n), interval)
     return () => clearInterval(id)
-  }, [activeTab, n])
+  }, [activeTab, n, isVisible])
 
   const trackY = PW_OFFSET - imgIndex * PW_SLOT
 
@@ -226,7 +239,7 @@ function ProductionWorkshop() {
   }
 
   return (
-    <div className="pw-root">
+    <div className="pw-root" ref={rootRef}>
       {/* 左：Tab 列表 */}
       <div className="pw-tabs">
         {productionWorkshops.map((ws, i) => {
@@ -265,6 +278,7 @@ function ProductionWorkshop() {
             const isCenter   = dist === 0
             const isAdjacent = dist === 1
             // scale 缩小后布局盒保持原高，用负 margin 抵消上下空白
+            // margin 和 filter 不加 transition，避免 reflow 和 GPU 合成层开销
             const scale = isCenter ? 0.88 : 0.68
             const vMargin = -(PW_ITEM_H * (1 - scale) / 2)
             return (
@@ -276,8 +290,7 @@ function ProductionWorkshop() {
                   marginTop:    `${vMargin}px`,
                   marginBottom: `${vMargin}px`,
                   opacity:      isCenter ? 1 : isAdjacent ? 0.5 : 0.1,
-                  filter:       isCenter ? 'none' : 'brightness(0.7)',
-                  transition:   'transform 0.65s ease, opacity 0.65s ease, filter 0.65s ease, margin 0.65s ease',
+                  transition:   'transform 0.65s ease, opacity 0.65s ease',
                   cursor:       isCenter ? 'default' : 'pointer',
                 }}
                 onClick={() => !isCenter && setImgIndex(i)}
@@ -293,7 +306,7 @@ function ProductionWorkshop() {
       </div>
     </div>
   )
-}
+})
 
 /* ========== 发展历程数据 ========== */
 const timelineData = [
@@ -312,15 +325,27 @@ const timelineData = [
 const MAX_W = 1360 // 与 CSS --max-width 保持一致
 const ITEM_W = 280 // 非激活年份列宽度，必须与 CSS tl-item flex-basis 保持一致
 
-function HistoryTimeline({ data }) {
+const HistoryTimeline = memo(function HistoryTimeline({ data }) {
   const [active, setActive] = useState(0) // 默认最早年份，从左往右展开
   const [pageOffset, setPageOffset] = useState(80)
   const [dragging, setDragging] = useState(false)
   const [dragDelta, setDragDelta] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
   const dragStartX = useRef(0)
   const isDragRef = useRef(false) // 区分点击与拖拽
   const viewportRef = useRef(null)
+  const tlRootRef = useRef(null)
   const autoTimerRef = useRef(null)
+
+  // 进入视口才自动播放
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    )
+    if (tlRootRef.current) observer.observe(tlRootRef.current)
+    return () => observer.disconnect()
+  }, [])
 
   const startAutoPlay = useCallback(() => {
     clearInterval(autoTimerRef.current)
@@ -330,9 +355,13 @@ function HistoryTimeline({ data }) {
   }, [data.length])
 
   useEffect(() => {
+    if (!isVisible) {
+      clearInterval(autoTimerRef.current)
+      return
+    }
     startAutoPlay()
     return () => clearInterval(autoTimerRef.current)
-  }, [startAutoPlay])
+  }, [startAutoPlay, isVisible])
 
   // 计算页面左侧内容区起始位置（与 page-container padding 对齐）
   useEffect(() => {
@@ -379,7 +408,7 @@ function HistoryTimeline({ data }) {
   }
 
   return (
-    <div className="tl-root">
+    <div className="tl-root" ref={tlRootRef}>
       {/* 标题 */}
       <div className="tl-header">
         <h2 className="section-heading" style={{ margin: 0 }}>发展历程</h2>
@@ -466,7 +495,7 @@ function HistoryTimeline({ data }) {
       </div>
     </div>
   )
-}
+})
 
 /* ========== 全球化布局数据 ========== */
 const globalBranches = [
@@ -686,9 +715,46 @@ const aboutNavItems = [
   { id: 'partners-page', label: '合作伙伴',   Icon: IconUsersShakingHandsOutline24 },
 ]
 
+/* ========== 页内粘性导航：state 隔离，避免 IO 触发整页重渲 ========== */
+function AboutStickyNav() {
+  const [activeNavId, setActiveNavId] = useState('company-intro')
+
+  useEffect(() => {
+    const navObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setActiveNavId(e.target.id) })
+      },
+      { rootMargin: '-20% 0px -60% 0px' }
+    )
+    aboutNavItems.forEach(({ id }) => {
+      const el = document.getElementById(id)
+      if (el) navObserver.observe(el)
+    })
+    return () => navObserver.disconnect()
+  }, [])
+
+  return (
+    <div className="page-sticky-nav">
+      <div className="page-container">
+        <nav className="solutions-nav">
+          {aboutNavItems.map(({ id, label, Icon }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className={`solutions-nav-item${activeNavId === id ? ' active' : ''}`}
+            >
+              <Icon size={14} />
+              {label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </div>
+  )
+}
+
 export default function AboutPage() {
   const [activeHonorTab, setActiveHonorTab] = useState(0)
-  const [activeNavId, setActiveNavId] = useState('company-intro')
 
   /* 企业简介统计数字动画 */
   const statRefs = useRef([])
@@ -738,15 +804,26 @@ export default function AboutPage() {
   const [rndCount200, rndRef200] = useCountUp(200, 1800)
   const [rndCount20, rndRef20] = useCountUp(20, 1200)
 
-  /* 研发图片轮播：无缝单向循环 */
+  /* 研发图片轮播：无缝单向循环，进入视口才运行 */
   const rndTrackRef = useRef(null)
+  const rndSectionRef = useRef(null)
   const [rndSlide, setRndSlide] = useState(0)
+  const [rndVisible, setRndVisible] = useState(false)
 
   useEffect(() => {
-    // 每 3.5s 推进一格（0→1→2→0→...）
+    const observer = new IntersectionObserver(
+      ([entry]) => setRndVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    )
+    if (rndSectionRef.current) observer.observe(rndSectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!rndVisible) return
     const timer = setInterval(() => setRndSlide(s => s + 1), 3500)
     return () => clearInterval(timer)
-  }, [])
+  }, [rndVisible])
 
   useEffect(() => {
     // 显示克隆组时，过渡结束后无感跳回 slide=0（视觉一致）
@@ -776,20 +853,6 @@ export default function AboutPage() {
     return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    const navObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) setActiveNavId(e.target.id) })
-      },
-      { rootMargin: '-20% 0px -60% 0px' }
-    )
-    aboutNavItems.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) navObserver.observe(el)
-    })
-    return () => navObserver.disconnect()
-  }, [])
-
   const honorsGridClass = ['cert', 'patent', 'honor'][activeHonorTab]
   const isHonorTab = activeHonorTab === 2
 
@@ -807,22 +870,7 @@ export default function AboutPage() {
         <Breadcrumb items={[{ label: '关于红运' }]} />
 
         {/* ===== 页内导航 ===== */}
-        <div className="page-sticky-nav">
-          <div className="page-container">
-            <nav className="solutions-nav">
-              {aboutNavItems.map(({ id, label, Icon }) => (
-                <a
-                  key={id}
-                  href={`#${id}`}
-                  className={`solutions-nav-item${activeNavId === id ? ' active' : ''}`}
-                >
-                  <Icon size={14} />
-                  {label}
-                </a>
-              ))}
-            </nav>
-          </div>
-        </div>
+        <AboutStickyNav />
 
         {/* ===== 公司简介 ===== */}
         <section className="about-page-section" id="company-intro">
@@ -918,7 +966,7 @@ export default function AboutPage() {
         </section>
 
         {/* ===== 研发实力 ===== */}
-        <section className="about-page-section about-rnd-section" id="rnd">
+        <section className="about-page-section about-rnd-section" id="rnd" ref={rndSectionRef}>
           <div className="page-container">
             <h2 className="section-heading">研发实力</h2>
             <div className="about-rnd-layout">

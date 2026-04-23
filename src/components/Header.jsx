@@ -11,12 +11,19 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    handleScroll()
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    // 在 body 顶部插入 50px 哨兵，用 IO 替代 scroll 事件，避免每帧触发 setState
+    const sentinel = document.createElement('div')
+    sentinel.setAttribute('aria-hidden', 'true')
+    sentinel.style.cssText = 'position:absolute;top:50px;left:0;width:1px;height:1px;pointer-events:none;'
+    document.body.appendChild(sentinel)
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setScrolled(!entry.isIntersecting),
+      { threshold: 0 }
+    )
+    observer.observe(sentinel)
+
+    return () => { observer.disconnect(); sentinel.remove() }
   }, [])
 
   const isHeaderWhite = forceScrolled || scrolled || activeDropdown

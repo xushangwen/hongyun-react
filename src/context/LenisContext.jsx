@@ -26,8 +26,16 @@ export function LenisProvider({ children }) {
     }
     rafId = requestAnimationFrame(raf)
 
+    // 标签页隐藏时暂停，恢复时继续，避免后台空跑 RAF
+    function handleVisibility() {
+      if (document.hidden) lenis.stop()
+      else lenis.start()
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
+
     return () => {
       cancelAnimationFrame(rafId)
+      document.removeEventListener('visibilitychange', handleVisibility)
       lenis.destroy()
       lenisRef.current = null
     }
