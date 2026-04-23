@@ -120,6 +120,33 @@ export default function PipelineDisperserPage() {
           </div>
         </section>
 
+        {/* ===== 核心部件 ===== */}
+        <section className="page-section page-section--gray">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Core Parts</p>
+            <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
+            <div className="cp-core-section">
+              <div className="cp-core-device-row fade-up fade-up-delay-1">
+                <div className="cp-core-device-img-wrap">
+                  <img
+                    src={`${IMG}/disperser-core-parts.svg`}
+                    alt="管线分散罐核心部件"
+                    className="cp-core-device-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="cp-core-device-info">
+                  <div className="cp-core-device-badge">
+                    <h3 className="cp-core-device-name">核心部件</h3>
+                  </div>
+                  <div className="cp-core-device-divider" />
+                  <p className="cp-core-device-tbd">核心部件介绍内容待提供</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ===== 参数汇总 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
