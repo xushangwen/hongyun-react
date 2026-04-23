@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
+import ParallaxCta from '../components/ParallaxCta'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import { productCategories, getCategoryById } from '../data/productCategories'
@@ -92,19 +93,11 @@ export default function ProductCategoryPage() {
       </div>
 
       {/* CTA */}
-      <div className="detail-contact-cta">
-        <div className="detail-contact-inner" style={{ backgroundImage: `url(${ctaBgImg})` }}>
-          <h2 className="detail-contact-title">获取专属解决方案</h2>
-          <p className="detail-contact-desc">
-            我们的专业团队随时为您提供技术咨询和定制化解决方案，<br />
-            助力您的生产工艺升级。
-          </p>
-          <Link to="/contact" className="btn-primary">
-            联系我们
-            <IconArrowRightOutline24 size={18} />
-          </Link>
-        </div>
-      </div>
+      <ParallaxCta
+        bgImage={ctaBgImg}
+        title="获取专属解决方案"
+        desc="我们的专业团队随时为您提供技术咨询和定制化解决方案，<br />助力您的生产工艺升级。"
+      />
     </>
   )
 }

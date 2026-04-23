@@ -3082,13 +3082,21 @@
 
 .detail-contact-inner {
   background-color: var(--zinc-800);
-  background-size: cover;
-  background-position: center;
-  background-attachment: scroll;
   padding: 96px 40px;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.detail-contact-parallax-bg {
+  position: absolute;
+  top: -30%;
+  bottom: -30%;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
 
 .detail-contact-inner::before {
