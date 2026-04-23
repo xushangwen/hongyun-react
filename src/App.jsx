@@ -18,6 +18,7 @@ import TwinScrewPulpingPage from './pages/TwinScrewPulpingPage'
 import DryPowderMixerPage from './pages/DryPowderMixerPage'
 import HighSpeedDisperserPage from './pages/HighSpeedDisperserPage'
 import KneaderPage from './pages/KneaderPage'
+import PipelineDisperserPage from './pages/PipelineDisperserPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/products/new-energy/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
           <Route path="/products/new-energy/high-speed-disperser" element={<HighSpeedDisperserPage />} />
           <Route path="/products/new-energy/kneader" element={<KneaderPage />} />
+          <Route path="/products/new-energy/pipeline-disperser" element={<PipelineDisperserPage />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/news" element={<NewsListPage />} />
