@@ -130,7 +130,7 @@ export default function PipelineDisperserPage() {
                 <img
                   src={`${IMG}/disperser-core-parts.svg`}
                   alt="管线分散罐核心部件"
-                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                  style={{ display: 'block', width: '60%', height: 'auto' }}
                   loading="lazy"
                 />
               </div>
