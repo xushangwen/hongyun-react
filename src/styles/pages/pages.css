@@ -7306,15 +7306,11 @@
 }
 
 .pp-material-cases-title {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--zinc-900);
-  text-align: center;
-  margin: 0 0 40px;
-  padding: 28px 32px;
-  background: var(--zinc-900);
-  color: var(--hy-white);
-  border-radius: 16px;
+  text-align: left;
+  margin: 0 0 32px;
   letter-spacing: 0.02em;
   line-height: 1.5;
 }
@@ -7369,39 +7365,150 @@
   margin: 0;
 }
 
-/* 浆料结果有序列表 */
-.lfp-result-list {
-  padding-left: 20px;
+/* 浆料结果三卡横排 */
+.lfp-result-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
   margin: 0 0 8px;
 }
 
-.lfp-result-list li {
-  font-size: 14px;
-  color: var(--zinc-700);
-  line-height: 1.8;
-  margin-bottom: 10px;
+.lfp-result-card {
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-200);
+  border-radius: 12px;
+  padding: 20px 20px 16px;
 }
 
-.lfp-result-list li:last-child {
-  margin-bottom: 0;
+.lfp-result-card-label {
+  font-size: 12px;
+  color: var(--zinc-500);
+  margin: 0 0 6px;
+  letter-spacing: 0.04em;
 }
 
-/* 分散均匀性：左图右表 */
-.lfp-dispersion-row {
+.lfp-result-card-val {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--hy-red);
+  font-family: "Space Grotesk", "DIN Pro", sans-serif;
+  line-height: 1.1;
+  margin: 0 0 4px;
+}
+
+.lfp-result-card-unit {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--zinc-500);
+}
+
+.lfp-result-card-meta {
+  font-size: 12px;
+  color: var(--zinc-400);
+  margin: 0 0 8px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.lfp-result-card-sub {
+  font-size: 13px;
+  color: var(--zinc-600);
+  margin: 0;
+}
+
+.lfp-result-card-solids {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--hy-red);
+  font-family: "Space Grotesk", "DIN Pro", sans-serif;
+  margin: 8px 0 0;
+  line-height: 1.4;
+}
+
+.lfp-result-card-solids span {
+  color: var(--zinc-300);
+  font-weight: 300;
+  margin: 0 4px;
+}
+
+/* 24h稳定性两列：整体无团聚 | 分散均匀性指数 */
+.lfp-stability-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin: 20px 0;
+  gap: 16px;
+  margin: 16px 0 0;
+}
+
+/* 分散均匀性卡：flex-column 确保 caption 沉底 */
+.lfp-dispersion-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 分散均匀性卡内：图（左）+ 表（右）水平布局 */
+.lfp-dispersion-inner {
+  display: flex;
+  gap: 0;
+  flex: 1;
+}
+
+.lfp-dispersion-inner .cp-chart-img-wrap {
+  flex: 1;
+  min-width: 0;
 }
 
 .lfp-dispersion-table-wrap {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--hy-white);
-  border: 1px solid var(--zinc-200);
-  border-radius: 12px;
-  padding: 24px;
+  flex-shrink: 0;
+  width: 130px;
+  border-left: 1px solid var(--zinc-100);
+  padding: 10px 10px 10px 10px;
+}
+
+/* TSI 三图合一卡 */
+.lfp-tsi-combined {
+  overflow: hidden;
+}
+
+.lfp-tsi-inner {
+  display: flex;
+}
+
+.lfp-tsi-col {
+  flex: 1;
+  border-right: 1px solid var(--zinc-100);
+  min-width: 0;
+}
+
+.lfp-tsi-col:last-child {
+  border-right: none;
+}
+
+/* 柱状图内联（无卡片外壳）- 保留 tsp-bar-chart 固定高度以确保柱体百分比计算正确 */
+.lfp-tsi-bar-inline {
+  padding: 16px 16px 12px;
+}
+
+/* 内联时 title 去掉红色左边线，字号缩小 */
+.lfp-tsi-bar-inline .cp-verify-sub-title {
+  border-left: none;
+  padding-left: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--zinc-500);
+}
+
+/* 电镜三卡等高：图片区撑满，caption 沉底 */
+.lfp-sem-grid .cp-chart-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.lfp-sem-grid .cp-chart-img-wrap {
+  flex: 1;
+  aspect-ratio: unset;
+  min-height: 180px;
 }
 
 .lfp-dispersion-table-title {
@@ -7419,8 +7526,8 @@
 }
 
 .lfp-dispersion-table td {
-  padding: 14px 16px;
-  font-size: 14px;
+  padding: 7px 8px;
+  font-size: 11px;
   color: var(--zinc-700);
   border-bottom: 1px solid var(--zinc-100);
   line-height: 1.4;
@@ -7441,14 +7548,14 @@
 .lfp-dt-val {
   font-weight: 700;
   font-family: "Space Grotesk", "DIN Pro", sans-serif;
-  font-size: 20px !important;
+  font-size: 14px !important;
   color: var(--zinc-800) !important;
   text-align: right;
 }
 
 .lfp-dt-highlight {
   color: var(--hy-red) !important;
-  font-size: 26px !important;
+  font-size: 17px !important;
 }
 
 /* 响应式 */
@@ -7456,7 +7563,10 @@
   .lfp-metrics-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .lfp-dispersion-row {
+  .lfp-stability-2col {
+    grid-template-columns: 1fr;
+  }
+  .lfp-result-cards {
     grid-template-columns: 1fr;
   }
 }
@@ -7467,7 +7577,12 @@
   }
   .pp-material-cases-title {
     font-size: 16px;
-    padding: 20px;
+  }
+  .lfp-dispersion-inner {
+    flex-direction: column;
+  }
+  .lfp-dispersion-table-wrap {
+    width: 100%;
   }
 }
 

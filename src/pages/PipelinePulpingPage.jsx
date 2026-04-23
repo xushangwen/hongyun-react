@@ -177,10 +177,10 @@ const lfpTsiData = {
   ],
 }
 
-function LfpTsiBarChart() {
+function LfpTsiBarChart({ noCard = false }) {
   const { maxVal, yTicks, bars } = lfpTsiData
-  return (
-    <div className="tsp-bar-chart-card">
+  const inner = (
+    <>
       <p className="cp-verify-sub-title" style={{ marginBottom: 20 }}>TSI稳定性指数</p>
       <div className="tsp-bar-chart">
         <div className="tsp-bar-chart-yaxis">
@@ -208,8 +208,11 @@ function LfpTsiBarChart() {
           ))}
         </div>
       </div>
-    </div>
+    </>
   )
+  return noCard
+    ? <div className="lfp-tsi-bar-inline">{inner}</div>
+    : <div className="tsp-bar-chart-card">{inner}</div>
 }
 
 /* ========== 主页面 ========== */
@@ -410,11 +413,24 @@ export default function PipelinePulpingPage() {
                 {/* 红运管线正极浆料结果如下 */}
                 <div className="cp-verify-subsection">
                   <h4 className="cp-verify-sub-title">红运管线正极浆料结果如下：</h4>
-                  <ol className="lfp-result-list">
-                    <li>浆料粘度：5920 mPas（63#，12 rpm，14.7 m/s）<br />浆料细度：6 μm</li>
-                    <li>浆料粘度：5480 mPas（63#，12 rpm，18 m/s）<br />浆料细度：6 μm</li>
-                    <li>浆料固含量：66.2% / 65.9% / 65.5%</li>
-                  </ol>
+                  <div className="lfp-result-cards">
+                    <div className="lfp-result-card">
+                      <p className="lfp-result-card-label">浆料粘度</p>
+                      <p className="lfp-result-card-val">5920 <span className="lfp-result-card-unit">mPas</span></p>
+                      <p className="lfp-result-card-meta">63# · 12 rpm · 14.7 m/s</p>
+                      <p className="lfp-result-card-sub">细度：6 μm</p>
+                    </div>
+                    <div className="lfp-result-card">
+                      <p className="lfp-result-card-label">浆料粘度</p>
+                      <p className="lfp-result-card-val">5480 <span className="lfp-result-card-unit">mPas</span></p>
+                      <p className="lfp-result-card-meta">63# · 12 rpm · 18 m/s</p>
+                      <p className="lfp-result-card-sub">细度：6 μm</p>
+                    </div>
+                    <div className="lfp-result-card">
+                      <p className="lfp-result-card-label">浆料固含量</p>
+                      <p className="lfp-result-card-solids">66.2% <span>/</span> 65.9% <span>/</span> 65.5%</p>
+                    </div>
+                  </div>
                 </div>
 
                 {/* 匀浆总时长 */}
@@ -427,50 +443,55 @@ export default function PipelinePulpingPage() {
                 <div className="cp-verify-subsection">
                   <h4 className="cp-verify-sub-title">铁锂浆料24h稳定性：</h4>
 
-                  {/* 整体无团聚、无沉降 */}
-                  <div className="cp-chart-card pp-chart-card--wide">
-                    <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/lfp-stability-scatter.png`} alt="整体无团聚无沉降" className="cp-chart-img" loading="lazy" />
-                    </div>
-                    <p className="cp-chart-caption">整体无团聚、无沉降；</p>
-                  </div>
-
-                  {/* 分散均匀性指数 */}
-                  <div className="lfp-dispersion-row">
+                  {/* Row 1: 整体无团聚无沉降 | 分散均匀性指数（图+表在同一张卡） */}
+                  <div className="lfp-stability-2col">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/lfp-dispersion-chart.png`} alt="分散均匀性指数图" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/lfp-stability-scatter.png`} alt="整体无团聚无沉降" className="cp-chart-img" loading="lazy" />
                       </div>
-                      <p className="cp-chart-caption">分散均匀性指数0.49（＜2为标准）；</p>
+                      <p className="cp-chart-caption">整体无团聚、无沉降</p>
                     </div>
-                    <div className="lfp-dispersion-table-wrap">
-                      <table className="lfp-dispersion-table">
-                        <tbody>
-                          <tr className="tr-odd"><td>STDEV.P</td><td className="lfp-dt-val">0.09</td></tr>
-                          <tr className="tr-even"><td>AVERAGE</td><td className="lfp-dt-val">1.83</td></tr>
-                          <tr className="tr-odd">
-                            <td>分散均匀性指数</td>
-                            <td className="lfp-dt-val lfp-dt-highlight">0.49</td>
-                          </tr>
-                        </tbody>
-                      </table>
+
+                    <div className="cp-chart-card lfp-dispersion-card">
+                      <div className="lfp-dispersion-inner">
+                        <div className="cp-chart-img-wrap">
+                          <img src={`${IMG}/lfp-dispersion-chart.png`} alt="分散均匀性指数图" className="cp-chart-img" loading="lazy" />
+                        </div>
+                        <div className="lfp-dispersion-table-wrap">
+                          <table className="lfp-dispersion-table">
+                            <tbody>
+                              <tr className="tr-odd"><td>STDEV.P</td><td className="lfp-dt-val">0.09</td></tr>
+                              <tr className="tr-even"><td>AVERAGE</td><td className="lfp-dt-val">1.83</td></tr>
+                              <tr className="tr-odd">
+                                <td>分散均匀性指数</td>
+                                <td className="lfp-dt-val lfp-dt-highlight">0.49</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <p className="cp-chart-caption">分散均匀性指数0.49（＜2为标准）</p>
                     </div>
                   </div>
 
-                  {/* 整体TSI指数 */}
-                  <div className="tsp-charts-grid-2" style={{ marginTop: 20 }}>
-                    <div className="cp-chart-card">
-                      <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/lfp-tsi-dynamic.png`} alt="动力学不稳定性整体" className="cp-chart-img" loading="lazy" />
+                  {/* Row 2: TSI 三图合一卡 */}
+                  <div className="cp-chart-card lfp-tsi-combined" style={{ marginTop: 20 }}>
+                    <div className="lfp-tsi-inner">
+                      <div className="lfp-tsi-col">
+                        <div className="cp-chart-img-wrap">
+                          <img src={`${IMG}/lfp-tsi-dynamic.png`} alt="动力学不稳定性整体" className="cp-chart-img" loading="lazy" />
+                        </div>
                       </div>
-                      <p className="cp-chart-caption">整体TSI指数0.15。（&lt;0.2为标准）</p>
+                      <div className="lfp-tsi-col">
+                        <LfpTsiBarChart noCard />
+                      </div>
+                      <div className="lfp-tsi-col">
+                        <div className="cp-chart-img-wrap">
+                          <img src={`${IMG}/lfp-tsi-position.png`} alt="TSI分层" className="cp-chart-img" loading="lazy" />
+                        </div>
+                      </div>
                     </div>
-                    <LfpTsiBarChart />
-                  </div>
-                  <div className="cp-chart-card pp-chart-card--wide" style={{ marginTop: 20 }}>
-                    <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/lfp-tsi-position.png`} alt="TSI分层" className="cp-chart-img" loading="lazy" />
-                    </div>
+                    <p className="cp-chart-caption">整体TSI指数0.15（&lt;0.2为标准）</p>
                   </div>
                 </div>
 
@@ -482,19 +503,19 @@ export default function PipelinePulpingPage() {
                       <div className="cp-chart-img-wrap">
                         <img src={`${IMG}/lfp-rheology-01.png`} alt="流动曲线" className="cp-chart-img" loading="lazy" />
                       </div>
-                      <p className="cp-chart-caption">流动性较强；</p>
+                      <p className="cp-chart-caption">流动性较强</p>
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
                         <img src={`${IMG}/lfp-rheology-02.png`} alt="触变环" className="cp-chart-img" loading="lazy" />
                       </div>
-                      <p className="cp-chart-caption">典型的非牛顿流体特征；</p>
+                      <p className="cp-chart-caption">典型的非牛顿流体特征</p>
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
                         <img src={`${IMG}/lfp-rheology-03.png`} alt="三段式粘度恢复" className="cp-chart-img" loading="lazy" />
                       </div>
-                      <p className="cp-chart-caption">具备较强的剪切恢复性。</p>
+                      <p className="cp-chart-caption">具备较强的剪切恢复性</p>
                     </div>
                   </div>
                 </div>
@@ -502,12 +523,12 @@ export default function PipelinePulpingPage() {
                 {/* 铁锂浆料及电镜 */}
                 <div className="cp-verify-subsection">
                   <h4 className="cp-verify-sub-title">铁锂浆料及电镜</h4>
-                  <p className="tsp-desc-para">浆料经过线速度14.7m/s高效分散后粘度：5920mpas （28.4°C、63#12rpm） 细度：6um，固含量：66.2%</p>
-                  <div className="tsp-charts-grid-3">
+                  <div className="tsp-charts-grid-3 lfp-sem-grid">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
                         <img src={`${IMG}/lfp-verify.jpg`} alt="粘度及细度检测" className="cp-chart-img" loading="lazy" />
                       </div>
+                      <p className="cp-chart-caption">浆料经过线速度14.7m/s高效分散后粘度：5920 mPas（28.4°C、63# 12rpm）细度：6 μm，固含量：66.2%</p>
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
