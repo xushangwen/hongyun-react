@@ -126,11 +126,11 @@ export default function PipelineDisperserPage() {
             <p className="section-en-label fade-up">Core Parts</p>
             <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
             <div className="fade-up fade-up-delay-1" style={{ marginTop: '40px' }}>
-              <div style={{ background: '#fff', borderRadius: '8px', padding: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ display: 'inline-flex', background: '#fff', borderRadius: '8px', padding: '24px' }}>
                 <img
                   src={`${IMG}/disperser-core-parts.svg`}
                   alt="管线分散罐核心部件"
-                  style={{ display: 'block', width: '60%', height: 'auto' }}
+                  style={{ display: 'block', width: '200px', height: 'auto' }}
                   loading="lazy"
                 />
               </div>
