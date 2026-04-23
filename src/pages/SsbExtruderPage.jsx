@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import TechInquirySection from '../components/TechInquirySection'
-import productHeroImg from '../assets/img/Generated Image March 20, 2026 - 10_16PM.jpg'
+const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
 
 const IMG = '/assets/images/solutions/dry-powder-mixer'
 
@@ -21,7 +21,7 @@ export default function SsbExtruderPage() {
       <PageHero
         title="双螺杆干法电极连续挤出机"
         subtitle="Twin-Screw Dry Electrode Extruder · 固态电池核心装备"
-        bgImage={productHeroImg}
+        bgImage={HERO_IMG}
       />
 
       <div className="page-body">

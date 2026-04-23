@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import TechInquirySection from '../components/TechInquirySection'
-import productHeroImg from '../assets/img/Generated Image March 20, 2026 - 10_16PM.jpg'
+const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
 
 const IMG = '/assets/images/solutions/pipeline-pulping'
 
@@ -85,7 +85,7 @@ export default function PipelineDisperserPage() {
       <PageHero
         title="管线分散罐"
         subtitle="Pipeline Disperser · 新能源行业核心装备"
-        bgImage={productHeroImg}
+        bgImage={HERO_IMG}
       />
 
       <div className="page-body">

@@ -67,7 +67,7 @@ export default function WetElectrodeSystemPage() {
       <PageHero
         title="行业解决方案"
         subtitle="Industry Solutions"
-        bgImages={['/assets/images/solutions/circulation-pulping/hero-bg-new.jpg', '/assets/images/solutions/battery-manufacturing.webp']}
+        bgImage="/assets/images/solutions/battery-manufacturing.webp"
       />
 
       <div className="page-body">

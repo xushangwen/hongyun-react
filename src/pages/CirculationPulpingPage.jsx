@@ -277,7 +277,7 @@ export default function CirculationPulpingPage() {
       <PageHero
         title="行业解决方案"
         subtitle="Industry Solutions"
-        bgImages={[`${IMG}/hero-bg-new.jpg`, '/assets/images/solutions/battery-manufacturing.webp']}
+        bgImage={`${IMG}/hero-bg-new.jpg`}
       />
 
       <div className="page-body">

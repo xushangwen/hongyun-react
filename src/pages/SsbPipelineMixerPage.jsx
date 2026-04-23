@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import TechInquirySection from '../components/TechInquirySection'
-import productHeroImg from '../assets/img/Generated Image March 20, 2026 - 10_16PM.jpg'
+const HERO_IMG = '/assets/images/solutions/robot-assembly.webp'
 
 const IMG = '/assets/images/solutions/wet-electrode-system/pipeline-mixer.webp'
 
@@ -21,7 +21,7 @@ export default function SsbPipelineMixerPage() {
       <PageHero
         title="管线式混合机"
         subtitle="Pipeline Mixer · 固态电池核心装备"
-        bgImage={productHeroImg}
+        bgImage={HERO_IMG}
       />
 
       <div className="page-body">

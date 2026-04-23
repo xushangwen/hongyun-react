@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import TechInquirySection from '../components/TechInquirySection'
-import productHeroImg from '../assets/img/Generated Image March 20, 2026 - 10_16PM.jpg'
+const HERO_IMG = '/assets/images/solutions/robot-assembly.webp'
 
 const PP_IMG = '/assets/images/solutions/pipeline-pulping'
 const SIM_IMG = '/assets/images/products/kneader'
@@ -90,7 +90,7 @@ export default function KneaderPage() {
       <PageHero
         title="管线捏合罐"
         subtitle="Pipeline Kneader · 新能源行业核心装备"
-        bgImage={productHeroImg}
+        bgImage={HERO_IMG}
       />
 
       <div className="page-body">

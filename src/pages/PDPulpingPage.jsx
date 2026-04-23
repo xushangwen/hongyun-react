@@ -4,7 +4,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
-const HERO_IMGS = ['/assets/images/solutions/circulation-pulping/hero-bg-new.jpg', '/assets/images/solutions/battery-manufacturing.webp']
+const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
 const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/main-product.webp'
 const IMG = '/assets/images/products/pd-mixer'
 
@@ -289,7 +289,7 @@ export default function PDPulpingPage() {
       <PageHero
         title="行业解决方案"
         subtitle="Industry Solutions"
-        bgImages={HERO_IMGS}
+        bgImage={HERO_IMG}
       />
 
       <div className="page-body">

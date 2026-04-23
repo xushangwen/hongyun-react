@@ -1,42 +1,10 @@
-import { useState, useEffect } from 'react'
-
-export default function PageHero({ title, subtitle, bgImage, bgImages, bgPosition = 'center', noOverlay = false, noScroll = false }) {
-  const images = bgImages && bgImages.length > 1 ? bgImages : null
-  const [activeIdx, setActiveIdx] = useState(0)
-
-  useEffect(() => {
-    if (!images) return
-    const timer = setInterval(() => {
-      setActiveIdx(prev => (prev + 1) % images.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [images])
-
+export default function PageHero({ title, subtitle, bgImage, bgPosition = 'center', noOverlay = false, noScroll = false }) {
   return (
     <section className="page-hero">
       <div className="page-hero-bg">
-        {images ? (
-          images.map((src, i) => (
-            <img
-              key={src}
-              src={src}
-              alt=""
-              className="page-hero-bg-img"
-              loading={i === 0 ? 'eager' : 'lazy'}
-              style={{
-                objectPosition: bgPosition,
-                position: 'absolute',
-                inset: 0,
-                opacity: i === activeIdx ? 1 : 0,
-                transition: 'opacity 1.5s ease-in-out',
-              }}
-            />
-          ))
-        ) : bgImage ? (
-          <img src={bgImage} alt="" className="page-hero-bg-img" loading="eager" style={{ objectPosition: bgPosition }} />
-        ) : (
-          <div className="page-hero-placeholder" />
-        )}
+        {bgImage
+          ? <img src={bgImage} alt="" className="page-hero-bg-img" loading="eager" style={{ objectPosition: bgPosition }} />
+          : <div className="page-hero-placeholder" />}
       </div>
       {!noOverlay && <div className="page-hero-overlay" />}
       <div className="page-hero-content">
