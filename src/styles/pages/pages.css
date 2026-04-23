@@ -226,7 +226,7 @@
 }
 
 .page-section--gray {
-  background: var(--zinc-50);
+  background: var(--zinc-100);
 }
 
 .page-section--dark {
@@ -621,7 +621,7 @@
 }
 
 .about-page-section:nth-child(even) {
-  background: var(--zinc-50);
+  background: var(--zinc-100);
 }
 
 .about-page-section .page-container {
@@ -646,6 +646,7 @@
 .about-intro-image img {
   height: 100% !important;
   min-height: 360px;
+  max-height: 480px;
 }
 
 .about-intro-image::before,
@@ -653,9 +654,15 @@
   content: none;
 }
 
+.about-intro-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .about-intro-text p {
   font-size: 16px;
-  line-height: 2;
+  line-height: 1.75;
   color: var(--zinc-600);
   margin-bottom: 16px;
   text-wrap: pretty;
@@ -1106,6 +1113,10 @@
   padding-bottom: 0;
 }
 
+#production .section-heading {
+  margin-bottom: 0;
+}
+
 .pw-root {
   display: grid;
   grid-template-columns: 380px 1fr;
@@ -1123,7 +1134,7 @@
 
 .pw-tab {
   position: relative;
-  padding: 16px 24px 16px 40px;
+  padding: 22px 24px 22px 40px;
   cursor: pointer;
   border: none;
   /* 灰色 top 线用 inset box-shadow，与红色动画条同处 padding 内，完全重叠 */
