@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import AboutPage from './pages/AboutPage'
 import SolutionsPage from './pages/SolutionsPage'
 import ProductsPage from './pages/ProductsPage'
+import ProductCategoryPage from './pages/ProductCategoryPage'
 import ContactPage from './pages/ContactPage'
 import SolutionDetailPage from './pages/SolutionDetailPage'
 import ProductDetailPage from './pages/ProductDetailPage'
@@ -37,6 +38,7 @@ function App() {
           <Route path="/solutions/solid-state-battery/dry-powder-mixer" element={<DryPowderMixerPage />} />
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
           <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:categoryId" element={<ProductCategoryPage />} />
           <Route path="/products/new-energy/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
           <Route path="/products/new-energy/high-speed-disperser" element={<HighSpeedDisperserPage />} />
           <Route path="/products/new-energy/kneader" element={<KneaderPage />} />
