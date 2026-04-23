@@ -7116,7 +7116,7 @@
 }
 
 .cp-core-device-features li {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--zinc-600);
   line-height: 1.6;
   padding-left: 16px;
@@ -7132,6 +7132,14 @@
   height: 5px;
   border-radius: 50%;
   background: var(--hy-red);
+}
+
+.cp-core-device-features--no-dot li {
+  padding-left: 0;
+}
+
+.cp-core-device-features--no-dot li::before {
+  display: none;
 }
 
 .cp-core-divider {

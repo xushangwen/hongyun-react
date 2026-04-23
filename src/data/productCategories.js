@@ -32,10 +32,11 @@ export const productCategories = [
     name: '固态电池',
     desc: '面向下一代固态电池干法电极制备工艺的前沿装备，涵盖包覆、混合、挤出等关键工序。',
     products: [
-      { name: '湿法PD搅拌机',           slug: 'wet-pd-mixer' },
-      { name: '干法电极粉体高速混合机',  slug: 'dry-electrode-mixer' },
-      { name: '双螺杆干法电极连续挤出机', slug: 'twin-screw-dry-extruder' },
-      { name: '固态电解质包覆机',        slug: 'solid-electrolyte-coater' },
+      { name: '湿法PD搅拌机',             slug: 'wet-pd-mixer' },
+      { name: '干法电极粉体高速混合机',   slug: 'dry-electrode-mixer',      image: '/assets/images/solutions/dry-powder-mixer/product-main.png',      imgContain: true },
+      { name: '电磁给料机',               slug: 'electromagnetic-feeder',    image: '/assets/images/solutions/dry-powder-mixer/core-device-01.webp',   imgContain: true },
+      { name: '双螺杆干法电极连续挤出机', slug: 'twin-screw-dry-extruder',   image: '/assets/images/solutions/dry-powder-mixer/core-device-02.webp',   imgContain: true },
+      { name: '固态电解质包覆机',         slug: 'solid-electrolyte-coater',  image: '/assets/images/solutions/dry-powder-mixer/core-device-03.webp',   imgContain: true },
     ],
   },
   {

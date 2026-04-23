@@ -217,29 +217,26 @@ export default function DryPowderMixerPage() {
         <Breadcrumb items={[
           { label: '行业解决方案', path: '/solutions' },
           { label: '固态电池行业', path: '/solutions#solid-state-battery' },
-          { label: '干法粉体混合系统' },
+          { label: '干法电极系统' },
         ]} />
 
         {/* ===== 系统介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <div className="pdm-intro-grid">
-              <div className="pdm-intro-visual fade-up fade-up-delay-1">
-                <img
-                  src={`${IMG}/product-main.png`}
-                  alt="干法高速粉体混合机"
-                  className="cp-intro-product-img"
-                  loading="lazy"
-                />
+            <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '56px' }}>
+              <div style={{ maxWidth: '46%' }}>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">干法电极系统</h2>
+                <p className="pdm-intro-desc fade-up fade-up-delay-2">
+                  干法电极技术适用于磷酸（锰）铁锂、三元、钴酸锂、锰酸锂等多种正极体系，以及石墨、硅基负极、硬碳 / 软碳等多种负极体系，同时在硫化物、氧化物、聚合物固态电池领域均具有良好适配性，可有效避免溶剂对敏感材料的侵蚀。
+                </p>
               </div>
-              <div className="pdm-intro-content">
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">红运干法粉体混合系统</h2>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  用于干法电极粉体纤维化、电解质原料的混合、破碎、包覆，无溶剂工艺，大幅降低制造成本与能耗。
-                </p>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  超高速粉体混合机——纤维化技术的速度颠覆，以极致效率重新定义干法极片制造新标准。
-                </p>
+              <div style={{ width: '100%' }}>
+                <img
+                  src={`${IMG}/干法电极系统-01.webp`}
+                  alt="干法电极系统"
+                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                  loading="eager"
+                />
               </div>
             </div>
           </div>
@@ -261,6 +258,29 @@ export default function DryPowderMixerPage() {
             <h2 className="section-heading section-heading--center fade-up">核心设备</h2>
 
             <div className="cp-core-section">
+              {/* 干法电极粉体高速混合机 */}
+              <div className="cp-core-device-row fade-up fade-up-delay-1">
+                <div className="cp-core-device-img-wrap">
+                  <img
+                    src={`${IMG}/product-main.png`}
+                    alt="干法电极粉体高速混合机"
+                    className="cp-core-device-img"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="cp-core-device-info">
+                  <div className="cp-core-device-badge">
+                    <h3 className="cp-core-device-name">干法电极粉体高速混合机</h3>
+                  </div>
+                  <div className="cp-core-device-divider" />
+                  <ul className="cp-core-device-features cp-core-device-features--no-dot">
+                    <li>用于干法电极粉体纤维化、电解质原料的混合、破碎、包覆，无溶剂工艺，<br />大幅降低制造成本与能耗，超高速粉体混合机——纤维化技术的速度颠覆</li>
+                  </ul>
+                </div>
+              </div>
+
+              <hr className="cp-core-divider" />
+
               {/* 电磁给料机 */}
               <div className="cp-core-device-row fade-up fade-up-delay-1">
                 <div className="cp-core-device-img-wrap">
@@ -277,7 +297,7 @@ export default function DryPowderMixerPage() {
                   </div>
                   <div className="cp-core-device-divider" />
                   <ul className="cp-core-device-features">
-                    <li>集预热、展平与定量输送于一体，确保粉料稳定、均匀供给，为极片均匀辊压工序奠定基础</li>
+                    <li>集预热、展平与定量输送于一体，确保粉料稳定、均匀供给，<br />为极片均匀辊压工序奠定基础</li>
                     <li>罐体：SUS304不锈钢，内表面300目镜面抛光，外表面150目拉丝；料仓盖小半翻盖式，配破拱搅拌电机（0～40 rpm可调）、气锤及气蝶</li>
                     <li>震动筛：SUS304不锈钢，380V震动电机，激振力可调，可安装6～12目筛网</li>
                     <li>电磁给料机：振幅根据物料特性和输送量调节（常规振幅1.2 mm），实现精确给料</li>

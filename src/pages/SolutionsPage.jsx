@@ -40,8 +40,9 @@ const industries = [
     name: '固态电池',
     desc: '针对固态电池干法电极制备工艺，提供包覆、混合、挤出全套设备方案，助力下一代电池技术产业化落地。',
     solutions: [
+      { name: '干法电极系统', slug: 'dry-powder-mixer', brief: '高速干法混合工艺，适用于电极粉体的均匀分散。', image: '/assets/images/solutions/dry-powder-mixer/干法电极系统-01.webp' },
+      { name: '湿法电极系统', slug: 'wet-electrode-system', brief: '湿法双行星混合工艺，精准匹配湿法、干法混合工艺路径。' },
       { name: '材料包覆机', slug: 'material-coating', brief: '固态电解质材料精密包覆，实现均匀涂层与高附着力。' },
-      { name: '干法高速粉体混合机', slug: 'dry-powder-mixer', brief: '高速干法混合工艺，适用于电极粉体的均匀分散。', image: '/assets/images/solutions/dry-powder-mixer/product-main.png' },
       { name: '干法双螺杆挤出机', slug: 'dry-twin-screw-extruder', brief: '连续挤出成膜工艺，支持正极/负极电极膜片生产。' },
     ],
   },

@@ -22,6 +22,11 @@ import PipelineDisperserPage from './pages/PipelineDisperserPage'
 import CpDisperserPage from './pages/CpDisperserPage'
 import CpTankAPage from './pages/CpTankAPage'
 import CpTankBPage from './pages/CpTankBPage'
+import WetElectrodeSystemPage from './pages/WetElectrodeSystemPage'
+import SsbDryMixerPage from './pages/SsbDryMixerPage'
+import SsbFeederPage from './pages/SsbFeederPage'
+import SsbExtruderPage from './pages/SsbExtruderPage'
+import SsbCoaterPage from './pages/SsbCoaterPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
 
@@ -40,6 +45,7 @@ function App() {
           <Route path="/solutions/new-energy/pipeline-pulping" element={<PipelinePulpingPage />} />
           <Route path="/solutions/new-energy/twin-screw-pulping" element={<TwinScrewPulpingPage />} />
           <Route path="/solutions/solid-state-battery/dry-powder-mixer" element={<DryPowderMixerPage />} />
+          <Route path="/solutions/solid-state-battery/wet-electrode-system" element={<WetElectrodeSystemPage />} />
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
           <Route path="/products" element={<Navigate to="/products/new-energy" replace />} />
           <Route path="/products/:categoryId" element={<ProductCategoryPage />} />
@@ -50,6 +56,10 @@ function App() {
           <Route path="/products/new-energy/cp-disperser" element={<CpDisperserPage />} />
           <Route path="/products/new-energy/cp-tank-a" element={<CpTankAPage />} />
           <Route path="/products/new-energy/cp-tank-b" element={<CpTankBPage />} />
+          <Route path="/products/solid-state-battery/dry-electrode-mixer" element={<SsbDryMixerPage />} />
+          <Route path="/products/solid-state-battery/electromagnetic-feeder" element={<SsbFeederPage />} />
+          <Route path="/products/solid-state-battery/twin-screw-dry-extruder" element={<SsbExtruderPage />} />
+          <Route path="/products/solid-state-battery/solid-electrolyte-coater" element={<SsbCoaterPage />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/news" element={<NewsListPage />} />

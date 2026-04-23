@@ -4,9 +4,9 @@ import Breadcrumb from '../components/Breadcrumb'
 import TechInquirySection from '../components/TechInquirySection'
 import productHeroImg from '../assets/img/Generated Image March 20, 2026 - 10_16PM.jpg'
 
-const IMG = '/assets/images/solutions/circulation-pulping'
+const IMG = '/assets/images/solutions/dry-powder-mixer'
 
-export default function CpDisperserPage() {
+export default function SsbExtruderPage() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible') }),
@@ -19,16 +19,16 @@ export default function CpDisperserPage() {
   return (
     <>
       <PageHero
-        title="高速分散机"
-        subtitle="High Speed Disperser · 新能源行业核心装备"
+        title="双螺杆干法电极连续挤出机"
+        subtitle="Twin-Screw Dry Electrode Extruder · 固态电池核心装备"
         bgImage={productHeroImg}
       />
 
       <div className="page-body">
         <Breadcrumb items={[
-          { label: '产品中心', path: '/products/new-energy' },
-          { label: '新能源行业', path: '/products/new-energy' },
-          { label: '高速分散机（循环制浆）' },
+          { label: '产品中心', path: '/products/solid-state-battery' },
+          { label: '固态电池', path: '/products/solid-state-battery' },
+          { label: '双螺杆干法电极连续挤出机' },
         ]} />
 
         {/* ===== 产品介绍 ===== */}
@@ -37,21 +37,19 @@ export default function CpDisperserPage() {
             <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'center', marginTop: '56px' }}>
               <div style={{ flex: '0 0 50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
-                  src={`${IMG}/高速分散机-svg.svg`}
-                  alt="高速分散机结构示意图"
+                  src={`${IMG}/core-device-02.webp`}
+                  alt="双螺杆干法电极连续挤出机"
                   style={{ display: 'block', width: '70%', height: 'auto' }}
                   loading="eager"
                 />
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">高速分散机</h2>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">双螺杆干法电极连续挤出机</h2>
                 <ul className="cp-core-device-features fade-up fade-up-delay-2">
-                  <li>集预混分散一体，设计线速度 30 m/s，伺服电机驱动，效率卓越</li>
-                  <li>采用自主专利设计机械密封，保障设备持续高气密性</li>
-                  <li>侧面螺杆喂料，液料下进上出，进料连续顺畅</li>
-                  <li>分散腔体设计双层分散剪切，带增压叶片，分散效率倍增</li>
-                  <li>预混腔采用自主专利叶轮，可迅速将粉液预混并快速排出</li>
-                  <li>带冷却水夹套，物料温度在线监测，全程保障物料温度可控</li>
+                  <li>核心优势：2–5 min 快速出片，简单高效</li>
+                  <li>多种物料同步计量喂料，实现完美的连续化生产，精度高达 0.4%</li>
+                  <li>模块独立温控，清理换型时间短</li>
+                  <li>产品序列：实验型 10–100 kg/h，量产型 200–1500 kg/h</li>
                 </ul>
               </div>
             </div>
@@ -76,7 +74,6 @@ export default function CpDisperserPage() {
           </div>
         </section>
 
-        {/* ===== 技术咨询 ===== */}
         <TechInquirySection />
       </div>
     </>

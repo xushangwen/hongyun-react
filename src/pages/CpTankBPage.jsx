@@ -45,15 +45,12 @@ export default function CpTankBPage() {
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">循环罐 B</h2>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  带在线分散功能，设计线速度 30 m/s，双层剪切，定转子间隙 2 mm，伺服电机驱动，实现浆料的高效在线分散。
-                </p>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  采用自主专利设计机械密封，保障设备高气密性。桶底锥形夹角 60° 设计，保障物料 100% 分散，无死区残留。
-                </p>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  带冷却水夹套，桶内物料温度在线监测，保障物料温度全程可控。
-                </p>
+                <ul className="cp-core-device-features fade-up fade-up-delay-2">
+                  <li>带在线分散功能，设计线速度 30 m/s，双层剪切，定转子间隙 2 mm，伺服电机驱动</li>
+                  <li>采用自主专利设计机械密封，保障设备高气密性</li>
+                  <li>桶底锥形夹角 60° 设计，保障物料 100% 分散，无死区残留</li>
+                  <li>带冷却水夹套，桶内物料温度在线监测，保障物料温度可控</li>
+                </ul>
               </div>
             </div>
           </div>

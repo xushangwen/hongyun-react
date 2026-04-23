@@ -45,15 +45,12 @@ export default function CpTankAPage() {
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">循环罐 A</h2>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  带慢速搅拌，转速 0–40 rpm/min，锚式搅拌桨，变频电机驱动，确保浆料在罐内均匀流动。
-                </p>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  带冷却水夹套，桶内物料温度在线监测，保障物料温度可控。采用自主专利设计机械密封，保障设备高气密性。
-                </p>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  桶底锥形夹角 60° 设计，物料上进下出，保障物料 100% 循环分散，无残留死区。
-                </p>
+                <ul className="cp-core-device-features fade-up fade-up-delay-2">
+                  <li>带慢速搅拌，转速 0–40 rpm/min，锚式搅拌桨，变频电机驱动</li>
+                  <li>带冷却水夹套，桶内物料温度在线监测，保障物料温度可控</li>
+                  <li>采用自主专利设计机械密封，保障设备高气密性</li>
+                  <li>桶底锥形夹角 60° 设计，物料上进下出，保障物料 100% 循环分散</li>
+                </ul>
               </div>
             </div>
           </div>
