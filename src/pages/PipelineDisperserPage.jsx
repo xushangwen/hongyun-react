@@ -98,7 +98,7 @@ export default function PipelineDisperserPage() {
         {/* ===== 产品介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <div className="pdm-intro-grid fade-up">
+            <div className="pdm-intro-grid fade-up" style={{ gridTemplateColumns: '3fr 2fr', maxWidth: '1200px' }}>
               <div className="pdm-intro-visual" style={{ maxWidth: '100%' }}>
                 <img
                   src={`${IMG}/disperser-02.svg`}
