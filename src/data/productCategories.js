@@ -18,7 +18,7 @@ export const productCategories = [
     products: [
       { name: '双行星动力混合机', slug: 'dual-planetary-mixer', image: '/assets/images/solutions/pd-pulping/main-product.webp', imgContain: true },
       { name: '高速分散机',       slug: 'high-speed-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-view.webp', imgContain: true },
-      { name: '捏合机',           slug: 'kneader',               image: '/assets/images/solutions/pipeline-pulping/tank-main.webp', imgContain: true },
+      { name: '管线捏合罐',       slug: 'kneader',               image: '/assets/images/solutions/pipeline-pulping/tank-main.webp', imgContain: true },
       { name: '双螺杆制浆机',     slug: 'twin-screw-pulper' },
     ],
   },
