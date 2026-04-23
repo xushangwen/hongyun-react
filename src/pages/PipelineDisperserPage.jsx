@@ -125,7 +125,7 @@ export default function PipelineDisperserPage() {
           <div className="page-container">
             <p className="section-en-label fade-up">Core Parts</p>
             <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
-            <div className="fade-up fade-up-delay-1" style={{ marginTop: '40px' }}>
+            <div className="fade-up fade-up-delay-1" style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
               <div style={{ display: 'inline-flex', background: '#fff', borderRadius: '8px', padding: '24px' }}>
                 <img
                   src={`${IMG}/disperser-core-parts.svg`}
