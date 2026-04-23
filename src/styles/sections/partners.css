@@ -163,6 +163,7 @@
 .partners-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 8px 20px;
   background: var(--hy-red);
@@ -172,20 +173,23 @@
   border: none;
   border-radius: 40px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .partners-btn:hover {
   background: var(--hy-red-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(186, 12, 47, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(186, 12, 47, 0.3);
 }
 
 .partners-btn-arrow {
   width: 18px;
   height: 18px;
   color: var(--hy-white);
-  transition: transform 0.3s ease;
+}
+
+.partners-btn:hover .partners-btn-arrow {
+  animation: hy-arrow-right 1s ease infinite;
 }
 
 /* mask-image 方式（兼容旧图标） */

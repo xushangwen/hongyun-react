@@ -115,13 +115,14 @@
   border-radius: 1000px;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 400;
-  transition: background 0.3s ease, transform 0.3s ease;
+  font-weight: 500;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hero-btn:hover {
   background: #9a0a28;
-  transform: translateX(4px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(186, 12, 47, 0.3);
 }
 
 /* Nucleo SVG hero 按钮箭头 */
@@ -129,6 +130,10 @@
   width: 18px;
   height: 18px;
   color: currentColor;
+}
+
+.hero-btn:hover svg {
+  animation: hy-arrow-right 1s ease infinite;
 }
 
 /* Hero Arrows */
