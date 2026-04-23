@@ -99,7 +99,7 @@ export default function PipelineDisperserPage() {
         <section className="page-section pdm-intro-section">
           <div className="page-container">
             <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'center', marginTop: '56px' }}>
-              <div style={{ flex: '0 0 55%' }}>
+              <div style={{ flex: '0 0 40%' }}>
                 <img
                   src={`${IMG}/disperser-02.svg`}
                   alt="管线分散罐"
