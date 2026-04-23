@@ -211,7 +211,6 @@ export default function DryPowderMixerPage() {
         title="行业解决方案"
         subtitle="Industry Solutions"
         bgImage="/assets/images/solutions/circulation-pulping/hero-bg-new.jpg"
-        noScroll
       />
 
       <div className="page-body">

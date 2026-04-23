@@ -278,7 +278,6 @@ export default function CirculationPulpingPage() {
         title="行业解决方案"
         subtitle="Industry Solutions"
         bgImage={`${IMG}/hero-bg-new.jpg`}
-        noScroll
       />
 
       <div className="page-body">

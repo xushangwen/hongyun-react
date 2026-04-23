@@ -340,7 +340,6 @@ export default function PipelinePulpingPage() {
         title="行业解决方案"
         subtitle="Industry Solutions"
         bgImage={HERO_IMG}
-        noScroll
       />
 
       <div className="page-body">
