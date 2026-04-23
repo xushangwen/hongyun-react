@@ -101,7 +101,7 @@ export default function PipelineDisperserPage() {
             <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'center', marginTop: '56px' }}>
               <div style={{ flex: '0 0 50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
-                  src={`${IMG}/disperser-02.svg`}
+                  src={`${IMG}/disperser-single.svg`}
                   alt="管线分散罐"
                   style={{ display: 'block', width: '70%', height: 'auto' }}
                   loading="eager"
