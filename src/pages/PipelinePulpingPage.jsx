@@ -165,6 +165,53 @@ const features = [
   },
 ]
 
+/* ========== 铁锂体系 TSI 柱状图（OCR 还原）========== */
+const lfpTsiData = {
+  maxVal: 0.18,
+  yTicks: [0, 0.02, 0.04, 0.06, 0.08, 0.10, 0.12, 0.14, 0.16, 0.18],
+  bars: [
+    { label: '整体', value: 0.15 },
+    { label: '底部', value: 0.14 },
+    { label: '中部', value: 0.14 },
+    { label: '顶部', value: 0.17 },
+  ],
+}
+
+function LfpTsiBarChart() {
+  const { maxVal, yTicks, bars } = lfpTsiData
+  return (
+    <div className="tsp-bar-chart-card">
+      <p className="cp-verify-sub-title" style={{ marginBottom: 20 }}>TSI稳定性指数</p>
+      <div className="tsp-bar-chart">
+        <div className="tsp-bar-chart-yaxis">
+          {[...yTicks].reverse().map((t) => (
+            <span key={t} className="tsp-bar-chart-ytick">{t.toFixed(2)}</span>
+          ))}
+        </div>
+        <div className="tsp-bar-chart-body">
+          <div className="tsp-bar-chart-gridlines">
+            {yTicks.map((t) => (
+              <div key={t} className="tsp-bar-chart-gridline" style={{ bottom: `${(t / maxVal) * 100}%` }} />
+            ))}
+          </div>
+          {bars.map((bar, i) => (
+            <div key={i} className="tsp-bar-group">
+              <div className="tsp-bar-item">
+                <span className="tsp-bar-val">{bar.value.toFixed(2)}</span>
+                <div
+                  className="tsp-bar"
+                  style={{ height: `${(bar.value / maxVal) * 100}%`, background: '#4472C4' }}
+                />
+              </div>
+              <p className="tsp-bar-group-label">{bar.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /* ========== 主页面 ========== */
 // 视频模块开关：true = 显示，false = 隐藏
 const SHOW_VIDEO = true
@@ -332,6 +379,7 @@ export default function PipelinePulpingPage() {
             <p className="section-en-label fade-up">Case</p>
             <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
 
+            {/* 车间实拍 */}
             <div className="cp-verify-block fade-up fade-up-delay-1">
               <div className="cp-charts-grid-4 pp-charts-grid">
                 {[
@@ -345,6 +393,154 @@ export default function PipelinePulpingPage() {
                     <p className="cp-chart-caption">{item.alt}</p>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* 三种典型材料体系 */}
+            <div className="pp-material-cases fade-up fade-up-delay-2">
+              <h3 className="pp-material-cases-title">三种典型材料体系经过管线式制浆机处理结果</h3>
+
+              {/* ── 01 铁锂体系 ── */}
+              <div className="cp-verify-block">
+                <h3 className="cp-verify-subheading">
+                  <span className="cp-verify-num">01</span>
+                  制浆解决方案——铁锂体系
+                </h3>
+
+                {/* 红运管线正极浆料结果如下 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">红运管线正极浆料结果如下：</h4>
+                  <ol className="lfp-result-list">
+                    <li>浆料粘度：5920 mPas（63#，12 rpm，14.7 m/s）<br />浆料细度：6 μm</li>
+                    <li>浆料粘度：5480 mPas（63#，12 rpm，18 m/s）<br />浆料细度：6 μm</li>
+                    <li>浆料固含量：66.2% / 65.9% / 65.5%</li>
+                  </ol>
+                </div>
+
+                {/* 匀浆总时长 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">匀浆总时长：</h4>
+                  <p className="tsp-desc-para">粉体混合10min+捏合60min+高粘30min+稀释30min+高速分散5min，共135min。</p>
+                </div>
+
+                {/* 铁锂浆料24h稳定性 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">铁锂浆料24h稳定性：</h4>
+
+                  {/* 整体无团聚、无沉降 */}
+                  <div className="cp-chart-card pp-chart-card--wide">
+                    <div className="cp-chart-img-wrap">
+                      <img src={`${IMG}/lfp-stability-scatter.png`} alt="整体无团聚无沉降" className="cp-chart-img" loading="lazy" />
+                    </div>
+                    <p className="cp-chart-caption">整体无团聚、无沉降；</p>
+                  </div>
+
+                  {/* 分散均匀性指数 */}
+                  <div className="lfp-dispersion-row">
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/lfp-dispersion-chart.png`} alt="分散均匀性指数图" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">分散均匀性指数0.49（＜2为标准）；</p>
+                    </div>
+                    <div className="lfp-dispersion-table-wrap">
+                      <table className="lfp-dispersion-table">
+                        <tbody>
+                          <tr className="tr-odd"><td>STDEV.P</td><td className="lfp-dt-val">0.09</td></tr>
+                          <tr className="tr-even"><td>AVERAGE</td><td className="lfp-dt-val">1.83</td></tr>
+                          <tr className="tr-odd">
+                            <td>分散均匀性指数</td>
+                            <td className="lfp-dt-val lfp-dt-highlight">0.49</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  {/* 整体TSI指数 */}
+                  <div className="tsp-charts-grid-2" style={{ marginTop: 20 }}>
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/lfp-tsi-dynamic.png`} alt="动力学不稳定性整体" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">整体TSI指数0.15。（&lt;0.2为标准）</p>
+                    </div>
+                    <LfpTsiBarChart />
+                  </div>
+                  <div className="cp-chart-card pp-chart-card--wide" style={{ marginTop: 20 }}>
+                    <div className="cp-chart-img-wrap">
+                      <img src={`${IMG}/lfp-tsi-position.png`} alt="TSI分层" className="cp-chart-img" loading="lazy" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* 铁锂浆料流变性 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">铁锂浆料流变性</h4>
+                  <div className="tsp-charts-grid-3">
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/lfp-rheology-01.png`} alt="流动曲线" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">流动性较强；</p>
+                    </div>
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/lfp-rheology-02.png`} alt="触变环" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">典型的非牛顿流体特征；</p>
+                    </div>
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/lfp-rheology-03.png`} alt="三段式粘度恢复" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">具备较强的剪切恢复性。</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 铁锂浆料及电镜 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">铁锂浆料及电镜</h4>
+                  <p className="tsp-desc-para">浆料经过线速度14.7m/s高效分散后粘度：5920mpas （28.4°C、63#12rpm） 细度：6um，固含量：66.2%</p>
+                  <div className="tsp-charts-grid-3">
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/lfp-verify.jpg`} alt="粘度及细度检测" className="cp-chart-img" loading="lazy" />
+                      </div>
+                    </div>
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/lfp-sem-20000x.jpg`} alt="SEM 20000×" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">线速度14.7m/s<br />20000倍，2um比例尺</p>
+                    </div>
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/lfp-sem-50000x.jpg`} alt="SEM 50000×" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">线速度14.7m/s<br />50000倍，500nm比例尺</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ── 02 三元体系（内容待提供）── */}
+              <div className="cp-verify-block">
+                <h3 className="cp-verify-subheading">
+                  <span className="cp-verify-num">02</span>
+                  制浆解决方案——三元体系
+                </h3>
+                <p className="cp-core-device-tbd">内容即将更新，敬请期待</p>
+              </div>
+
+              {/* ── 03 石墨体系（内容待提供）── */}
+              <div className="cp-verify-block">
+                <h3 className="cp-verify-subheading">
+                  <span className="cp-verify-num">03</span>
+                  制浆解决方案——石墨体系
+                </h3>
+                <p className="cp-core-device-tbd">内容即将更新，敬请期待</p>
               </div>
             </div>
           </div>

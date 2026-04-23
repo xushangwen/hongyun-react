@@ -7298,6 +7298,180 @@
 }
 
 /* ========================================
+   Pipeline Pulping — 材料体系案例 (pp-material / lfp-)
+   ======================================== */
+
+.pp-material-cases {
+  margin-top: 48px;
+}
+
+.pp-material-cases-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--zinc-900);
+  text-align: center;
+  margin: 0 0 40px;
+  padding: 28px 32px;
+  background: var(--zinc-900);
+  color: var(--hy-white);
+  border-radius: 16px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+
+/* 宽占全行的图表卡片 */
+.pp-chart-card--wide {
+  margin-bottom: 20px;
+}
+
+/* 指标数值网格 */
+.lfp-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.lfp-metric-card {
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-200);
+  border-radius: 12px;
+  padding: 20px 16px 16px;
+  text-align: center;
+}
+
+.lfp-metric-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.lfp-metric-val {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--hy-red);
+  font-family: "Space Grotesk", "DIN Pro", sans-serif;
+  line-height: 1;
+}
+
+.lfp-metric-unit {
+  font-size: 13px;
+  color: var(--zinc-500);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.lfp-metric-label {
+  font-size: 12px;
+  color: var(--zinc-600);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 浆料结果有序列表 */
+.lfp-result-list {
+  padding-left: 20px;
+  margin: 0 0 8px;
+}
+
+.lfp-result-list li {
+  font-size: 14px;
+  color: var(--zinc-700);
+  line-height: 1.8;
+  margin-bottom: 10px;
+}
+
+.lfp-result-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* 分散均匀性：左图右表 */
+.lfp-dispersion-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.lfp-dispersion-table-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--hy-white);
+  border: 1px solid var(--zinc-200);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.lfp-dispersion-table-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--zinc-700);
+  margin: 0 0 16px;
+  padding-left: 10px;
+  border-left: 3px solid var(--hy-red);
+}
+
+.lfp-dispersion-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lfp-dispersion-table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: var(--zinc-700);
+  border-bottom: 1px solid var(--zinc-100);
+  line-height: 1.4;
+}
+
+.lfp-dispersion-table tr:last-child td {
+  border-bottom: none;
+}
+
+.lfp-dispersion-table .tr-odd {
+  background: var(--zinc-50);
+}
+
+.lfp-dispersion-table .tr-even {
+  background: var(--hy-white);
+}
+
+.lfp-dt-val {
+  font-weight: 700;
+  font-family: "Space Grotesk", "DIN Pro", sans-serif;
+  font-size: 20px !important;
+  color: var(--zinc-800) !important;
+  text-align: right;
+}
+
+.lfp-dt-highlight {
+  color: var(--hy-red) !important;
+  font-size: 26px !important;
+}
+
+/* 响应式 */
+@media (max-width: 900px) {
+  .lfp-metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .lfp-dispersion-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .lfp-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pp-material-cases-title {
+    font-size: 16px;
+    padding: 20px;
+  }
+}
+
+/* ========================================
    Twin-Screw Pulping Page (tsp-)
    前缀：tsp-
    ======================================== */
