@@ -607,9 +607,9 @@
    统一 easing、渐变，消除散落的硬编码值
    ──────────────────────────────────────── */
 :root {
-  --ease-spring:      var(--ease-spring);   /* 弹出感：卡片悬停、弹层 */
-  --ease-smooth:      var(--ease-smooth); /* 缓出：线条展开、轮播 */
-  --hy-red-gradient:  var(--hy-red-gradient); /* 品牌红渐变数字 */
+  --ease-spring:      cubic-bezier(0.16, 1, 0.3, 1);          /* 弹出感：卡片悬停、弹层 */
+  --ease-smooth:      cubic-bezier(0.25, 0.46, 0.45, 0.94);   /* 缓出：线条展开、轮播 */
+  --hy-red-gradient:  linear-gradient(180deg, #e50004 0%, #ba0c2f 100%); /* 品牌红渐变 */
 }
 
 .about-page-section {
