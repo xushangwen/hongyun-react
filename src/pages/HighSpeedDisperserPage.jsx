@@ -68,36 +68,59 @@ export default function HighSpeedDisperserPage() {
 
       <div className="page-body">
         <Breadcrumb items={[
-          { label: '产品中心', path: '/products' },
-          { label: '新能源行业', path: '/products#products-new-energy' },
+          { label: '产品中心', path: '/products/new-energy' },
+          { label: '新能源行业', path: '/products/new-energy' },
           { label: '高速分散机' },
         ]} />
 
         {/* ===== 产品介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <h2 className="section-heading fade-up">产品介绍</h2>
-
-            <div className="pp-disperser-row fade-up fade-up-delay-1">
-              <div className="pp-disperser-main">
+            <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'center', marginTop: '56px' }}>
+              <div style={{ flex: '0 0 50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={`${IMG}/disperser-view.webp`}
                   alt="高速分散机"
-                  className="pp-disperser-img"
-                  loading="lazy"
+                  style={{ display: 'block', width: '70%', height: 'auto' }}
+                  loading="eager"
                 />
               </div>
-              <div className="pp-disperser-components">
-                {[1, 2, 3, 4, 5, 6].map((n) => (
-                  <div key={n} className="pp-component-cell">
-                    <img
-                      src={`${IMG}/component-0${n}.svg`}
-                      alt={`部件 ${n}`}
-                      className="pp-component-img"
-                      loading="lazy"
-                    />
+              <div style={{ flex: '1 1 0', minWidth: 0 }}>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">高速分散机</h2>
+                <p className="cp-core-device-tbd fade-up fade-up-delay-2">产品介绍内容待提供</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== 核心部件 ===== */}
+        <section className="page-section page-section--gray">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Core Parts</p>
+            <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
+            <div className="cp-core-section">
+              <div className="cp-core-device-row fade-up fade-up-delay-1">
+                <div className="cp-core-device-img-wrap">
+                  <div className="pp-disperser-components" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }}>
+                    {[1, 2, 3, 4, 5, 6].map((n) => (
+                      <div key={n} className="pp-component-cell">
+                        <img
+                          src={`${IMG}/component-0${n}.svg`}
+                          alt={`部件 ${n}`}
+                          className="pp-component-img"
+                          loading="lazy"
+                        />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+                <div className="cp-core-device-info">
+                  <div className="cp-core-device-badge">
+                    <h3 className="cp-core-device-name">核心部件</h3>
+                  </div>
+                  <div className="cp-core-device-divider" />
+                  <p className="cp-core-device-tbd">核心部件介绍内容待提供</p>
+                </div>
               </div>
             </div>
           </div>
