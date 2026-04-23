@@ -1,21 +1,25 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 
 const slides = [
   {
-    video: '/assets/videos/01-electric-car- charge.webm',
-    title: '30年的混合设备研发及<br>产线集成技术的积累与沉淀',
-    desc: '红运为客户研发和定制上料、输送、除尘、排空、计量的个性化解决方案',
+    video: '/assets/videos/03-battery-manufacturing-yard_compressed.webm',
+    title: '高效混合<br>助力新能源与智能制造',
+    desc: '专注粉体、液体输送与混合设备，服务新能源、化工、食品等行业',
+    link: '/solutions#new-energy',
   },
   {
     video: '/assets/videos/02-chemical-plant_compressed.webm',
     title: '打造全球一流<br>混动装备制造基地',
     desc: '红运为客户研发和定制上料、输送、除尘、排空、计量的个性化解决方案',
+    link: '/solutions#chemical',
   },
   {
-    video: '/assets/videos/03-battery-manufacturing-yard_compressed.webm',
-    title: '高效混合<br>助力新能源与智能制造',
-    desc: '专注粉体、液体输送与混合设备，服务新能源、化工、食品等行业',
+    video: '/assets/videos/01-electric-car- charge.webm',
+    title: '30年的混合设备研发及<br>产线集成技术的积累与沉淀',
+    desc: '红运为客户研发和定制上料、输送、除尘、排空、计量的个性化解决方案',
+    link: '/about',
   },
 ]
 
@@ -24,7 +28,7 @@ const SLIDE_DURATION = 6000
 export default function HeroCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [textFading, setTextFading] = useState(false)
-  const [displayText, setDisplayText] = useState({ title: slides[0].title, desc: slides[0].desc })
+  const [displayText, setDisplayText] = useState({ title: slides[0].title, desc: slides[0].desc, link: slides[0].link })
   const videoRefs = useRef([])
   const timerRef = useRef(null)
   const progressRef = useRef([])
@@ -66,7 +70,7 @@ export default function HeroCarousel() {
     // 文字淡出 → 更新内容 → 淡入
     setTextFading(true)
     setTimeout(() => {
-      setDisplayText({ title: slides[currentIndex].title, desc: slides[currentIndex].desc })
+      setDisplayText({ title: slides[currentIndex].title, desc: slides[currentIndex].desc, link: slides[currentIndex].link })
       setTextFading(false)
     }, 400)
 
@@ -133,10 +137,10 @@ export default function HeroCarousel() {
           <p className={`hero-desc${textFading ? ' fade-out' : ' fade-in'}`}>
             {displayText.desc}
           </p>
-          <a href="#" className="hero-btn">
+          <Link to={displayText.link} className="hero-btn">
             进一步探索
             <IconArrowRightOutline24 size={18} />
-          </a>
+          </Link>
         </div>
 
         <button className="hero-arrow hero-arrow-prev" aria-label="上一个" onClick={handlePrev}>
@@ -158,12 +162,15 @@ export default function HeroCarousel() {
             {slides.map((_, index) => (
               <div
                 key={index}
-                ref={(el) => (progressRef.current[index] = el)}
-                className="hero-progress-bar"
-                data-index={index}
                 onClick={() => handleProgressClick(index)}
-                style={{ cursor: 'pointer' }}
-              />
+                style={{ cursor: 'pointer', padding: '8px 0', margin: '-8px 0' }}
+              >
+                <div
+                  ref={(el) => (progressRef.current[index] = el)}
+                  className="hero-progress-bar"
+                  data-index={index}
+                />
+              </div>
             ))}
           </div>
         </div>
