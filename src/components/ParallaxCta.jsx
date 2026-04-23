@@ -14,9 +14,9 @@ export default function ParallaxCta({ bgImage, title, desc, linkTo = '/contact',
     const ctx = gsap.context(() => {
       gsap.fromTo(
         bgRef.current,
-        { yPercent: -15 },
+        { yPercent: -25 },
         {
-          yPercent: 15,
+          yPercent: 25,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
