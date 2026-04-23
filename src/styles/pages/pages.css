@@ -7587,6 +7587,154 @@
 }
 
 /* ========================================
+   Pipeline Pulping — 三元体系 (nca-)
+   ======================================== */
+
+/* 红运工艺验证结果 banner */
+.nca-verify-banner {
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin-bottom: 8px;
+}
+
+.nca-verify-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--hy-red);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+
+.nca-verify-badge span {
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.nca-verify-list {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nca-verify-list li {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.nca-verify-list li strong {
+  color: var(--hy-red);
+}
+
+.nca-verify-meta {
+  color: #666;
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+/* TSI 合并卡：图表高度缩小，卡片高度自适应 */
+.lfp-tsi-combined .tsp-bar-chart {
+  height: 150px;
+}
+
+/* 流变性：3列等宽，放2张卡，最后1格留空 */
+.nca-rheology-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.nca-rheology-grid .cp-chart-caption {
+  padding-right: 14px;
+}
+
+/* 电镜说明文字 */
+.nca-sem-desc {
+  background: #fff;
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+
+.nca-sem-desc-heading {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--zinc-800);
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.nca-sem-desc-list {
+  margin: 8px 0 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nca-sem-desc-list li {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* 4 图时长网格 */
+.nca-sem-time-grid {
+  margin-top: 12px;
+}
+
+.nca-sem-time-card {
+  position: relative;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+.nca-sem-time-img-wrap {
+  position: relative;
+}
+
+.nca-sem-time-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--hy-red);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 12px;
+  letter-spacing: 0.05em;
+  border-bottom-right-radius: 4px;
+}
+
+@media (max-width: 900px) {
+  .nca-rheology-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .nca-rheology-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .nca-verify-banner {
+    padding: 14px 16px;
+  }
+  .nca-sem-desc {
+    padding: 14px 16px;
+  }
+}
+
+/* ========================================
    Twin-Screw Pulping Page (tsp-)
    前缀：tsp-
    ======================================== */
@@ -7818,7 +7966,6 @@
   justify-content: center;
   gap: 4px;
   position: relative;
-  padding-bottom: 28px;
   height: 100%;
 }
 

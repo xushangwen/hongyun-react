@@ -165,6 +165,56 @@ const features = [
   },
 ]
 
+/* ========== 三元体系 TSI 柱状图（OCR 还原）========== */
+const ncaTsiData = {
+  maxVal: 0.10,
+  yTicks: [0, 0.02, 0.04, 0.06, 0.08, 0.10],
+  bars: [
+    { label: '整体', value: 0.09 },
+    { label: '底部', value: 0.08 },
+    { label: '中部', value: 0.08 },
+    { label: '顶部', value: 0.09 },
+  ],
+}
+
+function NcaTsiBarChart({ noCard = false }) {
+  const { maxVal, yTicks, bars } = ncaTsiData
+  const inner = (
+    <>
+      <p className="cp-verify-sub-title" style={{ marginBottom: 20 }}>TSI稳定性指数</p>
+      <div className="tsp-bar-chart">
+        <div className="tsp-bar-chart-yaxis">
+          {[...yTicks].reverse().map((t) => (
+            <span key={t} className="tsp-bar-chart-ytick">{t.toFixed(2)}</span>
+          ))}
+        </div>
+        <div className="tsp-bar-chart-body">
+          <div className="tsp-bar-chart-gridlines">
+            {yTicks.map((t) => (
+              <div key={t} className="tsp-bar-chart-gridline" style={{ bottom: `${(t / maxVal) * 100}%` }} />
+            ))}
+          </div>
+          {bars.map((bar, i) => (
+            <div key={i} className="tsp-bar-group">
+              <div className="tsp-bar-item">
+                <span className="tsp-bar-val">{bar.value.toFixed(2)}</span>
+                <div
+                  className="tsp-bar"
+                  style={{ height: `${(bar.value / maxVal) * 100}%`, background: '#4472C4' }}
+                />
+              </div>
+              <p className="tsp-bar-group-label">{bar.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  )
+  return noCard
+    ? <div className="lfp-tsi-bar-inline">{inner}</div>
+    : <div className="tsp-bar-chart-card">{inner}</div>
+}
+
 /* ========== 铁锂体系 TSI 柱状图（OCR 还原）========== */
 const lfpTsiData = {
   maxVal: 0.18,
@@ -546,13 +596,155 @@ export default function PipelinePulpingPage() {
                 </div>
               </div>
 
-              {/* ── 02 三元体系（内容待提供）── */}
+              {/* ── 02 三元体系 ── */}
               <div className="cp-verify-block">
                 <h3 className="cp-verify-subheading">
                   <span className="cp-verify-num">02</span>
                   制浆解决方案——三元体系
                 </h3>
-                <p className="cp-core-device-tbd">内容即将更新，敬请期待</p>
+
+                {/* 红运工艺验证结果 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">红运工艺验证结果</h4>
+                  <div className="nca-verify-banner">
+                    <p className="nca-verify-badge">55L 管线式捏合 <span>+</span> 43L PD搅拌机分散</p>
+                    <ol className="nca-verify-list">
+                      <li>
+                        PVDF胶液粘度（7%固含量）：<strong>2750 mPas</strong>
+                        <span className="nca-verify-meta">（63# 12rpm，20°C）</span>
+                      </li>
+                      <li>
+                        55L管线2.0捏合固含88%，捏合60min、高粘20min、稀释20min，<strong>共计100min</strong>
+                      </li>
+                      <li>
+                        浆料固含量：<strong>74%</strong>，高目标固含一个点（73%）
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+
+                {/* 三元浆料10h稳定性 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">三元浆料10h稳定性：</h4>
+                  <p className="tsp-desc-para">整体无团聚、无沉降</p>
+
+                  {/* Row 1: scatter | 分散均匀性图+表 */}
+                  <div className="lfp-stability-2col">
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/nca-stability-scatter.png`} alt="整体无团聚无沉降" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">整体无团聚、无沉降</p>
+                    </div>
+
+                    <div className="cp-chart-card lfp-dispersion-card">
+                      <div className="lfp-dispersion-inner">
+                        <div className="cp-chart-img-wrap">
+                          <img src={`${IMG}/nca-dispersion-chart.png`} alt="分散均匀性指数图" className="cp-chart-img" loading="lazy" />
+                        </div>
+                        <div className="lfp-dispersion-table-wrap">
+                          <table className="lfp-dispersion-table">
+                            <tbody>
+                              <tr className="tr-odd"><td>STDEV.P</td><td className="lfp-dt-val">0.07</td></tr>
+                              <tr className="tr-even"><td>AVERAGE</td><td className="lfp-dt-val">1.78</td></tr>
+                              <tr className="tr-odd">
+                                <td>分散均匀性指数</td>
+                                <td className="lfp-dt-val lfp-dt-highlight">0.41</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <p className="cp-chart-caption">分散均匀性指数0.41（＜2为标准）</p>
+                    </div>
+                  </div>
+
+                  {/* Row 2: TSI 三图合一 */}
+                  <div className="cp-chart-card lfp-tsi-combined nca-tsi-combined" style={{ marginTop: 20 }}>
+                    <div className="lfp-tsi-inner">
+                      <div className="lfp-tsi-col">
+                        <div className="cp-chart-img-wrap">
+                          <img src={`${IMG}/nca-tsi-dynamic.png`} alt="动力学不稳定性整体" className="cp-chart-img" loading="lazy" />
+                        </div>
+                      </div>
+                      <div className="lfp-tsi-col">
+                        <NcaTsiBarChart noCard />
+                      </div>
+                      <div className="lfp-tsi-col">
+                        <div className="cp-chart-img-wrap">
+                          <img src={`${IMG}/nca-tsi-position.png`} alt="TSI分层" className="cp-chart-img" loading="lazy" />
+                        </div>
+                      </div>
+                    </div>
+                    <p className="cp-chart-caption">整体TSI指数0.09（&lt;0.2为标准）</p>
+                  </div>
+                </div>
+
+                {/* 三元浆料流变性 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">三元浆料流变性</h4>
+                  <div className="tsp-charts-grid-3 nca-rheology-grid">
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/nca-rheology-01.png`} alt="剪切变稀" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">剪切变稀，典型非牛顿流体特征，且过程无剪切突变</p>
+                    </div>
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/nca-rheology-02.png`} alt="触变恢复率" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">浆料具备较好的流动性，以及一定的触变恢复率</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 三元浆料及电镜 */}
+                <div className="cp-verify-subsection">
+                  <h4 className="cp-verify-sub-title">三元浆料及电镜</h4>
+
+                  {/* 两张 SEM 主图 */}
+                  <div className="tsp-charts-grid-3 lfp-sem-grid">
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/nca-sem-5000x.png`} alt="SEM 5000×" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">5000倍，5μm比例尺</p>
+                    </div>
+                    <div className="cp-chart-card">
+                      <div className="cp-chart-img-wrap">
+                        <img src={`${IMG}/nca-sem-20000x.png`} alt="SEM 20000×" className="cp-chart-img" loading="lazy" />
+                      </div>
+                      <p className="cp-chart-caption">20000倍，2μm比例尺</p>
+                    </div>
+                  </div>
+
+                  {/* 说明文字 */}
+                  <div className="nca-sem-desc">
+                    <h4 className="nca-sem-desc-heading">捏合工艺直接影响电池浆料的品质</h4>
+                    <ol className="nca-sem-desc-list">
+                      <li>捏合好的浆料经过稀释分散很容易就达到理想状态，并不需要复杂的分散工艺或者较长的分散时间，不破坏活性物质的包覆层及粘结剂特性。</li>
+                      <li>下图为正极三元复配材料经管线式捏合罐捏合、稀释后，在PD搅拌机分散后不同时长的电镜图。不同分散时长的极片无差异，电化学等各方面性能均持平。</li>
+                    </ol>
+                  </div>
+
+                  {/* 4 张分散时长电镜图 */}
+                  <div className="cp-charts-grid-4 pp-charts-grid nca-sem-time-grid">
+                    {[
+                      { src: `${IMG}/nca-sem-1h.png`,  label: '1h' },
+                      { src: `${IMG}/nca-sem-2h.png`,  label: '2h' },
+                      { src: `${IMG}/nca-sem-3h.png`,  label: '3h' },
+                      { src: `${IMG}/nca-sem-4h.png`,  label: '4h' },
+                    ].map((item, i) => (
+                      <div key={i} className="cp-chart-card nca-sem-time-card">
+                        <div className="nca-sem-time-img-wrap">
+                          <img src={item.src} alt={`分散${item.label}电镜`} className="cp-chart-img" loading="lazy" />
+                          <span className="nca-sem-time-badge">{item.label}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
               {/* ── 03 石墨体系（内容待提供）── */}
