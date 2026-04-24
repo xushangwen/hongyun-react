@@ -200,7 +200,7 @@ const features = [
 
 /* ========== 核心设备数据 ========== */
 const coreEquipment = [
-  { name: '双行星动力混合机',   img: `${EQ}/01-dual-planetary-mixer.jpg`  },
+  { name: '双行星动力混合机',   img: '/assets/images/solutions/pd-pulping/main-product.webp' },
   { name: '往复式混合搅拌机',   img: `${EQ}/02-reciprocating-mixer.png`   },
   { name: '双立柱行星搅拌机',   img: `${EQ}/03-dual-column-planetary.jpg` },
   { name: '行星蝶式混合搅拌机', img: `${EQ}/05-butterfly-mixer.jpg`       },
