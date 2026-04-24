@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import TechInquirySection from '../components/TechInquirySection'
+import VideoPlayer from '../components/VideoPlayer'
 
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
 const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/main-product.webp'
@@ -251,10 +252,7 @@ function ParamsTable() {
   )
 }
 
-const VIDEO_SRC = '/assets/videos/hy-pd.mp4'
-
 export default function DualPlanetaryMixerPage() {
-  const videoRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -307,15 +305,11 @@ export default function DualPlanetaryMixerPage() {
             </div>
 
             {/* 视频模块 */}
-            <div className="cp-video-mock cp-video-mock--16-9 fade-up fade-up-delay-2">
-              <video
-                ref={videoRef}
-                className="cp-video-native"
-                src={VIDEO_SRC}
-                controls
-                playsInline
-                preload="metadata"
-                poster={PRODUCT_IMG}
+            <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
+              <VideoPlayer
+                src="/assets/videos/hy-pd.mp4"
+                poster="/assets/videos/hy-pd-poster.jpg"
+                title="红运 双行星动力混合机"
               />
             </div>
           </div>

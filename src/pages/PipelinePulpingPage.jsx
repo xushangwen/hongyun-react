@@ -4,6 +4,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
+import VideoPlayer from '../components/VideoPlayer'
 
 const HERO_IMG = '/assets/images/solutions/robot-assembly.webp'
 const PRODUCT_IMG = '/assets/images/solutions/pipeline-pulping/main-product.webp'
@@ -318,7 +319,6 @@ function GraphiteTsiBarChart({ noCard = false }) {
 
 /* ========== 主页面 ========== */
 // 视频模块开关：true = 显示，false = 隐藏
-const SHOW_VIDEO = true
 
 export default function PipelinePulpingPage() {
   useEffect(() => {
@@ -370,20 +370,14 @@ export default function PipelinePulpingPage() {
               </div>
             </div>
 
-            {/* 视频模块（SHOW_VIDEO 控制显隐） */}
-            {SHOW_VIDEO && (
-              <div className="cp-video-mock pp-video-mock fade-up fade-up-delay-2">
-                <video
-                  className="cp-video-mock-poster"
-                  controls
-                  playsInline
-                  poster={`${IMG}/video-poster.jpg`}
-                  preload="metadata"
-                >
-                  <source src={`${IMG}/product-video.mp4`} type="video/mp4" />
-                </video>
-              </div>
-            )}
+            {/* 视频模块 */}
+            <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
+              <VideoPlayer
+                src={`${IMG}/product-video.mp4`}
+                poster={`${IMG}/video-poster.jpg`}
+                title="红运 管线式制浆系统"
+              />
+            </div>
           </div>
         </section>
 

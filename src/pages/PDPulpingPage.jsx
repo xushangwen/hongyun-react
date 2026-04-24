@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
+import VideoPlayer from '../components/VideoPlayer'
 const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
 const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/main-product.webp'
 const IMG = '/assets/images/products/pd-mixer'
@@ -264,11 +265,8 @@ function ParamsTable() {
   )
 }
 
-const VIDEO_SRC = '/assets/videos/hy-pd.mp4'
-
 /* ========== 主页面 ========== */
 export default function PDPulpingPage() {
-  const videoRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -321,15 +319,11 @@ export default function PDPulpingPage() {
             </div>
 
             {/* 视频模块 */}
-            <div className="cp-video-mock cp-video-mock--16-9 fade-up fade-up-delay-2">
-              <video
-                ref={videoRef}
-                className="cp-video-native"
-                src={VIDEO_SRC}
-                controls
-                playsInline
-                preload="metadata"
-                poster={PRODUCT_IMG}
+            <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
+              <VideoPlayer
+                src="/assets/videos/hy-pd.mp4"
+                poster="/assets/videos/hy-pd-poster.jpg"
+                title="红运 PD 制浆系统"
               />
             </div>
           </div>
