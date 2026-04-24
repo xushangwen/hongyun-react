@@ -49,7 +49,7 @@ export const productCategories = [
     name: '化工行业',
     desc: '适用于涂料、胶粘剂、密封胶等高粘度多组分物料的专业混合搅拌设备。',
     products: [
-      { name: '双行星动力混合机',   slug: 'dual-planetary-mixer',   image: '/assets/images/solutions/chemical/equipment/01-dual-planetary-mixer.jpg',  imgContain: true, customPath: '/products/new-energy/dual-planetary-mixer' },
+      { name: '双行星动力混合机',   slug: 'dual-planetary-mixer',   image: '/assets/images/solutions/pd-pulping/main-product.webp',                 imgContain: true, customPath: '/products/new-energy/dual-planetary-mixer' },
       { name: '往复式混合搅拌机',   slug: 'reciprocating-mixer',    image: '/assets/images/solutions/chemical/equipment/02-reciprocating-mixer.png',   imgContain: true },
       { name: '双立柱行星搅拌机',   slug: 'dual-column-planetary',  image: '/assets/images/solutions/chemical/equipment/03-dual-column-planetary.jpg', imgContain: true },
       { name: '行星蝶式混合搅拌机', slug: 'butterfly-mixer',         image: '/assets/images/solutions/chemical/equipment/05-butterfly-mixer.jpg',       imgContain: true },
