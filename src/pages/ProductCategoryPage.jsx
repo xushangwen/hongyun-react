@@ -67,7 +67,7 @@ export default function ProductCategoryPage() {
             <div className="products-grid fade-up fade-up-delay-1">
               {category.products.map((product) => (
                 <Link
-                  to={`/products/${category.id}/${product.slug}`}
+                  to={product.customPath || `/products/${category.id}/${product.slug}`}
                   className="product-card"
                   key={product.slug}
                 >
