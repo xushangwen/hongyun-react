@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
@@ -251,11 +251,10 @@ function ParamsTable() {
   )
 }
 
-// 视频模块开关：true = 显示，false = 隐藏
-const SHOW_VIDEO = true
+const VIDEO_SRC = '/assets/videos/hy-pd.mp4'
 
 export default function DualPlanetaryMixerPage() {
-  const [videoPlayed, setVideoPlayed] = useState(false)
+  const videoRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -307,25 +306,18 @@ export default function DualPlanetaryMixerPage() {
               </div>
             </div>
 
-            {/* 视频模块（SHOW_VIDEO 控制显隐） */}
-            {SHOW_VIDEO && (
-              <div className="cp-video-mock fade-up fade-up-delay-2">
-                <img src={PRODUCT_IMG} alt="产品视频封面" className="cp-video-mock-poster" />
-                <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
-                  {!videoPlayed ? (
-                    <button className="cp-video-play-btn" onClick={() => setVideoPlayed(true)} aria-label="播放">
-                      <span className="cp-video-play-ring" />
-                      <span className="cp-video-play-icon">▶</span>
-                    </button>
-                  ) : (
-                    <div className="cp-video-played-state">
-                      <p className="cp-video-played-text">视频制作中，敬请期待</p>
-                      <button className="cp-video-played-reset" onClick={() => setVideoPlayed(false)}>返回</button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
+            {/* 视频模块 */}
+            <div className="cp-video-mock cp-video-mock--16-9 fade-up fade-up-delay-2">
+              <video
+                ref={videoRef}
+                className="cp-video-native"
+                src={VIDEO_SRC}
+                controls
+                playsInline
+                preload="metadata"
+                poster={PRODUCT_IMG}
+              />
+            </div>
           </div>
         </section>
 
