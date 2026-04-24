@@ -32,6 +32,7 @@ import SsbMultiMixerPage from './pages/SsbMultiMixerPage'
 import SsbHighPressureWasherPage from './pages/SsbHighPressureWasherPage'
 import NewsListPage from './pages/NewsListPage'
 import NewsDetailPage from './pages/NewsDetailPage'
+import ChemicalAutoProductionPage from './pages/ChemicalAutoProductionPage'
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path="/solutions/new-energy/twin-screw-pulping" element={<TwinScrewPulpingPage />} />
           <Route path="/solutions/solid-state-battery/dry-powder-mixer" element={<DryPowderMixerPage />} />
           <Route path="/solutions/solid-state-battery/wet-electrode-system" element={<WetElectrodeSystemPage />} />
+          <Route path="/solutions/chemical/auto-production" element={<ChemicalAutoProductionPage />} />
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
           <Route path="/products" element={<Navigate to="/products/new-energy" replace />} />
           <Route path="/products/:categoryId" element={<ProductCategoryPage />} />

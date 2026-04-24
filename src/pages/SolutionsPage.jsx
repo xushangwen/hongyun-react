@@ -50,7 +50,7 @@ const industries = [
     name: '化工行业',
     desc: '为精细化工、涂料、胶粘剂等领域提供自动化混合生产系统，满足高粘度、多组分物料的精准配比与均匀混合需求。',
     solutions: [
-      { name: '全自动生产系统', slug: 'auto-production', brief: '从原料投入到成品输出的一键式全自动化生产线。' },
+      { name: '全自动生产系统', slug: 'auto-production', brief: '从原料投入到成品输出的一键式全自动化生产线。', image: '/assets/images/solutions/chemical/main-product.webp' },
     ],
   },
   {
