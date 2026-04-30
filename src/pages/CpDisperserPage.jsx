@@ -20,7 +20,6 @@ export default function CpDisperserPage() {
     <>
       <PageHero
         title="高速分散机"
-        subtitle="High Speed Disperser · 新能源行业核心装备"
         bgImage={HERO_IMG}
       />
 
@@ -34,12 +33,12 @@ export default function CpDisperserPage() {
         {/* ===== 产品介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'center', marginTop: '56px' }}>
-              <div style={{ flex: '0 0 50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', maxWidth: '1040px', margin: '0 auto' }}>
+              <div style={{ flex: '0 0 50%', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={`${IMG}/高速分散机-svg.svg`}
                   alt="高速分散机结构示意图"
-                  style={{ display: 'block', width: '70%', height: 'auto' }}
+                  style={{ display: 'block', height: '100%', width: 'auto', objectFit: 'contain' }}
                   loading="eager"
                 />
               </div>

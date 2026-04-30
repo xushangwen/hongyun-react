@@ -6,7 +6,7 @@
 .page-hero {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 360px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -2024,7 +2024,7 @@
 
 /* 行业板块 */
 .solutions-industry {
-  padding: 88px 0;
+  padding: 48px 0;
   position: relative;
   overflow: hidden;
   scroll-margin-top: calc(var(--header-height) + 54px);
@@ -2159,7 +2159,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 88px;
+  gap: 48px;
   flex-shrink: 0;
   transition: all 0.4s var(--ease-spring);
   position: relative;
@@ -2234,7 +2234,7 @@
    ======================================== */
 
 .products-category {
-  padding: 88px 0;
+  padding: 48px 0;
   position: relative;
   scroll-margin-top: calc(var(--header-height) + 54px);
 }
@@ -4901,17 +4901,15 @@
   display: grid;
   grid-template-columns: 1fr minmax(auto, 420px);
   gap: 60px;
-  align-items: center;
+  align-items: start;
   max-width: 1040px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 56px;
 }
 
 .pdm-intro-content {
   display: flex;
   flex-direction: column;
-  margin-top: -80px;
 }
 
 .pdm-intro-label {
@@ -5869,7 +5867,7 @@
 
 /* --photo：真实设备照片（JPG/不透明），固定容器高度 + cover 填满 */
 .pdm-intro-visual--photo {
-  height: 560px;
+  height: 460px;
   overflow: hidden;
   border-radius: 12px;
 }
@@ -7332,7 +7330,6 @@
   position: relative;
   width: 100%;
   height: 420px;
-  margin-top: 56px;
   overflow: hidden;
 }
 

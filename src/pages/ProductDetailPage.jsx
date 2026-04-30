@@ -86,7 +86,6 @@ export default function ProductDetailPage() {
     <>
       <PageHero
         title={productName}
-        subtitle={categoryName}
         bgImage={productHeroImg}
       />
 

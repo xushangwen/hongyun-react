@@ -271,7 +271,6 @@ export default function DualPlanetaryMixerPage() {
     <>
       <PageHero
         title="双行星动力混合机"
-        subtitle="PD 搅拌机 · 新能源行业核心装备"
         bgImage={HERO_IMG}
       />
 

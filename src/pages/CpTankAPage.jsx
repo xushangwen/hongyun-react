@@ -20,7 +20,6 @@ export default function CpTankAPage() {
     <>
       <PageHero
         title="循环罐 A"
-        subtitle="Circulation Tank A · 新能源行业核心装备"
         bgImage={HERO_IMG}
       />
 
@@ -34,12 +33,12 @@ export default function CpTankAPage() {
         {/* ===== 产品介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'center', marginTop: '56px' }}>
-              <div style={{ flex: '0 0 50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', maxWidth: '1040px', margin: '0 auto' }}>
+              <div style={{ flex: '0 0 50%', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={`${IMG}/循环罐-A-svg.svg`}
                   alt="循环罐A结构示意图"
-                  style={{ display: 'block', width: '70%', height: 'auto' }}
+                  style={{ display: 'block', height: '100%', width: 'auto', objectFit: 'contain' }}
                   loading="eager"
                 />
               </div>

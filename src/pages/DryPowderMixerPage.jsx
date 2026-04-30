@@ -217,15 +217,15 @@ export default function DryPowderMixerPage() {
         <Breadcrumb items={[
           { label: '行业解决方案', path: '/solutions' },
           { label: '固态电池行业', path: '/solutions#solid-state-battery' },
-          { label: '干法电极系统' },
+          { label: '干法电极成套设备解决方案' },
         ]} />
 
         {/* ===== 系统介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '56px' }}>
+            <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
               <div style={{ maxWidth: '46%' }}>
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">干法电极系统</h2>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">干法电极成套设备解决方案</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   干法电极技术适用于磷酸（锰）铁锂、三元、钴酸锂、锰酸锂等多种正极体系，以及石墨、硅基负极、硬碳 / 软碳等多种负极体系，同时在硫化物、氧化物、聚合物固态电池领域均具有良好适配性，可有效避免溶剂对敏感材料的侵蚀。
                 </p>
@@ -233,7 +233,7 @@ export default function DryPowderMixerPage() {
               <div style={{ width: '100%' }}>
                 <img
                   src={`${IMG}/干法电极系统-01.webp`}
-                  alt="干法电极系统"
+                  alt="干法电极成套设备解决方案"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                   loading="eager"
                 />

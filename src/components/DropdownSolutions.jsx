@@ -32,8 +32,8 @@ const solutionCategories = [
     id: 'solid-state-battery',
     desc: '针对固态电池干法电极制备工艺，提供包覆、混合、挤出全套设备方案，助力下一代电池技术产业化落地。',
     items: [
-      { name: '干法电极系统', slug: 'dry-powder-mixer' },
-      { name: '湿法电极系统', slug: 'wet-electrode-system' },
+      { name: '干法电极成套设备解决方案', slug: 'dry-powder-mixer' },
+      { name: '湿法电极成套设备解决方案', slug: 'wet-electrode-system' },
       { name: '材料包覆机', slug: 'material-coating' },
       { name: '干法双螺杆挤出机', slug: 'dry-twin-screw-extruder' },
     ],

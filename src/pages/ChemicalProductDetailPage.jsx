@@ -43,7 +43,6 @@ export default function ChemicalProductDetailPage() {
     <>
       <PageHero
         title={product.name}
-        subtitle="化工行业 · 核心装备"
         bgImage={HERO_IMG}
       />
 

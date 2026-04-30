@@ -74,15 +74,15 @@ export default function WetElectrodeSystemPage() {
         <Breadcrumb items={[
           { label: '行业解决方案', path: '/solutions' },
           { label: '固态电池行业', path: '/solutions#solid-state-battery' },
-          { label: '湿法电极系统' },
+          { label: '湿法电极成套设备解决方案' },
         ]} />
 
         {/* ===== 系统介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '40px', marginTop: '56px' }}>
+            <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
               <div style={{ maxWidth: '46%' }}>
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">红运湿法电极系统</h2>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">红运湿法电极成套设备解决方案</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   适用于全固态电池湿法混合工艺、电解质膜前期混料，实现从"混合"到"完美分散"的跨越，湿法双行星混合机——高粘度浆料的终极解决方案，精准匹配湿法、干法混合工艺路径。
                 </p>
