@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
 const strengthStats = [
-  { target: 15, sup: '+', unit: '%', label: '研发投入' },
+  { target: 4, sup: '', unit: '%', label: '研发投入' },
   { target: 200, sup: '+', unit: '', label: '自主研发专利' },
-  { target: 20, sup: '+', unit: '%', label: '研发成员占比' },
+  { target: 25, sup: '', unit: '%', label: '硕士占比' },
 ]
 
 const certifications = [

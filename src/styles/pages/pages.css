@@ -1597,10 +1597,9 @@
 /* 全球化布局 */
 .about-global-map {
   margin-bottom: 0;
-  overflow: visible;
+  overflow: hidden;
   border: 1px solid var(--zinc-100);
   border-bottom: none;
-  min-height: 480px;
 }
 
 .about-global-branches {
@@ -1942,6 +1941,27 @@
   height: auto;
   object-fit: contain;
   display: block;
+}
+
+/* About 页 grid 中无 Logo 文件时的文字占位 */
+.partner-logo-img-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  max-width: 110px;
+  padding: 0 8px;
+  font-family: "IBM Plex Sans SC", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--zinc-500, #71717a);
+  text-align: center;
+  line-height: 1.2;
+  border: 1px dashed var(--zinc-300, #d4d4d8);
+  border-radius: 4px;
+  background: linear-gradient(135deg, #f8f8f8 0%, #ececec 100%);
+  white-space: normal;
+  word-break: break-word;
 }
 
 .partner-logo-name {

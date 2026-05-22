@@ -4,6 +4,7 @@ import {
   IconWrenchScrewdriverOutline24,
   IconDrawCompassOutline24,
   IconCarBatteryOutline24,
+  IconFlaskOutline24,
   IconFlask2Outline24,
   IconBatteryChargingOutline24,
   IconMedicineOutline24,
@@ -25,6 +26,8 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import VideoPlayer from '../components/VideoPlayer'
 import GlobalMap from '../components/GlobalMap'
+import { getCompanyYears } from '../utils/companyYears'
+import { partnerGroupsData } from '../data/partners'
 import heroImg from '../assets/img/DJI_20250418102124_0133_D-3 拷贝.jpg'
 import companyImg from '../assets/img/DJI_20250418103239_0149_D 拷贝.jpg'
 import videoImg from '../assets/img/IMG_4366.jpg'
@@ -590,8 +593,8 @@ const introStats = [
   },
   {
     icon: '/assets/icons/gr/chart-bar-square-plus%202.svg',
-    number: 30,
-    suffix: '+',
+    number: getCompanyYears(),
+    suffix: '',
     unit: '年',
     label: '研发经验',
     isDecimalTimes10: false,
@@ -608,100 +611,15 @@ const rndImages = [
 // 真实组数 = 图片数 ÷ 每组显示数(2)，到此值时说明显示的是克隆组，需无感归零
 const RND_SLIDE_RESET = rndImages.length / 2
 
-/* ========== 合作伙伴数据 ========== */
-const P = '/assets/images/partner'
-const C = `${P}/clients`
+/* ========== 合作伙伴数据 — 与首页共享 src/data/partners.js ========== */
+const PARTNER_GROUP_ICONS = {
+  'new-energy': IconCarBatteryOutline24,
+  'chemical':   IconFlaskOutline24,
+  'adhesive':   IconFlask2Outline24,
+  'silver':     IconBatteryChargingOutline24,
+  'pharma':     IconMedicineOutline24,
+}
 
-const partnerGroups = [
-  {
-    label: '新能源行业',
-    Icon: IconCarBatteryOutline24,
-    items: [
-      { src: `${P}/par-logo-12.svg`,    name: '比亚迪' },
-      { src: `${P}/par-logo-11.svg`,    name: '远景动力' },
-      { src: `${P}/par-logo-08.svg`,    name: '三星' },
-      { src: `${P}/par-logo-09.svg`,    name: 'TDK' },
-      { src: `${C}/ne-calb.webp`,       name: '中航锂电' },
-      { src: `${C}/ne-eve.webp`,        name: '亿纬锂能' },
-      { src: `${C}/ne-svolt.webp`,      name: '蜂巢能源' },
-      { src: `${C}/ne-sunwoda.webp`,    name: '欣旺达' },
-      { src: `${C}/ne-rept.webp`,       name: '瑞浦能源' },
-      { src: `${C}/ne-dfd.webp`,        name: '多氟多新能源' },
-      { src: `${C}/ne-hithium.webp`,    name: '海辰储能' },
-      { src: `${C}/ne-trina.webp`,      name: '天合储能' },
-      { src: `${C}/ne-lithion.webp`,    name: '美国 Lithion' },
-      { src: `${C}/ne-foxconn.webp`,    name: '台湾鸿海' },
-      { src: `${C}/ne-ganfeng.webp`,    name: '赣锋锂电' },
-      { src: `${C}/ne-murata.webp`,     name: '村田制作所' },
-      { src: `${C}/ne-aec.webp`,        name: '广东国光' },
-      { src: `${C}/ne-univercell.webp`, name: '德国 Univercell' },
-      { src: `${C}/ne-atl.webp`,        name: 'ATL 新能源科技' },
-      { src: `${C}/ne-shaanxi.webp`,    name: '陕西煤业' },
-      { src: `${C}/ne-farasis.webp`,    name: '孚能科技' },
-    ],
-  },
-  {
-    label: '胶粘剂行业',
-    Icon: IconFlask2Outline24,
-    items: [
-      { src: `${P}/par-logo-01.svg`,   name: '埃肯' },
-      { src: `${P}/par-logo-02.svg`,   name: '巴斯夫' },
-      { src: `${P}/par-logo-06.svg`,   name: '汉高' },
-      { src: `${P}/par-logo-05.svg`,   name: '万华化学' },
-      { src: `${P}/par-logo-07.svg`,   name: '富乐科梅林' },
-      { src: `${P}/par-logo-04.svg`,   name: '陶氏化学' },
-      { src: `${P}/par-logo-03.svg`,   name: '华为' },
-      { src: `${C}/ad-sika.svg`,       name: '西卡' },
-      { src: `${C}/ad-foxconn.svg`,    name: '富士康' },
-      { src: `${C}/ad-honeywell.svg`,  name: '美国霍尼韦尔' },
-      { src: `${C}/ad-darbond.png`,    name: '德邦' },
-      { src: `${C}/ad-seayu.png`,      name: '信友' },
-      { src: `${C}/ad-johnson.png`,    name: '德昌电机' },
-      { src: `${C}/ad-itw.png`,        name: '依工聚合' },
-      { src: `${C}/ad-hanstars.png`,   name: '汉思' },
-      { src: `${C}/ad-casic.png`,      name: '中国航天' },
-      { src: `${C}/ad-aecc.png`,       name: '中国航发' },
-      { src: `${C}/ad-dec.png`,        name: '东方电气' },
-      { src: `${C}/ad-silande.png`,    name: '思蓝德' },
-      { src: `${C}/ad-pochely.png`,    name: '聚合' },
-      { src: `${C}/ad-bjpharma.png`,   name: '白金制药' },
-    ],
-  },
-  {
-    label: '银浆行业',
-    Icon: IconBatteryChargingOutline24,
-    items: [
-      { src: `${C}/sp-fusion.png`,  name: '聚和新材' },
-      { src: `${C}/sp-rutech.png`,  name: '儒兴科技' },
-      { src: `${C}/sp-heraeus.png`, name: '贺利氏' },
-      { src: `${C}/sp-ssp.png`,     name: '上海银浆' },
-      { src: `${C}/sp-riyu.png`,    name: '日御股份' },
-      { src: `${C}/sp-dec.png`,     name: '东方电气' },
-      { src: `${C}/sp-johnson.png`, name: '德昌电机' },
-    ],
-  },
-  {
-    label: '医药行业',
-    Icon: IconMedicineOutline24,
-    items: [
-      { src: `${C}/ph-jiudian.webp`,  name: '九典制药' },
-      { src: `${C}/ph-yabao.webp`,    name: '亚宝药业集团' },
-      { src: `${C}/ph-cr.webp`,       name: '华润' },
-      { src: `${C}/ph-sirio.webp`,    name: '仙乐健康' },
-      { src: `${C}/ph-tianbang.webp`, name: '天邦医疗' },
-      { src: `${C}/ph-amhwa.webp`,    name: '安华生物' },
-      { src: `${C}/ph-yuchun.webp`,   name: '广州雨纯' },
-      { src: `${C}/ph-yige.webp`,     name: '一格制药' },
-      { src: `${C}/ph-hongjou.webp`,  name: '泓友医药' },
-      { src: `${C}/ph-lingrui.webp`,  name: '羚锐' },
-      { src: `${C}/ph-khb.webp`,      name: '科华生物' },
-      { src: `${C}/ph-yifang.webp`,   name: '一方制药' },
-      { src: `${C}/ph-xianju.webp`,   name: '仙琚制药' },
-      { src: `${C}/ph-hengjian.webp`, name: '恒建制药' },
-      { src: `${C}/ph-yicheng.webp`,  name: '逸诚医药' },
-    ],
-  },
-]
 
 const aboutNavItems = [
   { id: 'company-intro', label: '公司简介',   Icon: IconOffice2Outline24 },
@@ -800,9 +718,9 @@ export default function AboutPage() {
   const [count1000, ref1000] = useCountUp(1000)
 
   /* 研发实力统计 */
-  const [rndCount15, rndRef15] = useCountUp(15, 1200)
+  const [rndCount15, rndRef15] = useCountUp(4, 1200)
   const [rndCount200, rndRef200] = useCountUp(200, 1800)
-  const [rndCount20, rndRef20] = useCountUp(20, 1200)
+  const [rndCount20, rndRef20] = useCountUp(25, 1200)
 
   /* 研发图片轮播：无缝单向循环，进入视口才运行 */
   const rndTrackRef = useRef(null)
@@ -879,7 +797,7 @@ export default function AboutPage() {
             <div className="about-intro-grid">
               <div className="about-intro-text">
                 <p>
-                  红运机械自1993年创立以来，致力于混合设备的研究、开发及制造，在不同领域开发了诸多高效节能、创新的混合设备解决方案和系统，帮助用户解决许多生产及生产工艺方面遇到的问题。因此，我们可以依用30多年来积累在粉体计量、混合及输送方面的技术及物料混合生产工艺经验沉淀，为粉体上料、浆料混合及输送行业提供更好的建议及使用方法。
+                  红运机械自1993年创立以来，致力于混合设备的研究、开发及制造，在不同领域开发了诸多高效节能、创新的混合设备解决方案和系统，帮助用户解决许多生产及生产工艺方面遇到的问题。因此，我们可以依用{getCompanyYears()}多年来积累在粉体计量、混合及输送方面的技术及物料混合生产工艺经验沉淀，为粉体上料、浆料混合及输送行业提供更好的建议及使用方法。
                 </p>
                 <p>
                   我们的产品广泛应用于新能源、电子电极浆料、各种胶粘剂、火工药剂、涂料、食品、医药及化妆品等行业。
@@ -1008,7 +926,7 @@ export default function AboutPage() {
                     <div className="about-rnd-stat-number">
                       {rndCount20}<span className="about-rnd-stat-suffix">%</span>
                     </div>
-                    <div className="about-rnd-stat-label">研发成员占比</div>
+                    <div className="about-rnd-stat-label">硕士占比</div>
                   </div>
                 </div>
               </div>
@@ -1152,25 +1070,35 @@ export default function AboutPage() {
           <div className="page-container">
             <h2 className="section-heading">合作伙伴</h2>
             <p className="section-desc">
-              深耕新能源、胶粘剂、银浆及医药四大行业，与比亚迪、巴斯夫、汉高、贺利氏、华润等全球知名企业建立长期战略合作。覆盖国内头部动力电池制造商及巴斯夫、陶氏、埃肯等国际化工巨头，服务客户遍布亚洲、欧洲及北美市场。
+              深耕新能源、化工、胶粘剂、银浆及医药五大行业，与比亚迪、宁德时代、巴斯夫、汉高、贺利氏、华润等全球知名企业建立长期战略合作。覆盖国内头部动力电池制造商及巴斯夫、陶氏、埃肯等国际化工巨头，服务客户遍布亚洲、欧洲及北美市场。
             </p>
             <div className="about-partners-grid">
-              {partnerGroups.flatMap(({ label, Icon, items }) => {
+              {partnerGroupsData.flatMap(({ id, label, items }) => {
+                const Icon = PARTNER_GROUP_ICONS[id]
                 const total = 1 + items.length
                 const pad = (8 - (total % 8)) % 8
                 return [
-                  <div className="about-partner-logo-item about-partner-category-card" key={`cat-${label}`}>
-                    <Icon size={24} className="partner-category-icon" />
+                  <div className="about-partner-logo-item about-partner-category-card" key={`cat-${id}`}>
+                    {Icon && <Icon size={24} className="partner-category-icon" />}
                     <span className="partner-category-name">{label}</span>
                   </div>,
                   ...items.map((p) => (
-                    <div className="about-partner-logo-item" key={p.name}>
-                      <img src={p.src} alt={p.name} className="partner-logo-img" loading="lazy" />
+                    <div className="about-partner-logo-item" key={`${id}-${p.name}`}>
+                      {p.textOnly ? (
+                        <span
+                          className="partner-logo-img partner-logo-img-text"
+                          aria-label={p.name}
+                        >
+                          {p.name}
+                        </span>
+                      ) : (
+                        <img src={p.logo} alt={p.alt || p.name} className="partner-logo-img" loading="lazy" />
+                      )}
                       <span className="partner-logo-name">{p.name}</span>
                     </div>
                   )),
                   ...Array.from({ length: pad }, (_, i) => (
-                    <div className="about-partner-logo-item about-partner-empty-card" key={`empty-${label}-${i}`} />
+                    <div className="about-partner-logo-item about-partner-empty-card" key={`empty-${id}-${i}`} />
                   )),
                 ]
               })}

@@ -61,11 +61,6 @@ const menuData = [
       { Icon: IconCarBatteryOutline24,       label: '新能源',   href: '/products/new-energy' },
       { Icon: IconBatteryChargingOutline24,   label: '固态电池', href: '/products/solid-state-battery' },
       { Icon: IconFlaskOutline24,           label: '化工',     href: '/products/chemical' },
-      { Icon: IconTestTubeOutline24,        label: '制胶',     href: '/products/adhesive' },
-      { Icon: IconFireFlameOutline24,       label: '火工药剂', href: '/products/pyrotechnics' },
-      { Icon: IconCutleryOutline24,         label: '食品',     href: '/products/food' },
-      { Icon: IconSoapDispenserOutline24,   label: '化妆品',   href: '/products/cosmetics' },
-      { Icon: IconMicrochipOutline24,       label: '电子材料', href: '/products/electronics' },
     ],
   },
   {

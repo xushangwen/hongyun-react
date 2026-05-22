@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .vercel
 .env
+
+# Playwright MCP 调试缓存（截图、日志、snapshot）
+.playwright-mcp/

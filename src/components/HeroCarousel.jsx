@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
+import { getCompanyYears } from '../utils/companyYears'
 
 const slides = [
   {
@@ -12,13 +13,13 @@ const slides = [
   {
     video: '/assets/videos/02-chemical-plant_compressed.webm',
     title: '打造全球一流<br>混动装备制造基地',
-    desc: '红运为客户研发和定制上料、输送、除尘、排空、计量的个性化解决方案',
+    desc: '红运为客户研发和定制上料、输送、除尘、计量的个性化解决方案',
     link: '/solutions#chemical',
   },
   {
     video: '/assets/videos/01-electric-car- charge.webm',
-    title: '30年的混合设备研发及<br>产线集成技术的积累与沉淀',
-    desc: '红运为客户研发和定制上料、输送、除尘、排空、计量的个性化解决方案',
+    title: `${getCompanyYears()}年的混合设备研发及<br>产线集成技术的积累与沉淀`,
+    desc: '红运为客户研发和定制上料、输送、除尘、计量的个性化解决方案',
     link: '/about',
   },
 ]

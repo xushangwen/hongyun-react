@@ -1,29 +1,101 @@
 /* ========================================
-   GlobalMap Component
+   GlobalMap Component (d3-geo 平面地图 + arc 连线)
    ======================================== */
 
 .global-map-container {
+  position: relative;
   width: 100%;
-  height: 480px;
-  overflow: hidden;
-  background: var(--hy-red);
+  height: clamp(320px, 40vw, 520px);
+  min-height: 320px;
+  background: linear-gradient(135deg, #d1161f 0%, #8c0c14 100%);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding-top: 2rem;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.global-map-image {
-  width: 85%;
-  height: auto;
-  object-fit: cover;
-  opacity: 0.8;
+.global-map-svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.global-map-arcs path {
+  stroke-linecap: round;
+}
+
+.global-map-arc {
+  animation: globalMapArcFlow 1.8s linear infinite;
+}
+
+@keyframes globalMapArcFlow {
+  to {
+    stroke-dashoffset: -18;
+  }
+}
+
+.global-map-points g:hover circle:last-child {
+  fill: #FFD9D9;
+  transform: scale(1.4);
+  transition: transform 200ms ease-out, fill 200ms ease-out;
+}
+
+/* Tooltip */
+.global-map-tooltip {
+  position: absolute;
+  transform: translate(12px, -50%);
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.96);
+  color: #1a1a1a;
+  font-family: 'IBM Plex Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 8px 14px;
+  border-radius: 999px;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(231, 31, 25, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.global-map-tooltip-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #E71F19;
+  box-shadow: 0 0 0 2px rgba(231, 31, 25, 0.2);
 }
 
 /* ---- 响应式 ---- */
+@media (max-width: 1024px) {
+  .global-map-container {
+    height: clamp(300px, 43vw, 440px);
+    min-height: 300px;
+  }
+}
+
 @media (max-width: 768px) {
   .global-map-container {
-    height: 360px;
-    padding: 1rem;
+    height: clamp(240px, 58vw, 320px);
+    min-height: 240px;
+  }
+  .global-map-tooltip {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-map-container {
+    height: clamp(190px, 62vw, 240px);
+    min-height: 190px;
   }
 }

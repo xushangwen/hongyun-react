@@ -165,15 +165,6 @@ const coreEquipment = [
     ],
   },
   {
-    name: '桶体翻转型双行星动力混合机',
-    img: '/assets/img/prd-01.jpg',
-    features: [
-      '桶体可翻转出料，适用于高粘度物料的便捷出料作业',
-      '显著减少残料损耗与清洗时间，提升生产连续性',
-      '电动升降，容积范围 20L–150L，变频电机驱动',
-    ],
-  },
-  {
     name: '工业量产型双行星动力混合机',
     img: '/assets/img/prd-03.jpeg',
     features: [

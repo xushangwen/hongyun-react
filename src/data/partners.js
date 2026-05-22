@@ -1,0 +1,116 @@
+/*
+ * 红运合作伙伴 — 5 个行业的客户 Logo 单一来源
+ * 同时被首页 PartnersSection（滚动条）和 About 页 partnerGroups（grid）消费
+ *
+ * 每条记录字段：
+ *   - logo:     图片路径（绝对路径，public/assets/...）
+ *   - textOnly: true 时表示无 Logo 文件，用文字占位
+ *   - name:     客户名称（用于副标签、文字占位、alt）
+ *   - alt:      图片 alt（缺省时回落到 name）
+ */
+
+const P = '/assets/images/partner'
+const C = `${P}/clients`
+
+// 新能源（含客户提供的 50强汇总）
+const newEnergy = [
+  { textOnly: true,                 name: '宁德时代' },
+  { logo: `${P}/par-logo-12.svg`,   name: '比亚迪', alt: '比亚迪' },
+  { logo: `${C}/ne-calb.webp`,      name: '中创新航', alt: '中创新航' },
+  { logo: `${C}/ne-eve.webp`,       name: '亿纬锂能', alt: '亿纬锂能' },
+  { logo: `${C}/ne-sunwoda.webp`,   name: '欣旺达', alt: '欣旺达' },
+  { logo: `${C}/ne-svolt.webp`,     name: '蜂巢能源', alt: '蜂巢能源' },
+  { logo: `${C}/ne-rept.webp`,      name: '瑞浦兰钧', alt: '瑞浦兰钧' },
+  { textOnly: true,                 name: 'LG 新能源' },
+  { textOnly: true,                 name: '因湃电池 IBT' },
+  { textOnly: true,                 name: '楚能 cornex' },
+  { logo: `${C}/ne-farasis.webp`,   name: '孚能科技', alt: '孚能科技' },
+  { logo: `${C}/ne-dfd.webp`,       name: '多氟多 DFD', alt: '多氟多' },
+  { textOnly: true,                 name: '德赛电池 DESAY' },
+  { textOnly: true,                 name: '冠宇 COSMX' },
+  { textOnly: true,                 name: '派能科技' },
+  { textOnly: true,                 name: 'Ampace 新能安' },
+  { logo: `${P}/par-logo-11.svg`,   name: '远景动力', alt: '远景动力' },
+  { logo: `${C}/ne-hithium.webp`,   name: '海辰储能 HTHIUM', alt: '海辰储能' },
+  { logo: `${C}/ne-ganfeng.webp`,   name: '赣锋锂电', alt: '赣锋锂电' },
+  { textOnly: true,                 name: '阳光电源 SUNGROW' },
+  { textOnly: true,                 name: '海博思创' },
+  { textOnly: true,                 name: '中车株洲电力机车' },
+  { textOnly: true,                 name: 'HUAWEI' },
+  { textOnly: true,                 name: '双登集团' },
+  { textOnly: true,                 name: '蔚来能源' },
+  { textOnly: true,                 name: '中科海钠 HiNa' },
+  { textOnly: true,                 name: '天能股份' },
+  { textOnly: true,                 name: '卫蓝新能源' },
+  { textOnly: true,                 name: '清陶能源' },
+  { textOnly: true,                 name: '巨湾技研' },
+  { logo: `${C}/ne-atl.webp`,       name: 'ATL 新能源科技', alt: 'ATL' },
+  { textOnly: true,                 name: '中汽新能' },
+]
+
+// 化工
+const chemical = [
+  { logo: `${P}/par-logo-02.svg`,   name: 'BASF 巴斯夫', alt: '巴斯夫' },
+  { logo: `${P}/par-logo-04.svg`,   name: '陶氏化学', alt: '陶氏化学' },
+  { logo: `${P}/par-logo-05.svg`,   name: '万华化学', alt: '万华化学' },
+  { logo: `${P}/par-logo-06.svg`,   name: '汉高 Henkel', alt: '汉高' },
+  { logo: `${P}/par-logo-01.svg`,   name: '埃肯 Elkem', alt: '埃肯' },
+  { logo: `${C}/ad-honeywell.svg`,  name: '美国霍尼韦尔', alt: '霍尼韦尔' },
+]
+
+// 胶粘剂
+const adhesive = [
+  { logo: `${C}/ad-sika.svg`,       name: '西卡 Sika', alt: '西卡' },
+  { logo: `${P}/par-logo-07.svg`,   name: '富乐 / 科梅林', alt: '富乐' },
+  { logo: `${C}/ad-darbond.png`,    name: '回天新材 Darbond', alt: '回天新材' },
+  { logo: `${C}/ad-itw.png`,        name: 'ITW', alt: 'ITW' },
+  { logo: `${C}/ad-johnson.png`,    name: 'Johnson Electric', alt: 'Johnson' },
+  { logo: `${C}/ad-pochely.png`,    name: '回天股份', alt: '回天' },
+  { logo: `${C}/ad-silande.png`,    name: '思蓝德', alt: '思蓝德' },
+  { logo: `${C}/ad-hanstars.png`,   name: '汉斯股份', alt: '汉斯' },
+  { logo: `${C}/ad-seayu.png`,      name: '思宇胶业', alt: '思宇' },
+  { logo: `${C}/ad-aecc.png`,       name: '中国航发', alt: '中国航发' },
+  { logo: `${C}/ad-casic.png`,      name: '航天科工', alt: '航天科工' },
+]
+
+// 银浆
+const silverPaste = [
+  { logo: `${C}/sp-heraeus.png`,    name: '贺利氏 Heraeus', alt: '贺利氏' },
+  { logo: `${C}/sp-fusion.png`,     name: '聚和新材', alt: '聚和新材' },
+  { logo: `${C}/sp-rutech.png`,     name: '儒兴科技', alt: '儒兴科技' },
+  { logo: `${C}/sp-ssp.png`,        name: '上海银浆 SSP', alt: '上海银浆' },
+  { logo: `${C}/sp-riyu.png`,       name: '日御股份', alt: '日御股份' },
+  { logo: `${C}/sp-dec.png`,        name: '东方电气', alt: '东方电气' },
+  { logo: `${C}/sp-johnson.png`,    name: 'Johnson Matthey', alt: 'Johnson Matthey' },
+]
+
+// 医药
+const pharma = [
+  { logo: `${C}/ph-cr.webp`,        name: '华润医药', alt: '华润医药' },
+  { logo: `${C}/ph-sirio.webp`,     name: '仙乐健康', alt: '仙乐健康' },
+  { logo: `${C}/ph-yabao.webp`,     name: '亚宝药业集团', alt: '亚宝药业' },
+  { logo: `${C}/ph-lingrui.webp`,   name: '羚锐制药', alt: '羚锐制药' },
+  { logo: `${C}/ph-khb.webp`,       name: '科华生物', alt: '科华生物' },
+  { logo: `${C}/ph-tianbang.webp`,  name: '天邦医疗', alt: '天邦医疗' },
+  { logo: `${C}/ph-jiudian.webp`,   name: '九典制药', alt: '九典制药' },
+  { logo: `${C}/ph-yifang.webp`,    name: '一方制药', alt: '一方制药' },
+  { logo: `${C}/ph-yicheng.webp`,   name: '亿诚医药', alt: '亿诚医药' },
+  { logo: `${C}/ph-amhwa.webp`,     name: '安美华制药', alt: '安美华' },
+  { logo: `${C}/ph-yige.webp`,      name: '一格制药', alt: '一格制药' },
+  { logo: `${C}/ph-yuchun.webp`,    name: '宇春药业', alt: '宇春药业' },
+  { logo: `${C}/ph-xianju.webp`,    name: '仙居药业', alt: '仙居药业' },
+  { logo: `${C}/ph-hengjian.webp`,  name: '亨健药业', alt: '亨健' },
+  { logo: `${C}/ph-hongjou.webp`,   name: '弘洲制药', alt: '弘洲制药' },
+]
+
+/**
+ * 按行业分组的完整客户清单
+ * id 用于稳定 React key；category 用于副标签文案
+ */
+export const partnerGroupsData = [
+  { id: 'new-energy', category: '新能源领域', label: '新能源行业', items: newEnergy   },
+  { id: 'chemical',   category: '化工领域',   label: '化工行业',   items: chemical    },
+  { id: 'adhesive',   category: '胶粘剂领域', label: '胶粘剂行业', items: adhesive    },
+  { id: 'silver',     category: '银浆领域',   label: '银浆行业',   items: silverPaste },
+  { id: 'pharma',     category: '医药领域',   label: '医药行业',   items: pharma      },
+]
