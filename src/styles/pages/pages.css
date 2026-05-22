@@ -725,6 +725,13 @@
   border: 1px solid var(--zinc-100);
 }
 
+/* About 企业宣传片视频专属尺寸 —— 覆盖通用 .vp-wrap，不影响产品/行业页 */
+.about-video-wrapper .vp-wrap {
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 16 / 8;
+}
+
 .about-video-placeholder {
   position: relative;
 }
@@ -1975,6 +1982,8 @@
 
 .about-partner-empty-card {
   pointer-events: none;
+  background: var(--zinc-50);
+  border-color: var(--zinc-100);
 }
 
 .about-partner-category-card {
