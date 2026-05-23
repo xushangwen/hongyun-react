@@ -6,7 +6,7 @@ import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 import VideoPlayer from '../components/VideoPlayer'
 const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
-const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/main-product.webp'
+const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/system.webp'
 const IMG = '/assets/images/products/pd-mixer'
 
 /* ========== 系统特点 SVG 图标（内联，品牌色处理）========== */

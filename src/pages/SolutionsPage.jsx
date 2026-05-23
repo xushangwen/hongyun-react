@@ -28,7 +28,7 @@ const industries = [
     name: '新能源行业',
     desc: '面向锂电池正负极浆料制备，提供从投料、制浆到输送的全流程自动化解决方案，已服务宁德时代、比亚迪等头部客户。',
     solutions: [
-      { name: 'PD制浆系统', slug: 'pd-pulping', brief: '行星搅拌+高速分散一体化制浆，适用于正负极浆料批次生产。', image: '/assets/images/solutions/pd-pulping/main-product.webp' },
+      { name: 'PD制浆系统', slug: 'pd-pulping', brief: '行星搅拌+高速分散一体化制浆，适用于正负极浆料批次生产。', image: '/assets/images/solutions/pd-pulping/system.webp' },
       { name: '高效管线式制浆系统', slug: 'pipeline-pulping', brief: '管线式连续制浆工艺，生产效率高，浆料一致性好。', image: '/assets/images/solutions/pipeline-pulping/main-product.webp' },
       { name: '高效循环制浆系统', slug: 'circulation-pulping', brief: '循环分散+在线研磨，实现高固含量浆料高效制备。', image: prdSysImg },
       { name: '双螺杆连续制浆系统', slug: 'twin-screw-pulping', brief: '双螺杆连续式工艺，产能大幅提升，适合规模化产线。', image: '/assets/images/solutions/twin-screw-pulping/product.webp' },
@@ -41,7 +41,7 @@ const industries = [
     desc: '针对固态电池干法电极制备工艺，提供包覆、混合、挤出全套设备方案，助力下一代电池技术产业化落地。',
     solutions: [
       { name: '干法电极成套设备解决方案', slug: 'dry-powder-mixer', brief: '高速干法混合工艺，适用于电极粉体的均匀分散。', image: '/assets/images/solutions/dry-powder-mixer/干法电极系统-01.webp' },
-      { name: '湿法电极成套设备解决方案', slug: 'wet-electrode-system', brief: '湿法双行星混合工艺，精准匹配湿法、干法混合工艺路径。', images: ['/assets/images/solutions/pd-pulping/main-product.webp', '/assets/images/solutions/wet-electrode-system/pipeline-mixer.webp', '/assets/images/solutions/wet-electrode-system/multi-mixer.webp'] },
+      { name: '湿法电极成套设备解决方案', slug: 'wet-electrode-system', brief: '湿法双行星混合工艺，精准匹配湿法、干法混合工艺路径。', images: ['/assets/images/solutions/pd-pulping/main-product.webp', '/assets/images/solutions/wet-electrode-system/pipeline-mixer.webp'] },
       { name: '粉料混合机', slug: 'dry-electrode-mixer-card', brief: '硫化物 / 氧化物 / 聚合物系干法高速粉体混合，适配多种电解质体系。', image: '/assets/images/solutions/dry-powder-mixer/product-main.png', customPath: '/products/solid-state-battery/dry-electrode-mixer' },
       { name: '气液包覆机', slug: 'material-coating-card', brief: '固态电解质材料表面气液相精密包覆，涂层厚度可控、附着力强。', image: '/assets/images/solutions/dry-powder-mixer/core-device-03.webp', customPath: '/solutions/solid-state-battery/material-coating' },
     ],
