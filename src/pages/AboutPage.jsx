@@ -926,7 +926,7 @@ export default function AboutPage() {
                     <div className="about-rnd-stat-number">
                       {rndCount20}<span className="about-rnd-stat-suffix">%</span>
                     </div>
-                    <div className="about-rnd-stat-label">硕士占比</div>
+                    <div className="about-rnd-stat-label">博士占比硕士占比</div>
                   </div>
                 </div>
               </div>

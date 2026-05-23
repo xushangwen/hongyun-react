@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 const strengthStats = [
   { target: 4, sup: '', unit: '%', label: '研发投入' },
   { target: 200, sup: '+', unit: '', label: '自主研发专利' },
-  { target: 25, sup: '', unit: '%', label: '硕士占比' },
+  { target: 25, sup: '', unit: '%', label: '博士占比硕士占比' },
 ]
 
 const certifications = [
