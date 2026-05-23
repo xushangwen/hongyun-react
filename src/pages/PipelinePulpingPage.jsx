@@ -392,7 +392,7 @@ export default function PipelinePulpingPage() {
             tbd: '设备介绍文字内容待提供',
           },
           {
-            name: '高速分散机',
+            name: '管线式高速分散机',
             img: `${IMG}/disperser-view.webp`,
             tbd: '设备介绍文字内容待提供',
           },

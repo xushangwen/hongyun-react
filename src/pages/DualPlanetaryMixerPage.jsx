@@ -6,7 +6,6 @@ import TechInquirySection from '../components/TechInquirySection'
 import VideoPlayer from '../components/VideoPlayer'
 
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
-const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/main-product.webp'
 const IMG = '/assets/images/products/pd-mixer'
 
 /* ========== 系统特点图标 ========== */
@@ -154,27 +153,6 @@ const features = [
   { Icon: IconLeaf,        title: '密封防污染' },
 ]
 
-const coreEquipment = [
-  {
-    name: '实验室型双行星动力混合机',
-    img: '/assets/img/prd-02.jpg',
-    features: [
-      '适用于研发、小批量实验及工艺验证，紧凑轻便，操作简洁',
-      '与量产机型保持工艺一致性，可直接复用工艺参数',
-      '手摇升降，容积范围 1L–20L，伺服电机驱动',
-    ],
-  },
-  {
-    name: '工业量产型双行星动力混合机',
-    img: '/assets/img/prd-03.jpeg',
-    features: [
-      '面向中大批量生产设计，集成液压升降系统，兼顾产能与灵活性',
-      '真空密封防污染设计，金属零污染，保障浆料品质',
-      '液压升降，容积范围 150L–3400L，变频电机驱动',
-    ],
-  },
-]
-
 const allModels = [
   { model: 'HY-DLH1.5L',  liftType: '手摇升降', workVol: '1L',    designVol: '1.5L',  tankDim: 'Φ140×100',   mixerMotor: '0.75', revSpeed: '6-60',   ownSpeed: '17-170',  dissolverKW: '0.75', dissolverType: '伺服电机', dissolverRPM: '800-11000', dissolverLinear: '1-18m/s',  weight: '280kg',    dimension: '880×480×930'    },
   { model: 'HY-DLH3L',    liftType: '手摇升降', workVol: '2L',    designVol: '3L',    tankDim: 'Φ180×120',   mixerMotor: '0.75', revSpeed: '7-75',   ownSpeed: '18-250',  dissolverKW: '1.5',  dissolverType: '伺服电机', dissolverRPM: '800-11000', dissolverLinear: '1-18m/s',  weight: '303kg',    dimension: '920×520×1100'   },
@@ -198,7 +176,35 @@ const allModels = [
   { model: 'HY-DLH3400L', liftType: '液压升降', workVol: '3000L', designVol: '3400L', tankDim: 'Φ1700×1500', mixerMotor: '132',  revSpeed: '0-12',   ownSpeed: '0-30',    dissolverKW: '132',  dissolverType: '变频电机', dissolverRPM: '0-1000',    dissolverLinear: '0-23m/s',  weight: '42000kg',  dimension: '5800×2300×6000' },
 ]
 
-function ParamsTable() {
+/* 三个变体（量产型 / 中型 / 实验室型）按升降方式自然拆分参数表 */
+const VARIANTS = {
+  production: {
+    title: '量产型双行星动力混合机',
+    productImg: '/assets/images/solutions/pd-pulping/main-product.webp',
+    imgAlt: '量产型双行星动力混合机',
+    intro1: '面向中大批量产线设计的量产型双行星动力混合机，集成液压升降系统，工作容积覆盖 60L–3000L，兼顾产能与浆料品质。',
+    intro2: '行星公转、自转与高速分散三重动力协同，搭配真空密封防污染设计，确保高粘度浆料无死角均匀混合，适用于锂电池正负极浆料批次量产工艺。',
+    models: allModels.filter((m) => m.liftType === '液压升降'),
+  },
+  mid: {
+    title: '中型双行星动力混合机',
+    productImg: '/assets/img/prd-03.jpeg',
+    imgAlt: '中型双行星动力混合机',
+    intro1: '中型双行星动力混合机面向中等批量生产与中试放大场景，集成电动升降系统，结构紧凑、产能灵活。',
+    intro2: '工作容积 10L–30L，变频电机驱动，公转 + 自转 + 高速分散三重动力，工艺参数与量产机型保持一致，可直接复用至产线放大。',
+    models: allModels.filter((m) => m.liftType === '电动升降'),
+  },
+  lab: {
+    title: '实验室型双行星动力混合机',
+    productImg: '/assets/img/prd-02.jpg',
+    imgAlt: '实验室型双行星动力混合机',
+    intro1: '实验室型双行星动力混合机适用于研发、小批量实验与工艺验证，紧凑轻便、操作简洁。',
+    intro2: '工作容积 1L–5L，伺服电机驱动，手摇升降换桶方便，与量产机型保持工艺一致性，工艺参数可平滑迁移至量产产线。',
+    models: allModels.filter((m) => m.liftType === '手摇升降'),
+  },
+}
+
+function ParamsTable({ models = allModels }) {
   return (
     <div className="detail-params-table">
       <table className="params-table pdm-params-table">
@@ -215,7 +221,7 @@ function ParamsTable() {
           </tr>
         </thead>
         <tbody>
-          {allModels.map((row, i) => (
+          {models.map((row, i) => (
             <React.Fragment key={i}>
               <tr className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
                 <td className="td-model-code">{row.model}</td>
@@ -243,7 +249,8 @@ function ParamsTable() {
   )
 }
 
-export default function DualPlanetaryMixerPage() {
+export default function DualPlanetaryMixerPage({ variant = 'production' }) {
+  const v = VARIANTS[variant] ?? VARIANTS.production
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -261,7 +268,7 @@ export default function DualPlanetaryMixerPage() {
   return (
     <>
       <PageHero
-        title="双行星动力混合机"
+        title={v.title}
         bgImage={HERO_IMG}
       />
 
@@ -269,7 +276,7 @@ export default function DualPlanetaryMixerPage() {
         <Breadcrumb items={[
           { label: '产品中心', path: '/products' },
           { label: '新能源行业', path: '/products#products-new-energy' },
-          { label: '双行星动力混合机' },
+          { label: v.title },
         ]} />
 
         {/* ===== 产品介绍 + 视频模块 ===== */}
@@ -278,18 +285,18 @@ export default function DualPlanetaryMixerPage() {
             <div className="pdm-intro-grid">
               <div className="pdm-intro-visual pdm-intro-visual--photo fade-up fade-up-delay-1">
                 <img
-                  src={PRODUCT_IMG}
-                  alt="双行星动力™混合机"
+                  src={v.productImg}
+                  alt={v.imgAlt}
                   className="cp-intro-product-img"
                 />
               </div>
               <div className="pdm-intro-content">
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">双行星动力™混合机</h2>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">{v.title}</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  以双行星动力混合机（PD搅拌机）为核心，集成行星公转、自转与高速分散三重动力，实现高粘度浆料无死角均匀混合，适用于锂电池正负极浆料批次生产。
+                  {v.intro1}
                 </p>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  系统覆盖从实验室级（1L）到工业量产级（3400L）全系列规格，搅拌桨与分散盘的行星运动使物料受到充分剪切和捏合，确保浆料均匀性与批次一致性。
+                  {v.intro2}
                 </p>
               </div>
             </div>
@@ -308,48 +315,13 @@ export default function DualPlanetaryMixerPage() {
         {/* ===== 产品特点 ===== */}
         <SystemFeaturesSection features={features} title="产品特点" enLabel="Product Features" grayBg />
 
-        {/* ===== 核心设备 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Product Series</p>
-            <h2 className="section-heading section-heading--center fade-up">产品系列</h2>
-
-            <div className="cp-core-section">
-              {coreEquipment.map((device, i) => (
-                <React.Fragment key={i}>
-                  {i > 0 && <hr className="cp-core-divider" />}
-                  <div className="cp-core-device-row fade-up fade-up-delay-1">
-                    <div className="cp-core-device-img-wrap">
-                      <img
-                        src={device.img}
-                        alt={device.name}
-                        className="cp-core-device-img"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="cp-core-device-info">
-                      <div className="cp-core-device-badge">
-                        <h3 className="cp-core-device-name">{device.name}</h3>
-                      </div>
-                      <div className="cp-core-device-divider" />
-                      <ul className="cp-core-device-features">
-                        {device.features.map((f, j) => <li key={j}>{f}</li>)}
-                      </ul>
-                    </div>
-                  </div>
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ===== 参数汇总 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
             <p className="section-en-label fade-up">Parameters Overview</p>
             <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
             <div className="fade-up fade-up-delay-1">
-              <ParamsTable />
+              <ParamsTable models={v.models} />
             </div>
             <p className="cp-table-note fade-up fade-up-delay-3">
               * 以上参数仅供参考，实际规格以合同为准。可根据客户工艺需求进行定制化设计。

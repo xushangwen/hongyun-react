@@ -12,19 +12,21 @@ export const productCategories = [
     desc: '面向锂电池正负极浆料制备的核心装备，覆盖搅拌、分散、捏合、制浆全工艺环节。',
     systems: [
       {
-        name: 'PD制浆系统',
+        name: '双行星动力制浆系统',
         slug: 'pd-pulping',
         products: [
-          { name: '双行星动力混合机', slug: 'dual-planetary-mixer', image: '/assets/images/solutions/pd-pulping/main-product.webp', imgContain: true },
+          { name: '量产型双行星动力混合机',   slug: 'dual-planetary-mixer',     image: '/assets/images/solutions/pd-pulping/main-product.webp', imgContain: true },
+          { name: '中型双行星动力混合机',     slug: 'dual-planetary-mixer-mid', image: '/assets/img/prd-03.jpeg',                              imgContain: true },
+          { name: '实验室型双行星动力混合机', slug: 'dual-planetary-mixer-lab', image: '/assets/img/prd-02.jpg',                               imgContain: true },
         ],
       },
       {
         name: '高效管线式制浆系统',
         slug: 'pipeline-pulping',
         products: [
-          { name: '管线捏合罐',   slug: 'kneader',              image: '/assets/images/solutions/pipeline-pulping/tank-main.webp',          imgContain: true },
-          { name: '管线分散罐',   slug: 'pipeline-disperser',   image: '/assets/images/solutions/pipeline-pulping/disperser-single.svg',   imgContain: true },
-          { name: '高速分散机',   slug: 'high-speed-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-view.webp',    imgContain: true },
+          { name: '管线捏合罐',         slug: 'kneader',              image: '/assets/images/solutions/pipeline-pulping/tank-main.webp',          imgContain: true },
+          { name: '管线分散罐',         slug: 'pipeline-disperser',   image: '/assets/images/solutions/pipeline-pulping/disperser-single.svg',   imgContain: true },
+          { name: '管线式高速分散机',   slug: 'high-speed-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-view.webp',    imgContain: true },
         ],
       },
       {

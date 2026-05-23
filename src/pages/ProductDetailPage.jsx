@@ -25,7 +25,7 @@ const productMap = {
           { model: 'HY-PDM-2000', capacity: '2000L', power: '280kW', speed: '0-40rpm / 0-2000rpm', size: '3800×3200×4800mm' },
         ],
       },
-      'high-speed-disperser': { name: '高速分散机', intro: '适用于锂电池浆料预分散及中低粘度物料的高效分散设备，转速高、分散效果好。', features: ['最高转速可达4500rpm', '变频无级调速', '液压升降，换桶方便', '防爆型可选'], components: ['高速分散轴', '分散盘', '变频驱动', '升降机构'], params: [{ model: 'HY-HSD-22', capacity: '200L', power: '22kW', speed: '0-4500rpm', size: '800×600×2200mm' }] },
+      'high-speed-disperser': { name: '管线式高速分散机', intro: '适用于锂电池浆料预分散及中低粘度物料的高效分散设备，转速高、分散效果好。', features: ['最高转速可达4500rpm', '变频无级调速', '液压升降，换桶方便', '防爆型可选'], components: ['高速分散轴', '分散盘', '变频驱动', '升降机构'], params: [{ model: 'HY-HSD-22', capacity: '200L', power: '22kW', speed: '0-4500rpm', size: '800×600×2200mm' }] },
       'kneader': { name: '捏合机', intro: '针对高粘度物料的强力捏合混炼设备，适用于正极浆料的预混和捏合工序。', features: ['强力捏合，适用超高粘度', 'Σ型/Z型桨叶可选', '液压翻缸出料', '真空操作可选'], components: ['捏合桨叶', '搅拌缸体', '液压翻缸系统', '加热/冷却夹套'], params: [{ model: 'HY-KND-100', capacity: '100L', power: '45kW', speed: '0-80rpm', size: '1800×1200×1600mm' }] },
       'twin-screw-pulper': { name: '双螺杆制浆机', intro: '连续式双螺杆制浆核心设备，实现粉料的连续浸润、分散和输出，是大规模产线的关键装备。', features: ['连续化生产', '螺杆元件模块化组合', '自清洁功能', '产能可扩展'], components: ['双螺杆主机', '减速箱', '喂料口', '出料系统'], params: [{ model: 'HY-TSP-65', capacity: '-', power: '75kW', speed: '0-600rpm', size: '3200×800×1200mm' }] },
     },

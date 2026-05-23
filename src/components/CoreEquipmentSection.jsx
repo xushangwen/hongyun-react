@@ -8,6 +8,7 @@ import React from 'react'
  *   features?: string[]          // 要点列表
  *   paragraphs?: { title: string, text: string }[]  // 标题+段落
  *   tbd?: string                 // 待补充占位文字
+ *   imgStyle?: object            // 单项图片内联样式覆盖（如 maxHeight）
  * }>
  */
 export default function CoreEquipmentSection({ devices = [] }) {
@@ -27,6 +28,7 @@ export default function CoreEquipmentSection({ devices = [] }) {
                     src={device.img}
                     alt={device.imgAlt ?? device.name}
                     className="cp-core-device-img"
+                    style={device.imgStyle}
                     loading="lazy"
                   />
                 </div>

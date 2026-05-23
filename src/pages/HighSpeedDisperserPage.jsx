@@ -61,7 +61,7 @@ export default function HighSpeedDisperserPage() {
   return (
     <>
       <PageHero
-        title="高速分散机"
+        title="管线式高速分散机"
         bgImage={HERO_IMG}
       />
 
@@ -69,7 +69,7 @@ export default function HighSpeedDisperserPage() {
         <Breadcrumb items={[
           { label: '产品中心', path: '/products/new-energy' },
           { label: '新能源行业', path: '/products/new-energy' },
-          { label: '高速分散机' },
+          { label: '管线式高速分散机' },
         ]} />
 
         {/* ===== 产品介绍 ===== */}
@@ -79,13 +79,13 @@ export default function HighSpeedDisperserPage() {
               <div style={{ flex: '0 0 50%', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={`${IMG}/disperser-view.webp`}
-                  alt="高速分散机"
+                  alt="管线式高速分散机"
                   style={{ display: 'block', height: '100%', width: 'auto', objectFit: 'contain' }}
                   loading="eager"
                 />
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">高速分散机</h2>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">管线式高速分散机</h2>
                 <p className="cp-core-device-tbd fade-up fade-up-delay-2">产品介绍内容待提供</p>
               </div>
             </div>

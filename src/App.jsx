@@ -55,14 +55,16 @@ function App() {
           <Route path="/solutions/:industryId/:solutionId" element={<SolutionDetailPage />} />
           <Route path="/products" element={<Navigate to="/products/new-energy" replace />} />
           <Route path="/products/:categoryId" element={<ProductCategoryPage />} />
-          <Route path="/products/new-energy/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
+          <Route path="/products/new-energy/dual-planetary-mixer"     element={<DualPlanetaryMixerPage variant="production" />} />
+          <Route path="/products/new-energy/dual-planetary-mixer-mid" element={<DualPlanetaryMixerPage variant="mid" />} />
+          <Route path="/products/new-energy/dual-planetary-mixer-lab" element={<DualPlanetaryMixerPage variant="lab" />} />
           <Route path="/products/new-energy/high-speed-disperser" element={<HighSpeedDisperserPage />} />
           <Route path="/products/new-energy/kneader" element={<KneaderPage />} />
           <Route path="/products/new-energy/pipeline-disperser" element={<PipelineDisperserPage />} />
           <Route path="/products/new-energy/cp-disperser" element={<CpDisperserPage />} />
           <Route path="/products/new-energy/cp-tank-a" element={<CpTankAPage />} />
           <Route path="/products/new-energy/cp-tank-b" element={<CpTankBPage />} />
-          <Route path="/products/solid-state-battery/dual-planetary-mixer" element={<DualPlanetaryMixerPage />} />
+          <Route path="/products/solid-state-battery/dual-planetary-mixer" element={<DualPlanetaryMixerPage variant="production" />} />
           <Route path="/products/solid-state-battery/dry-electrode-mixer" element={<SsbDryMixerPage />} />
           <Route path="/products/solid-state-battery/electromagnetic-feeder" element={<SsbFeederPage />} />
           <Route path="/products/solid-state-battery/twin-screw-dry-extruder" element={<SsbExtruderPage />} />
