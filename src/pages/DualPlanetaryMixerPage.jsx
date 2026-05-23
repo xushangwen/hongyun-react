@@ -188,7 +188,7 @@ const VARIANTS = {
   },
   mid: {
     title: '中型双行星动力混合机',
-    productImg: '/assets/img/prd-03.jpeg',
+    productImg: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid.webp',
     imgAlt: '中型双行星动力混合机',
     intro1: '中型双行星动力混合机面向中等批量生产与中试放大场景，集成电动升降系统，结构紧凑、产能灵活。',
     intro2: '工作容积 10L–30L，变频电机驱动，公转 + 自转 + 高速分散三重动力，工艺参数与量产机型保持一致，可直接复用至产线放大。',
@@ -196,7 +196,7 @@ const VARIANTS = {
   },
   lab: {
     title: '实验室型双行星动力混合机',
-    productImg: '/assets/img/prd-02.jpg',
+    productImg: '/assets/images/products/pd-mixer/dual-planetary-mixer-lab.webp',
     imgAlt: '实验室型双行星动力混合机',
     intro1: '实验室型双行星动力混合机适用于研发、小批量实验与工艺验证，紧凑轻便、操作简洁。',
     intro2: '工作容积 1L–5L，伺服电机驱动，手摇升降换桶方便，与量产机型保持工艺一致性，工艺参数可平滑迁移至量产产线。',

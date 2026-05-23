@@ -178,7 +178,7 @@ const coreEquipment = [
   },
   {
     name: '中型双行星动力混合机',
-    img: '/assets/img/prd-03.jpeg',
+    img: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid.webp',
     features: [
       '面向中等批量生产与中试放大场景，结构紧凑、产能灵活',
       '工艺参数与量产机型保持一致，可平滑迁移至产线放大',
@@ -187,7 +187,7 @@ const coreEquipment = [
   },
   {
     name: '实验室型双行星动力混合机',
-    img: '/assets/img/prd-02.jpg',
+    img: '/assets/images/products/pd-mixer/dual-planetary-mixer-lab.webp',
     features: [
       '适用于研发、小批量实验及工艺验证，紧凑轻便，操作简洁',
       '与量产机型保持工艺一致性，工艺参数可直接复用至量产',

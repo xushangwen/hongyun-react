@@ -103,6 +103,18 @@ const solutionCategories = [
   },
 ]
 
+/* 每个行业的预览图：右列展示。新能源保持原通用应用图（hy-dropmenu-application-img.jpg, 走下方 fallback），其他用客户提供的领域大图 */
+const PREVIEW_IMG = {
+  'solid-state-battery': '/assets/images/dropdown-solutions/solid-state-battery.webp',
+  'chemical':            '/assets/images/dropdown-solutions/chemical.webp',
+  'adhesive':            '/assets/images/dropdown-solutions/adhesive.webp',
+  'pyrotechnics':        '/assets/images/dropdown-solutions/pyrotechnics.webp',
+  'food':                '/assets/images/dropdown-solutions/food.webp',
+  'pharma':              '/assets/images/dropdown-solutions/pharma.webp',
+  'cosmetics':           '/assets/images/dropdown-solutions/cosmetics.webp',
+  'electronics':         '/assets/images/dropdown-solutions/electronics.webp',
+}
+
 export default function DropdownSolutions({ active, onClose, cancelClose, scheduleClose }) {
   const [activeIdx, setActiveIdx] = useState(0)
   const current = solutionCategories[activeIdx]
@@ -170,7 +182,7 @@ export default function DropdownSolutions({ active, onClose, cancelClose, schedu
             </Link>
           </div>
           <div className="dropdown-preview-image">
-            <img src="/assets/images/hy-dropmenu-application-img.jpg" alt="行业解决方案" />
+            <img src={PREVIEW_IMG[current.id] ?? '/assets/images/hy-dropmenu-application-img.jpg'} alt={current.label} />
           </div>
         </div>
       </div>

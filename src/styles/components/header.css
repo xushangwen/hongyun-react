@@ -288,6 +288,11 @@
   min-width: 160px;
 }
 
+/* 二列布局（产品下拉去掉了产品列表中列）：左列加宽 + 右列预览靠右 */
+.dropdown-menu--two-col .dropdown-col-left {
+  min-width: 240px;
+}
+
 
 .dropdown-col-middle {
   padding-left: 0;
@@ -538,6 +543,16 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* 产品下拉（二列布局）：预览图容器放大 + 完整展示（contain，最大化适应） */
+.dropdown-menu--two-col .dropdown-preview-image {
+  width: 380px;
+  height: 260px;
+  background: var(--zinc-50, #fafafa);
+}
+.dropdown-menu--two-col .dropdown-preview-image img {
+  object-fit: contain;
 }
 
 /* ========== Products Dropdown ========== */

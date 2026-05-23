@@ -398,7 +398,7 @@ export default function PipelinePulpingPage() {
           },
           {
             name: '管线分散罐',
-            img: `${IMG}/管线分散罐.svg`,
+            img: `${IMG}/pipeline-disperser.webp`,
             paragraphs: [
               {
                 title: '基本配置',

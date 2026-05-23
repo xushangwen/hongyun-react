@@ -15,9 +15,9 @@ export const productCategories = [
         name: '双行星动力制浆系统',
         slug: 'pd-pulping',
         products: [
-          { name: '量产型双行星动力混合机',   slug: 'dual-planetary-mixer',     image: '/assets/images/solutions/pd-pulping/main-product.webp', imgContain: true },
-          { name: '中型双行星动力混合机',     slug: 'dual-planetary-mixer-mid', image: '/assets/img/prd-03.jpeg',                              imgContain: true },
-          { name: '实验室型双行星动力混合机', slug: 'dual-planetary-mixer-lab', image: '/assets/img/prd-02.jpg',                               imgContain: true },
+          { name: '量产型双行星动力混合机',   slug: 'dual-planetary-mixer',     image: '/assets/images/solutions/pd-pulping/main-product.webp',           imgContain: true },
+          { name: '中型双行星动力混合机',     slug: 'dual-planetary-mixer-mid', image: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid.webp', imgContain: true },
+          { name: '实验室型双行星动力混合机', slug: 'dual-planetary-mixer-lab', image: '/assets/images/products/pd-mixer/dual-planetary-mixer-lab.webp', imgContain: true },
         ],
       },
       {
@@ -25,7 +25,7 @@ export const productCategories = [
         slug: 'pipeline-pulping',
         products: [
           { name: '管线捏合罐',         slug: 'kneader',              image: '/assets/images/solutions/pipeline-pulping/tank-main.webp',          imgContain: true },
-          { name: '管线分散罐',         slug: 'pipeline-disperser',   image: '/assets/images/solutions/pipeline-pulping/disperser-single.svg',   imgContain: true },
+          { name: '管线分散罐',         slug: 'pipeline-disperser',   image: '/assets/images/solutions/pipeline-pulping/pipeline-disperser.webp', imgContain: true },
           { name: '管线式高速分散机',   slug: 'high-speed-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-view.webp',    imgContain: true },
         ],
       },

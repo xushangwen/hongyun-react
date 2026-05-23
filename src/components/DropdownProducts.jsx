@@ -5,7 +5,14 @@ import {
   IconChevronRightOutline24,
   IconArrowRightOutline24,
 } from 'nucleo-core-outline-24'
-import { productCategories, getCategoryProducts } from '../data/productCategories'
+import { productCategories } from '../data/productCategories'
+
+/* 每个一级行业对应的预览图：取自"行业解决方案"该行业下第一张卡片图 */
+const PREVIEW_IMG = {
+  'new-energy': '/assets/images/solutions/pd-pulping/system.webp',
+  'solid-state-battery': '/assets/images/solutions/dry-powder-mixer/干法电极系统-01.webp',
+  'chemical': '/assets/images/solutions/chemical/main-product.webp',
+}
 
 export default function DropdownProducts({ active, onClose, cancelClose, scheduleClose }) {
   const [activeIdx, setActiveIdx] = useState(0)
@@ -13,7 +20,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
 
   return (
     <div
-      className={`dropdown-menu${active ? ' active' : ''}`}
+      className={`dropdown-menu dropdown-menu--two-col${active ? ' active' : ''}`}
       id="dropdownProducts"
       onMouseEnter={cancelClose}
       onMouseLeave={scheduleClose}
@@ -23,7 +30,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
       </button>
 
       <div className="dropdown-container">
-        {/* 左列：行业分类 */}
+        {/* 左列：行业分类（一级，去掉二级产品列表） */}
         <div className="dropdown-col dropdown-col-left">
           {productCategories.map((cat, index) => (
             <Link
@@ -44,26 +51,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
           ))}
         </div>
 
-        {/* 中列：该行业产品列表（动态） */}
-        <div className="dropdown-col dropdown-col-middle visible">
-          {getCategoryProducts(current).map((product) => (
-            <Link
-              to={`/products/${current.id}/${product.slug}`}
-              key={product.slug}
-              className="dropdown-item"
-              onClick={onClose}
-            >
-              <span className="dropdown-item-content">
-                <span>{product.name}</span>
-              </span>
-              <span className="dropdown-arrow">
-                <IconChevronRightOutline24 size={16} />
-              </span>
-            </Link>
-          ))}
-        </div>
-
-        {/* 右列：预览 */}
+        {/* 右列：预览 — 图随当前 hover 的行业切换 */}
         <div className="dropdown-col dropdown-col-right">
           <div className="dropdown-preview">
             <h3 className="dropdown-preview-title">{current.name}</h3>
@@ -74,7 +62,10 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
             </Link>
           </div>
           <div className="dropdown-preview-image">
-            <img src="/assets/images/hy-dropmenu-product-img.jpg" alt="产品中心" />
+            <img
+              src={PREVIEW_IMG[current.id] ?? '/assets/images/hy-dropmenu-product-img.jpg'}
+              alt={current.name}
+            />
           </div>
         </div>
       </div>
