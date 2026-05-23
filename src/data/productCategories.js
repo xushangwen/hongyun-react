@@ -10,15 +10,39 @@ export const productCategories = [
     Icon: IconCarBatteryOutline24,
     name: '新能源行业',
     desc: '面向锂电池正负极浆料制备的核心装备，覆盖搅拌、分散、捏合、制浆全工艺环节。',
-    products: [
-      { name: '双行星动力混合机', slug: 'dual-planetary-mixer', image: '/assets/images/solutions/pd-pulping/main-product.webp', imgContain: true },
-      { name: '管线捏合罐',       slug: 'kneader',               image: '/assets/images/solutions/pipeline-pulping/tank-main.webp', imgContain: true },
-      { name: '管线分散罐',       slug: 'pipeline-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-single.svg', imgContain: true },
-      { name: '高速分散机',       slug: 'high-speed-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-view.webp', imgContain: true },
-      { name: '高速分散机（循环制浆）', slug: 'cp-disperser', image: '/assets/images/solutions/circulation-pulping/高速分散机-svg.svg', imgContain: true, imgSm: true },
-      { name: '循环罐 A',          slug: 'cp-tank-a',    image: '/assets/images/solutions/circulation-pulping/循环罐-A-svg.svg',   imgContain: true, imgSm: true },
-      { name: '循环罐 B',          slug: 'cp-tank-b',    image: '/assets/images/solutions/circulation-pulping/循环罐-B-svg.svg',   imgContain: true, imgSm: true },
-      { name: '双螺杆制浆机',     slug: 'twin-screw-pulper' },
+    systems: [
+      {
+        name: 'PD制浆系统',
+        slug: 'pd-pulping',
+        products: [
+          { name: '双行星动力混合机', slug: 'dual-planetary-mixer', image: '/assets/images/solutions/pd-pulping/main-product.webp', imgContain: true },
+        ],
+      },
+      {
+        name: '高效管线式制浆系统',
+        slug: 'pipeline-pulping',
+        products: [
+          { name: '管线捏合罐',   slug: 'kneader',              image: '/assets/images/solutions/pipeline-pulping/tank-main.webp',          imgContain: true },
+          { name: '管线分散罐',   slug: 'pipeline-disperser',   image: '/assets/images/solutions/pipeline-pulping/disperser-single.svg',   imgContain: true },
+          { name: '高速分散机',   slug: 'high-speed-disperser', image: '/assets/images/solutions/pipeline-pulping/disperser-view.webp',    imgContain: true },
+        ],
+      },
+      {
+        name: '高效循环制浆系统',
+        slug: 'circulation-pulping',
+        products: [
+          { name: '高速分散机（循环制浆）', slug: 'cp-disperser', image: '/assets/images/solutions/circulation-pulping/高速分散机-svg.svg', imgContain: true, imgSm: true },
+          { name: '循环罐 A',                slug: 'cp-tank-a',    image: '/assets/images/solutions/circulation-pulping/循环罐-A-svg.svg',   imgContain: true, imgSm: true },
+          { name: '循环罐 B',                slug: 'cp-tank-b',    image: '/assets/images/solutions/circulation-pulping/循环罐-B-svg.svg',   imgContain: true, imgSm: true },
+        ],
+      },
+      {
+        name: '双螺杆连续制浆系统',
+        slug: 'twin-screw-pulping',
+        products: [
+          { name: '双螺杆制浆机', slug: 'twin-screw-pulper' },
+        ],
+      },
     ],
   },
   {
@@ -61,4 +85,11 @@ export const productCategories = [
 
 export function getCategoryById(id) {
   return productCategories.find((c) => c.id === id) ?? null
+}
+
+// 派生：拿到分类下所有产品的扁平列表（兼容 systems 嵌套 / products 平铺两种结构）
+export function getCategoryProducts(category) {
+  if (!category) return []
+  if (category.systems) return category.systems.flatMap((s) => s.products)
+  return category.products ?? []
 }

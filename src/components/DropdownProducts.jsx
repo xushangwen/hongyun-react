@@ -5,7 +5,7 @@ import {
   IconChevronRightOutline24,
   IconArrowRightOutline24,
 } from 'nucleo-core-outline-24'
-import { productCategories } from '../data/productCategories'
+import { productCategories, getCategoryProducts } from '../data/productCategories'
 
 export default function DropdownProducts({ active, onClose, cancelClose, scheduleClose }) {
   const [activeIdx, setActiveIdx] = useState(0)
@@ -46,7 +46,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
 
         {/* 中列：该行业产品列表（动态） */}
         <div className="dropdown-col dropdown-col-middle visible">
-          {current.products.map((product) => (
+          {getCategoryProducts(current).map((product) => (
             <Link
               to={`/products/${current.id}/${product.slug}`}
               key={product.slug}

@@ -64,30 +64,63 @@ export default function ProductCategoryPage() {
             </div>
             <p className="products-category-desc fade-up">{category.desc}</p>
 
-            <div className="products-grid fade-up fade-up-delay-1">
-              {category.products.map((product) => (
-                <Link
-                  to={product.customPath || `/products/${category.id}/${product.slug}`}
-                  className="product-card"
-                  key={product.slug}
-                >
-                  <div className={['product-card-image', product.imgContain && 'product-card-image--contain', product.imgSm && 'product-card-image--sm'].filter(Boolean).join(' ')}>
-                    {product.image ? (
-                      <img src={product.image} alt={product.name} loading="lazy" />
-                    ) : (
-                      <ImagePlaceholder height="100%" label={product.name} />
-                    )}
+            {category.systems ? (
+              /* 按子系统分组渲染（行业解决方案的系统名称作为子标题） */
+              category.systems.map((system) => (
+                <div key={system.slug} className="products-system-group fade-up fade-up-delay-1">
+                  <h3 className="products-system-title">{system.name}</h3>
+                  <div className="products-grid">
+                    {system.products.map((product) => (
+                      <Link
+                        to={product.customPath || `/products/${category.id}/${product.slug}`}
+                        className="product-card"
+                        key={product.slug}
+                      >
+                        <div className={['product-card-image', product.imgContain && 'product-card-image--contain', product.imgSm && 'product-card-image--sm'].filter(Boolean).join(' ')}>
+                          {product.image ? (
+                            <img src={product.image} alt={product.name} loading="lazy" />
+                          ) : (
+                            <ImagePlaceholder height="100%" label={product.name} />
+                          )}
+                        </div>
+                        <div className="product-card-content">
+                          <h3 className="product-card-title">{product.name}</h3>
+                          <span className="product-card-more">
+                            查看详情
+                            <IconArrowRightOutline24 size={16} />
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
-                  <div className="product-card-content">
-                    <h3 className="product-card-title">{product.name}</h3>
-                    <span className="product-card-more">
-                      查看详情
-                      <IconArrowRightOutline24 size={16} />
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+              ))
+            ) : (
+              <div className="products-grid fade-up fade-up-delay-1">
+                {category.products.map((product) => (
+                  <Link
+                    to={product.customPath || `/products/${category.id}/${product.slug}`}
+                    className="product-card"
+                    key={product.slug}
+                  >
+                    <div className={['product-card-image', product.imgContain && 'product-card-image--contain', product.imgSm && 'product-card-image--sm'].filter(Boolean).join(' ')}>
+                      {product.image ? (
+                        <img src={product.image} alt={product.name} loading="lazy" />
+                      ) : (
+                        <ImagePlaceholder height="100%" label={product.name} />
+                      )}
+                    </div>
+                    <div className="product-card-content">
+                      <h3 className="product-card-title">{product.name}</h3>
+                      <span className="product-card-more">
+                        查看详情
+                        <IconArrowRightOutline24 size={16} />
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       </div>

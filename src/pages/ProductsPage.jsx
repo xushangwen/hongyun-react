@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
-import { productCategories } from '../data/productCategories'
+import { productCategories, getCategoryProducts } from '../data/productCategories'
 import productsHeroImg from '../assets/img/IMG_4280.jpg'
 import ctaBgImg from '../assets/img/IMG_5036.jpg'
 
@@ -47,7 +47,7 @@ export default function ProductsPage() {
                   <div className="products-hub-card-body">
                     <h3 className="products-hub-card-name">{cat.name}</h3>
                     <p className="products-hub-card-desc">{cat.desc}</p>
-                    <span className="products-hub-card-count">{cat.products.length} 款产品</span>
+                    <span className="products-hub-card-count">{getCategoryProducts(cat).length} 款产品</span>
                   </div>
                   <span className="products-hub-card-arrow">
                     <IconArrowRightOutline24 size={18} />

@@ -2306,6 +2306,23 @@
   gap: 32px;
 }
 
+/* 按"行业解决方案系统"分组的子分组容器与子标题 */
+.products-system-group {
+  margin-bottom: 56px;
+}
+.products-system-group:last-child {
+  margin-bottom: 0;
+}
+.products-system-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--zinc-900);
+  line-height: 1.4;
+  margin: 0 0 20px;
+  padding-left: 12px;
+  border-left: 3px solid var(--brand-red, #d62027);
+}
+
 .product-card {
   background: var(--zinc-50);
   overflow: hidden;
