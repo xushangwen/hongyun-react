@@ -142,7 +142,7 @@ export default function KneaderPage() {
                 <div style={{ display: 'flex' }}>
                   <div style={{ flex: '0 0 66%', padding: '28px 24px', borderRight: '1px solid #e2e8f0', background: '#fff' }}>
                     <img
-                      src={`${SIM_IMG}/cfd-viscosity.png`}
+                      src={`${SIM_IMG}/cfd-viscosity.webp`}
                       alt="捏合罐粘度云图"
                       style={{ display: 'block', width: '80%', height: 'auto', margin: '0 auto' }}
                       loading="lazy"
@@ -182,7 +182,7 @@ export default function KneaderPage() {
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <span style={{ fontSize: '12px', fontWeight: 600, color: '#374151', marginBottom: '12px' }}>搅拌桨表面剪切应力</span>
                       <img
-                        src={`${SIM_IMG}/cfd-shear-blade-surface.png`}
+                        src={`${SIM_IMG}/cfd-shear-blade-surface.webp`}
                         alt="搅拌桨表面剪切应力云图"
                         style={{ flex: 1, minHeight: 0, width: 'auto', maxWidth: '100%', objectFit: 'contain', objectPosition: 'top left' }}
                         loading="lazy"
@@ -201,7 +201,7 @@ export default function KneaderPage() {
                 <div style={{ display: 'flex' }}>
                   <div style={{ flex: '0 0 66%', padding: '28px 24px', borderRight: '1px solid #e2e8f0', background: '#fff' }}>
                     <img
-                      src={`${SIM_IMG}/cfd-shear-blade.png`}
+                      src={`${SIM_IMG}/cfd-shear-blade.webp`}
                       alt="搅拌桨截面剪切应力云图"
                       style={{ display: 'block', width: '80%', height: 'auto', margin: '0 auto' }}
                       loading="lazy"

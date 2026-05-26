@@ -16,8 +16,8 @@ import PageHero from '../components/PageHero'
 import ParallaxCta from '../components/ParallaxCta'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
-import solutionsHeroImg from '../assets/img/IMG_4366.jpg'
-import prdSysImg from '../assets/img/prd-sys.png'
+import solutionsHeroImg from '../assets/img/IMG_4366.webp'
+import prdSysImg from '../assets/img/prd-sys.webp'
 import ctaBgImg from '../assets/img/IMG_4292.webp'
 
 /* ========== 行业数据 [AI生成描述] ========== */
@@ -42,7 +42,7 @@ const industries = [
     solutions: [
       { name: '干法电极成套设备解决方案', slug: 'dry-powder-mixer', brief: '高速干法混合工艺，适用于电极粉体的均匀分散。', image: '/assets/images/solutions/dry-powder-mixer/干法电极系统-01.webp' },
       { name: '湿法电极成套设备解决方案', slug: 'wet-electrode-system', brief: '湿法双行星混合工艺，精准匹配湿法、干法混合工艺路径。', images: ['/assets/images/solutions/pd-pulping/main-product.webp', '/assets/images/solutions/wet-electrode-system/pipeline-mixer.webp'] },
-      { name: '粉料混合机', slug: 'dry-electrode-mixer-card', brief: '硫化物 / 氧化物 / 聚合物系干法高速粉体混合，适配多种电解质体系。', image: '/assets/images/solutions/dry-powder-mixer/product-main.png', customPath: '/products/solid-state-battery/dry-electrode-mixer' },
+      { name: '粉料混合机', slug: 'dry-electrode-mixer-card', brief: '硫化物 / 氧化物 / 聚合物系干法高速粉体混合，适配多种电解质体系。', image: '/assets/images/solutions/dry-powder-mixer/product-main.webp', customPath: '/products/solid-state-battery/dry-electrode-mixer' },
       { name: '气液包覆机', slug: 'material-coating-card', brief: '固态电解质材料表面气液相精密包覆，涂层厚度可控、附着力强。', image: '/assets/images/solutions/dry-powder-mixer/core-device-03.webp', customPath: '/solutions/solid-state-battery/material-coating' },
     ],
   },

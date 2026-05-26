@@ -202,13 +202,13 @@ const features = [
 const coreEquipment = [
   { name: '双行星动力混合机',   img: '/assets/images/solutions/pd-pulping/main-product.webp' },
   { name: '往复式混合搅拌机',   img: `${EQ}/02-reciprocating-mixer.png`   },
-  { name: '双立柱行星搅拌机',   img: `${EQ}/03-dual-column-planetary-01.jpg` },
+  { name: '双立柱行星搅拌机',   img: `${EQ}/03-dual-column-planetary-01.webp` },
   { name: '行星蝶式混合搅拌机', img: `${EQ}/05-butterfly-mixer.jpg`       },
-  { name: '行星动力混合搅拌机', img: `${EQ}/06-planetary-power-mixer.png` },
+  { name: '行星动力混合搅拌机', img: `${EQ}/06-planetary-power-mixer.webp` },
   { name: '立式捏合机',         img: `${EQ}/07-vertical-kneader-01.png`      },
   { name: '压料机',             img: `${EQ}/08-material-press.png`        },
   { name: '倾倒机',             img: `${EQ}/09-tilting-machine-01.png`       },
-  { name: '洗桶机',             img: `${EQ}/10-barrel-washer.jpg`         },
+  { name: '洗桶机',             img: `${EQ}/10-barrel-washer.webp`         },
   { name: '反应釜',             img: `${EQ}/11-reactor.png`               },
   { name: '储罐',               img: `${EQ}/12-storage-tank.jpg`          },
 ]
@@ -296,7 +296,7 @@ export default function ChemicalAutoProductionPage() {
             {/* 视频模块 */}
             <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
               <VideoPlayer
-                src="/assets/videos/chemical-auto-production.mp4"
+                src="/assets/videos/chemical-auto-production.webm"
                 poster="/assets/videos/chemical-auto-production-poster.jpg"
                 title="红运 化工全自动生产系统"
               />

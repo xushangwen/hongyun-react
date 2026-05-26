@@ -210,7 +210,7 @@ export default function DryPowderMixerPage() {
       <PageHero
         title="行业解决方案"
         subtitle="Industry Solutions"
-        bgImage="/assets/images/solutions/circulation-pulping/hero-bg-new.jpg"
+        bgImage="/assets/images/solutions/circulation-pulping/hero-bg-new.webp"
       />
 
       <div className="page-body">
@@ -262,7 +262,7 @@ export default function DryPowderMixerPage() {
               <div className="cp-core-device-row fade-up fade-up-delay-1">
                 <div className="cp-core-device-img-wrap">
                   <img
-                    src={`${IMG}/product-main.png`}
+                    src={`${IMG}/product-main.webp`}
                     alt="干法电极粉体高速混合机"
                     className="cp-core-device-img"
                     loading="lazy"

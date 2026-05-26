@@ -373,7 +373,7 @@ export default function PipelinePulpingPage() {
             {/* 视频模块 */}
             <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
               <VideoPlayer
-                src={`${IMG}/product-video.mp4`}
+                src={`${IMG}/product-video.webm`}
                 poster={`${IMG}/video-poster.jpg`}
                 title="红运 管线式制浆系统"
               />
@@ -425,7 +425,7 @@ export default function PipelinePulpingPage() {
                   { src: `${IMG}/case-workshop-01.webp`, alt: '管线式制浆车间' },
                   { src: `${IMG}/case-workshop-02.webp`, alt: '管线式制浆车间' },
                   { src: `${IMG}/case-workshop-03.webp`, alt: '管线式制浆车间' },
-                  { src: `${IMG}/case-workshop-04.jpg`,  alt: '吨包投料车间' },
+                  { src: `${IMG}/case-workshop-04.webp`,  alt: '吨包投料车间' },
                 ].map((item, i) => (
                   <div key={i} className="cp-chart-card">
                     <img src={item.src} alt={item.alt} className="cp-chart-img" loading="lazy" />
@@ -483,7 +483,7 @@ export default function PipelinePulpingPage() {
                   <div className="lfp-stability-2col">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/lfp-stability-scatter.png`} alt="整体无团聚无沉降" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/lfp-stability-scatter.webp`} alt="整体无团聚无沉降" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">整体无团聚、无沉降</p>
                     </div>
@@ -568,13 +568,13 @@ export default function PipelinePulpingPage() {
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/lfp-sem-20000x.jpg`} alt="SEM 20000×" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/lfp-sem-20000x.webp`} alt="SEM 20000×" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">线速度14.7m/s<br />20000倍，2um比例尺</p>
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/lfp-sem-50000x.jpg`} alt="SEM 50000×" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/lfp-sem-50000x.webp`} alt="SEM 50000×" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">线速度14.7m/s<br />50000倍，500nm比例尺</p>
                     </div>
@@ -692,13 +692,13 @@ export default function PipelinePulpingPage() {
                   <div className="tsp-charts-grid-3 lfp-sem-grid">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/nca-sem-5000x.png`} alt="SEM 5000×" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/nca-sem-5000x.webp`} alt="SEM 5000×" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">5000倍，5μm比例尺</p>
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/nca-sem-20000x.png`} alt="SEM 20000×" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/nca-sem-20000x.webp`} alt="SEM 20000×" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">20000倍，2μm比例尺</p>
                     </div>
@@ -716,10 +716,10 @@ export default function PipelinePulpingPage() {
                   {/* 4 张分散时长电镜图 */}
                   <div className="cp-charts-grid-4 pp-charts-grid nca-sem-time-grid">
                     {[
-                      { src: `${IMG}/nca-sem-1h.png`,  label: '1h' },
-                      { src: `${IMG}/nca-sem-2h.png`,  label: '2h' },
-                      { src: `${IMG}/nca-sem-3h.png`,  label: '3h' },
-                      { src: `${IMG}/nca-sem-4h.png`,  label: '4h' },
+                      { src: `${IMG}/nca-sem-1h.webp`,  label: '1h' },
+                      { src: `${IMG}/nca-sem-2h.webp`,  label: '2h' },
+                      { src: `${IMG}/nca-sem-3h.webp`,  label: '3h' },
+                      { src: `${IMG}/nca-sem-4h.webp`,  label: '4h' },
                     ].map((item, i) => (
                       <div key={i} className="cp-chart-card nca-sem-time-card">
                         <div className="nca-sem-time-img-wrap">
@@ -768,7 +768,7 @@ export default function PipelinePulpingPage() {
                   <div className="tsp-charts-grid-3">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/graphite-stability-scatter.png`} alt="背散射光曲线" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/graphite-stability-scatter.webp`} alt="背散射光曲线" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">背散射光曲线稳定，浆料未发生颗粒团聚及沉降现象</p>
                     </div>
@@ -778,7 +778,7 @@ export default function PipelinePulpingPage() {
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/graphite-dispersion.png`} alt="分散均匀性指数" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/graphite-dispersion.webp`} alt="分散均匀性指数" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">分散均匀性指数0.19（＜2为标准），新型管线式制浆机分散性能满足浆料分散需求</p>
                     </div>
@@ -810,13 +810,13 @@ export default function PipelinePulpingPage() {
                   <div className="tsp-charts-grid-3 lfp-sem-grid">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/graphite-sem-2000x.png`} alt="电镜 2000倍" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/graphite-sem-2000x.webp`} alt="电镜 2000倍" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">2000倍，10μm比例尺</p>
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/graphite-sem-5000x.png`} alt="电镜 5000倍" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/graphite-sem-5000x.webp`} alt="电镜 5000倍" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">5000倍，5μm比例尺</p>
                     </div>

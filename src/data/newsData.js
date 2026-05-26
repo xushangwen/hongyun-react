@@ -39,12 +39,12 @@ export const newsData = [
       {
         type: 'image_carousel',
         images: [
-          { src: 'lion_dance_performance_1.png', alt: '舞狮纳福现场', caption: '舞狮纳福现场（右滑更多）' },
+          { src: 'lion_dance_performance_1.webp', alt: '舞狮纳福现场', caption: '舞狮纳福现场（右滑更多）' },
           { src: 'lion_dance_lobby.png', alt: '舞狮纳福现场', caption: '舞狮纳福现场（右滑更多）' },
-          { src: 'lion_dance_scrolls.png', alt: '舞狮纳福现场', caption: '舞狮纳福现场（右滑更多）' },
+          { src: 'lion_dance_scrolls.webp', alt: '舞狮纳福现场', caption: '舞狮纳福现场（右滑更多）' },
           { src: 'lion_dance_office.png', alt: '舞狮纳福现场', caption: '舞狮纳福现场（右滑更多）' },
           { src: 'lion_dance_hall_procession.png', alt: '舞狮纳福现场', caption: '舞狮纳福现场（右滑更多）' },
-          { src: 'lion_dance_factory_tour.png', alt: '舞狮纳福现场', caption: '舞狮纳福现场（右滑更多）' },
+          { src: 'lion_dance_factory_tour.webp', alt: '舞狮纳福现场', caption: '舞狮纳福现场（右滑更多）' },
         ],
       },
       {
@@ -73,11 +73,11 @@ export const newsData = [
         type: 'image_carousel',
         images: [
           { src: 'award_ceremony_engineering_dept.png', alt: '表彰合影', caption: '表彰合影（右滑更多）' },
-          { src: 'award_ceremony_innovation_star.png', alt: '表彰合影', caption: '表彰合影（右滑更多）' },
+          { src: 'award_ceremony_innovation_star.webp', alt: '表彰合影', caption: '表彰合影（右滑更多）' },
           { src: 'award_ceremony_cost_reduction_model.png', alt: '表彰合影', caption: '表彰合影（右滑更多）' },
           { src: 'award_ceremony_group_photo.png', alt: '表彰合影', caption: '表彰合影（右滑更多）' },
-          { src: 'award_ceremony_professional_expert.png', alt: '表彰合影', caption: '表彰合影（右滑更多）' },
-          { src: 'award_ceremony_best_service.png', alt: '表彰合影', caption: '表彰合影（右滑更多）' },
+          { src: 'award_ceremony_professional_expert.webp', alt: '表彰合影', caption: '表彰合影（右滑更多）' },
+          { src: 'award_ceremony_best_service.webp', alt: '表彰合影', caption: '表彰合影（右滑更多）' },
         ],
       },
       {
@@ -260,7 +260,7 @@ export const newsData = [
       },
       {
         type: 'image',
-        src: 'img_002_png.png',
+        src: 'img_002_png.webp',
         alt: '红运双螺杆干法电极连续挤出系统',
         caption: '红运双螺杆干法电极连续挤出系统',
       },

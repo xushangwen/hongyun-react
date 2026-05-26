@@ -28,9 +28,9 @@ import VideoPlayer from '../components/VideoPlayer'
 import GlobalMap from '../components/GlobalMap'
 import { getCompanyYears } from '../utils/companyYears'
 import { partnerGroupsData } from '../data/partners'
-import heroImg from '../assets/img/DJI_20250418102124_0133_D-3 拷贝.jpg'
-import companyImg from '../assets/img/DJI_20250418103239_0149_D 拷贝.jpg'
-import videoImg from '../assets/img/IMG_4366.jpg'
+import heroImg from '../assets/img/DJI_20250418102124_0133_D-3 拷贝.webp'
+import companyImg from '../assets/img/DJI_20250418103239_0149_D 拷贝.webp'
+import videoImg from '../assets/img/IMG_4366.webp'
 
 /* ========== 打字机效果组件 ========== */
 function TypewriterText({ text, speed = 40, delay = 0, className }) {
@@ -195,12 +195,16 @@ const PW_SLOT    = PW_ITEM_H * PW_SCALE_I + PW_GAP          // ≈ 243
 const PW_CTR     = 280                                        // 容器高度 560 / 2
 // PW_OFFSET = PW_CTR + ITEM_H*(1-SCALE_A)/2 - ITEM_H/2 ≈ 280+26.6-222 = 84.6
 const PW_OFFSET  = PW_CTR + PW_ITEM_H * (1 - PW_SCALE_A) / 2 - PW_ITEM_H / 2
+// 用户交互后暂停自动轮播，停止操作满此时长（毫秒）再恢复
+const PW_RESUME_DELAY = 8000
 
 const ProductionWorkshop = memo(function ProductionWorkshop() {
   const [activeTab, setActiveTab] = useState(0)
   const [imgIndex, setImgIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
   const rootRef = useRef(null)
+  const resumeTimerRef = useRef(null)
 
   const currentWs = productionWorkshops[activeTab]
   const images = currentWs.images
@@ -216,27 +220,38 @@ const ProductionWorkshop = memo(function ProductionWorkshop() {
     return () => observer.disconnect()
   }, [])
 
-  // 10s 后自动切换到下一个车间（仅可见时）
+  // 用户交互时暂停自动轮播，停手满 PW_RESUME_DELAY 后恢复
+  const pauseInteraction = useCallback(() => {
+    setIsPaused(true)
+    clearTimeout(resumeTimerRef.current)
+    resumeTimerRef.current = setTimeout(() => setIsPaused(false), PW_RESUME_DELAY)
+  }, [])
+
+  // 卸载时清理恢复定时器
+  useEffect(() => () => clearTimeout(resumeTimerRef.current), [])
+
+  // 10s 后自动切换到下一个车间（仅可见、且未被用户交互暂停时）
   useEffect(() => {
-    if (!isVisible) return
+    if (!isVisible || isPaused) return
     const id = setTimeout(() => {
       setActiveTab(t => (t + 1) % productionWorkshops.length)
       setImgIndex(0)
     }, WORKSHOP_DURATION)
     return () => clearTimeout(id)
-  }, [activeTab, isVisible])
+  }, [activeTab, isVisible, isPaused])
 
-  // 图片在 10s 内均匀循环（仅可见时）
+  // 图片在 10s 内均匀循环（仅可见、且未被用户交互暂停时）
   useEffect(() => {
-    if (!isVisible) return
+    if (!isVisible || isPaused) return
     const interval = WORKSHOP_DURATION / n
     const id = setInterval(() => setImgIndex(i => (i + 1) % n), interval)
     return () => clearInterval(id)
-  }, [activeTab, n, isVisible])
+  }, [activeTab, n, isVisible, isPaused])
 
   const trackY = PW_OFFSET - imgIndex * PW_SLOT
 
   function handleTabClick(i) {
+    pauseInteraction()
     setActiveTab(i)
     setImgIndex(0)
   }
@@ -296,7 +311,7 @@ const ProductionWorkshop = memo(function ProductionWorkshop() {
                   transition:   'transform 0.65s ease, opacity 0.65s ease',
                   cursor:       isCenter ? 'default' : 'pointer',
                 }}
-                onClick={() => !isCenter && setImgIndex(i)}
+                onClick={() => { if (!isCenter) { pauseInteraction(); setImgIndex(i) } }}
               >
                 <div className="pw-carousel-card">
                   <img src={img.src} alt={img.alt} loading="lazy" />
@@ -313,11 +328,11 @@ const ProductionWorkshop = memo(function ProductionWorkshop() {
 
 /* ========== 发展历程数据 ========== */
 const timelineData = [
-  { year: '1990', theme: '起步探索', desc: '企业法人经营代理油漆、油墨等化工、食品、制药设备，积累行业经验，奠定坚实发展基础。', img: '/assets/images/history/1990@2x.jpg' },
-  { year: '1993', theme: '正式成立', desc: '广州市海珠区红运机械厂正式成立，开启专业混合设备研发制造征程，迈出品牌建设第一步。', img: '/assets/images/history/1993@2x.jpg' },
-  { year: '2000', theme: '扩张迁址', desc: '迁至广州市番禺区，更名为广州市番禺区红运机械厂，规模持续壮大，产能显著提升。', img: '/assets/images/history/2000@2x.jpg' },
-  { year: '2007', theme: '公司化运营', desc: '注册成立广州红运混合设备有限公司，完成现代企业制度建设，规范化运营全面展开。', img: '/assets/images/history/2007@2x.jpg' },
-  { year: '2014', theme: '南沙新基地', desc: '迁至广州市南沙区东涌镇同裕街40号，注册成立广州红尚机械制造有限公司，华南制造能力全面升级。', img: '/assets/images/history/2014@2x.jpg' },
+  { year: '1990', theme: '起步探索', desc: '企业法人经营代理油漆、油墨等化工、食品、制药设备，积累行业经验，奠定坚实发展基础。', img: '/assets/images/history/1990@2x.webp' },
+  { year: '1993', theme: '正式成立', desc: '广州市海珠区红运机械厂正式成立，开启专业混合设备研发制造征程，迈出品牌建设第一步。', img: '/assets/images/history/1993@2x.webp' },
+  { year: '2000', theme: '扩张迁址', desc: '迁至广州市番禺区，更名为广州市番禺区红运机械厂，规模持续壮大，产能显著提升。', img: '/assets/images/history/2000@2x.webp' },
+  { year: '2007', theme: '公司化运营', desc: '注册成立广州红运混合设备有限公司，完成现代企业制度建设，规范化运营全面展开。', img: '/assets/images/history/2007@2x.webp' },
+  { year: '2014', theme: '南沙新基地', desc: '迁至广州市南沙区东涌镇同裕街40号，注册成立广州红尚机械制造有限公司，华南制造能力全面升级。', img: '/assets/images/history/2014@2x.webp' },
   { year: '2021', theme: '智造总部', desc: '在江苏常州成立江苏红运智能制造有限公司并作为集团总部，全面迈入智能制造新时代，引领行业创新变革。', img: '/assets/images/history/2021@2x.jpg' },
   { year: '2022', theme: '海外布局', desc: '建立日本京都办事处，迈出国际化战略重要一步，红运品牌正式进入亚太主流市场。', img: '/assets/images/history/2022@2x.jpg' },
   { year: '2024', theme: '亚洲拓展', desc: '建立印度办事处，深化南亚市场战略布局，全球服务网络持续向纵深延伸。', img: '/assets/images/history/2024@2x.jpg' },
@@ -606,7 +621,7 @@ const rndImages = [
   { src: '/assets/images/rnd/hy-rnd-output.jpg',    label: '输出实验数据、测试报告' },
   { src: '/assets/images/rnd/hy-rnd-rheometer.jpg', label: '德国赛默飞安东帕流变仪 Viscotester iQ Air' },
   { src: '/assets/images/rnd/hy-rnd-turbiscan.jpg', label: '法国 TURBISCAN 浆料稳定性检测仪' },
-  { src: '/assets/images/rnd/hy-rnd-screw.jpg',     label: '红运双螺杆匀浆设备' },
+  { src: '/assets/images/rnd/hy-rnd-screw.webp',     label: '红运双螺杆匀浆设备' },
 ]
 // 真实组数 = 图片数 ÷ 每组显示数(2)，到此值时说明显示的是克隆组，需无感归零
 const RND_SLIDE_RESET = rndImages.length / 2
@@ -842,7 +857,7 @@ export default function AboutPage() {
             <h2 className="section-heading">企业宣传片</h2>
             <div className="about-video-wrapper">
               <VideoPlayer
-                src="/assets/video/promo.mp4"
+                src="/assets/video/promo.webm"
                 poster={videoImg}
                 title="红运机械 · 企业宣传片"
               />

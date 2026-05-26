@@ -9,7 +9,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import ImageCarousel from '../components/ImageCarousel'
 import newsData from '../data/newsData'
-import newsHeroImg from '../assets/img/IMG_4865 拷贝.jpg'
+import newsHeroImg from '../assets/img/IMG_4865 拷贝.webp'
 
 function ArticleBlock({ block, articleId }) {
   switch (block.type) {

@@ -426,7 +426,7 @@ export default function TwinScrewPulpingPage() {
       <PageHero
         title="行业解决方案"
         subtitle="Industry Solutions"
-        bgImage={`${IMG}/hero-bg.jpg`}
+        bgImage={`${IMG}/hero-bg.webp`}
       />
 
       <div className="page-body">

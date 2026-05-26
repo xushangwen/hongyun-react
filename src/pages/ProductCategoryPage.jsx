@@ -7,7 +7,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import { productCategories, getCategoryById } from '../data/productCategories'
 import ctaBgImg from '../assets/img/IMG_4883.webp'
-import productsHeroImg from '../assets/img/IMG_4280.jpg'
+import productsHeroImg from '../assets/img/IMG_4280.webp'
 
 export default function ProductCategoryPage() {
   const { categoryId } = useParams()

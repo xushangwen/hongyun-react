@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# 构建产物 / 部署交付包（体积大，超 GitHub 单文件限制，不入库）
+*.zip
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

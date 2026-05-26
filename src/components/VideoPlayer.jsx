@@ -2,7 +2,7 @@ import { useRef, useState, useCallback } from 'react'
 import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 
 export default function VideoPlayer({
-  src = '/assets/video/promo.mp4',
+  src = '/assets/video/promo.webm',
   poster = '/assets/video/promo-poster.jpg',
   title = '企业宣传片',
 }) {

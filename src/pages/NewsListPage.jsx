@@ -4,7 +4,7 @@ import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import newsData from '../data/newsData'
-import newsHeroImg from '../assets/img/IMG_4865 拷贝.jpg'
+import newsHeroImg from '../assets/img/IMG_4865 拷贝.webp'
 
 const PAGE_SIZE = 12
 

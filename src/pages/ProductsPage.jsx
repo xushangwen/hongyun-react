@@ -4,8 +4,8 @@ import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import { productCategories, getCategoryProducts } from '../data/productCategories'
-import productsHeroImg from '../assets/img/IMG_4280.jpg'
-import ctaBgImg from '../assets/img/IMG_5036.jpg'
+import productsHeroImg from '../assets/img/IMG_4280.webp'
+import ctaBgImg from '../assets/img/IMG_5036.webp'
 
 export default function ProductsPage() {
   useEffect(() => {

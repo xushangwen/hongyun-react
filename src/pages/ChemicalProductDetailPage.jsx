@@ -9,13 +9,13 @@ const EQ = '/assets/images/solutions/chemical/equipment'
 
 const productMap = {
   'reciprocating-mixer':   { name: '往复式混合搅拌机',   img: `${EQ}/02-reciprocating-mixer.png`   },
-  'dual-column-planetary': { name: '双立柱行星搅拌机',   img: `${EQ}/03-dual-column-planetary-01.jpg` },
+  'dual-column-planetary': { name: '双立柱行星搅拌机',   img: `${EQ}/03-dual-column-planetary-01.webp` },
   'butterfly-mixer':       { name: '行星蝶式混合搅拌机', img: `${EQ}/05-butterfly-mixer.jpg`       },
-  'planetary-power-mixer': { name: '行星动力混合搅拌机', img: `${EQ}/06-planetary-power-mixer.png` },
+  'planetary-power-mixer': { name: '行星动力混合搅拌机', img: `${EQ}/06-planetary-power-mixer.webp` },
   'vertical-kneader':      { name: '立式捏合机',         img: `${EQ}/07-vertical-kneader-01.png`      },
   'press-machine':         { name: '压料机',             img: `${EQ}/08-material-press.png`        },
   'tilting-machine':       { name: '倾倒机',             img: `${EQ}/09-tilting-machine-01.png`       },
-  'barrel-washer':         { name: '洗桶机',             img: `${EQ}/10-barrel-washer.jpg`         },
+  'barrel-washer':         { name: '洗桶机',             img: `${EQ}/10-barrel-washer.webp`         },
   'reactor':               { name: '反应釜',             img: `${EQ}/11-reactor.png`               },
   'storage-tank':          { name: '储罐',               img: `${EQ}/12-storage-tank.jpg`          },
 }

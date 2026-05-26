@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import TechInquirySection from '../components/TechInquirySection'
-const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.jpg'
+const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.webp'
 
 const IMG = '/assets/images/solutions/dry-powder-mixer'
 

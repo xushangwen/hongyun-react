@@ -1,39 +1,42 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
 import { LenisProvider } from './context/LenisContext'
 import HomePage from './pages/HomePage'
-import AboutPage from './pages/AboutPage'
-import SolutionsPage from './pages/SolutionsPage'
-import ProductsPage from './pages/ProductsPage'
-import ProductCategoryPage from './pages/ProductCategoryPage'
-import ContactPage from './pages/ContactPage'
-import SolutionDetailPage from './pages/SolutionDetailPage'
-import ProductDetailPage from './pages/ProductDetailPage'
-import DualPlanetaryMixerPage from './pages/DualPlanetaryMixerPage'
-import CirculationPulpingPage from './pages/CirculationPulpingPage'
-import PDPulpingPage from './pages/PDPulpingPage'
-import PipelinePulpingPage from './pages/PipelinePulpingPage'
-import TwinScrewPulpingPage from './pages/TwinScrewPulpingPage'
-import DryPowderMixerPage from './pages/DryPowderMixerPage'
-import HighSpeedDisperserPage from './pages/HighSpeedDisperserPage'
-import KneaderPage from './pages/KneaderPage'
-import PipelineDisperserPage from './pages/PipelineDisperserPage'
-import CpDisperserPage from './pages/CpDisperserPage'
-import CpTankAPage from './pages/CpTankAPage'
-import CpTankBPage from './pages/CpTankBPage'
-import WetElectrodeSystemPage from './pages/WetElectrodeSystemPage'
-import SsbDryMixerPage from './pages/SsbDryMixerPage'
-import SsbFeederPage from './pages/SsbFeederPage'
-import SsbExtruderPage from './pages/SsbExtruderPage'
-import SsbCoaterPage from './pages/SsbCoaterPage'
-import SsbPipelineMixerPage from './pages/SsbPipelineMixerPage'
-import SsbMultiMixerPage from './pages/SsbMultiMixerPage'
-import SsbHighPressureWasherPage from './pages/SsbHighPressureWasherPage'
-import NewsListPage from './pages/NewsListPage'
-import NewsDetailPage from './pages/NewsDetailPage'
-import ChemicalAutoProductionPage from './pages/ChemicalAutoProductionPage'
-import ChemicalProductDetailPage from './pages/ChemicalProductDetailPage'
+
+// 路由级懒加载：首页随主包加载，其余页面按需拆分为独立 chunk，缩小首屏体积
+const AboutPage = lazy(() => import('./pages/AboutPage'))
+const SolutionsPage = lazy(() => import('./pages/SolutionsPage'))
+const ProductsPage = lazy(() => import('./pages/ProductsPage'))
+const ProductCategoryPage = lazy(() => import('./pages/ProductCategoryPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
+const SolutionDetailPage = lazy(() => import('./pages/SolutionDetailPage'))
+const ProductDetailPage = lazy(() => import('./pages/ProductDetailPage'))
+const DualPlanetaryMixerPage = lazy(() => import('./pages/DualPlanetaryMixerPage'))
+const CirculationPulpingPage = lazy(() => import('./pages/CirculationPulpingPage'))
+const PDPulpingPage = lazy(() => import('./pages/PDPulpingPage'))
+const PipelinePulpingPage = lazy(() => import('./pages/PipelinePulpingPage'))
+const TwinScrewPulpingPage = lazy(() => import('./pages/TwinScrewPulpingPage'))
+const DryPowderMixerPage = lazy(() => import('./pages/DryPowderMixerPage'))
+const HighSpeedDisperserPage = lazy(() => import('./pages/HighSpeedDisperserPage'))
+const KneaderPage = lazy(() => import('./pages/KneaderPage'))
+const PipelineDisperserPage = lazy(() => import('./pages/PipelineDisperserPage'))
+const CpDisperserPage = lazy(() => import('./pages/CpDisperserPage'))
+const CpTankAPage = lazy(() => import('./pages/CpTankAPage'))
+const CpTankBPage = lazy(() => import('./pages/CpTankBPage'))
+const WetElectrodeSystemPage = lazy(() => import('./pages/WetElectrodeSystemPage'))
+const SsbDryMixerPage = lazy(() => import('./pages/SsbDryMixerPage'))
+const SsbFeederPage = lazy(() => import('./pages/SsbFeederPage'))
+const SsbExtruderPage = lazy(() => import('./pages/SsbExtruderPage'))
+const SsbCoaterPage = lazy(() => import('./pages/SsbCoaterPage'))
+const SsbPipelineMixerPage = lazy(() => import('./pages/SsbPipelineMixerPage'))
+const SsbMultiMixerPage = lazy(() => import('./pages/SsbMultiMixerPage'))
+const SsbHighPressureWasherPage = lazy(() => import('./pages/SsbHighPressureWasherPage'))
+const NewsListPage = lazy(() => import('./pages/NewsListPage'))
+const NewsDetailPage = lazy(() => import('./pages/NewsDetailPage'))
+const ChemicalAutoProductionPage = lazy(() => import('./pages/ChemicalAutoProductionPage'))
+const ChemicalProductDetailPage = lazy(() => import('./pages/ChemicalProductDetailPage'))
 
 function App() {
   return (
@@ -41,6 +44,7 @@ function App() {
       <LenisProvider>
       <ScrollToTop />
       <Layout>
+        <Suspense fallback={<div style={{ minHeight: '70vh' }} aria-busy="true" />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -78,6 +82,7 @@ function App() {
           <Route path="/news" element={<NewsListPage />} />
           <Route path="/news/:id" element={<NewsDetailPage />} />
         </Routes>
+        </Suspense>
       </Layout>
       </LenisProvider>
     </BrowserRouter>

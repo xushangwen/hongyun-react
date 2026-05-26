@@ -5,7 +5,7 @@ import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
-import ctaBgImg from '../assets/img/需要了解更多.jpg'
+import ctaBgImg from '../assets/img/需要了解更多.webp'
 import productHeroImg from '../assets/img/行业产品.jpg'
 
 /* ========== 产品数据映射 [AI生成描述] ========== */

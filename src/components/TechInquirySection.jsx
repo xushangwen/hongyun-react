@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { IconArrowRightOutline24, IconCircleCheckOutline24 } from 'nucleo-core-outline-24'
-import inquiryBgImg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.png'
+import inquiryBgImg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.webp'
 
 const defaultIndustryOptions = [
   '新能源行业 / 锂电池', '固态电池', '化工行业 / 涂料', '制胶 / 密封胶',

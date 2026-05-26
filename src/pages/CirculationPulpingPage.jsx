@@ -10,7 +10,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
-import prdSysImg from '../assets/img/prd-sys.png'
+import prdSysImg from '../assets/img/prd-sys.webp'
 
 const IMG = '/assets/images/solutions/circulation-pulping'
 
@@ -277,7 +277,7 @@ export default function CirculationPulpingPage() {
       <PageHero
         title="行业解决方案"
         subtitle="Industry Solutions"
-        bgImage={`${IMG}/hero-bg-new.jpg`}
+        bgImage={`${IMG}/hero-bg-new.webp`}
       />
 
       <div className="page-body">
@@ -470,7 +470,7 @@ export default function CirculationPulpingPage() {
                 <div className="cp-sem-grid">
                   <div className="cp-sem-card">
                     <div className="cp-sem-img-wrap">
-                      <img src={`${IMG}/chart-20.jpg`} alt="极片SEM 20000倍" className="cp-sem-img" loading="lazy" />
+                      <img src={`${IMG}/chart-20.webp`} alt="极片SEM 20000倍" className="cp-sem-img" loading="lazy" />
                     </div>
                     <p className="cp-sem-caption">20,000× 倍 · 比例尺 1μm</p>
                   </div>

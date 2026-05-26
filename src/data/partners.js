@@ -77,10 +77,10 @@ const adhesive = [
 const silverPaste = [
   { logo: `${C}/sp-heraeus.png`,    name: '贺利氏 Heraeus', alt: '贺利氏' },
   { logo: `${C}/sp-fusion.png`,     name: '聚和新材', alt: '聚和新材' },
-  { logo: `${C}/sp-rutech.png`,     name: '儒兴科技', alt: '儒兴科技' },
+  { logo: `${C}/sp-rutech.webp`,     name: '儒兴科技', alt: '儒兴科技' },
   { logo: `${C}/sp-ssp.png`,        name: '上海银浆 SSP', alt: '上海银浆' },
   { logo: `${C}/sp-riyu.png`,       name: '日御股份', alt: '日御股份' },
-  { logo: `${C}/sp-dec.png`,        name: '东方电气', alt: '东方电气' },
+  { logo: `${C}/sp-dec.webp`,        name: '东方电气', alt: '东方电气' },
   { logo: `${C}/sp-johnson.png`,    name: 'Johnson Matthey', alt: 'Johnson Matthey' },
 ]
 
