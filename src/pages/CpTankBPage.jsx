@@ -19,7 +19,7 @@ export default function CpTankBPage() {
   return (
     <>
       <PageHero
-        title="循环罐 B"
+        title="高速循环循环罐 B"
         bgImage={HERO_IMG}
       />
 
@@ -27,7 +27,7 @@ export default function CpTankBPage() {
         <Breadcrumb items={[
           { label: '产品中心', path: '/products/new-energy' },
           { label: '新能源行业', path: '/products/new-energy' },
-          { label: '循环罐 B' },
+          { label: '高速循环循环罐 B' },
         ]} />
 
         {/* ===== 产品介绍 ===== */}
@@ -43,7 +43,7 @@ export default function CpTankBPage() {
                 />
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">循环罐 B</h2>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">高速循环循环罐 B</h2>
                 <ul className="cp-core-device-features fade-up fade-up-delay-2">
                   <li>带在线分散功能，设计线速度 30 m/s，双层剪切，定转子间隙 2 mm，伺服电机驱动</li>
                   <li>采用自主专利设计机械密封，保障设备高气密性</li>
@@ -55,21 +55,12 @@ export default function CpTankBPage() {
           </div>
         </section>
 
-        {/* ===== 核心部件 ===== */}
+        {/* ===== 三视图 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
-            <p className="section-en-label fade-up">Core Parts</p>
-            <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">核心部件内容待补充</p>
-          </div>
-        </section>
-
-        {/* ===== 参数汇总 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">参数内容待补充</p>
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
           </div>
         </section>
 

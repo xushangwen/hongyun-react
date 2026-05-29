@@ -86,29 +86,26 @@ export default function HighSpeedDisperserPage() {
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">管线式高速分散机</h2>
-                <p className="cp-core-device-tbd fade-up fade-up-delay-2">产品介绍内容待提供</p>
+                <p className="pdm-intro-desc fade-up fade-up-delay-2">
+                  红运管线式高速分散机依靠惯性、旋转、湍流剪切三重应力，结合空化效应强化分散效果；斜转子与定子结构可避免物料滑移，切割充分，高效完成浆料分散。
+                </p>
+                <p className="pdm-intro-desc fade-up fade-up-delay-2">
+                  <strong>协同作用：</strong>设备依托三类应力，高速旋转形成压差并产生空化气泡，空泡溃灭进一步强化应力，实现浆料充分分散。
+                </p>
+                <p className="pdm-intro-desc fade-up fade-up-delay-2">
+                  <strong>结构优势：</strong>斜转子带偏角，配合定子结构，物料被搅拌刃有效切割，不易滑移，大幅缩短分散时长、提升生产效率。
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ===== 核心部件 ===== */}
+        {/* ===== 三视图 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
-            <p className="section-en-label fade-up">Core Parts</p>
-            <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
-            <div className="fade-up fade-up-delay-1" style={{ display: 'flex', gap: '12px', marginTop: '40px' }}>
-              {[1, 2, 3, 4, 5, 6].map((n) => (
-                <div key={n} style={{ flex: 1, background: '#fff', borderRadius: '8px', padding: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <img
-                    src={`${IMG}/component-0${n}.svg`}
-                    alt={`部件 ${n}`}
-                    style={{ display: 'block', width: [2, 6].includes(n) ? '70%' : n === 3 ? '86%' : '100%', height: 'auto' }}
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
           </div>
         </section>
 

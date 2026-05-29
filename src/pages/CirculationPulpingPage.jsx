@@ -284,7 +284,7 @@ export default function CirculationPulpingPage() {
         <Breadcrumb items={[
           { label: '行业解决方案', path: '/solutions' },
           { label: '新能源行业', path: '/solutions#new-energy' },
-          { label: '高效循环制浆系统' },
+          { label: '高速循环制浆系统' },
         ]} />
 
         {/* ===== 系统介绍 + 方案视频 ===== */}
@@ -292,10 +292,10 @@ export default function CirculationPulpingPage() {
           <div className="page-container">
             <div className="pdm-intro-grid">
               <div className="pdm-intro-visual fade-up fade-up-delay-1">
-                <img src={prdSysImg} alt="高效循环制浆系统" className="cp-intro-product-img" />
+                <img src={prdSysImg} alt="高速循环制浆系统" className="cp-intro-product-img" />
               </div>
               <div className="pdm-intro-content">
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">红运高效循环制浆系统</h2>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">红运高速循环制浆系统</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
                   自主研发专利技术，采用独特分散模块实现粉体与溶剂的快速充分混合。其独立的自循环分散系统可高效完成浆料均匀混合，确保稳定性和一致性。
                 </p>
@@ -332,7 +332,7 @@ export default function CirculationPulpingPage() {
         {/* ===== 核心设备 ===== */}
         <CoreEquipmentSection devices={[
           {
-            name: '高速分散机',
+            name: '高速循环高速分散机',
             img: `${IMG}/高速分散机-svg.svg`,
             imgAlt: '高速分散机结构示意图',
             features: [
@@ -345,7 +345,7 @@ export default function CirculationPulpingPage() {
             ],
           },
           {
-            name: '循环罐 A',
+            name: '高速循环循环罐 A',
             img: `${IMG}/循环罐-A-svg.svg`,
             imgAlt: '循环罐A结构示意图',
             features: [
@@ -356,7 +356,7 @@ export default function CirculationPulpingPage() {
             ],
           },
           {
-            name: '循环罐 B',
+            name: '高速循环循环罐 B',
             img: `${IMG}/循环罐-B-svg.svg`,
             imgAlt: '循环罐B结构示意图',
             features: [

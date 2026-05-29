@@ -15,7 +15,6 @@ import {
 import PageHero from '../components/PageHero'
 import ParallaxCta from '../components/ParallaxCta'
 import Breadcrumb from '../components/Breadcrumb'
-import ImagePlaceholder from '../components/ImagePlaceholder'
 import solutionsHeroImg from '../assets/img/IMG_4366.webp'
 import prdSysImg from '../assets/img/prd-sys.webp'
 import ctaBgImg from '../assets/img/IMG_4292.webp'
@@ -30,7 +29,7 @@ const industries = [
     solutions: [
       { name: 'PD制浆系统', slug: 'pd-pulping', brief: '行星搅拌+高速分散一体化制浆，适用于正负极浆料批次生产。', image: '/assets/images/solutions/pd-pulping/system.webp' },
       { name: '高效管线式制浆系统', slug: 'pipeline-pulping', brief: '管线式连续制浆工艺，生产效率高，浆料一致性好。', image: '/assets/images/solutions/pipeline-pulping/main-product.webp' },
-      { name: '高效循环制浆系统', slug: 'circulation-pulping', brief: '循环分散+在线研磨，实现高固含量浆料高效制备。', image: prdSysImg },
+      { name: '高速循环制浆系统', slug: 'circulation-pulping', brief: '循环分散+在线研磨，实现高固含量浆料高效制备。', image: prdSysImg },
       { name: '双螺杆连续制浆系统', slug: 'twin-screw-pulping', brief: '双螺杆连续式工艺，产能大幅提升，适合规模化产线。', image: '/assets/images/solutions/twin-screw-pulping/product.webp' },
     ],
   },
@@ -177,25 +176,27 @@ export default function SolutionsPage() {
               </p>
 
               <div className="solutions-cards">
-                {industry.solutions.map((sol) => (
+                {industry.solutions.map((sol) => {
+                  const hasImage = Boolean(sol.image || sol.images)
+                  return (
                   <Link
                     to={sol.customPath || `/solutions/${industry.id}/${sol.slug}`}
-                    className="solutions-card"
+                    className={`solutions-card${hasImage ? '' : ' solutions-card--text-only'}`}
                     key={sol.slug}
                   >
-                    <div className="solutions-card-image">
-                      {sol.images ? (
-                        <div style={{ display: 'flex', width: '100%', height: '100%', alignItems: 'center', gap: '4px', padding: '12px' }}>
-                          {sol.images.map((src, i) => (
-                            <img key={i} src={src} alt={sol.name} loading="lazy" style={{ flex: 1, minWidth: 0, height: '100%', objectFit: 'contain', objectPosition: 'center' }} />
-                          ))}
-                        </div>
-                      ) : sol.image ? (
-                        <img src={sol.image} alt={sol.name} loading="lazy" />
-                      ) : (
-                        <ImagePlaceholder height="220px" label={sol.name} />
-                      )}
-                    </div>
+                    {hasImage && (
+                      <div className="solutions-card-image">
+                        {sol.images ? (
+                          <div style={{ display: 'flex', width: '100%', height: '100%', alignItems: 'center', gap: '4px', padding: '12px' }}>
+                            {sol.images.map((src, i) => (
+                              <img key={i} src={src} alt={sol.name} loading="lazy" style={{ flex: 1, minWidth: 0, height: '100%', objectFit: 'contain', objectPosition: 'center' }} />
+                            ))}
+                          </div>
+                        ) : (
+                          <img src={sol.image} alt={sol.name} loading="lazy" />
+                        )}
+                      </div>
+                    )}
                     <div className="solutions-card-content">
                       <div className="solutions-card-text">
                         <h3 className="solutions-card-title">{sol.name}</h3>
@@ -207,7 +208,8 @@ export default function SolutionsPage() {
                       </span>
                     </div>
                   </Link>
-                ))}
+                  )
+                })}
               </div>
             </div>
           </section>

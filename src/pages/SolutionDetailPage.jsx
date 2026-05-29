@@ -38,7 +38,7 @@ const solutionMap = {
         ],
       },
       'circulation-pulping': {
-        name: '高效循环制浆系统',
+        name: '高速循环制浆系统',
         intro: '循环分散+在线研磨工艺，通过高速循环实现物料的多次分散研磨，适用于高固含量、高粘度浆料的高效制备。',
         features: ['高速循环分散，效率高', '在线研磨，粒径可控', '适用于高固含量浆料', '可配合批次或连续工艺'],
         compositions: ['循环分散主机', '在线研磨单元', '循环管路系统', '控制系统'],
@@ -113,6 +113,10 @@ export default function SolutionDetailPage() {
   const solutionName = solution?.name || '方案详情'
   const industryName = industry?.name || '行业'
 
+  /* 无系统图的行业仅用文字概述，不展示系统图/视频占位 */
+  const NO_SYSTEM_DIAGRAM = ['adhesive', 'pyrotechnics', 'food', 'pharma', 'cosmetics', 'electronics']
+  const textOnly = NO_SYSTEM_DIAGRAM.includes(industryId)
+
   return (
     <>
       <PageHero
@@ -132,16 +136,18 @@ export default function SolutionDetailPage() {
         <section className="page-section">
           <div className="page-container">
             <h2 className="section-heading">方案概览</h2>
-            <div className="detail-intro-grid">
+            <div className={textOnly ? 'detail-intro-text' : 'detail-intro-grid'}>
               <div className="detail-intro-text">
                 {solution?.intro
                   ? <p>{solution.intro}</p>
                   : <p className="cp-core-device-tbd">{`${solutionName}详细介绍内容待补充。`}</p>
                 }
               </div>
-              <div className="detail-intro-image">
-                <ImagePlaceholder height="340px" label={`${solutionName} 系统图`} />
-              </div>
+              {!textOnly && (
+                <div className="detail-intro-image">
+                  <ImagePlaceholder height="340px" label={`${solutionName} 系统图`} />
+                </div>
+              )}
             </div>
           </div>
         </section>
@@ -149,13 +155,15 @@ export default function SolutionDetailPage() {
         {/* ===== 系统介绍 / 视频 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
-            <h2 className="section-heading">系统介绍</h2>
-            <div className="detail-video-wrapper">
-              <ImagePlaceholder height="460px" label={`${solutionName} 视频介绍`} />
-              <button className="about-video-play" aria-label="播放视频">
-                <IconCircleMediaPlayFill24 size={36} />
-              </button>
-            </div>
+            {!textOnly && <h2 className="section-heading">系统介绍</h2>}
+            {!textOnly && (
+              <div className="detail-video-wrapper">
+                <ImagePlaceholder height="460px" label={`${solutionName} 视频介绍`} />
+                <button className="about-video-play" aria-label="播放视频">
+                  <IconCircleMediaPlayFill24 size={36} />
+                </button>
+              </div>
+            )}
             {solution?.features && (
               <div className="detail-features" style={{ marginTop: '48px' }}>
                 <h3 className="detail-subtitle">方案特点</h3>

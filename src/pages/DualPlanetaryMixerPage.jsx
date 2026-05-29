@@ -3,7 +3,6 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import TechInquirySection from '../components/TechInquirySection'
-import VideoPlayer from '../components/VideoPlayer'
 
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.webp'
 const IMG = '/assets/images/products/pd-mixer'
@@ -176,31 +175,35 @@ const allModels = [
   { model: 'HY-DLH3400L', liftType: '液压升降', workVol: '3000L', designVol: '3400L', tankDim: 'Φ1700×1500', mixerMotor: '132',  revSpeed: '0-12',   ownSpeed: '0-30',    dissolverKW: '132',  dissolverType: '变频电机', dissolverRPM: '0-1000',    dissolverLinear: '0-23m/s',  weight: '42000kg',  dimension: '5800×2300×6000' },
 ]
 
-/* 三个变体（量产型 / 中型 / 实验室型）按升降方式自然拆分参数表 */
+/* 三个变体（生产型 / 中试型 / 实验型）按设计容积区间拆分参数表
+   实验型 ≤43L、中试型 ≤287L、生产型 >287L */
 const VARIANTS = {
   production: {
-    title: '量产型双行星动力混合机',
+    title: '生产型双行星动力混合机',
     productImg: '/assets/images/solutions/pd-pulping/main-product.webp',
-    imgAlt: '量产型双行星动力混合机',
-    intro1: '面向中大批量产线设计的量产型双行星动力混合机，集成液压升降系统，工作容积覆盖 60L–3000L，兼顾产能与浆料品质。',
+    imgAlt: '生产型双行星动力混合机',
+    intro1: '面向中大批量产线设计的生产型双行星动力混合机，集成液压升降系统，工作容积覆盖 300L–3000L，兼顾产能与浆料品质。',
     intro2: '行星公转、自转与高速分散三重动力协同，搭配真空密封防污染设计，确保高粘度浆料无死角均匀混合，适用于锂电池正负极浆料批次量产工艺。',
-    models: allModels.filter((m) => m.liftType === '液压升降'),
+    models: allModels.filter((m) => parseFloat(m.designVol) > 287),
   },
   mid: {
-    title: '中型双行星动力混合机',
+    title: '中试型双行星动力混合机',
     productImg: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid.webp',
-    imgAlt: '中型双行星动力混合机',
-    intro1: '中型双行星动力混合机面向中等批量生产与中试放大场景，集成电动升降系统，结构紧凑、产能灵活。',
-    intro2: '工作容积 10L–30L，变频电机驱动，公转 + 自转 + 高速分散三重动力，工艺参数与量产机型保持一致，可直接复用至产线放大。',
-    models: allModels.filter((m) => m.liftType === '电动升降'),
+    imgAlt: '中试型双行星动力混合机',
+    intro1: '中试型双行星动力混合机面向中试放大与中等批量生产场景，集成液压升降系统，结构紧凑、产能灵活。',
+    intro2: '工作容积 60L–200L，变频电机驱动，公转 + 自转 + 高速分散三重动力，工艺参数与量产机型保持一致，可直接复用至产线放大。',
+    models: allModels.filter((m) => {
+      const d = parseFloat(m.designVol)
+      return d > 43 && d <= 287
+    }),
   },
   lab: {
-    title: '实验室型双行星动力混合机',
+    title: '实验型双行星动力混合机',
     productImg: '/assets/images/products/pd-mixer/dual-planetary-mixer-lab.webp',
-    imgAlt: '实验室型双行星动力混合机',
-    intro1: '实验室型双行星动力混合机适用于研发、小批量实验与工艺验证，紧凑轻便、操作简洁。',
-    intro2: '工作容积 1L–5L，伺服电机驱动，手摇升降换桶方便，与量产机型保持工艺一致性，工艺参数可平滑迁移至量产产线。',
-    models: allModels.filter((m) => m.liftType === '手摇升降'),
+    imgAlt: '实验型双行星动力混合机',
+    intro1: '实验型双行星动力混合机适用于研发、小批量实验与中试前工艺验证，紧凑轻便、操作简洁。',
+    intro2: '工作容积 1L–30L，覆盖手摇与电动升降，公转 + 自转 + 高速分散三重动力，与量产机型保持工艺一致性，工艺参数可平滑迁移至量产产线。',
+    models: allModels.filter((m) => parseFloat(m.designVol) <= 43),
   },
 }
 
@@ -301,14 +304,15 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
               </div>
             </div>
 
-            {/* 视频模块 */}
-            <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
-              <VideoPlayer
-                src="/assets/videos/hy-pd.webm"
-                poster="/assets/videos/hy-pd-poster.jpg"
-                title="红运 双行星动力混合机"
-              />
-            </div>
+          </div>
+        </section>
+
+        {/* ===== 三视图 ===== */}
+        <section className="page-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
           </div>
         </section>
 

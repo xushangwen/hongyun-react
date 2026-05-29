@@ -20,6 +20,7 @@ const PipelinePulpingPage = lazy(() => import('./pages/PipelinePulpingPage'))
 const TwinScrewPulpingPage = lazy(() => import('./pages/TwinScrewPulpingPage'))
 const DryPowderMixerPage = lazy(() => import('./pages/DryPowderMixerPage'))
 const HighSpeedDisperserPage = lazy(() => import('./pages/HighSpeedDisperserPage'))
+const TwinScrewPulperPage = lazy(() => import('./pages/TwinScrewPulperPage'))
 const KneaderPage = lazy(() => import('./pages/KneaderPage'))
 const PipelineDisperserPage = lazy(() => import('./pages/PipelineDisperserPage'))
 const CpDisperserPage = lazy(() => import('./pages/CpDisperserPage'))
@@ -68,6 +69,7 @@ function App() {
           <Route path="/products/new-energy/cp-disperser" element={<CpDisperserPage />} />
           <Route path="/products/new-energy/cp-tank-a" element={<CpTankAPage />} />
           <Route path="/products/new-energy/cp-tank-b" element={<CpTankBPage />} />
+          <Route path="/products/new-energy/twin-screw-pulper" element={<TwinScrewPulperPage />} />
           <Route path="/products/solid-state-battery/dual-planetary-mixer" element={<DualPlanetaryMixerPage variant="production" />} />
           <Route path="/products/solid-state-battery/dry-electrode-mixer" element={<SsbDryMixerPage />} />
           <Route path="/products/solid-state-battery/electromagnetic-feeder" element={<SsbFeederPage />} />
@@ -75,7 +77,7 @@ function App() {
           <Route path="/products/solid-state-battery/solid-electrolyte-coater" element={<SsbCoaterPage />} />
           <Route path="/products/solid-state-battery/ssb-pipeline-mixer" element={<SsbPipelineMixerPage />} />
           <Route path="/products/solid-state-battery/ssb-multi-mixer" element={<SsbMultiMixerPage />} />
-          <Route path="/products/solid-state-battery/ssb-high-pressure-washer" element={<SsbHighPressureWasherPage />} />
+          <Route path="/products/auxiliary/ssb-high-pressure-washer" element={<SsbHighPressureWasherPage />} />
           <Route path="/products/chemical/:productId" element={<ChemicalProductDetailPage />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />

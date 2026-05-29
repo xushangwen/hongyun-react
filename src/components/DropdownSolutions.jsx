@@ -22,7 +22,7 @@ const solutionCategories = [
     items: [
       { name: 'PD制浆系统', slug: 'pd-pulping' },
       { name: '高效管线式制浆系统', slug: 'pipeline-pulping' },
-      { name: '高效循环制浆系统', slug: 'circulation-pulping' },
+      { name: '高速循环制浆系统', slug: 'circulation-pulping' },
       { name: '双螺杆连续制浆系统', slug: 'twin-screw-pulping' },
     ],
   },

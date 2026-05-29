@@ -119,21 +119,12 @@ export default function PipelineDisperserPage() {
           </div>
         </section>
 
-        {/* ===== 核心部件 ===== */}
+        {/* ===== 三视图 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
-            <p className="section-en-label fade-up">Core Parts</p>
-            <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
-            <div className="fade-up fade-up-delay-1" style={{ marginTop: '40px', display: 'flex', justifyContent: 'center' }}>
-              <div style={{ display: 'inline-flex', background: '#fff', borderRadius: '8px', padding: '24px' }}>
-                <img
-                  src={`${IMG}/disperser-core-parts.svg`}
-                  alt="管线分散罐核心部件"
-                  style={{ display: 'block', width: '200px', height: 'auto' }}
-                  loading="lazy"
-                />
-              </div>
-            </div>
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
           </div>
         </section>
 

@@ -25,8 +25,8 @@ export default function SsbHighPressureWasherPage() {
 
       <div className="page-body">
         <Breadcrumb items={[
-          { label: '产品中心', path: '/products/solid-state-battery' },
-          { label: '固态电池', path: '/products/solid-state-battery' },
+          { label: '产品中心', path: '/products/auxiliary' },
+          { label: '辅助设备', path: '/products/auxiliary' },
           { label: '高压清洗机' },
         ]} />
 
@@ -55,21 +55,12 @@ export default function SsbHighPressureWasherPage() {
           </div>
         </section>
 
-        {/* ===== 核心部件 ===== */}
+        {/* ===== 三视图 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
-            <p className="section-en-label fade-up">Core Parts</p>
-            <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">核心部件内容待补充</p>
-          </div>
-        </section>
-
-        {/* ===== 参数汇总 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">参数内容待补充</p>
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
           </div>
         </section>
 

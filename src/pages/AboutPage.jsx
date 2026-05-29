@@ -990,7 +990,7 @@ export default function AboutPage() {
                   <h3 className="about-global-branch-name">{branch.name}</h3>
                   {branch.isGlobal ? (
                     <p className="about-global-branch-address">
-                      业务遍布<span style={{ fontSize: '1.6em', fontWeight: 700, color: 'var(--hy-red)', margin: '0 0.2em', marginTop: '-0.2em' }}>3</span>大洲，数十个国家
+                      业务遍布全球数十个国家
                     </p>
                   ) : (
                     <p className="about-global-branch-address">{branch.address}</p>

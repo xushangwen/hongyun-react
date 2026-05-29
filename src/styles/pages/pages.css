@@ -2147,6 +2147,20 @@
   background: var(--hy-white);
 }
 
+/* 无系统图行业：纯文字卡片，不占图位 */
+.solutions-card--text-only {
+  height: auto;
+  min-height: 200px;
+  justify-content: center;
+}
+
+.solutions-card--text-only .solutions-card-content {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 32px 24px;
+}
+
 .solutions-card:hover {
   transform: translateY(-6px);
 }

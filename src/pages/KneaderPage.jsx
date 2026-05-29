@@ -113,18 +113,22 @@ export default function KneaderPage() {
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">管线捏合罐</h2>
-                <p className="cp-core-device-tbd fade-up fade-up-delay-2">产品介绍内容待提供</p>
+                <ul className="cp-core-device-features fade-up fade-up-delay-2">
+                  <li>设备稼动率高：传动系统全面简化，维护及保养成本低</li>
+                  <li>精准温控系统，出料温度可控</li>
+                  <li>紧凑型设计，占用空间小</li>
+                </ul>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ===== 核心部件 ===== */}
+        {/* ===== 三视图 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
-            <p className="section-en-label fade-up">Core Parts</p>
-            <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">核心部件内容待补充</p>
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
           </div>
         </section>
 

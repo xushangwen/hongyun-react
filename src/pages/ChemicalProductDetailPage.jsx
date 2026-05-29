@@ -56,12 +56,12 @@ export default function ChemicalProductDetailPage() {
         {/* ===== 产品介绍 ===== */}
         <section className="page-section pdm-intro-section">
           <div className="page-container">
-            <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'center', marginTop: '56px' }}>
-              <div style={{ flex: '0 0 50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', maxWidth: '1040px', margin: '0 auto' }}>
+              <div style={{ flex: '0 0 50%', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={product.img}
                   alt={product.name}
-                  style={{ display: 'block', width: '70%', height: 'auto' }}
+                  style={{ display: 'block', height: '100%', width: 'auto', objectFit: 'contain' }}
                   loading="eager"
                 />
               </div>
@@ -73,25 +73,12 @@ export default function ChemicalProductDetailPage() {
           </div>
         </section>
 
-        {/* ===== 核心部件 ===== */}
+        {/* ===== 三视图 ===== */}
         <section className="page-section page-section--gray">
           <div className="page-container">
-            <p className="section-en-label fade-up">Core Parts</p>
-            <h2 className="section-heading section-heading--center fade-up">核心部件</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1" style={{ textAlign: 'center', marginTop: '2rem' }}>
-              核心部件内容待提供
-            </p>
-          </div>
-        </section>
-
-        {/* ===== 参数汇总 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
-            <p className="cp-table-note fade-up fade-up-delay-1" style={{ textAlign: 'center', marginTop: '2rem' }}>
-              参数详情待补充，请联系我们获取完整技术规格。
-            </p>
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
           </div>
         </section>
 
