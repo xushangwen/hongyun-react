@@ -34,6 +34,7 @@ const SsbCoaterPage = lazy(() => import('./pages/SsbCoaterPage'))
 const SsbPipelineMixerPage = lazy(() => import('./pages/SsbPipelineMixerPage'))
 const SsbMultiMixerPage = lazy(() => import('./pages/SsbMultiMixerPage'))
 const SsbHighPressureWasherPage = lazy(() => import('./pages/SsbHighPressureWasherPage'))
+const SprayNozzlePage = lazy(() => import('./pages/SprayNozzlePage'))
 const NewsListPage = lazy(() => import('./pages/NewsListPage'))
 const NewsDetailPage = lazy(() => import('./pages/NewsDetailPage'))
 const ChemicalAutoProductionPage = lazy(() => import('./pages/ChemicalAutoProductionPage'))
@@ -78,6 +79,7 @@ function App() {
           <Route path="/products/solid-state-battery/ssb-pipeline-mixer" element={<SsbPipelineMixerPage />} />
           <Route path="/products/solid-state-battery/ssb-multi-mixer" element={<SsbMultiMixerPage />} />
           <Route path="/products/auxiliary/ssb-high-pressure-washer" element={<SsbHighPressureWasherPage />} />
+          <Route path="/products/auxiliary/spray-nozzle" element={<SprayNozzlePage />} />
           <Route path="/products/chemical/:productId" element={<ChemicalProductDetailPage />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetailPage />} />
           <Route path="/contact" element={<ContactPage />} />

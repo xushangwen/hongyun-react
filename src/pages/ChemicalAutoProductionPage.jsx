@@ -201,10 +201,10 @@ const features = [
 /* ========== 核心设备数据 ========== */
 const coreEquipment = [
   { name: '双行星动力混合机',   img: '/assets/images/solutions/pd-pulping/main-product.webp' },
-  { name: '往复式混合搅拌机',   img: `${EQ}/02-reciprocating-mixer.png`   },
-  { name: '双立柱行星搅拌机',   img: `${EQ}/03-dual-column-planetary-01.webp` },
-  { name: '行星蝶式混合搅拌机', img: `${EQ}/05-butterfly-mixer.jpg`       },
-  { name: '行星动力混合搅拌机', img: `${EQ}/06-planetary-power-mixer.webp` },
+  { name: '往复式混合机',   img: `${EQ}/02-reciprocating-mixer.png`   },
+  { name: '双立柱行星混合机',   img: `${EQ}/03-dual-column-planetary-01.webp` },
+  { name: '行星蝶式混合机', img: `${EQ}/05-butterfly-mixer.jpg`       },
+  { name: '行星动力混合机', img: `${EQ}/06-planetary-power-mixer.webp` },
   { name: '立式捏合机',         img: `${EQ}/07-vertical-kneader-01.webp`      },
   { name: '压料机',             img: `${EQ}/08-material-press.webp`        },
   { name: '倾倒机',             img: `${EQ}/09-tilting-machine-01.png`       },

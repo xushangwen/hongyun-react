@@ -82,10 +82,11 @@ export const productCategories = [
     desc: '适用于涂料、胶粘剂、密封胶等高粘度多组分物料的专业混合搅拌设备。',
     products: [
       { name: '双行星动力混合机',   slug: 'dual-planetary-mixer',   image: '/assets/images/solutions/pd-pulping/main-product.webp',                 imgContain: true, customPath: '/products/new-energy/dual-planetary-mixer' },
-      { name: '往复式混合搅拌机',   slug: 'reciprocating-mixer',    image: '/assets/images/solutions/chemical/equipment/02-reciprocating-mixer.png',   imgContain: true },
-      { name: '双立柱行星搅拌机',   slug: 'dual-column-planetary',  image: '/assets/images/solutions/chemical/equipment/03-dual-column-planetary-01.webp', imgContain: true },
-      { name: '行星蝶式混合搅拌机', slug: 'butterfly-mixer',         image: '/assets/images/solutions/chemical/equipment/05-butterfly-mixer.jpg',       imgContain: true },
-      { name: '行星动力混合搅拌机', slug: 'planetary-power-mixer',   image: '/assets/images/solutions/chemical/equipment/06-planetary-power-mixer.webp', imgContain: true },
+      { name: '多功能混合机',       slug: 'multi-mixer',            image: '/assets/images/solutions/wet-electrode-system/multi-mixer.webp',         imgContain: true, customPath: '/products/solid-state-battery/ssb-multi-mixer' },
+      { name: '往复式混合机',   slug: 'reciprocating-mixer',    image: '/assets/images/solutions/chemical/equipment/02-reciprocating-mixer.png',   imgContain: true },
+      { name: '双立柱行星混合机',   slug: 'dual-column-planetary',  image: '/assets/images/solutions/chemical/equipment/03-dual-column-planetary-01.webp', imgContain: true },
+      { name: '行星蝶式混合机', slug: 'butterfly-mixer',         image: '/assets/images/solutions/chemical/equipment/05-butterfly-mixer.jpg',       imgContain: true },
+      { name: '行星动力混合机', slug: 'planetary-power-mixer',   image: '/assets/images/solutions/chemical/equipment/06-planetary-power-mixer.webp', imgContain: true },
       { name: '立式捏合机',         slug: 'vertical-kneader',        image: '/assets/images/solutions/chemical/equipment/07-vertical-kneader-01.webp',      imgContain: true },
       { name: '压料机',             slug: 'press-machine',           image: '/assets/images/solutions/chemical/equipment/08-material-press.webp',        imgContain: true },
       { name: '倾倒机',             slug: 'tilting-machine',         image: '/assets/images/solutions/chemical/equipment/09-tilting-machine-01.png',       imgContain: true },
@@ -101,6 +102,7 @@ export const productCategories = [
     desc: '面向各类制浆与混合产线的配套辅助装备，提供高压清洗等通用工序支持。',
     products: [
       { name: '高压清洗机', slug: 'ssb-high-pressure-washer', image: '/assets/images/solutions/wet-electrode-system/high-pressure-washer.webp', imgContain: true },
+      { name: '高压喷淋嘴', slug: 'spray-nozzle' },
     ],
   },
 ]

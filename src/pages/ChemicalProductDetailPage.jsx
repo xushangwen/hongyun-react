@@ -9,10 +9,10 @@ const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
 const EQ = '/assets/images/solutions/chemical/equipment'
 
 const productMap = {
-  'reciprocating-mixer':   { name: '往复式混合搅拌机',   img: `${EQ}/02-reciprocating-mixer.png`   },
-  'dual-column-planetary': { name: '双立柱行星搅拌机',   img: `${EQ}/03-dual-column-planetary-01.webp` },
-  'butterfly-mixer':       { name: '行星蝶式混合搅拌机', img: `${EQ}/05-butterfly-mixer.jpg`       },
-  'planetary-power-mixer': { name: '行星动力混合搅拌机', img: `${EQ}/06-planetary-power-mixer.webp` },
+  'reciprocating-mixer':   { name: '往复式混合机',   img: `${EQ}/02-reciprocating-mixer.png`   },
+  'dual-column-planetary': { name: '双立柱行星混合机',   img: `${EQ}/03-dual-column-planetary-01.webp` },
+  'butterfly-mixer':       { name: '行星蝶式混合机', img: `${EQ}/05-butterfly-mixer.jpg`       },
+  'planetary-power-mixer': { name: '行星动力混合机', img: `${EQ}/06-planetary-power-mixer.webp` },
   'vertical-kneader':      { name: '立式捏合机',         img: `${EQ}/07-vertical-kneader-01.webp`, views: [
     { src: `${EQ}/07-vertical-kneader-tv2.webp`, label: '正视图' },
     { src: `${EQ}/07-vertical-kneader-tv1.webp`, label: '侧视图' },
