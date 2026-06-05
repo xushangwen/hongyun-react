@@ -75,7 +75,7 @@ export default function TwinScrewPulperPage() {
         <section className="page-section">
           <div className="page-container">
             <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
+            <h2 className="section-heading section-heading--center fade-up">双螺杆制浆机参数汇总</h2>
             <p className="cp-core-device-tbd fade-up fade-up-delay-1">参数内容待补充</p>
           </div>
         </section>

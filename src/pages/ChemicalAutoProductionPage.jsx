@@ -314,7 +314,7 @@ export default function ChemicalAutoProductionPage() {
         <section className="page-section page-section--gray">
           <div className="page-container">
             <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
+            <h2 className="section-heading section-heading--center fade-up">化工全自动生产系统参数汇总</h2>
             <p className="cp-table-note fade-up fade-up-delay-1" style={{ textAlign: 'center', marginTop: '2rem' }}>
               参数详情待补充，请联系我们获取完整技术规格。
             </p>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
   IconArrowRightOutline24,
   IconCarBatteryOutline24,
@@ -108,30 +108,40 @@ const industries = [
   },
 ]
 
-export default function SolutionsPage() {
-  const [activeId, setActiveId] = useState(industries[0]?.id)
+/* 当前对外展示的行业；其余行业内容已就绪但暂不展示，把 id 加回此白名单即可恢复 */
+const VISIBLE_INDUSTRY_IDS = ['new-energy', 'solid-state-battery', 'chemical', 'pyrotechnics']
+const visibleIndustries = industries.filter((ind) => VISIBLE_INDUSTRY_IDS.includes(ind.id))
 
+export default function SolutionsPage() {
+  /* 初始选中行业：优先取 URL hash，否则第一个可见行业 */
+  const hashId = typeof window !== 'undefined' ? window.location.hash.replace('#', '') : ''
+  const initialId = visibleIndustries.some((i) => i.id === hashId) ? hashId : visibleIndustries[0]?.id
+  const [activeId, setActiveId] = useState(initialId)
+
+  const activeIndex = Math.max(0, visibleIndustries.findIndex((i) => i.id === activeId))
+  const activeIndustry = visibleIndustries[activeIndex]
+
+  /* 已在本页时，响应 Footer / 导航下拉的 #hash 链接切换 Tab */
+  const location = useLocation()
+  useEffect(() => {
+    const id = location.hash.replace('#', '')
+    if (id && visibleIndustries.some((i) => i.id === id)) setActiveId(id)
+  }, [location.hash])
+
+  /* 切 Tab 后只渲染选中行业，新内容需重新触发 fade-up 动画 */
   useEffect(() => {
     const fadeObserver = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible') }),
       { threshold: 0.15 }
     )
     document.querySelectorAll('.section-heading, .fade-up').forEach((el) => fadeObserver.observe(el))
+    return () => fadeObserver.disconnect()
+  }, [activeId])
 
-    /* 滚动高亮导航 */
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) setActiveId(e.target.id) })
-      },
-      { rootMargin: '-20% 0px -60% 0px' }
-    )
-    industries.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) sectionObserver.observe(el)
-    })
-
-    return () => { fadeObserver.disconnect(); sectionObserver.disconnect() }
-  }, [])
+  const handleTab = (id) => {
+    setActiveId(id)
+    if (typeof window !== 'undefined') window.history.replaceState(null, '', `#${id}`)
+  }
 
   return (
     <>
@@ -148,22 +158,26 @@ export default function SolutionsPage() {
         <div className="page-sticky-nav">
           <div className="page-container">
             <nav className="solutions-nav">
-              {industries.map((ind) => (
-                <a
+              {visibleIndustries.map((ind) => (
+                <button
                   key={ind.id}
-                  href={`#${ind.id}`}
+                  type="button"
+                  onClick={() => handleTab(ind.id)}
                   className={`solutions-nav-item${activeId === ind.id ? ' active' : ''}`}
                 >
                   <ind.Icon size={14} />
                   {ind.name}
-                </a>
+                </button>
               ))}
             </nav>
           </div>
         </div>
 
-        {/* 各行业板块 */}
-        {industries.map((industry, idx) => (
+        {/* 选中行业板块（Tab 切换，只渲染当前行业） */}
+        {activeIndustry && (() => {
+          const industry = activeIndustry
+          const idx = activeIndex
+          return (
           <section className="solutions-industry" id={industry.id} key={industry.id}>
             <div className="page-container">
               <div className="solutions-industry-header">
@@ -213,7 +227,8 @@ export default function SolutionsPage() {
               </div>
             </div>
           </section>
-        ))}
+          )
+        })()}
       </div>
 
       {/* ===== 联系 CTA ===== */}

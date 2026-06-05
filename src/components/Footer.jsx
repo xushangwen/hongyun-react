@@ -36,12 +36,7 @@ export default function Footer() {
                 <li><Link to="/solutions#new-energy">新能源行业</Link></li>
                 <li><Link to="/solutions#solid-state-battery">固态电池</Link></li>
                 <li><Link to="/solutions#chemical">化工行业</Link></li>
-                <li><Link to="/solutions#adhesive">制胶</Link></li>
                 <li><Link to="/solutions#pyrotechnics">火工药剂</Link></li>
-                <li><Link to="/solutions#food">食品</Link></li>
-                <li><Link to="/solutions#pharma">医药</Link></li>
-                <li><Link to="/solutions#cosmetics">化妆品</Link></li>
-                <li><Link to="/solutions#electronics">电子材料</Link></li>
               </ul>
             </div>
 

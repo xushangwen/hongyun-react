@@ -354,7 +354,7 @@ export default function PDPulpingPage() {
         <section className="page-section page-section--gray">
           <div className="page-container">
             <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
+            <h2 className="section-heading section-heading--center fade-up">PD 制浆系统参数汇总</h2>
             <div className="fade-up fade-up-delay-1">
               <ParamsTable />
             </div>

@@ -114,9 +114,13 @@ const PREVIEW_IMG = {
   'electronics':         '/assets/images/dropdown-solutions/electronics.webp',
 }
 
+/* 与 SolutionsPage 保持一致：仅展示这些行业，其余暂不对外 */
+const VISIBLE_INDUSTRY_IDS = ['new-energy', 'solid-state-battery', 'chemical', 'pyrotechnics']
+const visibleCategories = solutionCategories.filter((cat) => VISIBLE_INDUSTRY_IDS.includes(cat.id))
+
 export default function DropdownSolutions({ active, onClose, cancelClose, scheduleClose }) {
   const [activeIdx, setActiveIdx] = useState(0)
-  const current = solutionCategories[activeIdx]
+  const current = visibleCategories[activeIdx]
 
   return (
     <div
@@ -132,7 +136,7 @@ export default function DropdownSolutions({ active, onClose, cancelClose, schedu
       <div className="dropdown-container">
         {/* 左列：行业分类 */}
         <div className="dropdown-col dropdown-col-left">
-          {solutionCategories.map((cat, index) => (
+          {visibleCategories.map((cat, index) => (
             <Link
               to={`/solutions#${cat.id}`}
               key={cat.id}

@@ -70,7 +70,6 @@ export const productCategories = [
         products: [
           { name: '双行星动力混合机', slug: 'dual-planetary-mixer', image: '/assets/images/solutions/pd-pulping/main-product.webp',              imgContain: true },
           { name: '管线式混合机',     slug: 'ssb-pipeline-mixer',   image: '/assets/images/solutions/wet-electrode-system/pipeline-mixer.webp', imgContain: true },
-          { name: '多功能混合机',     slug: 'ssb-multi-mixer',      image: '/assets/images/solutions/wet-electrode-system/multi-mixer.webp',    imgContain: true },
         ],
       },
     ],

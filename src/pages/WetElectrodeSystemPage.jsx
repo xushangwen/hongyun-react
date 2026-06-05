@@ -30,12 +30,6 @@ const coreDevices = [
     tbd: '设备介绍内容待补充',
   },
   {
-    name: '多功能混合机',
-    img: `${IMG}/multi-mixer.webp`,
-    imgAlt: '多功能混合机',
-    tbd: '设备介绍内容待补充',
-  },
-  {
     name: '高压清洗机',
     img: `${IMG}/high-pressure-washer.webp`,
     imgAlt: '高压清洗机',
@@ -101,12 +95,6 @@ export default function WetElectrodeSystemPage() {
                   style={{ flex: 1, minWidth: 0, height: '400px', objectFit: 'contain', objectPosition: 'bottom' }}
                   loading="lazy"
                 />
-                <img
-                  src={`${IMG}/multi-mixer.webp`}
-                  alt="多功能混合机"
-                  style={{ flex: 1, minWidth: 0, height: '400px', objectFit: 'contain', objectPosition: 'bottom' }}
-                  loading="lazy"
-                />
               </div>
             </div>
           </div>
@@ -128,7 +116,7 @@ export default function WetElectrodeSystemPage() {
         <section className="page-section page-section--gray">
           <div className="page-container">
             <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
+            <h2 className="section-heading section-heading--center fade-up">湿法电极成套设备参数汇总</h2>
             <p className="cp-core-device-tbd fade-up fade-up-delay-1">参数内容待补充</p>
           </div>
         </section>
