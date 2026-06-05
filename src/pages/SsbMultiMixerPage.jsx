@@ -57,8 +57,8 @@ export default function SsbMultiMixerPage() {
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
             <ProductThreeView views={[
-              { src: '/assets/images/solutions/wet-electrode-system/multi-mixer-tv1.webp', label: '正视图' },
-              { src: '/assets/images/solutions/wet-electrode-system/multi-mixer-tv2.webp', label: '侧视图' },
+              { src: '/assets/images/solutions/wet-electrode-system/multi-mixer-tv2.webp', label: '正视图' },
+              { src: '/assets/images/solutions/wet-electrode-system/multi-mixer-tv1.webp', label: '侧视图' },
             ]} />
           </div>
         </section>

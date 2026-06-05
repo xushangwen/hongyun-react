@@ -14,8 +14,8 @@ const productMap = {
   'butterfly-mixer':       { name: '行星蝶式混合搅拌机', img: `${EQ}/05-butterfly-mixer.jpg`       },
   'planetary-power-mixer': { name: '行星动力混合搅拌机', img: `${EQ}/06-planetary-power-mixer.webp` },
   'vertical-kneader':      { name: '立式捏合机',         img: `${EQ}/07-vertical-kneader-01.webp`, views: [
-    { src: `${EQ}/07-vertical-kneader-tv1.webp`, label: '正视图' },
-    { src: `${EQ}/07-vertical-kneader-tv2.webp`, label: '侧视图' },
+    { src: `${EQ}/07-vertical-kneader-tv2.webp`, label: '正视图' },
+    { src: `${EQ}/07-vertical-kneader-tv1.webp`, label: '侧视图' },
   ] },
   'press-machine':         { name: '压料机',             img: `${EQ}/08-material-press.webp`, views: [
     { src: `${EQ}/08-material-press-tv1.webp`, label: '正视图' },

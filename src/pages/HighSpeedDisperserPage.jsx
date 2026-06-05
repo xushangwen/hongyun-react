@@ -107,8 +107,8 @@ export default function HighSpeedDisperserPage() {
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
             <ProductThreeView views={[
-              { src: `${IMG}/disperser-view-tv1.webp`, label: '正视图' },
-              { src: `${IMG}/disperser-view-tv2.webp`, label: '侧视图' },
+              { src: `${IMG}/disperser-view-tv2.webp`, label: '正视图' },
+              { src: `${IMG}/disperser-view-tv1.webp`, label: '侧视图' },
             ]} />
           </div>
         </section>

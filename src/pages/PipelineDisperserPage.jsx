@@ -126,8 +126,8 @@ export default function PipelineDisperserPage() {
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
             <ProductThreeView views={[
-              { src: `${IMG}/pipeline-disperser-tv1.webp`, label: '正视图' },
-              { src: `${IMG}/pipeline-disperser-tv2.webp`, label: '侧视图' },
+              { src: `${IMG}/pipeline-disperser-tv2.webp`, label: '正视图' },
+              { src: `${IMG}/pipeline-disperser-tv1.webp`, label: '侧视图' },
               { src: `${IMG}/pipeline-disperser-tv3.webp`, label: '俯视图' },
             ]} />
           </div>
