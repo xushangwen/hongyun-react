@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
+import ProductThreeView from '../components/ProductThreeView'
 import TechInquirySection from '../components/TechInquirySection'
 
 const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
@@ -12,8 +13,14 @@ const productMap = {
   'dual-column-planetary': { name: '双立柱行星搅拌机',   img: `${EQ}/03-dual-column-planetary-01.webp` },
   'butterfly-mixer':       { name: '行星蝶式混合搅拌机', img: `${EQ}/05-butterfly-mixer.jpg`       },
   'planetary-power-mixer': { name: '行星动力混合搅拌机', img: `${EQ}/06-planetary-power-mixer.webp` },
-  'vertical-kneader':      { name: '立式捏合机',         img: `${EQ}/07-vertical-kneader-01.png`      },
-  'press-machine':         { name: '压料机',             img: `${EQ}/08-material-press.png`        },
+  'vertical-kneader':      { name: '立式捏合机',         img: `${EQ}/07-vertical-kneader-01.webp`, views: [
+    { src: `${EQ}/07-vertical-kneader-tv1.webp`, label: '正视图' },
+    { src: `${EQ}/07-vertical-kneader-tv2.webp`, label: '侧视图' },
+  ] },
+  'press-machine':         { name: '压料机',             img: `${EQ}/08-material-press.webp`, views: [
+    { src: `${EQ}/08-material-press-tv1.webp`, label: '正视图' },
+    { src: `${EQ}/08-material-press-tv2.webp`, label: '侧视图' },
+  ] },
   'tilting-machine':       { name: '倾倒机',             img: `${EQ}/09-tilting-machine-01.png`       },
   'barrel-washer':         { name: '洗桶机',             img: `${EQ}/10-barrel-washer.webp`         },
   'reactor':               { name: '反应釜',             img: `${EQ}/11-reactor.png`               },
@@ -78,7 +85,9 @@ export default function ChemicalProductDetailPage() {
           <div className="page-container">
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
+            {product.views
+              ? <ProductThreeView views={product.views} />
+              : <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>}
           </div>
         </section>
 

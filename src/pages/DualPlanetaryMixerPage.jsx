@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
+import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import TechInquirySection from '../components/TechInquirySection'
 
@@ -182,6 +183,10 @@ const VARIANTS = {
     title: '生产型双行星动力混合机',
     productImg: '/assets/images/solutions/pd-pulping/main-product.webp',
     imgAlt: '生产型双行星动力混合机',
+    views: [
+      { src: '/assets/images/solutions/pd-pulping/main-product-tv2.webp', label: '正视图' },
+      { src: '/assets/images/solutions/pd-pulping/main-product-tv1.webp', label: '侧视图' },
+    ],
     intro1: '面向中大批量产线设计的生产型双行星动力混合机，集成液压升降系统，工作容积覆盖 300L–3000L，兼顾产能与浆料品质。',
     intro2: '行星公转、自转与高速分散三重动力协同，搭配真空密封防污染设计，确保高粘度浆料无死角均匀混合，适用于锂电池正负极浆料批次量产工艺。',
     models: allModels.filter((m) => parseFloat(m.designVol) > 287),
@@ -190,6 +195,10 @@ const VARIANTS = {
     title: '中试型双行星动力混合机',
     productImg: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid.webp',
     imgAlt: '中试型双行星动力混合机',
+    views: [
+      { src: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid-tv1.webp', label: '正视图' },
+      { src: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid-tv2.webp', label: '侧视图' },
+    ],
     intro1: '中试型双行星动力混合机面向中试放大与中等批量生产场景，集成液压升降系统，结构紧凑、产能灵活。',
     intro2: '工作容积 60L–200L，变频电机驱动，公转 + 自转 + 高速分散三重动力，工艺参数与量产机型保持一致，可直接复用至产线放大。',
     models: allModels.filter((m) => {
@@ -201,6 +210,10 @@ const VARIANTS = {
     title: '实验型双行星动力混合机',
     productImg: '/assets/images/products/pd-mixer/dual-planetary-mixer-lab.webp',
     imgAlt: '实验型双行星动力混合机',
+    views: [
+      { src: '/assets/images/products/pd-mixer/dual-planetary-mixer-lab-tv1.webp', label: '正视图' },
+      { src: '/assets/images/products/pd-mixer/dual-planetary-mixer-lab-tv2.webp', label: '侧视图' },
+    ],
     intro1: '实验型双行星动力混合机适用于研发、小批量实验与中试前工艺验证，紧凑轻便、操作简洁。',
     intro2: '工作容积 1L–30L，覆盖手摇与电动升降，公转 + 自转 + 高速分散三重动力，与量产机型保持工艺一致性，工艺参数可平滑迁移至量产产线。',
     models: allModels.filter((m) => parseFloat(m.designVol) <= 43),
@@ -312,7 +325,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
           <div className="page-container">
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
+            <ProductThreeView views={v.views} />
           </div>
         </section>
 

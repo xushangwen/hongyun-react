@@ -2376,8 +2376,9 @@
 
 .product-card-image--contain img {
   object-fit: contain;
-  padding: 24px;
+  padding: 0;
   background: #f8f8f8;
+  transform: scale(0.8);
 }
 
 /* 卡片图片缩小到 90% */
@@ -2393,6 +2394,11 @@
 
 .product-card:hover .product-card-image--sm img {
   transform: scale(0.95);
+}
+
+/* contain 卡片图等比缩到 80%，hover 轻微放大 */
+.product-card:hover .product-card-image--contain img {
+  transform: scale(0.86);
 }
 
 .product-card-content {
@@ -7229,6 +7235,64 @@
   padding: 24px 20px;
   border-radius: 4px;
   line-height: 1.6;
+}
+
+/* ========== 产品三视图横向画廊 ========== */
+.three-view-gallery {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.three-view-item {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  background: #fff;
+  border: 1px solid var(--zinc-200, #e4e4e7);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.three-view-imgwrap {
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.three-view-imgwrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* 视图名称压在卡片内部底端 */
+.three-view-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--zinc-700, #3f3f46);
+  padding: 18px 10px 10px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.92) 40%, rgba(255, 255, 255, 0));
+}
+
+@media (max-width: 768px) {
+  .three-view-gallery {
+    gap: 12px;
+  }
+  .three-view-item {
+    flex: 1 1 calc(50% - 12px);
+  }
 }
 
 .cp-core-device-desc-title {

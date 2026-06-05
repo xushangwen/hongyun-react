@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
+import ProductThreeView from '../components/ProductThreeView'
 import TechInquirySection from '../components/TechInquirySection'
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.webp'
 
@@ -105,7 +106,10 @@ export default function HighSpeedDisperserPage() {
           <div className="page-container">
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
+            <ProductThreeView views={[
+              { src: `${IMG}/disperser-view-tv1.webp`, label: '正视图' },
+              { src: `${IMG}/disperser-view-tv2.webp`, label: '侧视图' },
+            ]} />
           </div>
         </section>
 

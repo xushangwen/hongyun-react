@@ -333,7 +333,7 @@ export default function CirculationPulpingPage() {
         <CoreEquipmentSection devices={[
           {
             name: '高速循环高速分散机',
-            img: `${IMG}/高速分散机-svg.svg`,
+            img: `${IMG}/cp-disperser.webp`,
             imgAlt: '高速分散机结构示意图',
             features: [
               '集预混分散一体，设计线速度30m/s，伺服电机驱动，效率卓越',
@@ -346,7 +346,7 @@ export default function CirculationPulpingPage() {
           },
           {
             name: '高速循环循环罐 A',
-            img: `${IMG}/循环罐-A-svg.svg`,
+            img: `${IMG}/cp-tank-a.webp`,
             imgAlt: '循环罐A结构示意图',
             features: [
               '带慢速搅拌，转速0–40rpm/min，锚式搅拌桨，变频电机驱动',
@@ -357,7 +357,7 @@ export default function CirculationPulpingPage() {
           },
           {
             name: '高速循环循环罐 B',
-            img: `${IMG}/循环罐-B-svg.svg`,
+            img: `${IMG}/cp-tank-b.webp`,
             imgAlt: '循环罐B结构示意图',
             features: [
               '带在线分散功能，设计线速度30m/s，双层剪切，定转子间隙2mm，伺服电机驱动',

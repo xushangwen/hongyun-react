@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
+import ProductThreeView from '../components/ProductThreeView'
 import TechInquirySection from '../components/TechInquirySection'
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.webp'
 
@@ -36,7 +37,7 @@ export default function TwinScrewPulperPage() {
             <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', maxWidth: '1040px', margin: '0 auto' }}>
               <div style={{ flex: '0 0 50%', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
-                  src={`${IMG}/product.webp`}
+                  src={`${IMG}/product-render.webp`}
                   alt="双螺杆制浆机"
                   style={{ display: 'block', height: '100%', width: 'auto', objectFit: 'contain' }}
                   loading="eager"
@@ -63,7 +64,10 @@ export default function TwinScrewPulperPage() {
           <div className="page-container">
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
+            <ProductThreeView views={[
+              { src: `${IMG}/product-tv1.webp`, label: '正视图' },
+              { src: `${IMG}/product-tv2.webp`, label: '侧视图' },
+            ]} />
           </div>
         </section>
 
