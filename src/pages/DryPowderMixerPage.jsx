@@ -295,34 +295,6 @@ export default function DryPowderMixerPage() {
 
               <hr className="cp-core-divider" />
 
-              {/* 电磁给料机 */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/core-device-01.webp`}
-                    alt="电磁给料机结构示意图"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">电磁给料机</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  <ul className="cp-core-device-features">
-                    <li>集预热、展平与定量输送于一体，确保粉料稳定、均匀供给，<br />为极片均匀辊压工序奠定基础</li>
-                    <li>罐体：SUS304不锈钢，内表面300目镜面抛光，外表面150目拉丝；料仓盖小半翻盖式，配破拱搅拌电机（0～40 rpm可调）、气锤及气蝶</li>
-                    <li>震动筛：SUS304不锈钢，380V震动电机，激振力可调，可安装6～12目筛网</li>
-                    <li>电磁给料机：振幅根据物料特性和输送量调节（常规振幅1.2 mm），实现精确给料</li>
-                    <li>粉料预加热：碳纤维管红外线加热，温度可调，配PID控制器确保温度高精度控制</li>
-                    <li>播粉器：快卡式结构，播粉宽度灵活调节</li>
-                  </ul>
-                </div>
-              </div>
-
-              <hr className="cp-core-divider" />
-
               {/* 双螺杆干法电极连续挤出机 */}
               <div className="cp-core-device-row fade-up fade-up-delay-1">
                 <div className="cp-core-device-img-wrap">
@@ -349,28 +321,28 @@ export default function DryPowderMixerPage() {
 
               <hr className="cp-core-divider" />
 
-              {/* 固态电解质包覆机 */}
+              {/* 电磁给料机 */}
               <div className="cp-core-device-row fade-up fade-up-delay-1">
                 <div className="cp-core-device-img-wrap">
                   <img
-                    src={`${IMG}/core-device-03.webp`}
-                    alt="固态电解质包覆机"
+                    src={`${IMG}/core-device-01.webp`}
+                    alt="电磁给料机结构示意图"
                     className="cp-core-device-img"
                     loading="lazy"
                   />
                 </div>
                 <div className="cp-core-device-info">
                   <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">固态电解质包覆机</h3>
+                    <h3 className="cp-core-device-name">电磁给料机</h3>
                   </div>
                   <div className="cp-core-device-divider" />
                   <ul className="cp-core-device-features">
-                    <li>从源头构筑稳定界面，解决固态电池界面难题，实现材料纳米级包覆</li>
-                    <li>核心优势：包覆率99%以上，降低界面阻抗，提升固态电解质体系综合性能</li>
-                    <li>容器旋转与搅拌桨反向运转，实现流化悬浮</li>
-                    <li>支持喷气、喷液、气液同喷三种模式</li>
-                    <li>控温精度±1℃，控压精度±0.1 bar</li>
-                    <li>产品序列：实验型2–50 L，量产型100–2000 L</li>
+                    <li>集预热、展平与定量输送于一体，确保粉料稳定、均匀供给，<br />为极片均匀辊压工序奠定基础</li>
+                    <li>罐体：SUS304不锈钢，内表面300目镜面抛光，外表面150目拉丝；料仓盖小半翻盖式，配破拱搅拌电机（0～40 rpm可调）、气锤及气蝶</li>
+                    <li>震动筛：SUS304不锈钢，380V震动电机，激振力可调，可安装6～12目筛网</li>
+                    <li>电磁给料机：振幅根据物料特性和输送量调节（常规振幅1.2 mm），实现精确给料</li>
+                    <li>粉料预加热：碳纤维管红外线加热，温度可调，配PID控制器确保温度高精度控制</li>
+                    <li>播粉器：快卡式结构，播粉宽度灵活调节</li>
                   </ul>
                 </div>
               </div>
@@ -382,7 +354,7 @@ export default function DryPowderMixerPage() {
         <section className="page-section page-section--gray">
           <div className="page-container">
             <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">参数汇总</h2>
+            <h2 className="section-heading section-heading--center fade-up">干法电极粉体高速混合机参数汇总</h2>
             <div className="fade-up fade-up-delay-1">
               <ParamsTable />
             </div>

@@ -35,7 +35,6 @@ const solutionCategories = [
       { name: '干法电极成套设备解决方案', slug: 'dry-powder-mixer' },
       { name: '湿法电极成套设备解决方案', slug: 'wet-electrode-system' },
       { name: '材料包覆机', slug: 'material-coating' },
-      { name: '干法双螺杆挤出机', slug: 'dry-twin-screw-extruder' },
     ],
   },
   {
