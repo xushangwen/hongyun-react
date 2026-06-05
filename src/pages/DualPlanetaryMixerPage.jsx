@@ -196,8 +196,8 @@ const VARIANTS = {
     productImg: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid.webp',
     imgAlt: '中试型双行星动力混合机',
     views: [
-      { src: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid-tv1.webp', label: '正视图' },
-      { src: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid-tv2.webp', label: '侧视图' },
+      { src: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid-tv2.webp', label: '正视图' },
+      { src: '/assets/images/products/pd-mixer/dual-planetary-mixer-mid-tv1.webp', label: '侧视图' },
     ],
     intro1: '中试型双行星动力混合机面向中试放大与中等批量生产场景，集成液压升降系统，结构紧凑、产能灵活。',
     intro2: '工作容积 60L–200L，变频电机驱动，公转 + 自转 + 高速分散三重动力，工艺参数与量产机型保持一致，可直接复用至产线放大。',
@@ -299,7 +299,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
         <section className="page-section pdm-intro-section">
           <div className="page-container">
             <div className="pdm-intro-grid">
-              <div className="pdm-intro-visual pdm-intro-visual--photo fade-up fade-up-delay-1">
+              <div className="pdm-intro-visual pdm-intro-visual--photo pdm-intro-visual--sm fade-up fade-up-delay-1">
                 <img
                   src={v.productImg}
                   alt={v.imgAlt}
@@ -321,7 +321,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
         </section>
 
         {/* ===== 三视图 ===== */}
-        <section className="page-section">
+        <section className="page-section page-section--gray">
           <div className="page-container">
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
@@ -330,7 +330,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
         </section>
 
         {/* ===== 产品特点 ===== */}
-        <SystemFeaturesSection features={features} title="产品特点" enLabel="Product Features" grayBg />
+        <SystemFeaturesSection features={features} title="产品特点" enLabel="Product Features" grayBg={false} />
 
         {/* ===== 参数汇总 ===== */}
         <section className="page-section page-section--gray">

@@ -35,7 +35,7 @@ export default function SsbFeederPage() {
         <section className="page-section pdm-intro-section">
           <div className="page-container">
             <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', maxWidth: '1040px', margin: '0 auto' }}>
-              <div style={{ flex: '0 0 50%', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ flex: '0 0 50%', height: '368px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={`${IMG}/core-device-01.webp`}
                   alt="电磁给料机"

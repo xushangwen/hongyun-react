@@ -117,7 +117,7 @@ export default function SsbDryMixerPage() {
         <section className="page-section pdm-intro-section">
           <div className="page-container">
             <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', maxWidth: '1040px', margin: '0 auto' }}>
-              <div style={{ flex: '0 0 50%', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ flex: '0 0 50%', height: '368px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={`${IMG}/product-main.webp`}
                   alt="干法电极粉体高速混合机"
@@ -128,7 +128,8 @@ export default function SsbDryMixerPage() {
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">干法电极粉体高速混合机</h2>
                 <ul className="cp-core-device-features fade-up fade-up-delay-2">
-                  <li>用于干法电极粉体纤维化、电解质原料的混合、破碎、包覆，无溶剂工艺，<br />大幅降低制造成本与能耗，超高速粉体混合机——纤维化技术的速度颠覆</li>
+                  <li>用于干法电极粉体纤维化、电解质原料的混合、破碎、包覆，无溶剂工艺</li>
+                  <li>大幅降低制造成本与能耗，超高速粉体混合机——纤维化技术的速度颠覆</li>
                 </ul>
               </div>
             </div>

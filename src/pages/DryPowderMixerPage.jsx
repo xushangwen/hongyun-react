@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
+import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import TechInquirySection from '../components/TechInquirySection'
 
@@ -221,7 +222,7 @@ export default function DryPowderMixerPage() {
         ]} />
 
         {/* ===== 系统介绍 ===== */}
-        <section className="page-section pdm-intro-section">
+        <section className="page-section pdm-intro-section page-section--gray">
           <div className="page-container">
             <div className="fade-up" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
               <div style={{ maxWidth: '46%' }}>
@@ -239,6 +240,19 @@ export default function DryPowderMixerPage() {
                 />
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* ===== 系统三视图 ===== */}
+        <section className="page-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <ProductThreeView views={[
+              { src: `${IMG}/system-tv2.webp`, label: '正视图' },
+              { src: `${IMG}/system-tv1.webp`, label: '侧视图' },
+              { src: `${IMG}/system-tv3.webp`, label: '俯视图' },
+            ]} />
           </div>
         </section>
 

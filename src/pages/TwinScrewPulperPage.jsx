@@ -35,7 +35,7 @@ export default function TwinScrewPulperPage() {
         <section className="page-section pdm-intro-section">
           <div className="page-container">
             <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', maxWidth: '1040px', margin: '0 auto' }}>
-              <div style={{ flex: '0 0 50%', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ flex: '0 0 50%', height: '368px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={`${IMG}/product-render.webp`}
                   alt="双螺杆制浆机"
@@ -65,8 +65,8 @@ export default function TwinScrewPulperPage() {
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
             <ProductThreeView views={[
-              { src: `${IMG}/product-tv1.webp`, label: '正视图' },
-              { src: `${IMG}/product-tv2.webp`, label: '侧视图' },
+              { src: `${IMG}/product-tv2.webp`, label: '正视图' },
+              { src: `${IMG}/product-tv1.webp`, label: '侧视图' },
             ]} />
           </div>
         </section>

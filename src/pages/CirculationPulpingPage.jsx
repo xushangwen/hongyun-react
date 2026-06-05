@@ -7,6 +7,7 @@ import {
 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
+import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
@@ -253,7 +254,7 @@ function ParamsTable() {
 }
 
 // 视频模块开关：true = 显示，false = 隐藏
-const SHOW_VIDEO = true
+const SHOW_VIDEO = false
 
 /* ========== 主页面 ========== */
 export default function CirculationPulpingPage() {
@@ -288,7 +289,7 @@ export default function CirculationPulpingPage() {
         ]} />
 
         {/* ===== 系统介绍 + 方案视频 ===== */}
-        <section className="page-section pdm-intro-section">
+        <section className="page-section pdm-intro-section page-section--gray">
           <div className="page-container">
             <div className="pdm-intro-grid">
               <div className="pdm-intro-visual fade-up fade-up-delay-1">
@@ -323,6 +324,19 @@ export default function CirculationPulpingPage() {
                 </div>
               </div>
             )}
+          </div>
+        </section>
+
+        {/* ===== 系统三视图 ===== */}
+        <section className="page-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <ProductThreeView views={[
+              { src: `${IMG}/system-tv3.webp`, label: '正视图' },
+              { src: `${IMG}/system-tv2.webp`, label: '侧视图' },
+              { src: `${IMG}/system-tv1.webp`, label: '俯视图' },
+            ]} />
           </div>
         </section>
 

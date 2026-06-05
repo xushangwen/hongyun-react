@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
+import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
@@ -350,7 +351,7 @@ export default function PipelinePulpingPage() {
         ]} />
 
         {/* ===== 系统介绍（与 pd-pulping 同 section 类，padding/margin 一致）===== */}
-        <section className="page-section pdm-intro-section">
+        <section className="page-section pdm-intro-section page-section--gray">
           <div className="page-container">
             {/* banner：与视频等宽，图片靠底左缩放，文字右侧浮层 */}
             <div className="pp-intro-banner fade-up fade-up-delay-1">
@@ -378,6 +379,19 @@ export default function PipelinePulpingPage() {
                 title="红运 管线式制浆系统"
               />
             </div>
+          </div>
+        </section>
+
+        {/* ===== 系统三视图 ===== */}
+        <section className="page-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <ProductThreeView views={[
+              { src: `${IMG}/system-tv2.webp`, label: '正视图' },
+              { src: `${IMG}/system-tv3.webp`, label: '侧视图' },
+              { src: `${IMG}/system-tv1.webp`, label: '俯视图' },
+            ]} />
           </div>
         </section>
 
@@ -413,7 +427,7 @@ export default function PipelinePulpingPage() {
         ]} />
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section">
+        <section className="page-section page-section--gray">
           <div className="page-container">
             <p className="section-en-label fade-up">Case</p>
             <h2 className="section-heading section-heading--center fade-up">客户案例</h2>

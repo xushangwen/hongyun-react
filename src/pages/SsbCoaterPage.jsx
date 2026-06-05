@@ -34,7 +34,7 @@ export default function SsbCoaterPage() {
         <section className="page-section pdm-intro-section">
           <div className="page-container">
             <div className="fade-up" style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', maxWidth: '1040px', margin: '0 auto' }}>
-              <div style={{ flex: '0 0 50%', height: '380px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div style={{ flex: '0 0 50%', height: '368px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <img
                   src={`${IMG}/core-device-03.webp`}
                   alt="固态电解质包覆机"

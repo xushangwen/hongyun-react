@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
+import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
@@ -298,7 +299,7 @@ export default function PDPulpingPage() {
         ]} />
 
         {/* ===== 系统介绍 + 视频模块 ===== */}
-        <section className="page-section pdm-intro-section">
+        <section className="page-section pdm-intro-section page-section--gray">
           <div className="page-container">
             <div className="pdm-intro-grid">
               <div className="pdm-intro-visual pdm-intro-visual--photo fade-up fade-up-delay-1">
@@ -327,6 +328,19 @@ export default function PDPulpingPage() {
                 title="红运 PD 制浆系统"
               />
             </div>
+          </div>
+        </section>
+
+        {/* ===== 系统三视图 ===== */}
+        <section className="page-section">
+          <div className="page-container">
+            <p className="section-en-label fade-up">Three Views</p>
+            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+            <ProductThreeView views={[
+              { src: '/assets/images/solutions/pd-pulping/system-tv2.webp', label: '正视图' },
+              { src: '/assets/images/solutions/pd-pulping/system-tv1.webp', label: '侧视图' },
+              { src: '/assets/images/solutions/pd-pulping/system-tv3.webp', label: '俯视图' },
+            ]} />
           </div>
         </section>
 

@@ -2378,7 +2378,7 @@
   object-fit: contain;
   padding: 0;
   background: #f8f8f8;
-  transform: scale(0.8);
+  transform: scale(0.72);
 }
 
 /* 卡片图片缩小到 90% */
@@ -2396,9 +2396,9 @@
   transform: scale(0.95);
 }
 
-/* contain 卡片图等比缩到 80%，hover 轻微放大 */
+/* contain 卡片图等比缩小，hover 轻微放大 */
 .product-card:hover .product-card-image--contain img {
-  transform: scale(0.86);
+  transform: scale(0.77);
 }
 
 .product-card-content {
@@ -5944,6 +5944,12 @@
   object-position: center;
 }
 
+/* 产品详情页（双行星）介绍图：尺寸与其余产品页统一、去圆角 */
+.pdm-intro-visual--sm {
+  height: 368px;
+  border-radius: 0;
+}
+
 /* ===== 设备配置图 ===== */
 .cp-diagram-wrap {
   padding: 32px;
@@ -7246,19 +7252,22 @@
   margin-top: 8px;
 }
 
+/* 图片 + 文字在同一个描边容器里，上下布局 */
 .three-view-item {
-  position: relative;
   flex: 1 1 0;
   min-width: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   border: 1px solid var(--zinc-200, #e4e4e7);
   border-radius: 8px;
   overflow: hidden;
 }
 
+/* 图片区：图片 fit 容器高度、完整显示不裁切 */
 .three-view-imgwrap {
-  aspect-ratio: 16 / 10;
+  height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7271,19 +7280,20 @@
   display: block;
 }
 
-/* 视图名称压在卡片内部底端 */
+/* 视图名称：图片下方，同一容器内，无独立背景、无分隔线 */
 .three-view-caption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
   text-align: center;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--zinc-700, #3f3f46);
-  padding: 18px 10px 10px;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.92) 40%, rgba(255, 255, 255, 0));
+  padding: 12px 10px;
+}
+
+@media (max-width: 768px) {
+  .three-view-imgwrap {
+    height: 200px;
+  }
 }
 
 @media (max-width: 768px) {
