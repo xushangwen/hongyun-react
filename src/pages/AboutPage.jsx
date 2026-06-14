@@ -150,6 +150,7 @@ const productionWorkshops = [
     name: '焊接车间',
     desc: '机器人焊接与激光切割协同作业，保障焊缝强度与工艺一致性。',
     images: [
+      { src: '/assets/images/production/welding/焊接车间全景@2x.webp', alt: '焊接车间全景' },
       { src: '/assets/images/production/welding/全自动氩弧焊机焊接@2x.webp', alt: '全自动氩弧焊机焊接' },
       { src: '/assets/images/production/welding/全自动焊接机器人焊接@2x.webp', alt: '全自动焊接机器人焊接' },
       { src: '/assets/images/production/welding/双枪机器人焊接@2x.webp', alt: '双枪机器人焊接' },
@@ -161,8 +162,10 @@ const productionWorkshops = [
     name: '精加工车间',
     desc: '马扎克四轴加工中心精密成型，喷丸处理保障表面质量，关键尺寸公差严格可控。',
     images: [
+      { src: '/assets/images/production/precision/精加工车间全景02@2x.webp', alt: '精加工车间全景' },
+      { src: '/assets/images/production/precision/精加工车间全景01@2x.webp', alt: '精加工车间全景' },
+      { src: '/assets/images/production/precision/精加工车间全景03@2x.webp', alt: '精加工车间全景' },
       { src: '/assets/images/production/precision/喷丸加工中心@2x.webp', alt: '喷丸加工中心' },
-      { src: '/assets/images/production/precision/精加工车间@2x.webp', alt: '精加工车间全景' },
       { src: '/assets/images/production/precision/马扎克四轴加工中心@2x.webp', alt: '马扎克四轴加工中心' },
       { src: '/assets/images/production/precision/马扎克精加工车间@2x.webp', alt: '马扎克精加工车间' },
     ],
