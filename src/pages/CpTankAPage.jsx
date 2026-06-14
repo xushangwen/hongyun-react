@@ -64,6 +64,7 @@ export default function CpTankAPage() {
             <ProductThreeView views={[
               { src: `${IMG}/cp-tank-a-tv1.webp`, label: '正视图' },
               { src: `${IMG}/cp-tank-a-tv2.webp`, label: '侧视图' },
+              { src: `${IMG}/cp-tank-a-tv3.webp`, label: '俯视图' },
             ]} />
           </div>
         </section>

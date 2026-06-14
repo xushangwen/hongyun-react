@@ -112,6 +112,7 @@ export default function CpDisperserPage() {
             <ProductThreeView views={[
               { src: `${IMG}/cp-disperser-tv1.webp`, label: '正视图' },
               { src: `${IMG}/cp-disperser-tv2.webp`, label: '侧视图' },
+              { src: `${IMG}/cp-disperser-tv3.webp`, label: '俯视图' },
             ]} />
           </div>
         </section>
