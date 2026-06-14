@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {
   IconArrowsInfinityOutline24,
   IconShieldLockOutline24,
@@ -8,6 +8,7 @@ import {
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ProductThreeView from '../components/ProductThreeView'
+import VideoPlayer from '../components/VideoPlayer'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
@@ -253,13 +254,8 @@ function ParamsTable() {
   )
 }
 
-// 视频模块开关：true = 显示，false = 隐藏
-const SHOW_VIDEO = false
-
 /* ========== 主页面 ========== */
 export default function CirculationPulpingPage() {
-  const [videoPlayed, setVideoPlayed] = useState(false)
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -305,25 +301,14 @@ export default function CirculationPulpingPage() {
                 </p>
               </div>
             </div>
-            {/* 视频模块（SHOW_VIDEO 控制显隐） */}
-            {SHOW_VIDEO && (
-              <div className="cp-video-mock fade-up fade-up-delay-2">
-                <img src={`${IMG}/hero.jpeg`} alt="方案视频封面" className="cp-video-mock-poster" />
-                <div className={`cp-video-mock-overlay${videoPlayed ? ' cp-video-mock-overlay--played' : ''}`}>
-                  {!videoPlayed ? (
-                    <button className="cp-video-play-btn" onClick={() => setVideoPlayed(true)} aria-label="播放">
-                      <span className="cp-video-play-ring" />
-                      <span className="cp-video-play-icon">▶</span>
-                    </button>
-                  ) : (
-                    <div className="cp-video-played-state">
-                      <p className="cp-video-played-text">视频制作中，敬请期待</p>
-                      <button className="cp-video-played-reset" onClick={() => setVideoPlayed(false)}>返回</button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
+            {/* 方案视频 */}
+            <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
+              <VideoPlayer
+                src={`${IMG}/product-video.webm`}
+                poster={`${IMG}/video-poster.jpg`}
+                title="红运高速循环制浆系统"
+              />
+            </div>
           </div>
         </section>
 
