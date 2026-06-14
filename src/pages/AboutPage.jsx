@@ -617,8 +617,12 @@ const introStats = [
   },
 ]
 
-/* ========== 研发图片轮播数据（4张 = 2组，每组2张） ========== */
+/* ========== 研发图片轮播数据（8张 = 4组，每组2张） ========== */
 const rndImages = [
+  { src: '/assets/images/rnd/hy-rnd-sys-pipeline.webp',    label: '高效管线式制浆系统' },
+  { src: '/assets/images/rnd/hy-rnd-coater.webp',          label: '涂布机' },
+  { src: '/assets/images/rnd/hy-rnd-roller-press.webp',    label: '辊压机' },
+  { src: '/assets/images/rnd/hy-rnd-sys-twin-screw.webp',  label: '双螺杆连续制浆系统' },
   { src: '/assets/images/rnd/hy-rnd-output.jpg',    label: '输出实验数据、测试报告' },
   { src: '/assets/images/rnd/hy-rnd-rheometer.jpg', label: '德国赛默飞安东帕流变仪 Viscotester iQ Air' },
   { src: '/assets/images/rnd/hy-rnd-turbiscan.jpg', label: '法国 TURBISCAN 浆料稳定性检测仪' },
@@ -953,13 +957,13 @@ export default function AboutPage() {
                 <div className="about-rnd-brand-card">
                   <img src="/assets/images/rnd/hy-rnd-brand.webp" alt="红运品牌" />
                 </div>
-                {/* 第二行：4张图平铺，track 宽 200%，每张占 25%（= 容器宽 50%），两张一组 */}
+                {/* 第二行：8张图平铺，两张一组循环 */}
                 <div className="about-rnd-carousel">
-                  {/* track = 3组（2真实+1克隆），宽 300%，每张图占 track 的 1/6 = 容器的 50% */}
+                  {/* track = 5组（4真实+1克隆），宽 500%，每张图占 track 的 1/10 = 容器的 50% */}
                   <div
                     ref={rndTrackRef}
                     className="about-rnd-carousel-track"
-                    style={{ transform: `translateX(-${rndSlide * (100 / 3)}%)` }}
+                    style={{ transform: `translateX(-${rndSlide * (100 / 5)}%)` }}
                   >
                     {[...rndImages, rndImages[0], rndImages[1]].map(({ src, label }, i) => (
                       <div className="about-rnd-img-card" key={i}>

@@ -321,14 +321,18 @@ export default function ChemicalAutoProductionPage() {
           </div>
         </section>
 
-        {/* ===== 客户案例（暂空）===== */}
+        {/* ===== 客户案例 ===== */}
         <section className="page-section">
           <div className="page-container">
             <p className="section-en-label fade-up">Case</p>
             <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
-            <p className="cp-table-note fade-up fade-up-delay-1" style={{ textAlign: 'center', marginTop: '2rem' }}>
-              客户案例持续更新中，敬请期待。
-            </p>
+            <div className="fade-up fade-up-delay-1" style={{ marginTop: '40px' }}>
+              <VideoPlayer
+                src="/assets/videos/shenglong-case.webm"
+                poster="/assets/videos/shenglong-case-poster.jpg"
+                title="盛龙项目案例"
+              />
+            </div>
           </div>
         </section>
 

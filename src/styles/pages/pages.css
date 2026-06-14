@@ -1458,14 +1458,14 @@
 
 .about-rnd-carousel-track {
   display: flex;
-  width: 300%; /* 3组(2真实+1克隆) × 100% 容器宽 */
+  width: 500%; /* 5组(4真实+1克隆) × 100% 容器宽 */
   transition: transform 0.6s var(--ease-smooth);
   will-change: transform;
 }
 
-/* 每张图占 track 的 1/6（track=300% 容器宽），视觉宽 = 容器 50%，两张并排 = 满宽 */
+/* 每张图占 track 的 1/10（track=500% 容器宽），视觉宽 = 容器 50%，两张并排 = 满宽 */
 .about-rnd-img-card {
-  flex: 0 0 calc(100% / 6);
+  flex: 0 0 calc(100% / 10);
   box-sizing: border-box;
   padding: 0 4px;
   aspect-ratio: 5 / 3;
