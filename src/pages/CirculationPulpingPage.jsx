@@ -305,7 +305,7 @@ export default function CirculationPulpingPage() {
             <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
               <VideoPlayer
                 src={`${IMG}/product-video.webm`}
-                poster={`${IMG}/video-poster.jpg`}
+                poster={`${IMG}/video-poster.webp`}
                 title="红运高速循环制浆系统"
               />
             </div>
@@ -417,14 +417,14 @@ export default function CirculationPulpingPage() {
                 <div className="cp-charts-grid-3">
                   <div className="cp-chart-card">
                     <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/chart-12.jpg`} alt="剪切速率曲线" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/chart-12.webp`} alt="剪切速率曲线" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">剪切速率：过程剪切无突变，非牛顿流体特征</p>
                   </div>
                   <div className="cp-chart-card cp-chart-card--span2">
                     <div className="cp-chart-dual-imgs">
-                      <img src={`${IMG}/chart-13.jpg`} alt="三区间及触变环图1" className="cp-chart-img" loading="lazy" />
-                      <img src={`${IMG}/chart-14.jpg`} alt="三区间及触变环图2" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/chart-13.webp`} alt="三区间及触变环图1" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/chart-14.webp`} alt="三区间及触变环图2" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">三区间及触变环：浆料具备一定的触变恢复性，利于涂布</p>
                   </div>
@@ -437,26 +437,26 @@ export default function CirculationPulpingPage() {
                 <div className="cp-charts-grid-3">
                   <div className="cp-chart-card">
                     <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/chart-15.jpg`} alt="背散射光曲线" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/chart-15.webp`} alt="背散射光曲线" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">背散射光曲线：浆料测试过程未出现颗粒团聚和沉降</p>
                   </div>
                   <div className="cp-chart-card cp-chart-card--span2">
                     <div className="cp-chart-dual-imgs">
-                      <img src={`${IMG}/chart-16.jpg`} alt="稳定性指数图1" className="cp-chart-img" loading="lazy" />
-                      <img src={`${IMG}/chart-17.jpg`} alt="稳定性指数图2" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/chart-16.webp`} alt="稳定性指数图1" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/chart-17.webp`} alt="稳定性指数图2" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">稳定性指数：TSI = 0.08（行业内 &lt;0.2 为准）</p>
                   </div>
                   <div className="cp-chart-card">
                     <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/chart-18.jpg`} alt="粒子迁移率" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/chart-18.webp`} alt="粒子迁移率" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">粒子迁移率</p>
                   </div>
                   <div className="cp-chart-card cp-chart-card--span2">
                     <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/chart-19.jpg`} alt="分散均匀性指数" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/chart-19.webp`} alt="分散均匀性指数" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">分散均匀性指数：0.0925（行业内 &lt;2 为最佳）</p>
                   </div>
@@ -475,7 +475,7 @@ export default function CirculationPulpingPage() {
                   </div>
                   <div className="cp-sem-card">
                     <div className="cp-sem-img-wrap">
-                      <img src={`${IMG}/chart-21.jpg`} alt="极片SEM 50000倍" className="cp-sem-img" loading="lazy" />
+                      <img src={`${IMG}/chart-21.webp`} alt="极片SEM 50000倍" className="cp-sem-img" loading="lazy" />
                     </div>
                     <p className="cp-sem-caption">50,000× 倍 · 比例尺 500nm</p>
                   </div>

@@ -460,7 +460,7 @@ export default function TwinScrewPulpingPage() {
             <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
               <VideoPlayer
                 src={`${IMG}/product-video.webm`}
-                poster={`${IMG}/video-poster.jpg`}
+                poster={`${IMG}/video-poster.webp`}
                 title="红运双螺杆连续制浆系统"
               />
             </div>

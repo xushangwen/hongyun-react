@@ -5,7 +5,7 @@
 /* ---------- News ---------- */
 .news {
   padding: 60px 0;
-  background: url('/assets/images/news/news-section-bgimg.jpg') center center / cover no-repeat;
+  background: url('/assets/images/news/news-section-bgimg.webp') center center / cover no-repeat;
 }
 
 .news-container {

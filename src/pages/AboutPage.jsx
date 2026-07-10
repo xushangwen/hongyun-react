@@ -79,10 +79,11 @@ function TypewriterText({ text, speed = 40, delay = 0, className }) {
 }
 
 /* ========== 数字计数动画 Hook ========== */
-function useCountUp(target, duration = 1800) {
-  const [count, setCount] = useState(0)
+function useCountUp(target, duration = 1800, decimals = 0) {
+  const [count, setCount] = useState(decimals > 0 ? (0).toFixed(decimals) : 0)
   const [started, setStarted] = useState(false)
   const ref = useRef(null)
+  const factor = Math.pow(10, decimals)
 
   useEffect(() => {
     const el = ref.current
@@ -102,11 +103,12 @@ function useCountUp(target, duration = 1800) {
       if (!startTime) startTime = ts
       const progress = Math.min((ts - startTime) / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3)
-      setCount(Math.round(eased * target))
+      const value = eased * target
+      setCount(decimals > 0 ? (Math.round(value * factor) / factor).toFixed(decimals) : Math.round(value))
       if (progress < 1) requestAnimationFrame(step)
     }
     requestAnimationFrame(step)
-  }, [started, target, duration])
+  }, [started, target, duration, decimals, factor])
 
   return [count, ref]
 }
@@ -334,10 +336,10 @@ const timelineData = [
   { year: '2000', theme: '扩张迁址', desc: '迁至广州市番禺区，更名为广州市番禺区红运机械厂，规模持续壮大，产能显著提升。', img: '/assets/images/history/2000@2x.webp' },
   { year: '2007', theme: '公司化运营', desc: '注册成立广州红运混合设备有限公司，完成现代企业制度建设，规范化运营全面展开。', img: '/assets/images/history/2007@2x.webp' },
   { year: '2014', theme: '南沙新基地', desc: '迁至广州市南沙区东涌镇同裕街40号，注册成立广州红尚机械制造有限公司，华南制造能力全面升级。', img: '/assets/images/history/2014@2x.webp' },
-  { year: '2021', theme: '智造总部', desc: '在江苏常州成立江苏红运智能制造有限公司并作为集团总部，全面迈入智能制造新时代，引领行业创新变革。', img: '/assets/images/history/2021@2x.jpg' },
-  { year: '2022', theme: '海外布局', desc: '建立日本京都办事处，迈出国际化战略重要一步，红运品牌正式进入亚太主流市场。', img: '/assets/images/history/2022@2x.jpg' },
-  { year: '2024', theme: '亚洲拓展', desc: '建立印度办事处，深化南亚市场战略布局，全球服务网络持续向纵深延伸。', img: '/assets/images/history/2024@2x.jpg' },
-  { year: '2025', theme: '全球网络', desc: '建立海南、香港、新加坡分公司，形成覆盖全球三大洲的完整服务网络，实现真正意义的全球化布局。', img: '/assets/images/history/2025@2x.jpg' },
+  { year: '2021', theme: '智造总部', desc: '在江苏常州成立江苏红运智能制造有限公司并作为集团总部，全面迈入智能制造新时代，引领行业创新变革。', img: '/assets/images/history/2021@2x.webp' },
+  { year: '2022', theme: '海外布局', desc: '建立日本京都办事处，迈出国际化战略重要一步，红运品牌正式进入亚太主流市场。', img: '/assets/images/history/2022@2x.webp' },
+  { year: '2024', theme: '亚洲拓展', desc: '建立印度办事处，深化南亚市场战略布局，全球服务网络持续向纵深延伸。', img: '/assets/images/history/2024@2x.webp' },
+  { year: '2025', theme: '全球网络', desc: '建立海南、香港、新加坡分公司，形成覆盖全球三大洲的完整服务网络，实现真正意义的全球化布局。', img: '/assets/images/history/2025@2x.webp' },
 ]
 
 /* ========== 发展历程 – 固定激活位 + 可拖拽时间轴 ========== */
@@ -587,7 +589,7 @@ const honorsData = [
   ],
 ]
 
-const CERT_FRAME = '/assets/images/honors/certificate-frame.png'
+const CERT_FRAME = '/assets/images/honors/certificate-frame.webp'
 
 /* ========== 企业简介统计图标（与首页同款 mask-image 方案） ========== */
 const introStats = [
@@ -623,9 +625,9 @@ const rndImages = [
   { src: '/assets/images/rnd/hy-rnd-coater.webp',          label: '涂布机' },
   { src: '/assets/images/rnd/hy-rnd-roller-press.webp',    label: '辊压机' },
   { src: '/assets/images/rnd/hy-rnd-sys-twin-screw.webp',  label: '双螺杆连续制浆系统' },
-  { src: '/assets/images/rnd/hy-rnd-output.jpg',    label: '输出实验数据、测试报告' },
-  { src: '/assets/images/rnd/hy-rnd-rheometer.jpg', label: '德国赛默飞安东帕流变仪 Viscotester iQ Air' },
-  { src: '/assets/images/rnd/hy-rnd-turbiscan.jpg', label: '法国 TURBISCAN 浆料稳定性检测仪' },
+  { src: '/assets/images/rnd/hy-rnd-output.webp',    label: '输出实验数据、测试报告' },
+  { src: '/assets/images/rnd/hy-rnd-rheometer.webp', label: '德国赛默飞安东帕流变仪 Viscotester iQ Air' },
+  { src: '/assets/images/rnd/hy-rnd-turbiscan.webp', label: '法国 TURBISCAN 浆料稳定性检测仪' },
   { src: '/assets/images/rnd/hy-rnd-screw.webp',     label: '红运双螺杆匀浆设备' },
 ]
 // 真实组数 = 图片数 ÷ 每组显示数(2)，到此值时说明显示的是克隆组，需无感归零
@@ -738,7 +740,7 @@ export default function AboutPage() {
   const [count1000, ref1000] = useCountUp(1000)
 
   /* 研发实力统计 */
-  const [rndCount15, rndRef15] = useCountUp(4, 1200)
+  const [rndCount15, rndRef15] = useCountUp(5.6, 1200, 1)
   const [rndCount200, rndRef200] = useCountUp(200, 1800)
   const [rndCount20, rndRef20] = useCountUp(25, 1200)
 

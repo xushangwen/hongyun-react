@@ -63,7 +63,7 @@ export default function DropdownProducts({ active, onClose, cancelClose, schedul
           </div>
           <div className="dropdown-preview-image">
             <img
-              src={PREVIEW_IMG[current.id] ?? '/assets/images/hy-dropmenu-product-img.jpg'}
+              src={PREVIEW_IMG[current.id] ?? '/assets/images/hy-dropmenu-product-img.webp'}
               alt={current.name}
             />
           </div>

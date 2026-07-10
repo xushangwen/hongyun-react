@@ -363,7 +363,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
                 </div>
                 <div className="cp-chart-card cp-chart-card--span2">
                   <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/case-system-2.jpg`} alt="全自动加投料系统现场" className="cp-chart-img" loading="lazy" />
+                    <img src={`${IMG}/case-system-2.webp`} alt="全自动加投料系统现场" className="cp-chart-img" loading="lazy" />
                   </div>
                   <p className="cp-chart-caption">全自动加投料系统现场</p>
                 </div>
@@ -387,7 +387,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
                 </div>
                 <div className="cp-chart-card">
                   <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/case-ev-full-01.jpg`} alt="EV电池匀浆车间全套设备" className="cp-chart-img" loading="lazy" />
+                    <img src={`${IMG}/case-ev-full-01.webp`} alt="EV电池匀浆车间全套设备" className="cp-chart-img" loading="lazy" />
                   </div>
                   <p className="cp-chart-caption">全套匀浆系统</p>
                 </div>
@@ -399,7 +399,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
               <div className="cp-charts-grid-3">
                 <div className="cp-chart-card">
                   <div className="cp-chart-img-wrap">
-                    <img src={`${IMG}/case-3c-equipment-01.jpg`} alt="3C电池匀浆车间设备" className="cp-chart-img" loading="lazy" />
+                    <img src={`${IMG}/case-3c-equipment-01.webp`} alt="3C电池匀浆车间设备" className="cp-chart-img" loading="lazy" />
                   </div>
                   <p className="cp-chart-caption">3C 电池匀浆车间半自动加投料系统设备</p>
                 </div>

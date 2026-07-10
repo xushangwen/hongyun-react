@@ -20,7 +20,7 @@ export default function ContactSection() {
         </div>
         {/* Right Image */}
         <div className="contact-right">
-          <img src="/assets/images/contact-right-bgimg.jpg" alt="项目咨询" />
+          <img src="/assets/images/contact-right-bgimg.webp" alt="项目咨询" />
         </div>
       </div>
     </section>

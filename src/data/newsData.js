@@ -298,7 +298,7 @@ export const newsData = [
     date: '2025-09-28',
     dateDisplay: '2025年9月28日',
     category: '行业新闻',
-    image: '/assets/images/news/new-img-01.jpg',
+    image: '/assets/images/news/new-img-01.webp',
     summary: '在新能源产业向"高安全、高能量密度、低能耗"升级的关键阶段，全固态电池作为下一代动力电池的核心突破口，正加速重构智能制造的技术逻辑与产业生态。红运机械正式加入全固态电池智能制造联盟。',
     blocks: [
       {
@@ -323,7 +323,7 @@ export const newsData = [
     date: '2025-07-10',
     dateDisplay: '2025年7月10日',
     category: '公司新闻',
-    image: '/assets/images/news/new-img-02.jpg',
+    image: '/assets/images/news/new-img-02.webp',
     summary: '2025年6月25日，红运机械总经理吕柏良先生与赛科动力董事长朱高龙博士为"全固态电池关键设备联合开发实验室"的落地揭幕，标志着双方在固态电池装备领域的深度合作迈上新台阶。',
     blocks: [
       {
@@ -348,7 +348,7 @@ export const newsData = [
     date: '2025-06-25',
     dateDisplay: '2025年6月25日',
     category: '公司新闻',
-    image: '/assets/images/news/new-img-03.jpg',
+    image: '/assets/images/news/new-img-03.webp',
     summary: '6月25日，红运机械2025新品发布会"浆芯之力·智链未来"在金坛圆满举办。本次发布会，红运机械发布了高效管线式制浆系统、固态电池干法双螺杆系统等多款重磅新品。',
     blocks: [
       {

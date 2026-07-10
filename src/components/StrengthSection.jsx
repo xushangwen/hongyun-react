@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 
 const strengthStats = [
-  { target: 4, sup: '', unit: '%', label: '研发投入' },
+  { target: 5.6, decimals: 1, sup: '', unit: '%', label: '研发投入' },
   { target: 200, sup: '+', unit: '', label: '自主研发专利' },
   { target: 25, sup: '', unit: '%', label: '博士占比硕士占比' },
 ]
 
 const certifications = [
-  { img: '/assets/images/str/cert-iso9001.png', label: 'ISO 9001' },
-  { img: '/assets/images/str/cert-iso14001.png', label: 'ISO 14001' },
+  { img: '/assets/images/str/cert-iso9001.webp', label: 'ISO 9001' },
+  { img: '/assets/images/str/cert-iso14001.webp', label: 'ISO 14001' },
   { img: '/assets/images/str/cert-sgs.svg', label: 'SGS认证' },
   { img: '/assets/images/str/cert-patent.webp', label: '专利证书' },
 ]
@@ -27,8 +27,9 @@ const certImages = [
   '/assets/images/honors/patent/patent-08.webp',
 ]
 
-function animateNumber(element, target, duration = 2000) {
+function animateNumber(element, target, decimals = 0, duration = 2000) {
   const startTime = performance.now()
+  const factor = Math.pow(10, decimals)
 
   function update(currentTime) {
     const elapsed = currentTime - startTime
@@ -36,12 +37,12 @@ function animateNumber(element, target, duration = 2000) {
     const easeProgress = 1 - Math.pow(1 - progress, 4)
     const currentValue = target * easeProgress
 
-    element.textContent = Math.floor(currentValue)
+    element.textContent = (Math.floor(currentValue * factor) / factor).toFixed(decimals)
 
     if (progress < 1) {
       requestAnimationFrame(update)
     } else {
-      element.textContent = target
+      element.textContent = target.toFixed(decimals)
     }
   }
 
@@ -64,7 +65,7 @@ export default function StrengthSection() {
             setAnimated(true)
             numberRefs.current.forEach((el, index) => {
               if (el) {
-                animateNumber(el, strengthStats[index].target)
+                animateNumber(el, strengthStats[index].target, strengthStats[index].decimals || 0)
               }
             })
             observer.unobserve(entry.target)

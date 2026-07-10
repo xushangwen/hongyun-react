@@ -1824,7 +1824,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: url('/assets/images/honors/certificate-frame.png') center / auto 100% no-repeat;
+  background: url('/assets/images/honors/certificate-frame.webp') center / auto 100% no-repeat;
   pointer-events: none;
 }
 
@@ -5381,7 +5381,7 @@
 
   .about-page-section.about-rnd-section::before {
     background:
-      url('/assets/images/rnd-bg.png') center bottom / cover no-repeat;
+      url('/assets/images/rnd-bg.webp') center bottom / cover no-repeat;
   }
 
   .about-production-grid {

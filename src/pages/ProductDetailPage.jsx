@@ -6,7 +6,7 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import ctaBgImg from '../assets/img/需要了解更多.webp'
-import productHeroImg from '../assets/img/行业产品.jpg'
+import productHeroImg from '../assets/img/行业产品.webp'
 
 /* ========== 产品数据映射 [AI生成描述] ========== */
 const productMap = {

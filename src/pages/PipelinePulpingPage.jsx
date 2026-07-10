@@ -375,7 +375,7 @@ export default function PipelinePulpingPage() {
             <div className="fade-up fade-up-delay-2" style={{ marginTop: '40px' }}>
               <VideoPlayer
                 src={`${IMG}/product-video.webm`}
-                poster={`${IMG}/video-poster.jpg`}
+                poster={`${IMG}/video-poster.webp`}
                 title="红运 管线式制浆系统"
               />
             </div>
@@ -505,7 +505,7 @@ export default function PipelinePulpingPage() {
                     <div className="cp-chart-card lfp-dispersion-card">
                       <div className="lfp-dispersion-inner">
                         <div className="cp-chart-img-wrap">
-                          <img src={`${IMG}/lfp-dispersion-chart.png`} alt="分散均匀性指数图" className="cp-chart-img" loading="lazy" />
+                          <img src={`${IMG}/lfp-dispersion-chart.webp`} alt="分散均匀性指数图" className="cp-chart-img" loading="lazy" />
                         </div>
                         <div className="lfp-dispersion-table-wrap">
                           <table className="lfp-dispersion-table">
@@ -529,7 +529,7 @@ export default function PipelinePulpingPage() {
                     <div className="lfp-tsi-inner">
                       <div className="lfp-tsi-col">
                         <div className="cp-chart-img-wrap">
-                          <img src={`${IMG}/lfp-tsi-dynamic.png`} alt="动力学不稳定性整体" className="cp-chart-img" loading="lazy" />
+                          <img src={`${IMG}/lfp-tsi-dynamic.webp`} alt="动力学不稳定性整体" className="cp-chart-img" loading="lazy" />
                         </div>
                       </div>
                       <div className="lfp-tsi-col">
@@ -537,7 +537,7 @@ export default function PipelinePulpingPage() {
                       </div>
                       <div className="lfp-tsi-col">
                         <div className="cp-chart-img-wrap">
-                          <img src={`${IMG}/lfp-tsi-position.png`} alt="TSI分层" className="cp-chart-img" loading="lazy" />
+                          <img src={`${IMG}/lfp-tsi-position.webp`} alt="TSI分层" className="cp-chart-img" loading="lazy" />
                         </div>
                       </div>
                     </div>
@@ -551,19 +551,19 @@ export default function PipelinePulpingPage() {
                   <div className="tsp-charts-grid-3">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/lfp-rheology-01.png`} alt="流动曲线" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/lfp-rheology-01.webp`} alt="流动曲线" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">流动性较强</p>
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/lfp-rheology-02.png`} alt="触变环" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/lfp-rheology-02.webp`} alt="触变环" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">典型的非牛顿流体特征</p>
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/lfp-rheology-03.png`} alt="三段式粘度恢复" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/lfp-rheology-03.webp`} alt="三段式粘度恢复" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">具备较强的剪切恢复性</p>
                     </div>
@@ -576,7 +576,7 @@ export default function PipelinePulpingPage() {
                   <div className="tsp-charts-grid-3 lfp-sem-grid">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/lfp-verify.jpg`} alt="粘度及细度检测" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/lfp-verify.webp`} alt="粘度及细度检测" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">浆料经过线速度14.7m/s高效分散后粘度：5920 mPas（28.4°C、63# 12rpm）细度：6 μm，固含量：66.2%</p>
                     </div>
@@ -631,7 +631,7 @@ export default function PipelinePulpingPage() {
                   <div className="lfp-stability-2col">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/nca-stability-scatter.png`} alt="整体无团聚无沉降" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/nca-stability-scatter.webp`} alt="整体无团聚无沉降" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">整体无团聚、无沉降</p>
                     </div>
@@ -639,7 +639,7 @@ export default function PipelinePulpingPage() {
                     <div className="cp-chart-card lfp-dispersion-card">
                       <div className="lfp-dispersion-inner">
                         <div className="cp-chart-img-wrap">
-                          <img src={`${IMG}/nca-dispersion-chart.png`} alt="分散均匀性指数图" className="cp-chart-img" loading="lazy" />
+                          <img src={`${IMG}/nca-dispersion-chart.webp`} alt="分散均匀性指数图" className="cp-chart-img" loading="lazy" />
                         </div>
                         <div className="lfp-dispersion-table-wrap">
                           <table className="lfp-dispersion-table">
@@ -663,7 +663,7 @@ export default function PipelinePulpingPage() {
                     <div className="lfp-tsi-inner">
                       <div className="lfp-tsi-col">
                         <div className="cp-chart-img-wrap">
-                          <img src={`${IMG}/nca-tsi-dynamic.png`} alt="动力学不稳定性整体" className="cp-chart-img" loading="lazy" />
+                          <img src={`${IMG}/nca-tsi-dynamic.webp`} alt="动力学不稳定性整体" className="cp-chart-img" loading="lazy" />
                         </div>
                       </div>
                       <div className="lfp-tsi-col">
@@ -671,7 +671,7 @@ export default function PipelinePulpingPage() {
                       </div>
                       <div className="lfp-tsi-col">
                         <div className="cp-chart-img-wrap">
-                          <img src={`${IMG}/nca-tsi-position.png`} alt="TSI分层" className="cp-chart-img" loading="lazy" />
+                          <img src={`${IMG}/nca-tsi-position.webp`} alt="TSI分层" className="cp-chart-img" loading="lazy" />
                         </div>
                       </div>
                     </div>
@@ -685,13 +685,13 @@ export default function PipelinePulpingPage() {
                   <div className="tsp-charts-grid-3 nca-rheology-grid">
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/nca-rheology-01.png`} alt="剪切变稀" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/nca-rheology-01.webp`} alt="剪切变稀" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">剪切变稀，典型非牛顿流体特征，且过程无剪切突变</p>
                     </div>
                     <div className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/nca-rheology-02.png`} alt="触变恢复率" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/nca-rheology-02.webp`} alt="触变恢复率" className="cp-chart-img" loading="lazy" />
                       </div>
                       <p className="cp-chart-caption">浆料具备较好的流动性，以及一定的触变恢复率</p>
                     </div>
@@ -805,10 +805,10 @@ export default function PipelinePulpingPage() {
                   <div className="cp-chart-card graphite-rheology-card">
                     <div className="tsp-card-dual-imgs">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/graphite-rheology-01.png`} alt="石墨浆料流变性图1" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/graphite-rheology-01.webp`} alt="石墨浆料流变性图1" className="cp-chart-img" loading="lazy" />
                       </div>
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/graphite-rheology-02.png`} alt="石墨浆料流变性图2" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/graphite-rheology-02.webp`} alt="石墨浆料流变性图2" className="cp-chart-img" loading="lazy" />
                       </div>
                     </div>
                     <p className="cp-chart-caption cp-chart-caption--multi">

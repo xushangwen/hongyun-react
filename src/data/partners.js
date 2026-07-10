@@ -62,26 +62,26 @@ const chemical = [
 const adhesive = [
   { logo: `${C}/ad-sika.svg`,       name: '西卡 Sika', alt: '西卡' },
   { logo: `${P}/par-logo-07.svg`,   name: '富乐 / 科梅林', alt: '富乐' },
-  { logo: `${C}/ad-darbond.png`,    name: '回天新材 Darbond', alt: '回天新材' },
-  { logo: `${C}/ad-itw.png`,        name: 'ITW', alt: 'ITW' },
-  { logo: `${C}/ad-johnson.png`,    name: 'Johnson Electric', alt: 'Johnson' },
-  { logo: `${C}/ad-pochely.png`,    name: '回天股份', alt: '回天' },
-  { logo: `${C}/ad-silande.png`,    name: '思蓝德', alt: '思蓝德' },
-  { logo: `${C}/ad-hanstars.png`,   name: '汉斯股份', alt: '汉斯' },
-  { logo: `${C}/ad-seayu.png`,      name: '思宇胶业', alt: '思宇' },
-  { logo: `${C}/ad-aecc.png`,       name: '中国航发', alt: '中国航发' },
-  { logo: `${C}/ad-casic.png`,      name: '航天科工', alt: '航天科工' },
+  { logo: `${C}/ad-darbond.webp`,    name: '回天新材 Darbond', alt: '回天新材' },
+  { logo: `${C}/ad-itw.webp`,        name: 'ITW', alt: 'ITW' },
+  { logo: `${C}/ad-johnson.webp`,    name: 'Johnson Electric', alt: 'Johnson' },
+  { logo: `${C}/ad-pochely.webp`,    name: '回天股份', alt: '回天' },
+  { logo: `${C}/ad-silande.webp`,    name: '思蓝德', alt: '思蓝德' },
+  { logo: `${C}/ad-hanstars.webp`,   name: '汉斯股份', alt: '汉斯' },
+  { logo: `${C}/ad-seayu.webp`,      name: '思宇胶业', alt: '思宇' },
+  { logo: `${C}/ad-aecc.webp`,       name: '中国航发', alt: '中国航发' },
+  { logo: `${C}/ad-casic.webp`,      name: '航天科工', alt: '航天科工' },
 ]
 
 // 银浆
 const silverPaste = [
-  { logo: `${C}/sp-heraeus.png`,    name: '贺利氏 Heraeus', alt: '贺利氏' },
-  { logo: `${C}/sp-fusion.png`,     name: '聚和新材', alt: '聚和新材' },
+  { logo: `${C}/sp-heraeus.webp`,    name: '贺利氏 Heraeus', alt: '贺利氏' },
+  { logo: `${C}/sp-fusion.webp`,     name: '聚和新材', alt: '聚和新材' },
   { logo: `${C}/sp-rutech.webp`,     name: '儒兴科技', alt: '儒兴科技' },
-  { logo: `${C}/sp-ssp.png`,        name: '上海银浆 SSP', alt: '上海银浆' },
-  { logo: `${C}/sp-riyu.png`,       name: '日御股份', alt: '日御股份' },
+  { logo: `${C}/sp-ssp.webp`,        name: '上海银浆 SSP', alt: '上海银浆' },
+  { logo: `${C}/sp-riyu.webp`,       name: '日御股份', alt: '日御股份' },
   { logo: `${C}/sp-dec.webp`,        name: '东方电气', alt: '东方电气' },
-  { logo: `${C}/sp-johnson.png`,    name: 'Johnson Matthey', alt: 'Johnson Matthey' },
+  { logo: `${C}/sp-johnson.webp`,    name: 'Johnson Matthey', alt: 'Johnson Matthey' },
 ]
 
 // 医药

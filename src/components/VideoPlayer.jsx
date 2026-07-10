@@ -3,7 +3,7 @@ import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 
 export default function VideoPlayer({
   src = '/assets/video/promo.webm',
-  poster = '/assets/video/promo-poster.jpg',
+  poster = '/assets/video/promo-poster.webp',
   title = '企业宣传片',
 }) {
   const videoRef = useRef(null)

@@ -181,7 +181,7 @@ export default function KneaderPage() {
                     <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <span style={{ fontSize: '12px', fontWeight: 600, color: '#374151', marginBottom: '12px' }}>罐体壁面剪切应力</span>
                       <img
-                        src={`${SIM_IMG}/cfd-shear-wall.png`}
+                        src={`${SIM_IMG}/cfd-shear-wall.webp`}
                         alt="罐体壁面剪切应力云图"
                         style={{ display: 'block', width: '100%', height: 'auto' }}
                         loading="lazy"

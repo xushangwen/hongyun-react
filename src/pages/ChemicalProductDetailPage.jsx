@@ -9,9 +9,9 @@ const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
 const EQ = '/assets/images/solutions/chemical/equipment'
 
 const productMap = {
-  'reciprocating-mixer':   { name: '往复式混合机',   img: `${EQ}/02-reciprocating-mixer.png`   },
+  'reciprocating-mixer':   { name: '往复式混合机',   img: `${EQ}/02-reciprocating-mixer.webp`   },
   'dual-column-planetary': { name: '双立柱行星混合机',   img: `${EQ}/03-dual-column-planetary-01.webp` },
-  'butterfly-mixer':       { name: '行星蝶式混合机', img: `${EQ}/05-butterfly-mixer.jpg`       },
+  'butterfly-mixer':       { name: '行星蝶式混合机', img: `${EQ}/05-butterfly-mixer.webp`       },
   'planetary-power-mixer': { name: '行星动力混合机', img: `${EQ}/06-planetary-power-mixer.webp` },
   'vertical-kneader':      { name: '立式捏合机',         img: `${EQ}/07-vertical-kneader-01.webp`, views: [
     { src: `${EQ}/07-vertical-kneader-tv2.webp`, label: '正视图' },
@@ -21,10 +21,10 @@ const productMap = {
     { src: `${EQ}/08-material-press-tv1.webp`, label: '正视图' },
     { src: `${EQ}/08-material-press-tv2.webp`, label: '侧视图' },
   ] },
-  'tilting-machine':       { name: '倾倒机',             img: `${EQ}/09-tilting-machine-01.png`       },
+  'tilting-machine':       { name: '倾倒机',             img: `${EQ}/09-tilting-machine-01.webp`       },
   'barrel-washer':         { name: '洗桶机',             img: `${EQ}/10-barrel-washer.webp`         },
-  'reactor':               { name: '反应釜',             img: `${EQ}/11-reactor.png`               },
-  'storage-tank':          { name: '储罐',               img: `${EQ}/12-storage-tank.jpg`          },
+  'reactor':               { name: '反应釜',             img: `${EQ}/11-reactor.webp`               },
+  'storage-tank':          { name: '储罐',               img: `${EQ}/12-storage-tank.webp`          },
 }
 
 export default function ChemicalProductDetailPage() {

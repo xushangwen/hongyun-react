@@ -87,7 +87,7 @@ export default function DropdownAbout({ active, onClose, cancelClose, scheduleCl
             </Link>
           </div>
           <div className="dropdown-preview-image">
-            <img src="/assets/images/hy-dropmenu-about-img.jpg" alt="关于红运" />
+            <img src="/assets/images/hy-dropmenu-about-img.webp" alt="关于红运" />
           </div>
         </div>
       </div>

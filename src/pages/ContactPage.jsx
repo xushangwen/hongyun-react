@@ -20,11 +20,11 @@ import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import MapboxMap from '../components/MapboxMap'
 import contactHeroImg from '../assets/img/DJI_20250418104522_0160_D 拷贝.webp'
-import brandPanelBg from '../assets/img/IMG_4784.jpg'
+import brandPanelBg from '../assets/img/IMG_4784.webp'
 import inquiryBrandPanelBg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.webp'
-import talentBg01 from '../assets/img/talent-value-01.jpg'
-import talentBg02 from '../assets/img/talent-value-02.jpg'
-import talentBg03 from '../assets/img/talent-value-03.jpg'
+import talentBg01 from '../assets/img/talent-value-01.webp'
+import talentBg02 from '../assets/img/talent-value-02.webp'
+import talentBg03 from '../assets/img/talent-value-03.webp'
 
 /* ========== 联系方式数据 ========== */
 const contactCards = [
