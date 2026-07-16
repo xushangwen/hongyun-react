@@ -185,9 +185,11 @@ export default function SolutionsPage() {
                 <h2 className="solutions-industry-title">{industry.name}</h2>
               </div>
 
-              <p className="solutions-industry-desc">
-                {industry.desc}
-              </p>
+              {industry.id !== 'new-energy' && (
+                <p className="solutions-industry-desc">
+                  {industry.desc}
+                </p>
+              )}
 
               <div className="solutions-cards">
                 {industry.solutions.map((sol) => {
