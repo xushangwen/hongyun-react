@@ -228,7 +228,7 @@ export default function DryPowderMixerPage() {
               <div style={{ maxWidth: '46%' }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">干法电极成套设备解决方案</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  干法电极技术适用于磷酸（锰）铁锂、三元、钴酸锂、锰酸锂等多种正极体系，以及石墨、硅基负极、硬碳 / 软碳等多种负极体系，同时在硫化物、氧化物、聚合物固态电池领域均具有良好适配性，可有效避免溶剂对敏感材料的侵蚀。
+                  干法电极技术适用于磷酸（锰）铁锂、三元、钴酸锂、锰酸锂等多种正极体系，以及石墨、硅基负极、硬碳 / 软碳等多种负极体系。
                 </p>
               </div>
               <div style={{ width: '100%' }}>

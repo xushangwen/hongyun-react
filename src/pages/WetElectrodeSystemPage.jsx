@@ -29,21 +29,6 @@ const coreDevices = [
     imgAlt: '管线式混合机',
     tbd: '设备介绍内容待补充',
   },
-  {
-    name: '高压清洗机',
-    img: `${IMG}/high-pressure-washer.webp`,
-    imgAlt: '高压清洗机',
-    paragraphs: [
-      {
-        title: '',
-        text: '应用于各种行业的搅拌罐、容器内壁残留物、飞溅物的全方位清洗。',
-      },
-      {
-        title: '',
-        text: '通过高压溶剂或水螺产生动力，驱动喷头旋转，并喷射多束射流剥离附着物，实现高压清洗。',
-      },
-    ],
-  },
 ]
 
 export default function WetElectrodeSystemPage() {

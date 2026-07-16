@@ -46,13 +46,13 @@ export default function TwinScrewPulperPage() {
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">双螺杆制浆机</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  连续式双螺杆制浆核心设备，实现粉料的连续浸润、分散和输出，是大规模产线的关键装备。
+                  双螺杆制浆机具备高效的捏合与分散能力，可实现电池浆料的连续化制备。
                 </p>
                 <ul className="cp-core-device-features fade-up fade-up-delay-2">
-                  <li>连续化生产，产能大幅提升</li>
-                  <li>螺杆元件模块化组合，工艺灵活</li>
-                  <li>自清洁功能，换型清理便捷</li>
-                  <li>产能可扩展，适合规模化产线</li>
+                  <li>低功耗、效率高</li>
+                  <li>占地小、低维护</li>
+                  <li>产能覆盖 30L/h－1500L/h，多规格区间</li>
+                  <li>配置选择灵活，适配电池浆料规模化量产场景</li>
                 </ul>
               </div>
             </div>
