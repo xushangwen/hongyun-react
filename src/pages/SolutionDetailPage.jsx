@@ -5,8 +5,8 @@ import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
-import solutionHeroImg from '../assets/img/行业产品.webp'
-import ctaBgImg from '../assets/img/需要了解更多.webp'
+import solutionHeroImg from '../assets/img/industry-products.webp'
+import ctaBgImg from '../assets/img/learn-more.webp'
 
 /* ========== 方案数据映射 [AI生成描述] ========== */
 const solutionMap = {

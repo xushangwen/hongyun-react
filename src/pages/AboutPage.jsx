@@ -28,8 +28,8 @@ import VideoPlayer from '../components/VideoPlayer'
 import GlobalMap from '../components/GlobalMap'
 import { getCompanyYears } from '../utils/companyYears'
 import { partnerGroupsData } from '../data/partners'
-import heroImg from '../assets/img/DJI_20250418102124_0133_D-3 拷贝.webp'
-import companyImg from '../assets/img/DJI_20250418103239_0149_D 拷贝.webp'
+import heroImg from '../assets/img/DJI_20250418102124_0133_D-3-copy.webp'
+import companyImg from '../assets/img/DJI_20250418103239_0149_D-copy.webp'
 import videoImg from '../assets/img/IMG_4366.webp'
 
 /* ========== 打字机效果组件 ========== */
@@ -152,11 +152,11 @@ const productionWorkshops = [
     name: '焊接车间',
     desc: '机器人焊接与激光切割协同作业，保障焊缝强度与工艺一致性。',
     images: [
-      { src: '/assets/images/production/welding/焊接车间全景@2x.webp', alt: '焊接车间全景' },
-      { src: '/assets/images/production/welding/全自动氩弧焊机焊接@2x.webp', alt: '全自动氩弧焊机焊接' },
-      { src: '/assets/images/production/welding/全自动焊接机器人焊接@2x.webp', alt: '全自动焊接机器人焊接' },
-      { src: '/assets/images/production/welding/双枪机器人焊接@2x.webp', alt: '双枪机器人焊接' },
-      { src: '/assets/images/production/welding/激光切割机@2x.webp', alt: '激光切割机' },
+      { src: '/assets/images/production/welding/welding-workshop-panorama@2x.webp', alt: '焊接车间全景' },
+      { src: '/assets/images/production/welding/auto-tig-welding@2x.webp', alt: '全自动氩弧焊机焊接' },
+      { src: '/assets/images/production/welding/auto-robot-welding@2x.webp', alt: '全自动焊接机器人焊接' },
+      { src: '/assets/images/production/welding/dual-gun-robot-welding@2x.webp', alt: '双枪机器人焊接' },
+      { src: '/assets/images/production/welding/laser-cutting-machine@2x.webp', alt: '激光切割机' },
     ],
   },
   {
@@ -164,12 +164,12 @@ const productionWorkshops = [
     name: '精加工车间',
     desc: '马扎克四轴加工中心精密成型，喷丸处理保障表面质量，关键尺寸公差严格可控。',
     images: [
-      { src: '/assets/images/production/precision/精加工车间全景02@2x.webp', alt: '精加工车间全景' },
-      { src: '/assets/images/production/precision/精加工车间全景01@2x.webp', alt: '精加工车间全景' },
-      { src: '/assets/images/production/precision/精加工车间全景03@2x.webp', alt: '精加工车间全景' },
-      { src: '/assets/images/production/precision/喷丸加工中心@2x.webp', alt: '喷丸加工中心' },
-      { src: '/assets/images/production/precision/马扎克四轴加工中心@2x.webp', alt: '马扎克四轴加工中心' },
-      { src: '/assets/images/production/precision/马扎克精加工车间@2x.webp', alt: '马扎克精加工车间' },
+      { src: '/assets/images/production/precision/precision-workshop-02@2x.webp', alt: '精加工车间全景' },
+      { src: '/assets/images/production/precision/precision-workshop-01@2x.webp', alt: '精加工车间全景' },
+      { src: '/assets/images/production/precision/precision-workshop-03@2x.webp', alt: '精加工车间全景' },
+      { src: '/assets/images/production/precision/shot-peening-center@2x.webp', alt: '喷丸加工中心' },
+      { src: '/assets/images/production/precision/mazak-4axis-center@2x.webp', alt: '马扎克四轴加工中心' },
+      { src: '/assets/images/production/precision/mazak-precision-workshop@2x.webp', alt: '马扎克精加工车间' },
     ],
   },
   {
@@ -177,12 +177,12 @@ const productionWorkshops = [
     name: '装配调试车间',
     desc: '多类型大型设备整机装配与精密调试，每台出厂前经严格运行测试与工艺验证。',
     images: [
-      { src: '/assets/images/production/assembly/双螺杆制浆系统@2x.webp', alt: '双螺杆制浆系统' },
-      { src: '/assets/images/production/assembly/炉壳设备安装@2x.webp', alt: '炉壳设备安装' },
-      { src: '/assets/images/production/assembly/粉体下料设备装配@2x.webp', alt: '粉体下料设备装配' },
-      { src: '/assets/images/production/assembly/罐体设备安装@2x.webp', alt: '罐体设备安装' },
-      { src: '/assets/images/production/assembly/高效管线式制浆系统@2x.webp', alt: '高效管线式制浆系统' },
-      { src: '/assets/images/production/assembly/2300L双行星搅拌机装配@2x.webp', alt: '2300L双行星搅拌机装配' },
+      { src: '/assets/images/production/assembly/twin-screw-pulping-system@2x.webp', alt: '双螺杆制浆系统' },
+      { src: '/assets/images/production/assembly/furnace-shell-assembly@2x.webp', alt: '炉壳设备安装' },
+      { src: '/assets/images/production/assembly/powder-feeding-assembly@2x.webp', alt: '粉体下料设备装配' },
+      { src: '/assets/images/production/assembly/tank-assembly@2x.webp', alt: '罐体设备安装' },
+      { src: '/assets/images/production/assembly/pipeline-pulping-system@2x.webp', alt: '高效管线式制浆系统' },
+      { src: '/assets/images/production/assembly/2300L-planetary-mixer-assembly@2x.webp', alt: '2300L双行星搅拌机装配' },
     ],
   },
 ]

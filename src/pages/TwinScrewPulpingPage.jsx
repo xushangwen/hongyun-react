@@ -374,7 +374,7 @@ const edsData = [
   {
     title: '谱图1',
     condition: '52%-500kg/h-750rpm',
-    imgKey: '极片电镜及EDS能谱-01.webp',
+    imgKey: 'electrode-sem-eds-01.webp',
     elements: [
       { element: 'C',  type: 'EDS', wt: '96.17', sigma: '0.14' },
       { element: 'O',  type: 'EDS', wt: '3.83',  sigma: '0.14' },
@@ -384,7 +384,7 @@ const edsData = [
   {
     title: '谱图2',
     condition: '54%-400kg/h-750rpm',
-    imgKey: '极片电镜及EDS能谱-02.webp',
+    imgKey: 'electrode-sem-eds-02.webp',
     elements: [
       { element: 'C',  type: 'EDS', wt: '97.75', sigma: '0.11' },
       { element: 'O',  type: 'EDS', wt: '2.25',  sigma: '0.11' },
@@ -394,7 +394,7 @@ const edsData = [
   {
     title: '谱图3',
     condition: '56%-300kg/h-750rpm',
-    imgKey: '极片电镜及EDS能谱-03.webp',
+    imgKey: 'electrode-sem-eds-03.webp',
     elements: [
       { element: 'C',  type: 'EDS', wt: '100.00', sigma: '—' },
       { element: 'Cu', type: 'EDS', wt: '0.00',   sigma: '0.00' },
@@ -523,10 +523,10 @@ export default function TwinScrewPulpingPage() {
                   <div className="cp-chart-card">
                     <div className="tsp-card-dual-imgs">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/流变数据-01.webp`} alt="流变数据 01" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/rheology-data-01.webp`} alt="流变数据 01" className="cp-chart-img" loading="lazy" />
                       </div>
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/流变数据-02.webp`} alt="流变数据 02" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/rheology-data-02.webp`} alt="流变数据 02" className="cp-chart-img" loading="lazy" />
                       </div>
                     </div>
                     <p className="cp-chart-caption">剪切变稀，非牛顿流体特性，具备较好的流动和流平性，利于后工序涂布；</p>
@@ -534,10 +534,10 @@ export default function TwinScrewPulpingPage() {
                   <div className="cp-chart-card">
                     <div className="tsp-card-dual-imgs">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/流变数据-03.webp`} alt="流变数据 03" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/rheology-data-03.webp`} alt="流变数据 03" className="cp-chart-img" loading="lazy" />
                       </div>
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/流变数据-04.webp`} alt="流变数据 04" className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/rheology-data-04.webp`} alt="流变数据 04" className="cp-chart-img" loading="lazy" />
                       </div>
                     </div>
                     <p className="cp-chart-caption">浆料具备一定的触变恢复性，不同产能条件下相同时间内恢复率相当。</p>
@@ -551,13 +551,13 @@ export default function TwinScrewPulpingPage() {
                 <div className="tsp-charts-grid-2">
                   <div className="cp-chart-card">
                     <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/稳定性-01.webp`} alt="稳定性测试 58%-700kg/h" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/stability-01.webp`} alt="稳定性测试 58%-700kg/h" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">58%-700kg/h — 测试过程中未发现光强显著变化，浆料保持较好稳定性，无沉降，无颗粒团聚现象。</p>
                   </div>
                   <div className="cp-chart-card">
                     <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/稳定性-02.webp`} alt="稳定性测试 59%-400kg/h" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/stability-02.webp`} alt="稳定性测试 59%-400kg/h" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">59%-400kg/h — 测试过程中未发现光强显著变化，浆料保持较好稳定性，无沉降，无颗粒团聚现象。</p>
                   </div>
@@ -571,7 +571,7 @@ export default function TwinScrewPulpingPage() {
                 <div className="tsp-summary-row">
                   <div className="cp-chart-card tsp-summary-img">
                     <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/稳定性-03.webp`} alt="稳定性汇总图表" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/stability-03.webp`} alt="稳定性汇总图表" className="cp-chart-img" loading="lazy" />
                     </div>
                   </div>
                   <p className="tsp-summary-desc">
@@ -591,13 +591,13 @@ export default function TwinScrewPulpingPage() {
                 <div className="tsp-charts-grid-2">
                   <div className="cp-chart-card">
                     <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/浆料流变性-01.webp`} alt="浆料流变性 01" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/slurry-rheology-01.webp`} alt="浆料流变性 01" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">不同产能条件下浆料随剪切速率增大呈现粘度降低趋势，过程无剪切突变，浆料具备一定的流平特性，满足涂布工艺需求；</p>
                   </div>
                   <div className="cp-chart-card">
                     <div className="cp-chart-img-wrap">
-                      <img src={`${IMG}/浆料流变性-02.webp`} alt="浆料流变性 02" className="cp-chart-img" loading="lazy" />
+                      <img src={`${IMG}/slurry-rheology-02.webp`} alt="浆料流变性 02" className="cp-chart-img" loading="lazy" />
                     </div>
                     <p className="cp-chart-caption">所有浆料都具备一定的触变特性；52%-500kg/h 与 54%-400kg/h 粘度恢复率无显著差异，56%-300kg/h 触变恢复率相对偏低。</p>
                   </div>
@@ -608,10 +608,14 @@ export default function TwinScrewPulpingPage() {
               <div className="cp-verify-subsection">
                 <h4 className="cp-verify-sub-title">负极工艺验证数据——浆料稳定性分析</h4>
                 <div className="tsp-charts-grid-3">
-                  {['浆料稳定性分析-01', '浆料稳定性分析-02', '浆料稳定性分析-03'].map((key) => (
+                  {[
+                    { key: 'slurry-stability-analysis-01', label: '浆料稳定性分析 01' },
+                    { key: 'slurry-stability-analysis-02', label: '浆料稳定性分析 02' },
+                    { key: 'slurry-stability-analysis-03', label: '浆料稳定性分析 03' },
+                  ].map(({ key, label }) => (
                     <div key={key} className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/${key}.webp`} alt={key} className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/${key}.webp`} alt={label} className="cp-chart-img" loading="lazy" />
                       </div>
                     </div>
                   ))}
@@ -619,10 +623,13 @@ export default function TwinScrewPulpingPage() {
                 <p className="tsp-desc-para">沉降层面：三种浆料在测试过程中均未发现光强显著变化现象，浆料均保持较好的稳定性；颗粒团聚：光强曲线未发生显著偏移，表明浆料测试过程未发生颗粒团聚现象。</p>
 
                 <div className="tsp-charts-grid-2 tsp-mt-16">
-                  {['浆料稳定性分析-04', '浆料稳定性分析-05'].map((key) => (
+                  {[
+                    { key: 'slurry-stability-analysis-04', label: '浆料稳定性分析 04' },
+                    { key: 'slurry-stability-analysis-05', label: '浆料稳定性分析 05' },
+                  ].map(({ key, label }) => (
                     <div key={key} className="cp-chart-card">
                       <div className="cp-chart-img-wrap">
-                        <img src={`${IMG}/${key}.webp`} alt={key} className="cp-chart-img" loading="lazy" />
+                        <img src={`${IMG}/${key}.webp`} alt={label} className="cp-chart-img" loading="lazy" />
                       </div>
                     </div>
                   ))}

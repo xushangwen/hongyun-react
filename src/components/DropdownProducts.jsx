@@ -10,7 +10,7 @@ import { productCategories } from '../data/productCategories'
 /* 每个一级行业对应的预览图：取自"行业解决方案"该行业下第一张卡片图 */
 const PREVIEW_IMG = {
   'new-energy': '/assets/images/solutions/pd-pulping/system.webp',
-  'solid-state-battery': '/assets/images/solutions/dry-powder-mixer/干法电极系统-01.webp',
+  'solid-state-battery': '/assets/images/solutions/dry-powder-mixer/dry-electrode-system-01.webp',
   'chemical': '/assets/images/solutions/chemical/main-product.webp',
 }
 

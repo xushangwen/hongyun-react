@@ -233,7 +233,7 @@ export default function DryPowderMixerPage() {
               </div>
               <div style={{ width: '100%' }}>
                 <img
-                  src={`${IMG}/干法电极系统-01.webp`}
+                  src={`${IMG}/dry-electrode-system-01.webp`}
                   alt="干法电极成套设备解决方案"
                   style={{ display: 'block', width: '100%', height: 'auto' }}
                   loading="eager"
