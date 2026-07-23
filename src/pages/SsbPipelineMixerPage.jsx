@@ -44,20 +44,12 @@ export default function SsbPipelineMixerPage() {
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">管线式混合机</h2>
-                <p className="cp-core-device-tbd fade-up fade-up-delay-2">产品介绍内容待补充</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ===== 三视图 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Three Views</p>
-            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
-          </div>
-        </section>
+        {/* ===== 三视图：内容待提供，板块先隐藏 ===== */}
 
         <TechInquirySection />
       </div>

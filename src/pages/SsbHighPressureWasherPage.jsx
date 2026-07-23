@@ -55,14 +55,7 @@ export default function SsbHighPressureWasherPage() {
           </div>
         </section>
 
-        {/* ===== 三视图 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Three Views</p>
-            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>
-          </div>
-        </section>
+        {/* ===== 三视图：内容待提供，板块先隐藏 ===== */}
 
         <TechInquirySection />
       </div>

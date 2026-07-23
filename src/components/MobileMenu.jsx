@@ -16,7 +16,6 @@ import { IconCarBatteryOutline24 } from 'nucleo-core-outline-24'
 import { IconBatteryChargingOutline24 } from 'nucleo-core-outline-24'
 import { IconFlaskOutline24 } from 'nucleo-core-outline-24'
 import { IconTestTubeOutline24 } from 'nucleo-core-outline-24'
-import { IconFireFlameOutline24 } from 'nucleo-core-outline-24'
 import { IconCutleryOutline24 } from 'nucleo-core-outline-24'
 import { IconMedicineOutline24 } from 'nucleo-core-outline-24'
 import { IconSoapDispenserOutline24 } from 'nucleo-core-outline-24'
@@ -47,7 +46,6 @@ const menuData = [
       { Icon: IconBatteryChargingOutline24,   label: '固态电池', href: '/solutions#solid-state-battery' },
       { Icon: IconFlaskOutline24,           label: '化工',     href: '/solutions#chemical' },
       { Icon: IconTestTubeOutline24,        label: '制胶',     href: '/solutions#adhesive' },
-      { Icon: IconFireFlameOutline24,       label: '火工药剂', href: '/solutions#pyrotechnics' },
       { Icon: IconCutleryOutline24,         label: '食品',     href: '/solutions#food' },
       { Icon: IconMedicineOutline24,        label: '医药',     href: '/solutions#pharma' },
       { Icon: IconSoapDispenserOutline24,   label: '化妆品',   href: '/solutions#cosmetics' },

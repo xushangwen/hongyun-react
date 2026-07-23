@@ -115,7 +115,7 @@ const PREVIEW_IMG = {
 }
 
 /* 与 SolutionsPage 保持一致：仅展示这些行业，其余暂不对外 */
-const VISIBLE_INDUSTRY_IDS = ['new-energy', 'solid-state-battery', 'chemical', 'pyrotechnics']
+const VISIBLE_INDUSTRY_IDS = ['new-energy', 'solid-state-battery', 'chemical']
 const visibleCategories = solutionCategories.filter((cat) => VISIBLE_INDUSTRY_IDS.includes(cat.id))
 
 export default function DropdownSolutions({ active, onClose, cancelClose, scheduleClose }) {

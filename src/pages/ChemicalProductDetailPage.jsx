@@ -74,22 +74,21 @@ export default function ChemicalProductDetailPage() {
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">{product.name}</h2>
-                <p className="cp-core-device-tbd fade-up fade-up-delay-2">产品介绍内容待提供</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ===== 三视图 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Three Views</p>
-            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
-            {product.views
-              ? <ProductThreeView views={product.views} />
-              : <p className="cp-core-device-tbd fade-up fade-up-delay-1">三视图内容待提供</p>}
-          </div>
-        </section>
+        {/* ===== 三视图：无 views 数据时内容待提供，板块先隐藏 ===== */}
+        {product.views && (
+          <section className="page-section page-section--gray">
+            <div className="page-container">
+              <p className="section-en-label fade-up">Three Views</p>
+              <h2 className="section-heading section-heading--center fade-up">三视图</h2>
+              <ProductThreeView views={product.views} />
+            </div>
+          </section>
+        )}
 
         {/* ===== 技术咨询 ===== */}
         <TechInquirySection />

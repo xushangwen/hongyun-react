@@ -109,7 +109,7 @@ const industries = [
 ]
 
 /* 当前对外展示的行业；其余行业内容已就绪但暂不展示，把 id 加回此白名单即可恢复 */
-const VISIBLE_INDUSTRY_IDS = ['new-energy', 'solid-state-battery', 'chemical', 'pyrotechnics']
+const VISIBLE_INDUSTRY_IDS = ['new-energy', 'solid-state-battery', 'chemical']
 const visibleIndustries = industries.filter((ind) => VISIBLE_INDUSTRY_IDS.includes(ind.id))
 
 export default function SolutionsPage() {
