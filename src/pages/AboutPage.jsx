@@ -677,14 +677,14 @@ function AboutStickyNav() {
     <div className="page-sticky-nav">
       <div className="page-container">
         <nav className="solutions-nav">
-          {aboutNavItems.map(({ id, label, Icon }) => (
+          {aboutNavItems.map((item) => (
             <a
-              key={id}
-              href={`#${id}`}
-              className={`solutions-nav-item${activeNavId === id ? ' active' : ''}`}
+              key={item.id}
+              href={`#${item.id}`}
+              className={`solutions-nav-item${activeNavId === item.id ? ' active' : ''}`}
             >
-              <Icon size={14} />
-              {label}
+              <item.Icon size={14} />
+              {item.label}
             </a>
           ))}
         </nav>
@@ -733,11 +733,6 @@ export default function AboutPage() {
     observer.observe(firstRef)
     return () => observer.disconnect()
   }, [])
-
-  /* 生产实力统计 */
-  const [count50000, ref50000] = useCountUp(50000)
-  const [count300, ref300] = useCountUp(300)
-  const [count1000, ref1000] = useCountUp(1000)
 
   /* 研发实力统计 */
   const [rndCount15, rndRef15] = useCountUp(5.6, 1200, 1)

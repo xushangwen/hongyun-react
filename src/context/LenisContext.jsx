@@ -1,17 +1,19 @@
-import { createContext, useContext, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import { LenisContext } from './lenisContextValue'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const LenisContext = createContext(null)
-
 export function LenisProvider({ children }) {
   const lenisRef = useRef(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   // 初始化 Lenis
   useEffect(() => {
+    if (reducedMotion) return undefined
     // 禁用浏览器自带滚动恢复，避免与 Lenis 手动控制产生竞争
     history.scrollRestoration = 'manual'
 
@@ -53,7 +55,7 @@ export function LenisProvider({ children }) {
       lenis.destroy()
       lenisRef.current = null
     }
-  }, [])
+  }, [reducedMotion])
 
   // 全局拦截同页 hash 链接点击，阻止浏览器原生瞬间跳转，改由 Lenis 平滑滚动
   useEffect(() => {
@@ -77,7 +79,11 @@ export function LenisProvider({ children }) {
       const stickyNavHeight = stickyNav ? stickyNav.getBoundingClientRect().height : 0
       const offset = -(headerHeight + stickyNavHeight + 8)
 
-      lenisRef.current?.scrollTo(target, { offset })
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(target, { offset })
+      } else {
+        target.scrollIntoView()
+      }
 
       // 更新 URL hash，不触发原生滚动
       window.history.pushState(null, '', hash)
@@ -92,8 +98,4 @@ export function LenisProvider({ children }) {
       {children}
     </LenisContext.Provider>
   )
-}
-
-export function useLenisInstance() {
-  return useContext(LenisContext)
 }

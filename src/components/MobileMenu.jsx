@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IconChevronRightOutline24 } from 'nucleo-core-outline-24'
 import { IconChevronLeftOutline24 } from 'nucleo-core-outline-24'
@@ -21,6 +21,7 @@ import { IconMedicineOutline24 } from 'nucleo-core-outline-24'
 import { IconSoapDispenserOutline24 } from 'nucleo-core-outline-24'
 import { IconMicrochipOutline24 } from 'nucleo-core-outline-24'
 import { IconPhoneOutline24 } from 'nucleo-core-outline-24'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 
 const menuData = [
   {
@@ -70,11 +71,33 @@ const menuData = [
 
 export default function MobileMenu({ isOpen, onClose }) {
   const [activeSubmenu, setActiveSubmenu] = useState(null)
+  const menuRef = useRef(null)
+  useFocusTrap(menuRef, isOpen)
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setActiveSubmenu(null)
     onClose()
-  }
+  }, [onClose])
+
+  useEffect(() => {
+    if (!isOpen) return undefined
+    document.body.style.overflow = 'hidden'
+    const siblings = [...(menuRef.current?.parentElement?.children || [])]
+      .filter((element) => element !== menuRef.current && !element.classList.contains('mobile-menu-overlay'))
+    const header = menuRef.current?.closest('header')
+    const pageSiblings = [...(header?.parentElement?.children || [])]
+      .filter((element) => element !== header)
+    siblings.forEach((element) => { element.inert = true })
+    pageSiblings.forEach((element) => { element.inert = true })
+    const handleEscape = (event) => event.key === 'Escape' && handleClose()
+    document.addEventListener('keydown', handleEscape)
+    return () => {
+      document.body.style.overflow = ''
+      siblings.forEach((element) => { element.inert = false })
+      pageSiblings.forEach((element) => { element.inert = false })
+      document.removeEventListener('keydown', handleEscape)
+    }
+  }, [handleClose, isOpen])
 
   const handleBack = () => {
     setActiveSubmenu(null)
@@ -89,7 +112,15 @@ export default function MobileMenu({ isOpen, onClose }) {
         onClick={handleClose}
       />
 
-      <div className={`mobile-menu${isOpen ? ' active' : ''}`}>
+      <div
+        className={`mobile-menu${isOpen ? ' active' : ''}`}
+        ref={menuRef}
+        role="dialog"
+        aria-modal={isOpen ? 'true' : undefined}
+        aria-label="移动端导航"
+        aria-hidden={!isOpen}
+        inert={!isOpen}
+      >
         {/* 顶栏 */}
         <div className="mobile-menu-header">
           {activeSubmenu !== null ? (
@@ -108,7 +139,11 @@ export default function MobileMenu({ isOpen, onClose }) {
         {/* 菜单内容区 */}
         <div className="mobile-menu-body">
           {/* 一级菜单 */}
-          <nav className={`mobile-menu-panel${activeSubmenu === null ? ' active' : ''}`}>
+          <nav
+            className={`mobile-menu-panel${activeSubmenu === null ? ' active' : ''}`}
+            aria-hidden={activeSubmenu !== null}
+            inert={activeSubmenu !== null}
+          >
             <ul className="mobile-menu-list">
               {menuData.map((item, index) => (
                 <li key={item.label} className="mobile-menu-item">
@@ -142,6 +177,8 @@ export default function MobileMenu({ isOpen, onClose }) {
               <nav
                 key={item.label}
                 className={`mobile-menu-panel${activeSubmenu === index ? ' active' : ''}`}
+                aria-hidden={activeSubmenu !== index}
+                inert={activeSubmenu !== index}
               >
                 <ul className="mobile-menu-list">
                   {item.children.map((child) => (

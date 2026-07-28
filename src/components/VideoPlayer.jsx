@@ -12,6 +12,7 @@ export default function VideoPlayer({
     loading: false,
     buffering: false,
     progress: 0,
+    currentTime: 0,
     duration: 0,
     showCover: true,
   })
@@ -42,7 +43,11 @@ export default function VideoPlayer({
   const handleTimeUpdate = useCallback(() => {
     const video = videoRef.current
     if (!video || !video.duration) return
-    setState((s) => ({ ...s, progress: (video.currentTime / video.duration) * 100 }))
+    setState((s) => ({
+      ...s,
+      currentTime: video.currentTime,
+      progress: (video.currentTime / video.duration) * 100,
+    }))
   }, [])
 
   const handleLoadedMetadata = useCallback(() => {
@@ -52,7 +57,7 @@ export default function VideoPlayer({
   }, [])
 
   const handleEnded = useCallback(() => {
-    setState((s) => ({ ...s, playing: false, showCover: true, progress: 0 }))
+    setState((s) => ({ ...s, playing: false, showCover: true, progress: 0, currentTime: 0 }))
     if (videoRef.current) videoRef.current.currentTime = 0
   }, [])
 
@@ -79,8 +84,6 @@ export default function VideoPlayer({
     const sec = Math.floor(s % 60)
     return `${m}:${sec.toString().padStart(2, '0')}`
   }
-
-  const currentTime = videoRef.current ? videoRef.current.currentTime : 0
 
   return (
     <div className="vp-wrap">
@@ -136,9 +139,27 @@ export default function VideoPlayer({
             )}
           </button>
 
-          <span className="vp-time">{fmt(currentTime)}</span>
+          <span className="vp-time">{fmt(state.currentTime)}</span>
 
-          <div className="vp-progress" onClick={handleSeek} role="slider" aria-label="播放进度">
+          <div
+            className="vp-progress"
+            onClick={handleSeek}
+            role="slider"
+            tabIndex={0}
+            aria-label="播放进度"
+            aria-valuemin={0}
+            aria-valuemax={Math.round(state.duration)}
+            aria-valuenow={Math.round(state.currentTime)}
+            onKeyDown={(event) => {
+              const video = videoRef.current
+              if (!video) return
+              if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                event.preventDefault()
+                const delta = event.key === 'ArrowLeft' ? -5 : 5
+                video.currentTime = Math.max(0, Math.min(video.duration, video.currentTime + delta))
+              }
+            }}
+          >
             <div className="vp-progress-track">
               <div className="vp-progress-fill" style={{ width: `${state.progress}%` }} />
               <div className="vp-progress-thumb" style={{ left: `${state.progress}%` }} />

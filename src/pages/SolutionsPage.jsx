@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {
   IconArrowRightOutline24,
   IconCarBatteryOutline24,
@@ -19,7 +19,7 @@ import solutionsHeroImg from '../assets/img/IMG_4366.webp'
 import prdSysImg from '../assets/img/prd-sys.webp'
 import ctaBgImg from '../assets/img/IMG_4292.webp'
 
-/* ========== 行业数据 [AI生成描述] ========== */
+/* ========== 行业数据 ========== */
 const industries = [
   {
     id: 'new-energy',
@@ -113,21 +113,17 @@ const VISIBLE_INDUSTRY_IDS = ['new-energy', 'solid-state-battery', 'chemical']
 const visibleIndustries = industries.filter((ind) => VISIBLE_INDUSTRY_IDS.includes(ind.id))
 
 export default function SolutionsPage() {
-  /* 初始选中行业：优先取 URL hash，否则第一个可见行业 */
-  const hashId = typeof window !== 'undefined' ? window.location.hash.replace('#', '') : ''
-  const initialId = visibleIndustries.some((i) => i.id === hashId) ? hashId : visibleIndustries[0]?.id
-  const [activeId, setActiveId] = useState(initialId)
+  const location = useLocation()
+  const navigate = useNavigate()
+  const hashId = location.hash.replace('#', '')
+  const activeId = visibleIndustries.some((i) => i.id === hashId)
+    ? hashId
+    : visibleIndustries[0]?.id
 
   const activeIndex = Math.max(0, visibleIndustries.findIndex((i) => i.id === activeId))
   const activeIndustry = visibleIndustries[activeIndex]
 
   /* 已在本页时，响应 Footer / 导航下拉的 #hash 链接切换 Tab */
-  const location = useLocation()
-  useEffect(() => {
-    const id = location.hash.replace('#', '')
-    if (id && visibleIndustries.some((i) => i.id === id)) setActiveId(id)
-  }, [location.hash])
-
   /* 切 Tab 后只渲染选中行业，新内容需重新触发 fade-up 动画 */
   useEffect(() => {
     const fadeObserver = new IntersectionObserver(
@@ -139,8 +135,7 @@ export default function SolutionsPage() {
   }, [activeId])
 
   const handleTab = (id) => {
-    setActiveId(id)
-    if (typeof window !== 'undefined') window.history.replaceState(null, '', `#${id}`)
+    navigate({ pathname: location.pathname, hash: id }, { replace: true })
   }
 
   return (

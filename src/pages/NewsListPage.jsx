@@ -29,10 +29,6 @@ export default function NewsListPage() {
   const pageNews = filtered.slice(0, displayCount)
   const hasMore = displayCount < filtered.length
 
-  useEffect(() => {
-    setDisplayCount(PAGE_SIZE)
-  }, [activeCategory])
-
   const loadMore = () => {
     setDisplayCount(prev => Math.min(prev + PAGE_SIZE, filtered.length))
   }
@@ -66,7 +62,10 @@ export default function NewsListPage() {
                 <button
                   key={cat}
                   className={`news-filter-btn${activeCategory === cat ? ' active' : ''}`}
-                  onClick={() => setActiveCategory(cat)}
+                  onClick={() => {
+                    setActiveCategory(cat)
+                    setDisplayCount(PAGE_SIZE)
+                  }}
                 >
                   {cat}
                 </button>

@@ -85,7 +85,7 @@ export default function StrengthSection() {
       <div className="cert-scroll-track">
         {images.map((img, i) => (
           <div className="cert-item" key={i}>
-            <img src={img} alt="证书" />
+            <img src={img} alt="证书" loading="lazy" />
           </div>
         ))}
       </div>
@@ -131,7 +131,7 @@ export default function StrengthSection() {
           <div className="strength-certs">
             {certifications.map((cert, index) => (
               <div className="strength-cert" key={index}>
-                <img src={cert.img} alt={cert.label} />
+                <img src={cert.img} alt={cert.label} loading="lazy" />
                 <span>{cert.label}</span>
               </div>
             ))}

@@ -11,7 +11,7 @@ function PartnerItem({ partner, category }) {
         {partner.textOnly ? (
           <span className="partner-logo-text">{partner.name}</span>
         ) : (
-          <img src={partner.logo} alt={partner.alt || partner.name} />
+          <img src={partner.logo} alt={partner.alt || partner.name} loading="lazy" />
         )}
       </div>
       <div className="partner-info">

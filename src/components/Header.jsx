@@ -49,31 +49,39 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
               className={`nav-item has-dropdown${activeDropdown === 'about' ? ' active' : ''}`}
               onMouseEnter={() => handleNavEnter('about')}
               onMouseLeave={handleNavLeave}
+              onFocus={() => handleNavEnter('about')}
+              onKeyDown={(event) => event.key === 'Escape' && closeDropdown()}
             >
-              <Link to="/about" className="nav-link">关于红运</Link>
+              <Link to="/about" className="nav-link" onClick={closeDropdown}>关于红运</Link>
             </li>
             <li
               className={`nav-item has-dropdown${activeDropdown === 'solutions' ? ' active' : ''}`}
               id="navSolutions"
               onMouseEnter={() => handleNavEnter('solutions')}
               onMouseLeave={handleNavLeave}
+              onFocus={() => handleNavEnter('solutions')}
+              onKeyDown={(event) => event.key === 'Escape' && closeDropdown()}
             >
-              <Link to="/solutions" className="nav-link">行业解决方案</Link>
+              <Link to="/solutions" className="nav-link" onClick={closeDropdown}>行业解决方案</Link>
             </li>
             <li
               className={`nav-item has-dropdown${activeDropdown === 'products' ? ' active' : ''}`}
               id="navProducts"
               onMouseEnter={() => handleNavEnter('products')}
               onMouseLeave={handleNavLeave}
+              onFocus={() => handleNavEnter('products')}
+              onKeyDown={(event) => event.key === 'Escape' && closeDropdown()}
             >
-              <Link to="/products/new-energy" className="nav-link">产品中心</Link>
+              <Link to="/products/new-energy" className="nav-link" onClick={closeDropdown}>产品中心</Link>
             </li>
             <li
               className={`nav-item has-dropdown${activeDropdown === 'contact' ? ' active' : ''}`}
               onMouseEnter={() => handleNavEnter('contact')}
               onMouseLeave={handleNavLeave}
+              onFocus={() => handleNavEnter('contact')}
+              onKeyDown={(event) => event.key === 'Escape' && closeDropdown()}
             >
-              <Link to="/contact" className="nav-link">联系我们</Link>
+              <Link to="/contact" className="nav-link" onClick={closeDropdown}>联系我们</Link>
             </li>
           </ul>
         </nav>

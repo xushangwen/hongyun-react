@@ -8,7 +8,7 @@ import ImagePlaceholder from '../components/ImagePlaceholder'
 import ctaBgImg from '../assets/img/learn-more.webp'
 import productHeroImg from '../assets/img/industry-products.webp'
 
-/* ========== 产品数据映射 [AI生成描述] ========== */
+/* ========== 产品数据映射 ========== */
 const productMap = {
   'new-energy': {
     name: '新能源行业',

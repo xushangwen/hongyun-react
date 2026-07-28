@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import { getCompanyYears } from '../utils/companyYears'
+import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
 const slides = [
   {
@@ -27,6 +28,7 @@ const slides = [
 const SLIDE_DURATION = 6000
 
 export default function HeroCarousel() {
+  const reducedMotion = usePrefersReducedMotion()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [textFading, setTextFading] = useState(false)
   const [displayText, setDisplayText] = useState({ title: slides[0].title, desc: slides[0].desc, link: slides[0].link })
@@ -37,19 +39,20 @@ export default function HeroCarousel() {
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current)
+    if (reducedMotion) return
     timerRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length)
     }, SLIDE_DURATION)
-  }, [])
+  }, [reducedMotion])
 
   // 初始化自动播放
   useEffect(() => {
-    if (progressRef.current[0]) {
+    if (progressRef.current[0] && !reducedMotion) {
       progressRef.current[0].classList.add('active')
     }
     resetTimer()
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
-  }, [resetTimer])
+  }, [reducedMotion, resetTimer])
 
   // 当 currentIndex 变化时处理视频切换、文字动画、进度条
   useEffect(() => {
@@ -69,8 +72,8 @@ export default function HeroCarousel() {
     }
 
     // 文字淡出 → 更新内容 → 淡入
-    setTextFading(true)
-    setTimeout(() => {
+    const fadeOutId = requestAnimationFrame(() => setTextFading(true))
+    const textTimeoutId = setTimeout(() => {
       setDisplayText({ title: slides[currentIndex].title, desc: slides[currentIndex].desc, link: slides[currentIndex].link })
       setTextFading(false)
     }, 400)
@@ -87,6 +90,10 @@ export default function HeroCarousel() {
     }
 
     prevIndexRef.current = currentIndex
+    return () => {
+      cancelAnimationFrame(fadeOutId)
+      clearTimeout(textTimeoutId)
+    }
   }, [currentIndex])
 
   const handlePrev = useCallback(() => {
@@ -117,7 +124,8 @@ export default function HeroCarousel() {
               <video
                 ref={(el) => (videoRefs.current[index] = el)}
                 className="hero-video"
-                autoPlay={index === 0}
+                autoPlay={index === 0 && !reducedMotion}
+                preload={index === 0 ? 'metadata' : 'none'}
                 muted
                 loop
                 playsInline

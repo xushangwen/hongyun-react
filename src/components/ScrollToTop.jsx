@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
-import { useLenisInstance } from '../context/LenisContext'
+import { useLenisInstance } from '../hooks/useLenisInstance'
 
 // 每条历史条目的滚动位置，key = location.key（React Router 每个 history entry 唯一）
 const scrollPositions = new Map()

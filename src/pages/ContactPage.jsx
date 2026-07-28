@@ -25,6 +25,8 @@ import inquiryBrandPanelBg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@
 import talentBg01 from '../assets/img/talent-value-01.webp'
 import talentBg02 from '../assets/img/talent-value-02.webp'
 import talentBg03 from '../assets/img/talent-value-03.webp'
+import { submitInquiry, submitResume } from '../services/formsApi'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 
 /* ========== 联系方式数据 ========== */
 const contactCards = [
@@ -249,8 +251,11 @@ function ResumeUploadModal({ job, onClose }) {
   const [file, setFile] = useState(null)
   const [dragOver, setDragOver] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const inputRef = useRef(null)
+  const modalRef = useRef(null)
+  useFocusTrap(modalRef, true)
 
   const validateFile = useCallback((f) => {
     if (!f) return ''
@@ -274,10 +279,20 @@ function ResumeUploadModal({ job, onClose }) {
     if (f) handleFile(f)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    if (submitting) return
     if (!file) { setError('请先上传简历文件'); return }
-    setSubmitted(true)
+    setSubmitting(true)
+    setError('')
+    try {
+      await submitResume({ file, position: job.title })
+      setSubmitted(true)
+    } catch (submitError) {
+      setError(submitError.message)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   useEffect(() => {
@@ -292,7 +307,7 @@ function ResumeUploadModal({ job, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="modal-panel job-modal" role="dialog" aria-modal="true">
+      <div ref={modalRef} className="modal-panel job-modal" role="dialog" aria-modal="true" aria-labelledby="job-modal-title">
         <button className="modal-close-btn" onClick={onClose} aria-label="关闭">
           <IconXmarkOutline24 size={20} />
         </button>
@@ -301,7 +316,7 @@ function ResumeUploadModal({ job, onClose }) {
         <div className="job-modal-content">
           <div className="job-modal-header">
             <div>
-              <h2 className="job-modal-title">{job.title}</h2>
+              <h2 className="job-modal-title" id="job-modal-title">{job.title}</h2>
               <div className="job-modal-meta">
                 <span>{job.dept}</span>
                 <span>·</span>
@@ -393,7 +408,7 @@ function ResumeUploadModal({ job, onClose }) {
 
             <div className="resume-upload-actions">
               <button type="button" className="btn-outline" onClick={onClose}>取消</button>
-              <button type="submit" className="btn-primary">
+              <button type="submit" className="btn-primary" disabled={submitting}>
                 提交简历
                 <IconArrowRightOutline24 size={16} />
               </button>
@@ -411,6 +426,7 @@ function ResumeSubmitSection() {
   const [file, setFile] = useState(null)
   const [dragOver, setDragOver] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
   const inputRef = useRef(null)
 
@@ -438,10 +454,20 @@ function ResumeSubmitSection() {
     if (f) handleFile(f)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    if (submitting) return
     if (!file) { setError('请先上传简历文件'); return }
-    setSubmitted(true)
+    setSubmitting(true)
+    setError('')
+    try {
+      await submitResume({ file, ...formData })
+      setSubmitted(true)
+    } catch (submitError) {
+      setError(submitError.message)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -534,7 +560,7 @@ function ResumeSubmitSection() {
           </div>
         </div>
         {error && <p className="resume-error">{error}</p>}
-        <button type="submit" className="btn-primary">
+        <button type="submit" className="btn-primary" disabled={submitting}>
           提交申请
           <IconArrowRightOutline24 size={18} />
         </button>
@@ -549,12 +575,24 @@ function InquiryTab() {
     name: '', phone: '', company: '', email: '', industry: '', needs: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    if (submitting) return
+    setSubmitting(true)
+    setError('')
+    try {
+      await submitInquiry(formData, 'contact-page')
+      setSubmitted(true)
+    } catch (submitError) {
+      setError(submitError.message)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -621,7 +659,8 @@ function InquiryTab() {
           <label className="contact-form-label" htmlFor="contact-needs">需求描述 *</label>
           <textarea id="contact-needs" name="needs" className="contact-form-textarea" placeholder="请简要描述您的工艺需求、物料类型、产能要求等信息" rows={6} value={formData.needs} onChange={handleChange} required />
         </div>
-        <button type="submit" className="btn-primary">
+        {error && <p className="resume-error" role="alert">{error}</p>}
+        <button type="submit" className="btn-primary" disabled={submitting}>
           提交咨询
           <IconArrowRightOutline24 size={18} />
         </button>

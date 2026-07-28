@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
+import SeoManager from './components/SeoManager'
 import { LenisProvider } from './context/LenisContext'
 import HomePage from './pages/HomePage'
 
@@ -39,12 +40,14 @@ const NewsListPage = lazy(() => import('./pages/NewsListPage'))
 const NewsDetailPage = lazy(() => import('./pages/NewsDetailPage'))
 const ChemicalAutoProductionPage = lazy(() => import('./pages/ChemicalAutoProductionPage'))
 const ChemicalProductDetailPage = lazy(() => import('./pages/ChemicalProductDetailPage'))
+const SearchPage = lazy(() => import('./pages/SearchPage'))
 
 function App() {
   return (
     <BrowserRouter>
       <LenisProvider>
       <ScrollToTop />
+      <SeoManager />
       <Layout>
         <Suspense fallback={<div style={{ minHeight: '70vh' }} aria-busy="true" />}>
         <Routes>
@@ -85,6 +88,8 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/news" element={<NewsListPage />} />
           <Route path="/news/:id" element={<NewsDetailPage />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         </Suspense>
       </Layout>

@@ -30,6 +30,8 @@ export default function DropdownContact({ isActive, onMouseEnter, onMouseLeave }
   return (
     <div 
       className={`dropdown-contact${isActive ? ' active' : ''}`}
+      aria-hidden={!isActive}
+      inert={!isActive}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

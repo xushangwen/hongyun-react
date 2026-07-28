@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { IconArrowRightOutline24, IconCircleCheckOutline24 } from 'nucleo-core-outline-24'
 import inquiryBgImg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.webp'
+import { submitInquiry } from '../services/formsApi'
 
 const defaultIndustryOptions = [
   '新能源行业 / 锂电池', '固态电池', '化工行业 / 涂料', '制胶 / 密封胶',
@@ -12,9 +13,24 @@ export default function TechInquirySection({ industryOptions = defaultIndustryOp
     name: '', phone: '', company: '', email: '', industry: '', needs: '',
   })
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   const handleFormChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
-  const handleFormSubmit = (e) => { e.preventDefault(); setFormSubmitted(true) }
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    if (submitting) return
+    setSubmitting(true)
+    setError('')
+    try {
+      await submitInquiry(formData, 'technical-inquiry')
+      setFormSubmitted(true)
+    } catch (submitError) {
+      setError(submitError.message)
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <section className="page-section cp-inquiry-section">
@@ -91,7 +107,8 @@ export default function TechInquirySection({ industryOptions = defaultIndustryOp
                   rows={6} value={formData.needs} onChange={handleFormChange} required
                 />
               </div>
-              <button type="submit" className="btn-primary">
+              {error && <p className="resume-error" role="alert">{error}</p>}
+              <button type="submit" className="btn-primary" disabled={submitting}>
                 提交咨询
                 <IconArrowRightOutline24 size={18} />
               </button>

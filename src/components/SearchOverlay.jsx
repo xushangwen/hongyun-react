@@ -1,14 +1,24 @@
 import { useEffect, useRef } from 'react'
+import { useFocusTrap } from '../hooks/useFocusTrap'
 
 export default function SearchOverlay({ active, onClose }) {
   const inputRef = useRef(null)
+  const overlayRef = useRef(null)
+  useFocusTrap(overlayRef, active)
 
   useEffect(() => {
     if (active) {
       document.body.style.overflow = 'hidden'
+      const siblings = [...(overlayRef.current?.parentElement?.children || [])]
+        .filter((element) => element !== overlayRef.current)
+      siblings.forEach((element) => { element.inert = true })
       setTimeout(() => {
         inputRef.current?.focus()
       }, 100)
+      return () => {
+        siblings.forEach((element) => { element.inert = false })
+        document.body.style.overflow = ''
+      }
     } else {
       document.body.style.overflow = ''
     }
@@ -37,6 +47,12 @@ export default function SearchOverlay({ active, onClose }) {
     <div
       className={`search-overlay${active ? ' active' : ''}`}
       id="searchOverlay"
+      ref={overlayRef}
+      role="dialog"
+      aria-modal={active ? 'true' : undefined}
+      aria-label="站内搜索"
+      aria-hidden={!active}
+      inert={!active}
       onClick={handleOverlayClick}
     >
       <button className="search-close" aria-label="关闭搜索" onClick={onClose}>
@@ -45,7 +61,7 @@ export default function SearchOverlay({ active, onClose }) {
         </svg>
       </button>
       <div className="search-container">
-        <form className="search-input-wrapper" action="/search" method="get">
+        <form className="search-input-wrapper" action="/search" method="get" onSubmit={onClose}>
           <input
             ref={inputRef}
             type="text"

@@ -32,6 +32,8 @@ export default function DropdownAbout({ active, onClose, cancelClose, scheduleCl
     <div
       className={`dropdown-menu${active ? ' active' : ''}`}
       id="dropdownAbout"
+      aria-hidden={!active}
+      inert={!active}
       onMouseEnter={cancelClose}
       onMouseLeave={scheduleClose}
     >
