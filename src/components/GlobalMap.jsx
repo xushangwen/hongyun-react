@@ -139,7 +139,7 @@ function RegionTag({ x, y, label }) {
   )
 }
 
-export default function GlobalMap() {
+export default function GlobalMap({ locations: cmsLocations }) {
   const [hovered, setHovered] = useState(null)
   const containerRef = useRef(null)
   const [mapSize, setMapSize] = useState({
@@ -170,11 +170,22 @@ export default function GlobalMap() {
     return () => ro.disconnect()
   }, [])
 
+  const locations = useMemo(() => (
+    Array.isArray(cmsLocations) && cmsLocations.length
+      ? cmsLocations.map((item) => ({
+          label: item.name,
+          region: item.summary || 'global',
+          lng: Number(item.longitude),
+          lat: Number(item.latitude),
+        })).filter((item) => Number.isFinite(item.lng) && Number.isFinite(item.lat))
+      : countries
+  ), [cmsLocations])
+
   const { hqPoint, points, countryPaths, regionLabels } = useMemo(() => {
     const projection = createProjection(mapSize.width, mapSize.height)
     const pathGen = geoPath(projection)
     const hq = projection([HQ.lng, HQ.lat])
-    const pts = countries.map((c) => {
+    const pts = locations.map((c) => {
       const p = projection([c.lng, c.lat])
       return { ...c, sx: p?.[0], sy: p?.[1], arc: buildArcPath(hq, p) }
     })
@@ -190,7 +201,7 @@ export default function GlobalMap() {
       countryPaths: paths,
       regionLabels: labels,
     }
-  }, [mapSize.width, mapSize.height])
+  }, [locations, mapSize.width, mapSize.height])
 
   const [visibleCount, setVisibleCount] = useState(0)
   useEffect(() => {

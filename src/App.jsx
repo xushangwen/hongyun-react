@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
 import SeoManager from './components/SeoManager'
 import { LenisProvider } from './context/LenisContext'
+import CmsDetailProvider from './context/CmsDetailProvider'
 import HomePage from './pages/HomePage'
 
 // 路由级懒加载：首页随主包加载，其余页面按需拆分为独立 chunk，缩小首屏体积
@@ -45,6 +46,7 @@ const SearchPage = lazy(() => import('./pages/SearchPage'))
 function App() {
   return (
     <BrowserRouter>
+      <CmsDetailProvider>
       <LenisProvider>
       <ScrollToTop />
       <SeoManager />
@@ -94,6 +96,7 @@ function App() {
         </Suspense>
       </Layout>
       </LenisProvider>
+      </CmsDetailProvider>
     </BrowserRouter>
   )
 }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams, Navigate } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
@@ -6,12 +6,24 @@ import ParallaxCta from '../components/ParallaxCta'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import { productCategories, getCategoryById } from '../data/productCategories'
+import { getCmsProductCategories, mapCmsProductCategories } from '../services/cmsApi'
 import ctaBgImg from '../assets/img/IMG_4883.webp'
 import productsHeroImg from '../assets/img/IMG_4280.webp'
 
 export default function ProductCategoryPage() {
   const { categoryId } = useParams()
-  const category = getCategoryById(categoryId)
+  const [categories, setCategories] = useState(productCategories)
+  const category = categories.find((item) => item.id === categoryId) || getCategoryById(categoryId)
+
+  useEffect(() => {
+    const controller = new AbortController()
+    getCmsProductCategories(controller.signal)
+      .then((items) => setCategories(mapCmsProductCategories(items, productCategories)))
+      .catch((error) => {
+        if (error.name !== 'AbortError') console.warn('[CMS] 产品分类读取失败，继续使用本地内容')
+      })
+    return () => controller.abort()
+  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -20,7 +32,7 @@ export default function ProductCategoryPage() {
     )
     document.querySelectorAll('.section-heading, .fade-up').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  }, [categoryId])
+  }, [categoryId, categories])
 
   if (!category) return <Navigate to="/products" replace />
 
@@ -42,7 +54,7 @@ export default function ProductCategoryPage() {
         <div className="page-sticky-nav">
           <div className="page-container">
             <nav className="products-nav">
-              {productCategories.map((cat) => (
+              {categories.map((cat) => (
                 <Link
                   key={cat.id}
                   to={`/products/${cat.id}`}

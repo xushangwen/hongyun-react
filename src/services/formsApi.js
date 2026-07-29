@@ -44,6 +44,12 @@ async function request(path, options) {
 }
 
 export function submitInquiry(formData, source = 'website') {
+  const contextPath = globalThis.location?.pathname || '/contact'
+  const contextType = contextPath.startsWith('/products/')
+    ? 'product'
+    : contextPath.startsWith('/solutions/')
+      ? 'solution'
+      : 'page'
   return request('/api/cms/contact', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -54,7 +60,11 @@ export function submitInquiry(formData, source = 'website') {
       email: formData.email.trim(),
       industry: formData.industry,
       message: formData.needs.trim(),
-      source,
+      contextType,
+      contextDocumentId: formData.contentDocumentId || undefined,
+      contextPath,
+      referrer: globalThis.document?.referrer || '',
+      utm: { source },
       website: '',
     }),
   })

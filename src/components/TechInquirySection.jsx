@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import { IconArrowRightOutline24, IconCircleCheckOutline24 } from 'nucleo-core-outline-24'
 import inquiryBgImg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.webp'
 import { submitInquiry } from '../services/formsApi'
+import { useCmsDetail } from '../context/useCmsDetail'
 
 const defaultIndustryOptions = [
   '新能源行业 / 锂电池', '固态电池', '化工行业 / 涂料', '制胶 / 密封胶',
   '食品', '医药', '化妆品', '电子材料', '其他行业',
 ]
 
-export default function TechInquirySection({ industryOptions = defaultIndustryOptions }) {
+export default function TechInquirySection({ industryOptions = defaultIndustryOptions, contentDocumentId = '' }) {
+  const { detail } = useCmsDetail()
+  const resolvedDocumentId = contentDocumentId || detail?.documentId || ''
   const [formData, setFormData] = useState({
     name: '', phone: '', company: '', email: '', industry: '', needs: '',
   })
@@ -23,7 +26,7 @@ export default function TechInquirySection({ industryOptions = defaultIndustryOp
     setSubmitting(true)
     setError('')
     try {
-      await submitInquiry(formData, 'technical-inquiry')
+      await submitInquiry({ ...formData, contentDocumentId: resolvedDocumentId }, 'technical-inquiry')
       setFormSubmitted(true)
     } catch (submitError) {
       setError(submitError.message)

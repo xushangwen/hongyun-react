@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import { IconArrowLeftOutline24 } from 'nucleo-core-outline-24'
@@ -9,6 +9,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import ImageCarousel from '../components/ImageCarousel'
 import newsData from '../data/newsData'
+import { getCmsArticle } from '../services/cmsApi'
 import newsHeroImg from '../assets/img/IMG_4865-copy.webp'
 
 function ArticleBlock({ block, articleId }) {
@@ -28,7 +29,9 @@ function ArticleBlock({ block, articleId }) {
         <figure className="article-figure">
           {block.src ? (
             <img 
-              src={`/news-images/${articleId}/${block.src}`} 
+              src={block.absolute || block.src.startsWith('http') || block.src.startsWith('/')
+                ? block.src
+                : `/news-images/${articleId}/${block.src}`}
               alt={block.alt || ''} 
               className="article-image"
             />
@@ -58,17 +61,27 @@ export default function NewsDetailPage() {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  const article = newsData.find((n) => n.id === id)
-  const sortedNews = [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date))
-  const currentIndex = sortedNews.findIndex((n) => n.id === id)
-  const prevArticle = currentIndex > 0 ? sortedNews[currentIndex - 1] : null
-  const nextArticle = currentIndex < sortedNews.length - 1 ? sortedNews[currentIndex + 1] : null
-  const relatedArticles = sortedNews.filter((n) => n.id !== id && n.category === article?.category).slice(0, 3)
-  const fallbackRelated = sortedNews.filter((n) => n.id !== id).slice(0, 3)
+  const localArticle = useMemo(() => newsData.find((item) => item.id === id), [id])
+  const [remoteArticle, setRemoteArticle] = useState(null)
+  const article = remoteArticle?.id === id ? remoteArticle.value : localArticle
+  const sortedNews = useMemo(() => [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date)), [])
+  const currentIndex = sortedNews.findIndex((item) => item.id === id)
+  const prevArticle = article?.previous ?? (currentIndex > 0 ? sortedNews[currentIndex - 1] : null)
+  const nextArticle = article?.next ?? (currentIndex < sortedNews.length - 1 ? sortedNews[currentIndex + 1] : null)
+  const relatedArticles = article?.related?.length
+    ? article.related
+    : sortedNews.filter((item) => item.id !== id && item.category === article?.category).slice(0, 3)
+  const fallbackRelated = sortedNews.filter((item) => item.id !== id).slice(0, 3)
 
   useEffect(() => {
-    if (!article) navigate('/news', { replace: true })
-  }, [article, navigate])
+    const controller = new AbortController()
+    getCmsArticle(id, controller.signal)
+      .then((value) => setRemoteArticle({ id, value }))
+      .catch((error) => {
+        if (error.name !== 'AbortError' && !localArticle) navigate('/news', { replace: true })
+      })
+    return () => controller.abort()
+  }, [id, localArticle, navigate])
 
   if (!article) return null
 

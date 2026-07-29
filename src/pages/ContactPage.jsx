@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import {
   IconPhoneOutline24,
@@ -27,6 +27,7 @@ import talentBg02 from '../assets/img/talent-value-02.webp'
 import talentBg03 from '../assets/img/talent-value-03.webp'
 import { submitInquiry, submitResume } from '../services/formsApi'
 import { useFocusTrap } from '../hooks/useFocusTrap'
+import { useCmsDetail } from '../context/useCmsDetail'
 
 /* ========== 联系方式数据 ========== */
 const contactCards = [
@@ -243,6 +244,188 @@ const hrContact = {
   email: 'recruit@gzhy.cn',
 }
 
+const contactIconByKey = {
+  phone: IconPhoneOutline24,
+  address: IconMapPinOutline24,
+  email: IconEnvelopeContentOutline24,
+  time: IconTimer3Outline24,
+}
+
+const talentIconByKey = {
+  people: IconUserHeartOutline24,
+  learning: IconBooksOutline24,
+  collaboration: IconHandshakeOutline24,
+}
+
+const fallbackOffices = [
+  {
+    label: '常州基地',
+    name: '江苏红运智能装备有限公司',
+    address: '江苏省常州市武进高新区<br/>南湖西路8-8号',
+    longitude: 119.959147,
+    latitude: 31.617021,
+  },
+  {
+    label: '广州基地',
+    name: '广州红尚机械制造有限公司',
+    address: '广州市南沙区东涌镇<br/>同裕街40号',
+    longitude: 113.449059,
+    latitude: 22.843914,
+  },
+]
+
+const fallbackInquiryPanel = {
+  tagline: '专注混合工艺\n三十年技术积淀',
+  background: inquiryBrandPanelBg,
+  items: [
+    { label: '响应时效', value: '24小时内技术团队回复' },
+    { label: '服务热线', value: '400 915 3366' },
+    { label: '商务邮箱', value: 'hy@gzhy.cn' },
+  ],
+}
+
+const fallbackRecruitmentPanel = {
+  tagline: '加入红运\n共创装备制造未来',
+  background: brandPanelBg,
+  items: [
+    { label: '招聘邮箱', value: hrContact.email },
+    { label: '响应时效', value: '3 个工作日内回复' },
+    { label: '工作时间', value: '周一至周五 09:00 – 17:30' },
+  ],
+}
+
+function RichTextChildren({ children = [] }) {
+  return children.map((node, index) => {
+    const key = `${node.type || 'text'}-${index}`
+    if (node.type === 'link') {
+      return (
+        <a key={key} href={node.url} target={node.url?.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
+          <RichTextChildren children={node.children} />
+        </a>
+      )
+    }
+    if (node.type !== 'text') {
+      return <RichTextChildren key={key} children={node.children} />
+    }
+
+    let content = node.text
+    if (node.code) content = <code>{content}</code>
+    if (node.bold) content = <strong>{content}</strong>
+    if (node.italic) content = <em>{content}</em>
+    if (node.underline) content = <u>{content}</u>
+    if (node.strikethrough) content = <s>{content}</s>
+    return <span key={key}>{content}</span>
+  })
+}
+
+function JobRichText({ value }) {
+  if (!Array.isArray(value) || value.length === 0) return null
+  if (typeof value[0] === 'string') {
+    return (
+      <ul className="job-modal-list">
+        {value.map((item) => <li key={item}>{item}</li>)}
+      </ul>
+    )
+  }
+
+  const renderBlock = (block, index) => {
+    const key = `${block.type}-${index}`
+    if (block.type === 'list') {
+      const List = block.format === 'ordered' ? 'ol' : 'ul'
+      return (
+        <List className="job-modal-rich-list" key={key}>
+          {(block.children || []).map((item, itemIndex) => (
+            <li key={`${key}-${itemIndex}`}>
+              <RichTextChildren children={item.children} />
+            </li>
+          ))}
+        </List>
+      )
+    }
+    if (block.type === 'heading') {
+      const level = Math.min(Math.max(Number(block.level) || 4, 4), 6)
+      const Heading = `h${level}`
+      return <Heading key={key}><RichTextChildren children={block.children} /></Heading>
+    }
+    if (block.type === 'quote') {
+      return <blockquote key={key}><RichTextChildren children={block.children} /></blockquote>
+    }
+    return <p key={key}><RichTextChildren children={block.children} /></p>
+  }
+
+  return <div className="job-modal-richtext">{value.map(renderBlock)}</div>
+}
+
+function useContactContent() {
+  const { detail } = useCmsDetail()
+
+  return useMemo(() => {
+    const remoteJobs = detail?.jobListings?.map((job) => ({
+      id: job.legacyKey,
+      title: job.title,
+      dept: job.department,
+      location: job.location,
+      type: job.employmentType,
+      tag: job.tag,
+      responsibilities: job.responsibilities || [],
+      requirements: job.requirements || [],
+      salary: job.salary,
+      headcount: job.headcount,
+    }))
+    const remoteCards = detail?.contactCards?.map((card) => ({
+      ...card,
+      Icon: contactIconByKey[card.iconKey] || IconMessageBubbleUserOutline24,
+      items: (card.items || []).map((item) => ({
+        ...item,
+        isPhone: item.valueType === 'phone',
+        isEmail: item.valueType === 'email',
+      })),
+    }))
+    const remoteTalentValues = detail?.talentValues?.map((item) => ({
+      Icon: talentIconByKey[item.iconKey] || IconUserHeartOutline24,
+      title: item.title,
+      desc: item.description,
+      bg: item.image?.url,
+    }))
+    const panel = (remote, fallback) => ({
+      tagline: remote?.tagline || fallback.tagline,
+      background: remote?.background?.url || fallback.background,
+      items: remote?.items?.length ? remote.items : fallback.items,
+    })
+
+    return {
+      title: detail?.title || '联系我们',
+      subtitle: detail?.hero?.subtitle || '专业团队随时为您提供技术支持与商务咨询',
+      heroImage: detail?.hero?.desktopMedia?.url || contactHeroImg,
+      heroPosition: detail?.hero?.imagePosition === 'top'
+        ? 'center top'
+        : detail?.hero?.imagePosition === 'bottom'
+          ? 'center bottom'
+          : 'center 35%',
+      tabs: [
+        { key: 'inquiry', label: detail?.inquiryTabLabel || '技术咨询' },
+        { key: 'join', label: detail?.joinTabLabel || '加入我们' },
+        { key: 'info', label: detail?.infoTabLabel || '联系方式' },
+      ],
+      inquiryPanel: panel(detail?.inquiryPanel, fallbackInquiryPanel),
+      recruitmentPanel: panel(detail?.recruitmentPanel, fallbackRecruitmentPanel),
+      industryOptions: detail?.industryOptions?.length
+        ? detail.industryOptions.map((item) => item.label || item.value).filter(Boolean)
+        : industryOptions,
+      contactCards: remoteCards?.length ? remoteCards : contactCards,
+      offices: detail?.offices?.length ? detail.offices : fallbackOffices,
+      talentTitle: detail?.talentTitle || '人才理念',
+      talentDescription: detail?.talentDescription || '人才是红运机械最核心的竞争优势。我们广纳贤才、培育匠心，以开放包容的文化激发每位员工的无限潜能，共同书写高端装备制造的新篇章。',
+      talentValues: remoteTalentValues?.length ? remoteTalentValues : talentValues,
+      jobsTitle: detail?.jobsTitle || '开放职位',
+      jobsDescription: detail?.jobsDescription || '加入红运，与顶尖团队共同推动全球高端装备制造的技术革新。',
+      jobListings: remoteJobs?.length ? remoteJobs : jobListings,
+      resumeTitle: detail?.resumeTitle || '简历投递',
+      resumeDescription: detail?.resumeDescription || '填写以下信息直接提交您的申请，HR 团队将在 3 个工作日内与您联系。',
+    }
+  }, [detail])
+}
+
 /* ========== 简历上传弹窗 ========== */
 const ACCEPT_TYPES = '.pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png'
 const MAX_SIZE_MB = 10
@@ -297,11 +480,12 @@ function ResumeUploadModal({ job, onClose }) {
 
   useEffect(() => {
     const onKeyDown = (e) => { if (e.key === 'Escape') onClose() }
+    const previousBodyOverflow = document.body.style.overflow
     document.addEventListener('keydown', onKeyDown)
     document.body.style.overflow = 'hidden'
     return () => {
       document.removeEventListener('keydown', onKeyDown)
-      document.body.style.overflow = ''
+      document.body.style.overflow = previousBodyOverflow
     }
   }, [onClose])
 
@@ -331,20 +515,12 @@ function ResumeUploadModal({ job, onClose }) {
 
           <div className="job-modal-section">
             <h3 className="job-modal-section-title">岗位职责</h3>
-            <ul className="job-modal-list">
-              {job.responsibilities.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
+            <JobRichText value={job.responsibilities} />
           </div>
 
           <div className="job-modal-section">
             <h3 className="job-modal-section-title">任职要求</h3>
-            <ul className="job-modal-list">
-              {job.requirements.map((item, i) => (
-                <li key={i}>{item}</li>
-              ))}
-            </ul>
+            <JobRichText value={job.requirements} />
           </div>
         </div>
 
@@ -421,7 +597,7 @@ function ResumeUploadModal({ job, onClose }) {
 }
 
 /* ========== 简历投递模块 ========== */
-function ResumeSubmitSection() {
+function ResumeSubmitSection({ jobs, panel }) {
   const [formData, setFormData] = useState({ name: '', phone: '', position: '', email: '' })
   const [file, setFile] = useState(null)
   const [dragOver, setDragOver] = useState(false)
@@ -483,22 +659,16 @@ function ResumeSubmitSection() {
 
   return (
     <div className="contact-form-wrapper">
-      <div className="contact-brand-panel" style={{ backgroundImage: `url(${brandPanelBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <p className="contact-brand-tagline">加入红运<br />共创装备制造未来</p>
+      <div className="contact-brand-panel" style={{ backgroundImage: `url(${panel.background})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <p className="contact-brand-tagline" style={{ whiteSpace: 'pre-line' }}>{panel.tagline}</p>
         <div className="contact-brand-divider" />
         <div className="contact-brand-items">
-          <div className="contact-brand-item">
-            <span className="contact-brand-item-label">招聘邮箱</span>
-            <span className="contact-brand-item-value">{hrContact.email}</span>
-          </div>
-          <div className="contact-brand-item">
-            <span className="contact-brand-item-label">响应时效</span>
-            <span className="contact-brand-item-value">3 个工作日内回复</span>
-          </div>
-          <div className="contact-brand-item">
-            <span className="contact-brand-item-label">工作时间</span>
-            <span className="contact-brand-item-value">周一至周五 09:00 – 17:30</span>
-          </div>
+          {panel.items.map((item) => (
+            <div className="contact-brand-item" key={`${item.label}-${item.value}`}>
+              <span className="contact-brand-item-label">{item.label}</span>
+              <span className="contact-brand-item-value">{item.value}</span>
+            </div>
+          ))}
         </div>
       </div>
       <form className="contact-form" onSubmit={handleSubmit}>
@@ -521,7 +691,7 @@ function ResumeSubmitSection() {
             <label className="contact-form-label" htmlFor="apply-position">应聘岗位 *</label>
             <select id="apply-position" name="position" className="contact-form-select" value={formData.position} onChange={handleChange} required>
               <option value="">请选择岗位</option>
-              {jobListings.map((job) => (
+              {jobs.map((job) => (
                 <option key={job.id} value={job.title}>{job.title}</option>
               ))}
               <option value="其他岗位">其他岗位（请在简历中说明）</option>
@@ -570,7 +740,7 @@ function ResumeSubmitSection() {
 }
 
 /* ========== 技术咨询 Tab ========== */
-function InquiryTab() {
+function InquiryTab({ options, panel }) {
   const [formData, setFormData] = useState({
     name: '', phone: '', company: '', email: '', industry: '', needs: '',
   })
@@ -608,22 +778,16 @@ function InquiryTab() {
 
   return (
     <div className="contact-form-wrapper">
-      <div className="contact-brand-panel" style={{ backgroundImage: `url(${inquiryBrandPanelBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-        <p className="contact-brand-tagline">专注混合工艺<br />三十年技术积淀</p>
+      <div className="contact-brand-panel" style={{ backgroundImage: `url(${panel.background})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <p className="contact-brand-tagline" style={{ whiteSpace: 'pre-line' }}>{panel.tagline}</p>
         <div className="contact-brand-divider" />
         <div className="contact-brand-items">
-          <div className="contact-brand-item">
-            <span className="contact-brand-item-label">响应时效</span>
-            <span className="contact-brand-item-value">24小时内技术团队回复</span>
-          </div>
-          <div className="contact-brand-item">
-            <span className="contact-brand-item-label">服务热线</span>
-            <span className="contact-brand-item-value">400 915 3366</span>
-          </div>
-          <div className="contact-brand-item">
-            <span className="contact-brand-item-label">商务邮箱</span>
-            <span className="contact-brand-item-value">hy@gzhy.cn</span>
-          </div>
+          {panel.items.map((item) => (
+            <div className="contact-brand-item" key={`${item.label}-${item.value}`}>
+              <span className="contact-brand-item-label">{item.label}</span>
+              <span className="contact-brand-item-value">{item.value}</span>
+            </div>
+          ))}
         </div>
       </div>
       <form className="contact-form" onSubmit={handleSubmit}>
@@ -650,7 +814,7 @@ function InquiryTab() {
             <label className="contact-form-label" htmlFor="contact-industry">所属行业</label>
             <select id="contact-industry" name="industry" className="contact-form-select" value={formData.industry} onChange={handleChange}>
               <option value="">请选择行业</option>
-              {industryOptions.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+              {options.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
             </select>
           </div>
           <div className="contact-form-field" />
@@ -670,11 +834,11 @@ function InquiryTab() {
 }
 
 /* ========== 联系方式 Tab ========== */
-function ContactInfoTab() {
+function ContactInfoTab({ cards, offices }) {
   return (
     <>
       <div className="contact-info-grid">
-        {contactCards.map((card, index) => (
+        {cards.map((card, index) => (
           <div className="contact-info-card" key={index}>
             <div className="contact-info-card-icon">
               <card.Icon size={24} />
@@ -687,7 +851,9 @@ function ContactInfoTab() {
                   <span className="contact-info-value">
                     {item.isPhone
                       ? <a href={`tel:${item.value.replace(/\s/g, '')}`}>{item.value}</a>
-                      : item.value}
+                      : item.isEmail
+                        ? <a href={`mailto:${item.value}`}>{item.value}</a>
+                        : item.value}
                   </span>
                 </div>
               ))}
@@ -697,24 +863,17 @@ function ContactInfoTab() {
       </div>
       <div className="contact-map-section">
         <div className="contact-map-grid">
-          <div className="contact-map-card">
-            <div className="contact-map-card-label">常州基地</div>
-            <MapboxMap
-              lng={119.959147}
-              lat={31.617021}
-              name="江苏红运智能装备有限公司"
-              address="江苏省常州市武进高新区<br/>南湖西路8-8号"
-            />
-          </div>
-          <div className="contact-map-card">
-            <div className="contact-map-card-label">广州基地</div>
-            <MapboxMap
-              lng={113.449059}
-              lat={22.843914}
-              name="广州红尚机械制造有限公司"
-              address="广州市南沙区东涌镇<br/>同裕街40号"
-            />
-          </div>
+          {offices.map((office) => (
+            <div className="contact-map-card" key={office.label}>
+              <div className="contact-map-card-label">{office.label}</div>
+              <MapboxMap
+                lng={Number(office.longitude)}
+                lat={Number(office.latitude)}
+                name={office.name}
+                address={office.address}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </>
@@ -722,19 +881,17 @@ function ContactInfoTab() {
 }
 
 /* ========== 加入我们 Tab ========== */
-function JoinUsTab() {
+function JoinUsTab({ content }) {
   const [selectedJob, setSelectedJob] = useState(null)
 
   return (
     <>
       {/* 人才理念 */}
       <section className="join-section">
-        <h2 className="section-heading">人才理念</h2>
-        <p className="section-desc">
-          人才是红运机械最核心的竞争优势。我们广纳贤才、培育匠心，以开放包容的文化激发每位员工的无限潜能，共同书写高端装备制造的新篇章。
-        </p>
+        <h2 className="section-heading">{content.talentTitle}</h2>
+        <p className="section-desc">{content.talentDescription}</p>
         <div className="talent-values-grid">
-          {talentValues.map((item) => (
+          {content.talentValues.map((item) => (
             <div
               className="talent-value-card"
               key={item.title}
@@ -752,10 +909,10 @@ function JoinUsTab() {
 
       {/* 岗位信息 */}
       <section className="join-section join-section--gray">
-        <h2 className="section-heading">开放职位</h2>
-        <p className="section-desc">加入红运，与顶尖团队共同推动全球高端装备制造的技术革新。</p>
+        <h2 className="section-heading">{content.jobsTitle}</h2>
+        <p className="section-desc">{content.jobsDescription}</p>
         <div className="job-cards-grid">
-          {jobListings.map((job) => (
+          {content.jobListings.map((job) => (
             <div className="job-card" key={job.id}>
               <h3 className="job-card-title">{job.title}</h3>
               <div className="job-card-meta">
@@ -781,9 +938,9 @@ function JoinUsTab() {
 
       {/* 简历投递 */}
       <section className="join-section resume-submit-section">
-        <h2 className="section-heading">简历投递</h2>
-        <p className="section-desc">填写以下信息直接提交您的申请，HR 团队将在 3 个工作日内与您联系。</p>
-        <ResumeSubmitSection />
+        <h2 className="section-heading">{content.resumeTitle}</h2>
+        <p className="section-desc">{content.resumeDescription}</p>
+        <ResumeSubmitSection jobs={content.jobListings} panel={content.recruitmentPanel} />
       </section>
 
       {/* 岗位详情弹窗 */}
@@ -797,17 +954,11 @@ function JoinUsTab() {
   )
 }
 
-/* ========== 子页面 Tab 配置 ========== */
-const TABS = [
-  { key: 'inquiry', label: '技术咨询' },
-  { key: 'join',    label: '加入我们' },
-  { key: 'info',    label: '联系方式' },
-]
-
 /* ========== 主页面 ========== */
 export default function ContactPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const activeTab = searchParams.get('tab') || 'inquiry'
+  const content = useContactContent()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -818,25 +969,25 @@ export default function ContactPage() {
     return () => observer.disconnect()
   }, [activeTab])
 
-  const currentTab = TABS.find((t) => t.key === activeTab) || TABS[0]
+  const currentTab = content.tabs.find((t) => t.key === activeTab) || content.tabs[0]
 
   return (
     <>
       <PageHero
-        title="联系我们"
-        subtitle="专业团队随时为您提供技术支持与商务咨询"
-        bgImage={contactHeroImg}
-        bgPosition="center 35%"
+        title={content.title}
+        subtitle={content.subtitle}
+        bgImage={content.heroImage}
+        bgPosition={content.heroPosition}
       />
 
       <div className="page-body">
-        <Breadcrumb items={[{ label: '联系我们' }, { label: currentTab.label }]} />
+        <Breadcrumb items={[{ label: content.title }, { label: currentTab.label }]} />
 
         {/* ===== 子页面 Tab 导航 ===== */}
         <div className="contact-tab-nav-wrap">
           <div className="page-container">
             <nav className="contact-tab-nav">
-              {TABS.map((tab) => (
+              {content.tabs.map((tab) => (
                 <button
                   key={tab.key}
                   className={`contact-tab-btn${activeTab === tab.key ? ' active' : ''}`}
@@ -854,14 +1005,14 @@ export default function ContactPage() {
         {activeTab === 'join' ? (
           <div className="join-tab-container">
             <div className="page-container">
-              <JoinUsTab />
+              <JoinUsTab content={content} />
             </div>
           </div>
         ) : (
           <section className="contact-page-section">
             <div className="page-container">
-              {activeTab === 'inquiry' && <InquiryTab />}
-              {activeTab === 'info' && <ContactInfoTab />}
+              {activeTab === 'inquiry' && <InquiryTab options={content.industryOptions} panel={content.inquiryPanel} />}
+              {activeTab === 'info' && <ContactInfoTab cards={content.contactCards} offices={content.offices} />}
             </div>
           </section>
         )}

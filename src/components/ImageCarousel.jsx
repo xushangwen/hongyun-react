@@ -17,13 +17,17 @@ export default function ImageCarousel({ images, articleId }) {
   }
 
   if (!images || images.length === 0) return null
+  const currentImage = images[currentIndex]
+  const currentSrc = currentImage.absolute || currentImage.src?.startsWith('http') || currentImage.src?.startsWith('/')
+    ? currentImage.src
+    : `/news-images/${articleId}/${currentImage.src}`
 
   return (
     <div className="image-carousel">
       <div className="image-carousel-container">
         <img 
-          src={`/news-images/${articleId}/${images[currentIndex].src}`}
-          alt={images[currentIndex].alt || ''}
+          src={currentSrc}
+          alt={currentImage.alt || ''}
           className="image-carousel-image"
         />
         
@@ -58,8 +62,8 @@ export default function ImageCarousel({ images, articleId }) {
         )}
       </div>
       
-      {images[currentIndex].caption && (
-        <p className="image-carousel-caption">{images[currentIndex].caption}</p>
+      {currentImage.caption && (
+        <p className="image-carousel-caption">{currentImage.caption}</p>
       )}
     </div>
   )

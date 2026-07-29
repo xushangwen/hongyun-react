@@ -3,6 +3,8 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ProductThreeView from '../components/ProductThreeView'
 import TechInquirySection from '../components/TechInquirySection'
+import CmsParameterTableSection from '../components/CmsParameterTableSection'
+import { useCmsDataset } from '../context/useCmsDetail'
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.webp'
 
 const IMG = '/assets/images/solutions/circulation-pulping'
@@ -19,6 +21,8 @@ const modelParams = [
 ]
 
 function ParamsTable() {
+  const dataset = useCmsDataset()
+  const rows = dataset?.rows?.length ? dataset.rows : modelParams
   return (
     <div className="detail-params-table">
       <table className="params-table pdm-params-table">
@@ -35,7 +39,7 @@ function ParamsTable() {
           </tr>
         </thead>
         <tbody>
-          {modelParams.map((row, i) => (
+          {rows.map((row, i) => (
             <tr key={i} className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
               <td className="td-model-code">{row.model}</td>
               <td>{row.output}</td>
@@ -118,18 +122,12 @@ export default function CpDisperserPage() {
         </section>
 
         {/* ===== 参数汇总 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">高速循环高速分散机参数汇总</h2>
-            <div className="fade-up fade-up-delay-1">
-              <ParamsTable />
-            </div>
-            <p className="cp-table-note fade-up fade-up-delay-3">
-              * 以上参数仅供参考，实际规格以合同为准。可根据客户工艺需求进行定制化设计。
-            </p>
-          </div>
-        </section>
+        <CmsParameterTableSection
+          fallbackTitle="高速循环高速分散机参数汇总"
+          className="page-section"
+        >
+          <ParamsTable />
+        </CmsParameterTableSection>
 
         {/* ===== 技术咨询 ===== */}
         <TechInquirySection />

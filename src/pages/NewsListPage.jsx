@@ -4,21 +4,28 @@ import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import newsData from '../data/newsData'
+import { getCmsNews } from '../services/cmsApi'
 import newsHeroImg from '../assets/img/IMG_4865-copy.webp'
 
 const PAGE_SIZE = 12
 
 const _sorted = [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date))
-const _top3 = _sorted.slice(0, 3)
-// 重复填充至15条以支持「浏览更多」交互演示
-const sortedNews = [..._top3, ..._top3, ..._top3, ..._top3, ..._top3].map((item, i) => ({
-  ...item,
-  _key: `${item.id}-${i}`,
-}))
+const localNews = _sorted.map((item) => ({ ...item, _key: item.id }))
 
 export default function NewsListPage() {
   const [displayCount, setDisplayCount] = useState(PAGE_SIZE)
   const [activeCategory, setActiveCategory] = useState('全部')
+  const [sortedNews, setSortedNews] = useState(localNews)
+
+  useEffect(() => {
+    const controller = new AbortController()
+    getCmsNews(controller.signal)
+      .then((items) => setSortedNews(items))
+      .catch((error) => {
+        if (error.name !== 'AbortError') console.warn('[CMS] 新闻列表读取失败，继续使用本地内容')
+      })
+    return () => controller.abort()
+  }, [])
 
   const categories = ['全部', ...new Set(sortedNews.map((n) => n.category))]
 

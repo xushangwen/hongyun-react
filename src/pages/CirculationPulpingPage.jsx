@@ -12,6 +12,8 @@ import VideoPlayer from '../components/VideoPlayer'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
+import CmsParameterTableSection from '../components/CmsParameterTableSection'
+import { useCmsDataset } from '../context/useCmsDetail'
 import prdSysImg from '../assets/img/prd-sys.webp'
 
 const IMG = '/assets/images/solutions/circulation-pulping'
@@ -220,6 +222,8 @@ const modelParams = [
 ]
 
 function ParamsTable() {
+  const dataset = useCmsDataset()
+  const rows = dataset?.rows?.length ? dataset.rows : modelParams
   return (
     <div className="detail-params-table">
       <table className="params-table pdm-params-table cp-params-table">
@@ -227,8 +231,6 @@ function ParamsTable() {
           <tr>
             <th>型号<br /><span className="th-sub">Model</span></th>
             <th>产出要求<br /><span className="th-sub">Output (L/H)</span></th>
-            <th>批次循环时间<br /><span className="th-sub">Cycle time (min)</span></th>
-            <th>工艺时间<br /><span className="th-sub">Process time (h)</span></th>
             <th>批次量<br /><span className="th-sub">Batch volume (L)</span></th>
             <th>循环流量<br /><span className="th-sub">Flow rate (L/min)</span></th>
             <th>电机功率<br /><span className="th-sub">Motor power (kW)</span></th>
@@ -236,7 +238,7 @@ function ParamsTable() {
           </tr>
         </thead>
         <tbody>
-          {modelParams.map((row, i) => (
+          {rows.map((row, i) => (
             <tr key={i} className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
               <td className="td-model-code">{row.model}</td>
               <td>{row.output}</td>
@@ -368,18 +370,9 @@ export default function CirculationPulpingPage() {
         ]} />
 
         {/* ===== 参数汇总 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">高速循环制浆系统参数汇总</h2>
-            <div className="fade-up fade-up-delay-1">
-              <ParamsTable />
-            </div>
-            <p className="cp-table-note fade-up fade-up-delay-3">
-              * 以上参数仅供参考，实际规格以合同为准。可根据客户工艺需求进行定制化设计。
-            </p>
-          </div>
-        </section>
+        <CmsParameterTableSection fallbackTitle="高速循环制浆系统参数汇总">
+          <ParamsTable />
+        </CmsParameterTableSection>
 
         {/* ===== 客户案例 ===== */}
         <section className="page-section">

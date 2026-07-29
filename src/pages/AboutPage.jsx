@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback, memo } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo, memo } from 'react'
 import {
   IconEcoLightbulbOutline24,
   IconWrenchScrewdriverOutline24,
@@ -26,6 +26,15 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import VideoPlayer from '../components/VideoPlayer'
 import GlobalMap from '../components/GlobalMap'
+import { useCmsDetail } from '../context/useCmsDetail'
+import {
+  findAboutMedia,
+  getAboutDatasetRows,
+  getAboutFeatureItems,
+  getAboutMediaItems,
+  getAboutRichTextRange,
+  groupAboutPartners,
+} from '../services/aboutCms'
 import { getCompanyYears } from '../utils/companyYears'
 import { partnerGroupsData } from '../data/partners'
 import heroImg from '../assets/img/DJI_20250418102124_0133_D-3-copy.webp'
@@ -57,7 +66,6 @@ function TypewriterText({ text, speed = 40, delay = 0, className }) {
   useEffect(() => {
     if (!started) return
     let i = 0
-    setDisplayed('')
     const timer = setInterval(() => {
       i++
       setDisplayed(text.slice(0, i))
@@ -201,7 +209,7 @@ const PW_OFFSET  = PW_CTR + PW_ITEM_H * (1 - PW_SCALE_A) / 2 - PW_ITEM_H / 2
 // 用户交互后暂停自动轮播，停止操作满此时长（毫秒）再恢复
 const PW_RESUME_DELAY = 8000
 
-const ProductionWorkshop = memo(function ProductionWorkshop() {
+const ProductionWorkshop = memo(function ProductionWorkshop({ data = productionWorkshops }) {
   const [activeTab, setActiveTab] = useState(0)
   const [imgIndex, setImgIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
@@ -209,7 +217,7 @@ const ProductionWorkshop = memo(function ProductionWorkshop() {
   const rootRef = useRef(null)
   const resumeTimerRef = useRef(null)
 
-  const currentWs = productionWorkshops[activeTab]
+  const currentWs = data[activeTab] || data[0]
   const images = currentWs.images
   const n = images.length
 
@@ -237,11 +245,11 @@ const ProductionWorkshop = memo(function ProductionWorkshop() {
   useEffect(() => {
     if (!isVisible || isPaused) return
     const id = setTimeout(() => {
-      setActiveTab(t => (t + 1) % productionWorkshops.length)
+      setActiveTab(t => (t + 1) % data.length)
       setImgIndex(0)
     }, WORKSHOP_DURATION)
     return () => clearTimeout(id)
-  }, [activeTab, isVisible, isPaused])
+  }, [activeTab, data.length, isVisible, isPaused])
 
   // 图片在 10s 内均匀循环（仅可见、且未被用户交互暂停时）
   useEffect(() => {
@@ -263,7 +271,7 @@ const ProductionWorkshop = memo(function ProductionWorkshop() {
     <div className="pw-root" ref={rootRef}>
       {/* 左：Tab 列表 */}
       <div className="pw-tabs">
-        {productionWorkshops.map((ws, i) => {
+        {data.map((ws, i) => {
           const isActive = i === activeTab
           return (
             <div
@@ -557,8 +565,22 @@ const cultureItems = [
   },
 ]
 
+const companyIntroParagraphs = [
+  `红运机械自1993年创立以来，致力于混合设备的研究、开发及制造，在不同领域开发了诸多高效节能、创新的混合设备解决方案和系统，帮助用户解决许多生产及生产工艺方面遇到的问题。因此，我们可以依用${getCompanyYears()}多年来积累在粉体计量、混合及输送方面的技术及物料混合生产工艺经验沉淀，为粉体上料、浆料混合及输送行业提供更好的建议及使用方法。`,
+  '我们的产品广泛应用于新能源、电子电极浆料、各种胶粘剂、火工药剂、涂料、食品、医药及化妆品等行业。',
+]
+
+const partnersDescription = '深耕新能源、化工、胶粘剂、银浆及医药五大行业，与比亚迪、宁德时代、巴斯夫、汉高、贺利氏、华润等全球知名企业建立长期战略合作。覆盖国内头部动力电池制造商及巴斯夫、陶氏、埃肯等国际化工巨头，服务客户遍布亚洲、欧洲及北美市场。'
+
 /* ========== 资质荣誉数据 ========== */
 const honorsTabs = ['资质认证', '专利证书', '荣誉奖项']
+
+const patentStats = [
+  { num: 200, label: '红运机械专利共有' },
+  { num: 100, label: '发明专利' },
+  { num: 100, label: '实用新型专利' },
+  { num: 20, label: '外观设计专利' },
+]
 
 const honorsData = [
   /* 资质认证 */
@@ -630,8 +652,28 @@ const rndImages = [
   { src: '/assets/images/rnd/hy-rnd-turbiscan.webp', label: '法国 TURBISCAN 浆料稳定性检测仪' },
   { src: '/assets/images/rnd/hy-rnd-screw.webp',     label: '红运双螺杆匀浆设备' },
 ]
-// 真实组数 = 图片数 ÷ 每组显示数(2)，到此值时说明显示的是克隆组，需无感归零
-const RND_SLIDE_RESET = rndImages.length / 2
+
+const researchStats = [
+  { number: 5.6, suffix: '%', label: '研发投入' },
+  { number: 200, suffix: '+', label: '自主研发专利' },
+  { number: 25, suffix: '%', label: '博士占比硕士占比' },
+]
+
+const researchCopy = {
+  lead: '实验室硬件完全满足锂电及化工行业的温度、湿度要求：',
+  conditions: '温度 25±3℃；湿度 ≤3% RH；洁净度 10 万级。',
+  equipmentTitle: '红运研发实验室检测设备：',
+  equipment: [
+    '粘度检测设备：美国 DV2T 博勒飞粘度计（61#/62#/63#/64# 转子）；',
+    '细度检测：细度计刮板量程：0–50 μm；',
+    '固含量检测设备：MB27 水分检测仪、烘箱及电子天平；',
+    '流动性及稳定性检测设备：德国赛默飞安东帕流变仪 Viscotester iQ Air；',
+    '稳定性检测设备：法国 TURBISCAN 多重光散射仪；',
+    '桌面式涂布机：半自动涂布，间隙可调；',
+    '拉力机：测试涂布及辊压后极片的剥离强度；',
+    '验证产线：纽扣电池制造产线。',
+  ],
+}
 
 /* ========== 合作伙伴数据 — 与首页共享 src/data/partners.js ========== */
 const PARTNER_GROUP_ICONS = {
@@ -656,7 +698,7 @@ const aboutNavItems = [
 ]
 
 /* ========== 页内粘性导航：state 隔离，避免 IO 触发整页重渲 ========== */
-function AboutStickyNav() {
+function AboutStickyNav({ items = aboutNavItems }) {
   const [activeNavId, setActiveNavId] = useState('company-intro')
 
   useEffect(() => {
@@ -666,18 +708,18 @@ function AboutStickyNav() {
       },
       { rootMargin: '-20% 0px -60% 0px' }
     )
-    aboutNavItems.forEach(({ id }) => {
+    items.forEach(({ id }) => {
       const el = document.getElementById(id)
       if (el) navObserver.observe(el)
     })
     return () => navObserver.disconnect()
-  }, [])
+  }, [items])
 
   return (
     <div className="page-sticky-nav">
       <div className="page-container">
         <nav className="solutions-nav">
-          {aboutNavItems.map((item) => (
+          {items.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
@@ -694,28 +736,142 @@ function AboutStickyNav() {
 }
 
 export default function AboutPage() {
+  const { detail } = useCmsDetail()
   const [activeHonorTab, setActiveHonorTab] = useState(0)
+
+  const content = useMemo(() => {
+    const mediaItems = getAboutMediaItems(detail)
+    const mediaBySource = new Map(mediaItems.map((item) => [item.sourcePath, item]))
+    const mediaSource = (sourcePath) => mediaBySource.get(sourcePath)?.src || sourcePath
+
+    const rawIntro = getAboutRichTextRange(
+      detail,
+      '公司简介',
+      '企业宣传片',
+      companyIntroParagraphs,
+    )
+    const introParagraphs = rawIntro.reduce((paragraphs, text) => {
+      const last = paragraphs.at(-1)
+      if (last && !/[。！？；：.!?;:]$/.test(last)) {
+        paragraphs[paragraphs.length - 1] = `${last}${text}`.replace(
+          '依用多年来',
+          `依用${getCompanyYears()}多年来`,
+        )
+      } else {
+        paragraphs.push(text)
+      }
+      return paragraphs
+    }, [])
+
+    const researchParagraphs = getAboutRichTextRange(
+      detail,
+      '研发实力',
+      '全球化布局',
+      [],
+    )
+    const researchLabels = new Set(['研发投入', '自主研发专利', '博士占比硕士占比'])
+    const resolvedResearchCopy = researchParagraphs.length >= 3
+      ? {
+          lead: researchParagraphs[0],
+          conditions: researchParagraphs[1],
+          equipmentTitle: researchParagraphs[2],
+          equipment: researchParagraphs.slice(3).filter((text) => !researchLabels.has(text)),
+        }
+      : researchCopy
+
+    const workshopFeatures = getAboutFeatureItems(
+      detail,
+      productionWorkshops.map((item) => item.name),
+      productionWorkshops,
+    )
+    const workshops = productionWorkshops.map((workshop, index) => ({
+      ...workshop,
+      name: workshopFeatures[index]?.title || workshop.name,
+      desc: workshopFeatures[index]?.description || workshop.desc,
+      images: workshop.images.map((image) => ({
+        ...image,
+        src: mediaSource(image.src),
+      })),
+    }))
+
+    const timeline = getAboutDatasetRows(detail, 'timelineData', timelineData).map((item) => ({
+      ...item,
+      img: mediaSource(item.img),
+    }))
+    const researchImages = getAboutDatasetRows(detail, 'rndImages', rndImages).map((item) => ({
+      ...item,
+      src: mediaSource(item.src),
+    }))
+    const navItems = getAboutDatasetRows(detail, 'aboutNavItems', aboutNavItems)
+      .map((item) => {
+        const local = aboutNavItems.find((candidate) => candidate.id === item.id)
+        return local ? { ...local, label: item.label || local.label } : null
+      })
+      .filter(Boolean)
+
+    const resolveHonorImages = (fallback) => fallback.map((item) => {
+      const cmsItem = mediaBySource.get(item.src)
+      return {
+        ...item,
+        src: cmsItem?.src || item.src,
+        alt: cmsItem?.alt && cmsItem.alt !== '关于红运' ? cmsItem.alt : item.alt,
+      }
+    })
+
+    return {
+      heroImage: findAboutMedia(mediaItems, /DJI_20250418102124_0133/, heroImg),
+      companyImage: findAboutMedia(mediaItems, /DJI_20250418103239_0149/, companyImg),
+      promoVideo: findAboutMedia(mediaItems, /\/promo\.webm$/, '/assets/video/promo.webm'),
+      promoPoster: findAboutMedia(mediaItems, /IMG_4366\.webp$/, videoImg),
+      researchBrandImage: findAboutMedia(
+        mediaItems,
+        /\/rnd\/hy-rnd-brand\.webp$/,
+        '/assets/images/rnd/hy-rnd-brand.webp',
+      ),
+      introParagraphs,
+      introStats: getAboutDatasetRows(detail, 'introStats', introStats),
+      cultureItems: getAboutDatasetRows(detail, 'cultureItems', cultureItems),
+      timeline,
+      workshops,
+      researchCopy: resolvedResearchCopy,
+      researchStats: getAboutDatasetRows(detail, 'researchStats', researchStats),
+      researchImages,
+      globalBranches: getAboutDatasetRows(detail, 'globalBranches', globalBranches),
+      globalPresences: detail?.globalPresences || [],
+      honorsData: honorsData.map(resolveHonorImages),
+      patentStats: getAboutDatasetRows(detail, 'patentStats', patentStats),
+      partnerGroups: groupAboutPartners(detail?.partners, partnerGroupsData),
+      partnersDescription: getAboutRichTextRange(
+        detail,
+        '合作伙伴',
+        null,
+        [partnersDescription],
+      ).join(''),
+      navItems,
+    }
+  }, [detail])
 
   /* 企业简介统计数字动画 */
   const statRefs = useRef([])
-  const [statCounts, setStatCounts] = useState(introStats.map(() => 0))
+  const [statCounts, setStatCounts] = useState(content.introStats.map(() => 0))
   const statStarted = useRef(false)
 
   useEffect(() => {
+    statStarted.current = false
     const firstRef = statRefs.current[0]
     if (!firstRef) return
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !statStarted.current) {
           statStarted.current = true
-          introStats.forEach((stat, i) => {
+          content.introStats.forEach((stat, i) => {
             let startTime = null
             const duration = 1800
             const step = (ts) => {
               if (!startTime) startTime = ts
               const progress = Math.min((ts - startTime) / duration, 1)
               const eased = 1 - Math.pow(1 - progress, 3)
-              const current = Math.round(eased * stat.number)
+              const current = Math.round(eased * Number(stat.number))
               setStatCounts((prev) => {
                 const next = [...prev]
                 next[i] = current
@@ -732,18 +888,19 @@ export default function AboutPage() {
     )
     observer.observe(firstRef)
     return () => observer.disconnect()
-  }, [])
+  }, [content.introStats])
 
   /* 研发实力统计 */
-  const [rndCount15, rndRef15] = useCountUp(5.6, 1200, 1)
-  const [rndCount200, rndRef200] = useCountUp(200, 1800)
-  const [rndCount20, rndRef20] = useCountUp(25, 1200)
+  const [rndCount15, rndRef15] = useCountUp(Number(content.researchStats[0]?.number ?? 5.6), 1200, 1)
+  const [rndCount200, rndRef200] = useCountUp(Number(content.researchStats[1]?.number ?? 200), 1800)
+  const [rndCount20, rndRef20] = useCountUp(Number(content.researchStats[2]?.number ?? 25), 1200)
 
   /* 研发图片轮播：无缝单向循环，进入视口才运行 */
   const rndTrackRef = useRef(null)
   const rndSectionRef = useRef(null)
   const [rndSlide, setRndSlide] = useState(0)
   const [rndVisible, setRndVisible] = useState(false)
+  const rndGroupCount = Math.max(1, Math.ceil(content.researchImages.length / 2))
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -762,7 +919,7 @@ export default function AboutPage() {
 
   useEffect(() => {
     // 显示克隆组时，过渡结束后无感跳回 slide=0（视觉一致）
-    if (rndSlide !== RND_SLIDE_RESET) return
+    if (rndSlide !== rndGroupCount) return
     const timeout = setTimeout(() => {
       const el = rndTrackRef.current
       if (!el) return
@@ -773,7 +930,7 @@ export default function AboutPage() {
       }))
     }, 650) // 比 CSS transition(600ms) 多 50ms 缓冲
     return () => clearTimeout(timeout)
-  }, [rndSlide])
+  }, [rndGroupCount, rndSlide])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -796,7 +953,7 @@ export default function AboutPage() {
       <PageHero
         title="追求完美 做到极致"
         subtitle="专注混合设备研发制造三十余年"
-        bgImage={heroImg}
+        bgImage={content.heroImage}
         bgPosition="center 60%"
       />
 
@@ -805,7 +962,7 @@ export default function AboutPage() {
         <Breadcrumb items={[{ label: '关于红运' }]} />
 
         {/* ===== 页内导航 ===== */}
-        <AboutStickyNav />
+        <AboutStickyNav items={content.navItems} />
 
         {/* ===== 公司简介 ===== */}
         <section className="about-page-section" id="company-intro">
@@ -813,14 +970,11 @@ export default function AboutPage() {
             <h2 className="section-heading">公司简介</h2>
             <div className="about-intro-grid">
               <div className="about-intro-text">
-                <p>
-                  红运机械自1993年创立以来，致力于混合设备的研究、开发及制造，在不同领域开发了诸多高效节能、创新的混合设备解决方案和系统，帮助用户解决许多生产及生产工艺方面遇到的问题。因此，我们可以依用{getCompanyYears()}多年来积累在粉体计量、混合及输送方面的技术及物料混合生产工艺经验沉淀，为粉体上料、浆料混合及输送行业提供更好的建议及使用方法。
-                </p>
-                <p>
-                  我们的产品广泛应用于新能源、电子电极浆料、各种胶粘剂、火工药剂、涂料、食品、医药及化妆品等行业。
-                </p>
+                {content.introParagraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
                 <div className="about-intro-stats">
-                  {introStats.map((stat, i) => (
+                  {content.introStats.map((stat, i) => (
                     <div
                       key={i}
                       ref={(el) => {
@@ -836,8 +990,8 @@ export default function AboutPage() {
                       />
                       <div className="about-intro-stat-number">
                         {stat.isDecimalTimes10
-                          ? (statCounts[i] / 10).toFixed(1)
-                          : statCounts[i].toLocaleString()}
+                          ? ((statCounts[i] ?? 0) / 10).toFixed(1)
+                          : (statCounts[i] ?? 0).toLocaleString()}
                         <span style={{ fontSize: '18px' }}>{stat.suffix}</span>
                         <span style={{ fontSize: '16px', marginLeft: '3px', fontFamily: 'inherit' }}>{stat.unit}</span>
                       </div>
@@ -847,7 +1001,7 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="about-intro-image">
-                <img src={companyImg} alt="公司外景" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img src={content.companyImage} alt="公司外景" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             </div>
           </div>
@@ -859,8 +1013,8 @@ export default function AboutPage() {
             <h2 className="section-heading">企业宣传片</h2>
             <div className="about-video-wrapper">
               <VideoPlayer
-                src="/assets/video/promo.webm"
-                poster={videoImg}
+                src={content.promoVideo}
+                poster={content.promoPoster}
                 title="红运机械 · 企业宣传片"
               />
             </div>
@@ -872,7 +1026,7 @@ export default function AboutPage() {
           <div className="page-container">
             <h2 className="section-heading">企业文化</h2>
             <div className="about-culture-grid">
-              {cultureItems.map((item, index) => (
+              {content.cultureItems.map((item, index) => (
                 <div className={`about-culture-card fade-up fade-up-delay-${index + 1}`} key={index}>
                   <h3 className="about-culture-card-title">{item.title}</h3>
                   <TypewriterText
@@ -889,14 +1043,14 @@ export default function AboutPage() {
 
         {/* ===== 发展历程 ===== */}
         <section className="about-page-section" id="history">
-          <HistoryTimeline data={timelineData} />
+          <HistoryTimeline data={content.timeline} />
         </section>
 
         {/* ===== 生产实力 ===== */}
         <section className="about-page-section" id="production">
           <div className="page-container">
             <h2 className="section-heading">生产实力</h2>
-            <ProductionWorkshop />
+            <ProductionWorkshop data={content.workshops} />
           </div>
         </section>
 
@@ -909,41 +1063,34 @@ export default function AboutPage() {
               {/* 左：文字内容 */}
               <div className="about-rnd-inner">
                 <p className="about-rnd-heading">
-                  <span className="about-rnd-heading-light">实验室硬件完全满足锂电及化工行业的温度、湿度要求：</span><br />
-                  温度 25±3℃；湿度 ≤3% RH；洁净度 10 万级。
+                  <span className="about-rnd-heading-light">{content.researchCopy.lead}</span><br />
+                  {content.researchCopy.conditions}
                 </p>
-                <p className="about-rnd-equip-title">红运研发实验室检测设备：</p>
+                <p className="about-rnd-equip-title">{content.researchCopy.equipmentTitle}</p>
                 <ul className="about-rnd-equip-list">
-                  <li>粘度检测设备：美国 DV2T 博勒飞粘度计（61#/62#/63#/64# 转子）；</li>
-                  <li>细度检测：细度计刮板量程：0–50 μm；</li>
-                  <li>固含量检测设备：MB27 水分检测仪、烘箱及电子天平；</li>
-                  <li>流动性及稳定性检测设备：德国赛默飞安东帕流变仪 Viscotester iQ Air；</li>
-                  <li>稳定性检测设备：法国 TURBISCAN 多重光散射仪；</li>
-                  <li>桌面式涂布机：半自动涂布，间隙可调；</li>
-                  <li>拉力机：测试涂布及辊压后极片的剥离强度；</li>
-                  <li>验证产线：纽扣电池制造产线。</li>
+                  {content.researchCopy.equipment.map((item) => <li key={item}>{item}</li>)}
                 </ul>
                 <div className="about-rnd-stats">
-                  <div className="about-rnd-stat" ref={rndRef15}>
+                    <div className="about-rnd-stat" ref={rndRef15}>
                     <IconCoinsChartOutline24 size={24} className="about-rnd-stat-icon" />
                     <div className="about-rnd-stat-number">
-                      {rndCount15}<span className="about-rnd-stat-suffix">%</span>
+                      {rndCount15}<span className="about-rnd-stat-suffix">{content.researchStats[0]?.suffix || '%'}</span>
                     </div>
-                    <div className="about-rnd-stat-label">研发投入</div>
+                    <div className="about-rnd-stat-label">{content.researchStats[0]?.label || '研发投入'}</div>
                   </div>
-                  <div className="about-rnd-stat" ref={rndRef200}>
+                    <div className="about-rnd-stat" ref={rndRef200}>
                     <IconAwardCertificateOutline24 size={24} className="about-rnd-stat-icon" />
                     <div className="about-rnd-stat-number">
-                      {rndCount200}<span className="about-rnd-stat-suffix">+</span>
+                      {rndCount200}<span className="about-rnd-stat-suffix">{content.researchStats[1]?.suffix || '+'}</span>
                     </div>
-                    <div className="about-rnd-stat-label">自主研发专利</div>
+                    <div className="about-rnd-stat-label">{content.researchStats[1]?.label || '自主研发专利'}</div>
                   </div>
-                  <div className="about-rnd-stat" ref={rndRef20}>
+                    <div className="about-rnd-stat" ref={rndRef20}>
                     <IconPeopleOutline24 size={24} className="about-rnd-stat-icon" />
                     <div className="about-rnd-stat-number">
-                      {rndCount20}<span className="about-rnd-stat-suffix">%</span>
+                      {rndCount20}<span className="about-rnd-stat-suffix">{content.researchStats[2]?.suffix || '%'}</span>
                     </div>
-                    <div className="about-rnd-stat-label">博士占比硕士占比</div>
+                    <div className="about-rnd-stat-label">{content.researchStats[2]?.label || '博士占比硕士占比'}</div>
                   </div>
                 </div>
               </div>
@@ -952,7 +1099,7 @@ export default function AboutPage() {
               <div className="about-rnd-gallery">
                 {/* 第一行：品牌红色卡 */}
                 <div className="about-rnd-brand-card">
-                  <img src="/assets/images/rnd/hy-rnd-brand.webp" alt="红运品牌" />
+                  <img src={content.researchBrandImage} alt="红运品牌" />
                 </div>
                 {/* 第二行：8张图平铺，两张一组循环 */}
                 <div className="about-rnd-carousel">
@@ -960,10 +1107,21 @@ export default function AboutPage() {
                   <div
                     ref={rndTrackRef}
                     className="about-rnd-carousel-track"
-                    style={{ transform: `translateX(-${rndSlide * (100 / 5)}%)` }}
+                    style={{
+                      width: `${(rndGroupCount + 1) * 100}%`,
+                      transform: `translateX(-${rndSlide * (100 / (rndGroupCount + 1))}%)`,
+                    }}
                   >
-                    {[...rndImages, rndImages[0], rndImages[1]].map(({ src, label }, i) => (
-                      <div className="about-rnd-img-card" key={i}>
+                    {[
+                      ...content.researchImages,
+                      content.researchImages[0],
+                      content.researchImages[1] || content.researchImages[0],
+                    ].filter(Boolean).map(({ src, label }, i) => (
+                      <div
+                        className="about-rnd-img-card"
+                        key={`${src}-${i}`}
+                        style={{ flexBasis: `${100 / ((rndGroupCount + 1) * 2)}%` }}
+                      >
                         <img src={src} alt={label} loading="lazy" />
                         <span className="about-rnd-img-label">{label}</span>
                       </div>
@@ -981,10 +1139,10 @@ export default function AboutPage() {
           <div className="page-container">
             <h2 className="section-heading">全球化布局</h2>
             <div className="about-global-map">
-              <GlobalMap />
+              <GlobalMap locations={content.globalPresences} />
             </div>
             <div className="about-global-branches">
-              {globalBranches.map((branch, index) => (
+              {content.globalBranches.map((branch, index) => (
                 <div className={`about-global-branch fade-up fade-up-delay-${index + 1}`} key={index}>
                   {branch.isGlobal ? (
                     <span className="about-global-branch-top-spacer" aria-hidden="true">placeholder</span>
@@ -1030,12 +1188,7 @@ export default function AboutPage() {
             {activeHonorTab === 1 && (
               <div className="patent-stats-bar-wrapper">
                 <div className="patent-stats-bar">
-                  {[
-                    { num: 200, label: '红运机械专利共有' },
-                    { num: 100, label: '发明专利' },
-                    { num: 100, label: '实用新型专利' },
-                    { num: 20,  label: '外观设计专利' },
-                  ].map(({ num, label }) => (
+                  {content.patentStats.map(({ num, label }) => (
                     <div className="patent-stats-bar-item" key={label}>
                       <img src="/assets/icons/laurel-branch.webp" alt="" className="patent-laurel patent-laurel--left" aria-hidden="true" />
                       <div className="patent-stats-bar-content">
@@ -1054,7 +1207,7 @@ export default function AboutPage() {
             )}
 
             <div className={`about-honors-grid about-honors-grid--${honorsGridClass}`}>
-              {honorsData[activeHonorTab].map((item, i) => (
+              {content.honorsData[activeHonorTab].map((item, i) => (
                 <div className="about-honors-item" key={i}>
                   <div className="about-honors-card">
                     {isHonorTab ? (
@@ -1086,11 +1239,9 @@ export default function AboutPage() {
         <section className="about-page-section" id="partners-page">
           <div className="page-container">
             <h2 className="section-heading">合作伙伴</h2>
-            <p className="section-desc">
-              深耕新能源、化工、胶粘剂、银浆及医药五大行业，与比亚迪、宁德时代、巴斯夫、汉高、贺利氏、华润等全球知名企业建立长期战略合作。覆盖国内头部动力电池制造商及巴斯夫、陶氏、埃肯等国际化工巨头，服务客户遍布亚洲、欧洲及北美市场。
-            </p>
+            <p className="section-desc">{content.partnersDescription}</p>
             <div className="about-partners-grid">
-              {partnerGroupsData.flatMap(({ id, label, items }) => {
+              {content.partnerGroups.flatMap(({ id, label, items }) => {
                 const Icon = PARTNER_GROUP_ICONS[id]
                 const total = 1 + items.length
                 const pad = (8 - (total % 8)) % 8

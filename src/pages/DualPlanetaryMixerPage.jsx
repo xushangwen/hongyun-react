@@ -4,6 +4,8 @@ import Breadcrumb from '../components/Breadcrumb'
 import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import TechInquirySection from '../components/TechInquirySection'
+import CmsParameterTableSection from '../components/CmsParameterTableSection'
+import { useCmsDataset, useCmsDetail, useCmsSection } from '../context/useCmsDetail'
 
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.webp'
 const IMG = '/assets/images/products/pd-mixer'
@@ -267,6 +269,25 @@ function ParamsTable({ models = allModels }) {
 
 export default function DualPlanetaryMixerPage({ variant = 'production' }) {
   const v = VARIANTS[variant] ?? VARIANTS.production
+  const { detail } = useCmsDetail()
+  const dataset = useCmsDataset()
+  const mediaSection = useCmsSection('content.media-gallery')
+  const cmsViews = (mediaSection?.items || [])
+    .filter((item) => /(?:tv|view|视图)/i.test(`${item.sourcePath || ''} ${item.label || ''} ${item.caption || ''}`))
+    .slice(0, 3)
+    .map((item, index) => ({
+      src: item.media?.url || item.image?.url || item.sourcePath,
+      label: item.label || item.caption || (index === 0 ? '正视图' : '侧视图'),
+    }))
+  const cmsModels = dataset?.rows?.length ? dataset.rows : v.models
+  const resolved = {
+    ...v,
+    title: detail?.title || v.title,
+    productImg: detail?.cover?.url || v.productImg,
+    intro1: detail?.summary || v.intro1,
+    views: cmsViews.length ? cmsViews : v.views,
+    models: cmsModels.length ? cmsModels : v.models,
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -284,7 +305,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
   return (
     <>
       <PageHero
-        title={v.title}
+        title={resolved.title}
         bgImage={HERO_IMG}
       />
 
@@ -292,7 +313,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
         <Breadcrumb items={[
           { label: '产品中心', path: '/products' },
           { label: '新能源行业', path: '/products#products-new-energy' },
-          { label: v.title },
+          { label: resolved.title },
         ]} />
 
         {/* ===== 产品介绍 + 视频模块 ===== */}
@@ -301,18 +322,18 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
             <div className="pdm-intro-grid">
               <div className="pdm-intro-visual pdm-intro-visual--photo pdm-intro-visual--sm fade-up fade-up-delay-1">
                 <img
-                  src={v.productImg}
-                  alt={v.imgAlt}
+                  src={resolved.productImg}
+                  alt={resolved.title}
                   className="cp-intro-product-img"
                 />
               </div>
               <div className="pdm-intro-content">
-                <h2 className="pdm-intro-name fade-up fade-up-delay-1">{v.title}</h2>
+                <h2 className="pdm-intro-name fade-up fade-up-delay-1">{resolved.title}</h2>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  {v.intro1}
+                  {resolved.intro1}
                 </p>
                 <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  {v.intro2}
+                  {resolved.intro2}
                 </p>
               </div>
             </div>
@@ -325,7 +346,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
           <div className="page-container">
             <p className="section-en-label fade-up">Three Views</p>
             <h2 className="section-heading section-heading--center fade-up">三视图</h2>
-            <ProductThreeView views={v.views} />
+            <ProductThreeView views={resolved.views} />
           </div>
         </section>
 
@@ -333,18 +354,9 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
         <SystemFeaturesSection features={features} title="产品特点" enLabel="Product Features" grayBg={false} />
 
         {/* ===== 参数汇总 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">{v.title}参数汇总</h2>
-            <div className="fade-up fade-up-delay-1">
-              <ParamsTable models={v.models} />
-            </div>
-            <p className="cp-table-note fade-up fade-up-delay-3">
-              * 以上参数仅供参考，实际规格以合同为准。可根据客户工艺需求进行定制化设计。
-            </p>
-          </div>
-        </section>
+        <CmsParameterTableSection fallbackTitle={`${resolved.title}参数汇总`}>
+          <ParamsTable models={resolved.models} />
+        </CmsParameterTableSection>
 
         {/* ===== 客户案例 ===== */}
         <section className="page-section">

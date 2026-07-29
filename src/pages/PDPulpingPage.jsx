@@ -5,6 +5,8 @@ import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
+import CmsParameterTableSection from '../components/CmsParameterTableSection'
+import { useCmsDataset } from '../context/useCmsDetail'
 import VideoPlayer from '../components/VideoPlayer'
 const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
 const PRODUCT_IMG = '/assets/images/solutions/pd-pulping/system.webp'
@@ -223,6 +225,8 @@ const allModels = [
 
 /* ========== 参数表组件（严格复刻产品页双行结构）========== */
 function ParamsTable() {
+  const dataset = useCmsDataset()
+  const rows = dataset?.rows?.length ? dataset.rows : allModels
   return (
     <div className="detail-params-table">
       <table className="params-table pdm-params-table">
@@ -239,7 +243,7 @@ function ParamsTable() {
           </tr>
         </thead>
         <tbody>
-          {allModels.map((row, i) => (
+          {rows.map((row, i) => (
             <React.Fragment key={i}>
               <tr className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
                 <td className="td-model-code">{row.model}</td>
@@ -351,18 +355,9 @@ export default function PDPulpingPage() {
         <CoreEquipmentSection devices={coreEquipment} />
 
         {/* ===== 参数汇总 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">PD 制浆系统参数汇总</h2>
-            <div className="fade-up fade-up-delay-1">
-              <ParamsTable />
-            </div>
-            <p className="cp-table-note fade-up fade-up-delay-3">
-              * 以上参数仅供参考，实际规格以合同为准。可根据客户工艺需求进行定制化设计。
-            </p>
-          </div>
-        </section>
+        <CmsParameterTableSection fallbackTitle="PD 制浆系统参数汇总">
+          <ParamsTable />
+        </CmsParameterTableSection>
 
         {/* ===== 客户案例（严格按照循环制浆页样式布局）===== */}
         <section className="page-section">

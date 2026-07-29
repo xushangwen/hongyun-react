@@ -4224,8 +4224,12 @@
 
 /* Job Modal 内容 */
 .job-modal {
-  max-height: 75vh;
+  max-height: calc(100dvh - 48px);
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+  touch-action: pan-y;
 }
 .job-modal-content {
   padding: 64px 56px 32px;
@@ -4293,6 +4297,43 @@
   height: 5px;
   background: var(--hy-red);
   border-radius: 50%;
+}
+.job-modal-richtext {
+  color: var(--zinc-600);
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.job-modal-richtext p,
+.job-modal-richtext blockquote,
+.job-modal-rich-list {
+  margin: 0 0 10px;
+}
+.job-modal-richtext p:last-child,
+.job-modal-rich-list:last-child {
+  margin-bottom: 0;
+}
+.job-modal-rich-list {
+  padding-left: 22px;
+}
+.job-modal-rich-list li {
+  margin-bottom: 8px;
+}
+.job-modal-richtext h4,
+.job-modal-richtext h5,
+.job-modal-richtext h6 {
+  color: var(--zinc-800);
+  font-size: 14px;
+  margin: 14px 0 8px;
+}
+.job-modal-richtext blockquote {
+  border-left: 3px solid var(--zinc-200);
+  padding-left: 12px;
+}
+.job-modal-richtext a {
+  color: var(--hy-red);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .job-modal-divider {
   height: 1px;
@@ -5743,6 +5784,12 @@
   /* 弹窗 mobile */
   .job-modal-content {
     padding: 28px 24px 0;
+  }
+  .modal-overlay {
+    padding: 12px;
+  }
+  .job-modal {
+    max-height: calc(100dvh - 24px);
   }
   .job-modal-divider {
     margin: 0 24px;

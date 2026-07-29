@@ -1,4 +1,5 @@
 import React from 'react'
+import { useCmsSection } from '../context/useCmsDetail'
 
 /* ──────────────────────────────────────────────────────────
    SystemFeaturesSection — 系统/方案特点可复用区块
@@ -18,19 +19,30 @@ function getGridCols(n) {
 }
 
 export default function SystemFeaturesSection({ features = [], title = '系统特点', enLabel, grayBg = true, columns }) {
+  const cmsSection = useCmsSection('content.feature-grid')
+  const cmsFeatures = (cmsSection?.items || [])
+    .filter((item) => item.iconMedia?.url || item.iconKey)
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .map((item) => ({
+      img: item.iconMedia?.url,
+      title: item.title,
+      desc: item.description,
+    }))
+  const resolvedFeatures = cmsFeatures.length ? cmsFeatures : features
+  const resolvedTitle = cmsFeatures.length ? (cmsSection.title || title) : title
   const useFlexCenter = columns !== undefined
-  const cols = useFlexCenter ? columns : getGridCols(features.length)
+  const cols = useFlexCenter ? columns : getGridCols(resolvedFeatures.length)
 
   return (
     <section className={`page-section${grayBg ? ' page-section--gray' : ''}`}>
       <div className="page-container">
         {enLabel && <p className="section-en-label fade-up">{enLabel}</p>}
-        <h2 className="section-heading section-heading--center fade-up">{title}</h2>
+        <h2 className="section-heading section-heading--center fade-up">{resolvedTitle}</h2>
         <div
           className={`cp-feat-icon-grid${useFlexCenter ? ' cp-feat-icon-grid--flex' : ''}`}
           style={useFlexCenter ? { '--flex-cols': cols } : { gridTemplateColumns: `repeat(${cols}, 1fr)` }}
         >
-          {features.map(({ Icon, img, title: featTitle, desc }, i) => (
+          {resolvedFeatures.map(({ Icon, img, title: featTitle, desc }, i) => (
             <div
               key={i}
               className={`cp-feat-icon-card fade-up fade-up-delay-${(i % Math.min(cols, 3)) + 1}`}

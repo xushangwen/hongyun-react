@@ -1,15 +1,24 @@
+import { useCmsDetail } from '../context/useCmsDetail'
+
 export default function PageHero({ title, subtitle, bgImage, bgPosition = 'center', noOverlay = false, noScroll = false }) {
+  const { detail } = useCmsDetail()
+  const cmsHero = detail?.hero
+  const resolvedTitle = cmsHero?.titleOverride || title || detail?.title
+  const resolvedSubtitle = cmsHero?.subtitle || subtitle
+  const resolvedBgImage = cmsHero?.desktopMedia?.url || bgImage
+  const resolvedBgPosition = cmsHero?.imagePosition || bgPosition
+
   return (
     <section className="page-hero">
       <div className="page-hero-bg">
-        {bgImage
-          ? <img src={bgImage} alt="" className="page-hero-bg-img" loading="eager" style={{ objectPosition: bgPosition }} />
+        {resolvedBgImage
+          ? <img src={resolvedBgImage} alt="" className="page-hero-bg-img" loading="eager" style={{ objectPosition: resolvedBgPosition }} />
           : <div className="page-hero-placeholder" />}
       </div>
       {!noOverlay && <div className="page-hero-overlay" />}
       <div className="page-hero-content">
-        <h1 className="page-hero-title">{title || '追求完美 做到极致'}</h1>
-        {subtitle && <p className="page-hero-subtitle">{subtitle}</p>}
+        <h1 className="page-hero-title">{resolvedTitle || '追求完美 做到极致'}</h1>
+        {resolvedSubtitle && <p className="page-hero-subtitle">{resolvedSubtitle}</p>}
         <div className="page-hero-divider" />
       </div>
       {!noScroll && (

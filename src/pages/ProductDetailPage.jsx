@@ -7,6 +7,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import ctaBgImg from '../assets/img/learn-more.webp'
 import productHeroImg from '../assets/img/industry-products.webp'
+import { useCmsDetail, useCmsSection } from '../context/useCmsDetail'
 
 /* ========== 产品数据映射 ========== */
 const productMap = {
@@ -63,6 +64,8 @@ const productMap = {
 
 export default function ProductDetailPage() {
   const { categoryId, productId } = useParams()
+  const { detail } = useCmsDetail()
+  const featureSection = useCmsSection('content.feature-grid')
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -78,7 +81,16 @@ export default function ProductDetailPage() {
   }, [categoryId, productId])
 
   const category = productMap[categoryId]
-  const product = category?.products?.[productId]
+  const localProduct = category?.products?.[productId]
+  const cmsFeatures = (featureSection?.items || [])
+    .filter((item) => item.title)
+    .map((item) => item.description || item.title)
+  const product = localProduct && {
+    ...localProduct,
+    name: detail?.title || localProduct.name,
+    intro: detail?.summary || localProduct.intro,
+    features: cmsFeatures.length ? cmsFeatures : localProduct.features,
+  }
   const productName = product?.name || '产品详情'
   const categoryName = category?.name || '行业'
 
@@ -101,7 +113,9 @@ export default function ProductDetailPage() {
           <div className="page-container">
             <h2 className="section-heading">产品展示</h2>
             <div className="product-detail-showcase">
-              <ImagePlaceholder height="420px" label={`${productName} 产品展示图`} />
+              {detail?.cover?.url
+                ? <img src={detail.cover.url} alt={productName} loading="eager" />
+                : <ImagePlaceholder height="420px" label={`${productName} 产品展示图`} />}
             </div>
           </div>
         </section>

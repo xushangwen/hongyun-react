@@ -7,6 +7,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
 import solutionHeroImg from '../assets/img/industry-products.webp'
 import ctaBgImg from '../assets/img/learn-more.webp'
+import { useCmsDetail, useCmsSection } from '../context/useCmsDetail'
 
 /* ========== 方案数据映射 ========== */
 const solutionMap = {
@@ -94,6 +95,8 @@ const solutionMap = {
 
 export default function SolutionDetailPage() {
   const { industryId, solutionId } = useParams()
+  const { detail } = useCmsDetail()
+  const featureSection = useCmsSection('content.feature-grid')
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -109,7 +112,16 @@ export default function SolutionDetailPage() {
   }, [industryId, solutionId])
 
   const industry = solutionMap[industryId]
-  const solution = industry?.solutions?.[solutionId]
+  const localSolution = industry?.solutions?.[solutionId]
+  const cmsFeatures = (featureSection?.items || [])
+    .filter((item) => item.title)
+    .map((item) => item.description || item.title)
+  const solution = localSolution && {
+    ...localSolution,
+    name: detail?.title || localSolution.name,
+    intro: detail?.summary || localSolution.intro,
+    features: cmsFeatures.length ? cmsFeatures : localSolution.features,
+  }
   const solutionName = solution?.name || '方案详情'
   const industryName = industry?.name || '行业'
 
@@ -145,7 +157,9 @@ export default function SolutionDetailPage() {
               </div>
               {!textOnly && (
                 <div className="detail-intro-image">
-                  <ImagePlaceholder height="340px" label={`${solutionName} 系统图`} />
+                  {detail?.cover?.url
+                    ? <img src={detail.cover.url} alt={solutionName} loading="eager" />
+                    : <ImagePlaceholder height="340px" label={`${solutionName} 系统图`} />}
                 </div>
               )}
             </div>

@@ -4,6 +4,7 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ProductThreeView from '../components/ProductThreeView'
 import TechInquirySection from '../components/TechInquirySection'
+import { useCmsDetail } from '../context/useCmsDetail'
 
 const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
 const EQ = '/assets/images/solutions/chemical/equipment'
@@ -29,7 +30,14 @@ const productMap = {
 
 export default function ChemicalProductDetailPage() {
   const { productId } = useParams()
-  const product = productMap[productId]
+  const { detail } = useCmsDetail()
+  const localProduct = productMap[productId]
+  const product = localProduct && {
+    ...localProduct,
+    name: detail?.title || localProduct.name,
+    img: detail?.cover?.url || localProduct.img,
+    summary: detail?.summary || '',
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -74,6 +82,7 @@ export default function ChemicalProductDetailPage() {
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">{product.name}</h2>
+                {product.summary && <p className="pdm-intro-desc fade-up fade-up-delay-2">{product.summary}</p>}
               </div>
             </div>
           </div>

@@ -5,6 +5,8 @@ import ProductThreeView from '../components/ProductThreeView'
 import VideoPlayer from '../components/VideoPlayer'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import TechInquirySection from '../components/TechInquirySection'
+import CmsParameterTableSection from '../components/CmsParameterTableSection'
+import { useCmsDataset } from '../context/useCmsDetail'
 
 const IMG = '/assets/images/solutions/twin-screw-pulping'
 
@@ -184,6 +186,8 @@ const modelParams = [
 ]
 
 function ParamsTable() {
+  const dataset = useCmsDataset()
+  const rows = dataset?.rows?.length ? dataset.rows : modelParams
   return (
     <div className="detail-params-table">
       <table className="params-table pdm-params-table cp-params-table tsp-params-table">
@@ -198,7 +202,7 @@ function ParamsTable() {
           </tr>
         </thead>
         <tbody>
-          {modelParams.map((row, i) => (
+          {rows.map((row, i) => (
             <tr key={i} className={i % 2 === 0 ? 'tr-even' : 'tr-odd'}>
               <td className="td-model-code">{row.model}</td>
               <td>{row.motor}</td>
@@ -493,18 +497,9 @@ export default function TwinScrewPulpingPage() {
         </section>
 
         {/* ===== 参数汇总 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">双螺杆连续制浆系统参数汇总</h2>
-            <div className="fade-up fade-up-delay-1">
-              <ParamsTable />
-            </div>
-            <p className="cp-table-note fade-up fade-up-delay-3">
-              * 以上参数仅供参考，实际规格以合同为准。可根据客户工艺需求进行定制化设计。
-            </p>
-          </div>
-        </section>
+        <CmsParameterTableSection fallbackTitle="双螺杆连续制浆系统参数汇总">
+          <ParamsTable />
+        </CmsParameterTableSection>
 
         {/* ===== 客户案例 ===== */}
         <section className="page-section">
