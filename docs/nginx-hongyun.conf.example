@@ -1,0 +1,62 @@
+upstream hongyun_api {
+    server 127.0.0.1:3001;
+    keepalive 32;
+}
+
+upstream hongyun_cms {
+    server 127.0.0.1:1337;
+    keepalive 16;
+}
+
+limit_req_zone $binary_remote_addr zone=hongyun_form:10m rate=10r/m;
+
+server {
+    listen 443 ssl http2;
+    server_name example.com;
+
+    root /var/www/hongyun/dist;
+    index index.html;
+    client_max_body_size 1m;
+
+    location = /api/cms/contact {
+        limit_req zone=hongyun_form burst=3 nodelay;
+        client_max_body_size 32k;
+        proxy_pass http://hongyun_api;
+        include proxy_params;
+    }
+
+    location = /api/cms/resume {
+        limit_req zone=hongyun_form burst=2 nodelay;
+        client_max_body_size 11m;
+        proxy_request_buffering on;
+        proxy_pass http://hongyun_api;
+        include proxy_params;
+    }
+
+    location /api/ {
+        proxy_pass http://hongyun_api;
+        include proxy_params;
+    }
+
+    location = /sitemap.xml {
+        proxy_pass http://hongyun_api;
+        include proxy_params;
+    }
+
+    # 生产必须再配置公司 VPN/IP allowlist 或统一身份认证。
+    location /admin {
+        proxy_pass http://hongyun_cms;
+        include proxy_params;
+    }
+
+    location /uploads/ {
+        expires 30d;
+        add_header Cache-Control "public, immutable";
+        proxy_pass http://hongyun_cms;
+        include proxy_params;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
