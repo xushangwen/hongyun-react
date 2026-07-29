@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hongyun_access_audit_logs",
+  "info": {
+    "singularName": "access-audit-log",
+    "pluralName": "access-audit-logs",
+    "displayName": "敏感数据访问审计",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "actor": {
+      "type": "string",
+      "required": true
+    },
+    "action": {
+      "type": "enumeration",
+      "enum": [
+        "download",
+        "delete",
+        "extend-retention"
+      ],
+      "required": true
+    },
+    "targetType": {
+      "type": "enumeration",
+      "enum": [
+        "resume",
+        "contact"
+      ],
+      "required": true
+    },
+    "targetDocumentId": {
+      "type": "string",
+      "required": true
+    },
+    "reason": {
+      "type": "text"
+    },
+    "occurredAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "ipHash": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

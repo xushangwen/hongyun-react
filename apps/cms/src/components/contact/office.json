@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_contact_offices",
+  "info": {
+    "displayName": "公司基地"
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "longitude": {
+      "type": "decimal",
+      "required": true
+    },
+    "latitude": {
+      "type": "decimal",
+      "required": true
+    }
+  }
+}

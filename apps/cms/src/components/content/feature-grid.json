@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_content_feature_grids",
+  "info": {
+    "displayName": "特点网格"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "anchor": {
+      "type": "string"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.feature-item",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "columns": {
+      "type": "integer",
+      "min": 1,
+      "max": 6,
+      "default": 3
+    },
+    "layoutVariant": {
+      "type": "enumeration",
+      "enum": [
+        "cards",
+        "icons",
+        "numbered",
+        "compact"
+      ],
+      "default": "cards"
+    }
+  }
+}

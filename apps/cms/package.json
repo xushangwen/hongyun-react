@@ -1,0 +1,39 @@
+{
+  "name": "@hongyun/cms",
+  "version": "0.1.0",
+  "private": true,
+  "description": "红运官网 Strapi CMS",
+  "scripts": {
+    "build": "strapi build",
+    "console": "strapi console",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "seed": "node scripts/seed.js",
+    "seed:sync": "node scripts/seed.js --sync-existing",
+    "tokens": "node scripts/setup-api-tokens.js",
+    "resume:scan": "node scripts/process-resumes.js",
+    "retention:cleanup": "node scripts/retention-cleanup.js",
+    "icons:backfill": "node scripts/backfill-feature-icons.js",
+    "datasets:media-backfill": "node scripts/backfill-dataset-media.js",
+    "datasets:split-dual-planetary": "node scripts/split-dual-planetary-datasets.js",
+    "verify": "node scripts/verify.js"
+  },
+  "dependencies": {
+    "@strapi/design-system": "2.2.3",
+    "@strapi/icons": "2.2.3",
+    "@strapi/plugin-users-permissions": "5.51.0",
+    "@strapi/strapi": "5.51.0",
+    "@strapi/utils": "5.51.0",
+    "better-sqlite3": "12.11.1",
+    "mysql2": "3.22.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.30.3",
+    "styled-components": "6.1.19",
+    "zod": "3.25.76"
+  },
+  "engines": {
+    "node": ">=20.0.0 <=26.x.x",
+    "npm": ">=6.0.0"
+  }
+}

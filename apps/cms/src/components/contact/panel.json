@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_contact_panels",
+  "info": {
+    "displayName": "表单品牌面板"
+  },
+  "attributes": {
+    "tagline": {
+      "type": "text",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.info-item"
+    },
+    "background": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

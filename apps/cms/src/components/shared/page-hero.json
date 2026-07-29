@@ -1,0 +1,74 @@
+{
+  "collectionName": "components_shared_page_heroes",
+  "info": {
+    "displayName": "页面首屏"
+  },
+  "attributes": {
+    "titleOverride": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "desktopMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "files"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "mobileMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "files"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "mediaType": {
+      "type": "enumeration",
+      "enum": [
+        "image",
+        "video"
+      ],
+      "default": "image"
+    },
+    "imagePosition": {
+      "type": "enumeration",
+      "enum": [
+        "center",
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ],
+      "default": "center"
+    },
+    "overlay": {
+      "type": "enumeration",
+      "enum": [
+        "none",
+        "light",
+        "dark"
+      ],
+      "default": "dark"
+    },
+    "showScrollIndicator": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

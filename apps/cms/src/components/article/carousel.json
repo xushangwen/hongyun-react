@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_article_carousels",
+  "info": {
+    "displayName": "新闻图片轮播"
+  },
+  "attributes": {
+    "images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.media-item",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

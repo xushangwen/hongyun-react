@@ -1,0 +1,80 @@
+{
+  "collectionName": "components_shared_media_items",
+  "info": {
+    "displayName": "媒体项"
+  },
+  "attributes": {
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "files"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "sourcePath": {
+      "type": "customField",
+      "customField": "global::legacy-path"
+    },
+    "alt": {
+      "type": "string"
+    },
+    "caption": {
+      "type": "text"
+    },
+    "label": {
+      "type": "string"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "cover",
+        "hero",
+        "three-view",
+        "gallery",
+        "case",
+        "diagram",
+        "chart",
+        "video",
+        "other"
+      ],
+      "default": "other"
+    },
+    "imageFit": {
+      "type": "enumeration",
+      "enum": [
+        "contain",
+        "cover"
+      ],
+      "default": "cover"
+    },
+    "imagePosition": {
+      "type": "enumeration",
+      "enum": [
+        "center",
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ],
+      "default": "center"
+    },
+    "aspectVariant": {
+      "type": "enumeration",
+      "enum": [
+        "auto",
+        "square",
+        "landscape",
+        "portrait",
+        "wide"
+      ],
+      "default": "auto"
+    }
+  }
+}

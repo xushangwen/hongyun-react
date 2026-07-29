@@ -1,0 +1,90 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hongyun_contact_submissions",
+  "info": {
+    "singularName": "contact-submission",
+    "pluralName": "contact-submissions",
+    "displayName": "联系与询盘记录",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "company": {
+      "type": "string"
+    },
+    "phoneMasked": {
+      "type": "string",
+      "required": true
+    },
+    "emailMasked": {
+      "type": "string"
+    },
+    "phoneEncrypted": {
+      "type": "text",
+      "private": true
+    },
+    "emailEncrypted": {
+      "type": "text",
+      "private": true
+    },
+    "message": {
+      "type": "text",
+      "required": true,
+      "private": true
+    },
+    "contextType": {
+      "type": "enumeration",
+      "enum": [
+        "product",
+        "solution",
+        "page"
+      ],
+      "default": "page"
+    },
+    "contextDocumentId": {
+      "type": "string"
+    },
+    "contextPath": {
+      "type": "string",
+      "required": true
+    },
+    "contextTitleSnapshot": {
+      "type": "string"
+    },
+    "referrer": {
+      "type": "string"
+    },
+    "utm": {
+      "type": "json"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "new",
+        "processing",
+        "closed",
+        "spam"
+      ],
+      "default": "new"
+    },
+    "expiresAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "fingerprintHash": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

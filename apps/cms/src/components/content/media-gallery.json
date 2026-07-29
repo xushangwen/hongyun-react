@@ -1,0 +1,57 @@
+{
+  "collectionName": "components_content_media_galleries",
+  "info": {
+    "displayName": "媒体画廊"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "anchor": {
+      "type": "string"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "gallery",
+        "three-view",
+        "carousel",
+        "case"
+      ],
+      "default": "gallery"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.media-item",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "layoutVariant": {
+      "type": "enumeration",
+      "enum": [
+        "grid",
+        "slider",
+        "three-column",
+        "stacked"
+      ],
+      "default": "grid"
+    }
+  }
+}

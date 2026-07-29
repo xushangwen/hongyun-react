@@ -1,0 +1,71 @@
+{
+  "kind": "singleType",
+  "collectionName": "hongyun_form_settings",
+  "info": {
+    "singularName": "form-setting",
+    "pluralName": "form-settings",
+    "displayName": "表单设置",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "industryOptions": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "options"
+      },
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "positionOptions": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "options"
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "contactCopy": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "responseTime": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "retentionDays": {
+      "type": "integer",
+      "default": 180,
+      "min": 1,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}

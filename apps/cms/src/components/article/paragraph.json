@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_article_paragraphs",
+  "info": {
+    "displayName": "新闻段落"
+  },
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "bold": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

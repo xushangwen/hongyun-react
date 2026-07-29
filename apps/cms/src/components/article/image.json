@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_article_images",
+  "info": {
+    "displayName": "新闻图片"
+  },
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "sourcePath": {
+      "type": "customField",
+      "customField": "global::legacy-path"
+    },
+    "alt": {
+      "type": "string",
+      "required": true
+    },
+    "caption": {
+      "type": "text"
+    }
+  }
+}

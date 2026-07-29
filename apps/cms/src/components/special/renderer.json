@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_special_renderers",
+  "info": {
+    "displayName": "受控特殊渲染器"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "rendererKey": {
+      "type": "enumeration",
+      "enum": [
+        "pipeline-material-validation-v1",
+        "twin-screw-validation-v1"
+      ],
+      "required": true
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "min": 1,
+      "required": true
+    },
+    "payload": {
+      "type": "json",
+      "required": true
+    }
+  }
+}

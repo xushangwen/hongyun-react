@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_content_case_lists",
+  "info": {
+    "displayName": "案例列表"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "caseKeys": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "string-list"
+      },
+      "required": true
+    },
+    "layoutVariant": {
+      "type": "enumeration",
+      "enum": [
+        "cards",
+        "chapters",
+        "carousel"
+      ],
+      "default": "cards"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "checkJs": false,
+    "target": "ES2021",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src/**/*.js",
+    "config/**/*.js",
+    "scripts/**/*.js"
+  ]
+}

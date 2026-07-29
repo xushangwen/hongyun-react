@@ -1,0 +1,154 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hongyun_technical_datasets",
+  "info": {
+    "singularName": "technical-dataset",
+    "pluralName": "technical-datasets",
+    "displayName": "技术数据集",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "kind": {
+      "type": "enumeration",
+      "enum": [
+        "spec-table",
+        "experiment-table",
+        "chart-data",
+        "eds-data"
+      ],
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "min": 1,
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "columns": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "columns"
+      },
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "headerGroups": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "header-groups"
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "rows": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "rows"
+      },
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "chartConfig": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "chart-config"
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "unitNotes": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "sourceFile": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "videos",
+        "files"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "legacyKey": {
+      "type": "string",
+      "unique": true,
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "version": {
+      "type": "integer",
+      "min": 1,
+      "default": 1,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "sourceChecksum": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "hongyun_navigations",
+  "info": {
+    "singularName": "navigation",
+    "pluralName": "navigations",
+    "displayName": "导航设置",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "headerItems": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "navigation"
+      },
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "footerItems": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "navigation"
+      },
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    }
+  }
+}

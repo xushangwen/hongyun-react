@@ -1,0 +1,84 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hongyun_resume_submissions",
+  "info": {
+    "singularName": "resume-submission",
+    "pluralName": "resume-submissions",
+    "displayName": "简历记录",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "phoneMasked": {
+      "type": "string",
+      "required": true
+    },
+    "emailMasked": {
+      "type": "string"
+    },
+    "phoneEncrypted": {
+      "type": "text",
+      "private": true
+    },
+    "emailEncrypted": {
+      "type": "text",
+      "private": true
+    },
+    "position": {
+      "type": "string",
+      "required": true
+    },
+    "privateFileKey": {
+      "type": "string",
+      "required": true
+    },
+    "originalFilename": {
+      "type": "string"
+    },
+    "mime": {
+      "type": "string"
+    },
+    "size": {
+      "type": "biginteger",
+      "private": true
+    },
+    "scanStatus": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "clean",
+        "blocked",
+        "error"
+      ],
+      "default": "pending"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "new",
+        "reviewing",
+        "closed",
+        "deleted"
+      ],
+      "default": "new"
+    },
+    "expiresAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "retainedUntil": {
+      "type": "datetime"
+    }
+  }
+}

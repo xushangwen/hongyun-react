@@ -1,0 +1,82 @@
+{
+  "kind": "singleType",
+  "collectionName": "hongyun_about_pages",
+  "info": {
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "关于我们",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "hero": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.page-hero",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "content.rich-text",
+        "content.media-text",
+        "content.video",
+        "content.media-gallery",
+        "content.feature-grid",
+        "content.data-table",
+        "content.equipment-grid",
+        "content.case-list",
+        "content.cta",
+        "technical.chart-gallery",
+        "technical.metric-chart",
+        "technical.simulation-gallery",
+        "technical.report-section",
+        "technical.evidence-grid",
+        "special.renderer"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "sourceChecksum": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}

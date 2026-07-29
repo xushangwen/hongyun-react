@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_shared_text_items",
+  "info": {
+    "displayName": "文本项"
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "label": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}

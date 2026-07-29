@@ -1,0 +1,9 @@
+/* Strapi 的部分图标按钮使用固定宽度，中文标签会被拆成两行。 */
+button > span,
+a[aria-disabled] > span {
+  white-space: nowrap;
+}
+
+button:has(> span:first-child[aria-hidden='true'] + span:last-child) {
+  min-width: max-content;
+}

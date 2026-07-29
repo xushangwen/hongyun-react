@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_content_equipment_grids",
+  "info": {
+    "displayName": "核心设备"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "equipmentKeys": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "string-list"
+      },
+      "required": true
+    },
+    "layoutVariant": {
+      "type": "enumeration",
+      "enum": [
+        "cards",
+        "horizontal",
+        "detailed"
+      ],
+      "default": "cards"
+    }
+  }
+}

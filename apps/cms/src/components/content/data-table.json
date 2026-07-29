@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_content_data_tables",
+  "info": {
+    "displayName": "数据表"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "datasetKey": {
+      "type": "string",
+      "required": true
+    },
+    "datasetView": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "dataset-view"
+      }
+    },
+    "layoutVariant": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "scroll",
+        "compact",
+        "grouped"
+      ],
+      "default": "scroll"
+    }
+  }
+}

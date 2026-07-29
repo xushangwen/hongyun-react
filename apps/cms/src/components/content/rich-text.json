@@ -1,0 +1,52 @@
+{
+  "collectionName": "components_content_rich_texts",
+  "info": {
+    "displayName": "页面正文（迁移文案）",
+    "description": "保存原页面迁入的段落文案；已拆成专用字段的内容优先编辑专用字段"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "anchor": {
+      "type": "string"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "blocks"
+    },
+    "layoutVariant": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "narrow",
+        "wide"
+      ],
+      "default": "default"
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "light",
+        "dark",
+        "muted"
+      ],
+      "default": "light"
+    }
+  }
+}

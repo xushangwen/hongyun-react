@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_technical_report_sections",
+  "info": {
+    "displayName": "技术报告章节"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "background": {
+      "type": "blocks"
+    },
+    "process": {
+      "type": "blocks"
+    },
+    "result": {
+      "type": "blocks"
+    },
+    "conclusion": {
+      "type": "blocks"
+    }
+  }
+}

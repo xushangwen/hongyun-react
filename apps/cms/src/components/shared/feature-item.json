@@ -1,0 +1,63 @@
+{
+  "collectionName": "components_shared_feature_items",
+  "info": {
+    "displayName": "功能特点"
+  },
+  "attributes": {
+    "iconKey": {
+      "type": "enumeration",
+      "enum": [
+        "development",
+        "target",
+        "connect",
+        "leaf",
+        "energy",
+        "process",
+        "quality",
+        "performance",
+        "filter",
+        "like",
+        "laptop",
+        "speed"
+      ]
+    },
+    "iconMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "bullets": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}

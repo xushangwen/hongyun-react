@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_content_ctas",
+  "info": {
+    "displayName": "行动号召"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "text": {
+      "type": "text"
+    },
+    "buttonLabel": {
+      "type": "string"
+    },
+    "targetPath": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "default",
+        "contact",
+        "inquiry",
+        "callout"
+      ],
+      "default": "default"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "collectionName": "components_content_media_texts",
+  "info": {
+    "displayName": "图文介绍"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "anchor": {
+      "type": "string"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "eyebrow": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "blocks"
+    },
+    "mediaItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.media-item",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "layoutVariant": {
+      "type": "enumeration",
+      "enum": [
+        "media-left",
+        "media-right",
+        "media-top"
+      ],
+      "default": "media-right"
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "light",
+        "dark",
+        "muted"
+      ],
+      "default": "light"
+    }
+  }
+}

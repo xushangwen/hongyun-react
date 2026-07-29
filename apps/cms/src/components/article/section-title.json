@@ -1,0 +1,12 @@
+{
+  "collectionName": "components_article_section_titles",
+  "info": {
+    "displayName": "新闻小节标题"
+  },
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

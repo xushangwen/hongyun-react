@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_contact_talent_values",
+  "info": {
+    "displayName": "人才理念卡片"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "iconKey": {
+      "type": "enumeration",
+      "enum": ["people", "learning", "collaboration"],
+      "default": "people"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

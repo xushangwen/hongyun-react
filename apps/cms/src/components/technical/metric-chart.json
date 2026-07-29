@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_technical_metric_charts",
+  "info": {
+    "displayName": "指标图表"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "datasetKey": {
+      "type": "string",
+      "required": true
+    },
+    "layoutVariant": {
+      "type": "enumeration",
+      "enum": [
+        "line",
+        "bar",
+        "scatter",
+        "multi-axis"
+      ],
+      "default": "line"
+    }
+  }
+}

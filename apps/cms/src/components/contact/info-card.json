@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_contact_info_cards",
+  "info": {
+    "displayName": "联系方式卡片"
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "iconKey": {
+      "type": "enumeration",
+      "enum": ["phone", "address", "email", "time"],
+      "default": "phone"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "contact.info-item"
+    }
+  }
+}
