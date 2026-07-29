@@ -1,0 +1,18 @@
+{
+  "extends": "./.nitro/types/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "paths": {
+      "#imports": ["./.nitro/types/nitro-imports"],
+      "~/*": ["./server/*"],
+      "@hongyun/contracts": ["../../packages/contracts/src/index.ts"]
+    }
+  },
+  "include": ["server/**/*.ts", "nitro.config.ts"]
+}
