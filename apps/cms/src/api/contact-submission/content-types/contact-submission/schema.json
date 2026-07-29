@@ -23,6 +23,9 @@
     "company": {
       "type": "string"
     },
+    "industry": {
+      "type": "string"
+    },
     "phoneMasked": {
       "type": "string",
       "required": true

@@ -21,6 +21,8 @@ module.exports = {
       cwd: './apps/api',
       script: '.output/server/index.mjs',
       interpreter: 'node',
+      // Nitro production runtime does not load apps/api/.env by itself.
+      interpreter_args: '--env-file=.env',
       // BFF cache and abuse limits are process-local; keep one worker until
       // a shared Redis cache/rate-limit store is configured.
       instances: 1,

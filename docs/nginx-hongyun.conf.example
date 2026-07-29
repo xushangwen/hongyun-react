@@ -1,3 +1,6 @@
+# 宝塔 Nginx 示例。替换域名、证书路径、站点目录和 CMS 管理员 IP 后再启用。
+# 本文件应位于 Nginx 的 http {} 内（宝塔站点配置满足此条件）。
+
 upstream hongyun_api {
     server 127.0.0.1:3001;
     keepalive 32;
@@ -11,18 +14,35 @@ upstream hongyun_cms {
 limit_req_zone $binary_remote_addr zone=hongyun_form:10m rate=10r/m;
 
 server {
-    listen 443 ssl http2;
-    server_name example.com;
+    listen 80;
+    server_name www.example.com example.com;
+    return 301 https://www.example.com$request_uri;
+}
 
-    root /var/www/hongyun/dist;
+server {
+    listen 443 ssl http2;
+    server_name www.example.com example.com;
+
+    # 证书建议由宝塔 SSL 页面生成并维护。
+    ssl_certificate /www/server/panel/vhost/cert/www.example.com/fullchain.pem;
+    ssl_certificate_key /www/server/panel/vhost/cert/www.example.com/privkey.pem;
+
+    root /www/wwwroot/hongyun-react/dist;
     index index.html;
     client_max_body_size 1m;
+
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
 
     location = /api/cms/contact {
         limit_req zone=hongyun_form burst=3 nodelay;
         client_max_body_size 32k;
         proxy_pass http://hongyun_api;
-        include proxy_params;
+        include /www/server/nginx/conf/proxy.conf;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 
     location = /api/cms/resume {
@@ -30,33 +50,78 @@ server {
         client_max_body_size 11m;
         proxy_request_buffering on;
         proxy_pass http://hongyun_api;
-        include proxy_params;
+        include /www/server/nginx/conf/proxy.conf;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # CMS webhook 由本机 Strapi 直连 127.0.0.1:3001，不应暴露公网。
+    location = /api/cms/webhook {
+        return 404;
+    }
+
+    # 招聘简历下载接口只允许公司的固定出口 IP 或 VPN 网段访问。
+    location ^~ /api/admin/ {
+        allow 203.0.113.10;
+        deny all;
+        proxy_pass http://hongyun_api;
+        include /www/server/nginx/conf/proxy.conf;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 
     location /api/ {
         proxy_pass http://hongyun_api;
-        include proxy_params;
+        include /www/server/nginx/conf/proxy.conf;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 
     location = /sitemap.xml {
         proxy_pass http://hongyun_api;
-        include proxy_params;
+        include /www/server/nginx/conf/proxy.conf;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 
-    # 生产必须再配置公司 VPN/IP allowlist 或统一身份认证。
-    location /admin {
-        proxy_pass http://hongyun_cms;
-        include proxy_params;
-    }
-
-    location /uploads/ {
-        expires 30d;
+    location /assets/ {
+        try_files $uri =404;
+        expires 1y;
         add_header Cache-Control "public, immutable";
-        proxy_pass http://hongyun_cms;
-        include proxy_params;
+        access_log off;
     }
 
     location / {
         try_files $uri $uri/ /index.html;
+    }
+}
+
+# Strapi 使用独立后台域名，整站反代；否则 /content-manager、/upload 等后台接口会落到前端 SPA。
+server {
+    listen 80;
+    server_name cms.example.com;
+    return 301 https://cms.example.com$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name cms.example.com;
+
+    ssl_certificate /www/server/panel/vhost/cert/cms.example.com/fullchain.pem;
+    ssl_certificate_key /www/server/panel/vhost/cert/cms.example.com/privkey.pem;
+    client_max_body_size 50m;
+
+    # 示例地址默认不可达；上线前替换为公司固定出口 IP 或 VPN 网段。
+    allow 203.0.113.10;
+    deny all;
+
+    location / {
+        proxy_pass http://hongyun_cms;
+        include /www/server/nginx/conf/proxy.conf;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }

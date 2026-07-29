@@ -4163,13 +4163,14 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 3000;
   background: rgba(0, 0, 0, 0.6);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 40px 20px;
-  overflow-y: auto;
+  overflow: hidden;
+  overscroll-behavior: contain;
   backdrop-filter: blur(4px);
   animation: modal-overlay-in 0.25s ease;
 }
@@ -4224,7 +4225,13 @@
 
 /* Job Modal 内容 */
 .job-modal {
-  max-height: calc(100dvh - 48px);
+  display: flex;
+  flex-direction: column;
+  max-height: min(720px, calc(100dvh - 120px));
+  overflow: hidden;
+}
+.job-modal-scroll {
+  min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
@@ -5783,13 +5790,13 @@
 
   /* 弹窗 mobile */
   .job-modal-content {
-    padding: 28px 24px 0;
+    padding: 64px 24px 0;
   }
   .modal-overlay {
     padding: 12px;
   }
   .job-modal {
-    max-height: calc(100dvh - 24px);
+    max-height: calc(100dvh - 64px);
   }
   .job-modal-divider {
     margin: 0 24px;

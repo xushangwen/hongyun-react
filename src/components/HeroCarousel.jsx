@@ -169,17 +169,20 @@ export default function HeroCarousel() {
           </span>
           <div className="hero-progress">
             {slides.map((_, index) => (
-              <div
+              <button
+                type="button"
                 key={index}
                 onClick={() => handleProgressClick(index)}
-                style={{ cursor: 'pointer', padding: '8px 0', margin: '-8px 0' }}
+                className="hero-progress-button"
+                aria-label={`切换到第 ${index + 1} 张`}
+                aria-current={index === currentIndex ? 'true' : undefined}
               >
                 <div
                   ref={(el) => (progressRef.current[index] = el)}
                   className="hero-progress-bar"
                   data-index={index}
                 />
-              </div>
+              </button>
             ))}
           </div>
         </div>

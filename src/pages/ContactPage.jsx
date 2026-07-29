@@ -427,10 +427,13 @@ function useContactContent() {
 }
 
 /* ========== 简历上传弹窗 ========== */
-const ACCEPT_TYPES = '.pdf,.doc,.docx,.ppt,.pptx,.jpg,.jpeg,.png'
+const ACCEPT_TYPES = '.pdf,.doc,.docx'
+const ALLOWED_RESUME_EXTENSIONS = ['pdf', 'doc', 'docx']
+const RESUME_FORMAT_HINT = '支持 PDF / Word，最大 10MB'
 const MAX_SIZE_MB = 10
 
 function ResumeUploadModal({ job, onClose }) {
+  const [formData, setFormData] = useState({ name: '', phone: '', email: '' })
   const [file, setFile] = useState(null)
   const [dragOver, setDragOver] = useState(false)
   const [submitted, setSubmitted] = useState(false)
@@ -443,8 +446,7 @@ function ResumeUploadModal({ job, onClose }) {
   const validateFile = useCallback((f) => {
     if (!f) return ''
     const ext = f.name.split('.').pop().toLowerCase()
-    const allowed = ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'jpg', 'jpeg', 'png']
-    if (!allowed.includes(ext)) return '仅支持 PDF / Word / PPT / JPG 格式'
+    if (!ALLOWED_RESUME_EXTENSIONS.includes(ext)) return '仅支持 PDF / Word 格式'
     if (f.size > MAX_SIZE_MB * 1024 * 1024) return `文件大小不超过 ${MAX_SIZE_MB}MB`
     return ''
   }, [])
@@ -469,7 +471,7 @@ function ResumeUploadModal({ job, onClose }) {
     setSubmitting(true)
     setError('')
     try {
-      await submitResume({ file, position: job.title })
+      await submitResume({ file, position: job.title, ...formData })
       setSubmitted(true)
     } catch (submitError) {
       setError(submitError.message)
@@ -480,12 +482,22 @@ function ResumeUploadModal({ job, onClose }) {
 
   useEffect(() => {
     const onKeyDown = (e) => { if (e.key === 'Escape') onClose() }
-    const previousBodyOverflow = document.body.style.overflow
+    const scrollY = window.scrollY
+    const previousBodyStyles = {
+      overflow: document.body.style.overflow,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+    }
     document.addEventListener('keydown', onKeyDown)
     document.body.style.overflow = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.width = '100%'
     return () => {
       document.removeEventListener('keydown', onKeyDown)
-      document.body.style.overflow = previousBodyOverflow
+      Object.assign(document.body.style, previousBodyStyles)
+      window.scrollTo(0, scrollY)
     }
   }, [onClose])
 
@@ -496,61 +508,96 @@ function ResumeUploadModal({ job, onClose }) {
           <IconXmarkOutline24 size={20} />
         </button>
 
-        {/* JD 内容 */}
-        <div className="job-modal-content">
-          <div className="job-modal-header">
-            <div>
-              <h2 className="job-modal-title" id="job-modal-title">{job.title}</h2>
-              <div className="job-modal-meta">
-                <span>{job.dept}</span>
-                <span>·</span>
-                <span>{job.location}</span>
-                <span>·</span>
-                <span>{job.type}</span>
-                {job.headcount && <><span>·</span><span>招募 {job.headcount}</span></>}
+        <div className="job-modal-scroll" data-lenis-prevent>
+          {/* JD 内容 */}
+          <div className="job-modal-content">
+            <div className="job-modal-header">
+              <div>
+                <h2 className="job-modal-title" id="job-modal-title">{job.title}</h2>
+                <div className="job-modal-meta">
+                  <span>{job.dept}</span>
+                  <span>·</span>
+                  <span>{job.location}</span>
+                  <span>·</span>
+                  <span>{job.type}</span>
+                  {job.headcount && <><span>·</span><span>招募 {job.headcount}</span></>}
+                </div>
               </div>
+              <div className="job-modal-salary">{job.salary}</div>
             </div>
-            <div className="job-modal-salary">{job.salary}</div>
+
+            <div className="job-modal-section">
+              <h3 className="job-modal-section-title">岗位职责</h3>
+              <JobRichText value={job.responsibilities} />
+            </div>
+
+            <div className="job-modal-section">
+              <h3 className="job-modal-section-title">任职要求</h3>
+              <JobRichText value={job.requirements} />
+            </div>
           </div>
 
-          <div className="job-modal-section">
-            <h3 className="job-modal-section-title">岗位职责</h3>
-            <JobRichText value={job.responsibilities} />
-          </div>
+          {/* 分割线 */}
+          <div className="job-modal-divider" />
 
-          <div className="job-modal-section">
-            <h3 className="job-modal-section-title">任职要求</h3>
-            <JobRichText value={job.requirements} />
-          </div>
-        </div>
+          {/* 简历上传区 */}
+          {submitted ? (
+            <div className="resume-success">
+              <IconCircleCheckOutline24 size={48} className="resume-success-icon" />
+              <h3>简历投递成功！</h3>
+              <p>感谢您对红运机械的关注，我们的HR团队将在3个工作日内与您联系。</p>
+              <button className="btn-primary" onClick={onClose}>
+                关闭
+              </button>
+            </div>
+          ) : (
+            <form className="resume-upload-area" onSubmit={handleSubmit}>
+              <h3 className="resume-upload-title">投递简历 · {job.title}</h3>
+              <div className="contact-form-row">
+                <div className="contact-form-field">
+                  <label className="contact-form-label" htmlFor="modal-apply-name">应聘者姓名 *</label>
+                  <input
+                    type="text"
+                    id="modal-apply-name"
+                    className="contact-form-input"
+                    value={formData.name}
+                    onChange={(event) => setFormData((value) => ({ ...value, name: event.target.value }))}
+                    required
+                  />
+                </div>
+                <div className="contact-form-field">
+                  <label className="contact-form-label" htmlFor="modal-apply-phone">联系电话 *</label>
+                  <input
+                    type="tel"
+                    id="modal-apply-phone"
+                    className="contact-form-input"
+                    value={formData.phone}
+                    onChange={(event) => setFormData((value) => ({ ...value, phone: event.target.value }))}
+                    required
+                  />
+                </div>
+                <div className="contact-form-field">
+                  <label className="contact-form-label" htmlFor="modal-apply-email">电子邮箱</label>
+                  <input
+                    type="email"
+                    id="modal-apply-email"
+                    className="contact-form-input"
+                    value={formData.email}
+                    onChange={(event) => setFormData((value) => ({ ...value, email: event.target.value }))}
+                  />
+                </div>
+              </div>
 
-        {/* 分割线 */}
-        <div className="job-modal-divider" />
-
-        {/* 简历上传区 */}
-        {submitted ? (
-          <div className="resume-success">
-            <IconCircleCheckOutline24 size={48} className="resume-success-icon" />
-            <h3>简历投递成功！</h3>
-            <p>感谢您对红运机械的关注，我们的HR团队将在3个工作日内与您联系。</p>
-            <button className="btn-primary" onClick={onClose}>
-              关闭
-            </button>
-          </div>
-        ) : (
-          <form className="resume-upload-area" onSubmit={handleSubmit}>
-            <h3 className="resume-upload-title">投递简历 · {job.title}</h3>
-
-            <div
-              className={`resume-dropzone${dragOver ? ' dragover' : ''}${file ? ' has-file' : ''}`}
-              onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
-              onDragLeave={() => setDragOver(false)}
-              onDrop={handleDrop}
-              onClick={() => inputRef.current?.click()}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => e.key === 'Enter' && inputRef.current?.click()}
-            >
+              <div
+                className={`resume-dropzone${dragOver ? ' dragover' : ''}${file ? ' has-file' : ''}`}
+                onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+                onDragLeave={() => setDragOver(false)}
+                onDrop={handleDrop}
+                onClick={() => inputRef.current?.click()}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => e.key === 'Enter' && inputRef.current?.click()}
+              >
               <input
                 ref={inputRef}
                 type="file"
@@ -575,22 +622,23 @@ function ResumeUploadModal({ job, onClose }) {
                 <>
                   <IconCloudUploadOutline24 size={36} className="resume-dropzone-icon" />
                   <p className="resume-dropzone-text">点击或拖拽文件到此处</p>
-                  <span className="resume-dropzone-hint">支持 PDF / Word / PPT / JPG，最大 {MAX_SIZE_MB}MB</span>
+                  <span className="resume-dropzone-hint">{RESUME_FORMAT_HINT}</span>
                 </>
               )}
-            </div>
+              </div>
 
-            {error && <p className="resume-error">{error}</p>}
+              {error && <p className="resume-error" role="alert">{error}</p>}
 
-            <div className="resume-upload-actions">
-              <button type="button" className="btn-outline" onClick={onClose}>取消</button>
-              <button type="submit" className="btn-primary" disabled={submitting}>
-                提交简历
-                <IconArrowRightOutline24 size={16} />
-              </button>
-            </div>
-          </form>
-        )}
+              <div className="resume-upload-actions">
+                <button type="button" className="btn-outline" onClick={onClose}>取消</button>
+                <button type="submit" className="btn-primary" disabled={submitting}>
+                  {submitting ? '提交中…' : '提交简历'}
+                  <IconArrowRightOutline24 size={16} />
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   )
@@ -611,8 +659,7 @@ function ResumeSubmitSection({ jobs, panel }) {
   const validateFile = useCallback((f) => {
     if (!f) return ''
     const ext = f.name.split('.').pop().toLowerCase()
-    const allowed = ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'jpg', 'jpeg', 'png']
-    if (!allowed.includes(ext)) return '仅支持 PDF / Word / PPT / JPG 格式'
+    if (!ALLOWED_RESUME_EXTENSIONS.includes(ext)) return '仅支持 PDF / Word 格式'
     if (f.size > MAX_SIZE_MB * 1024 * 1024) return `文件大小不超过 ${MAX_SIZE_MB}MB`
     return ''
   }, [])
@@ -724,14 +771,14 @@ function ResumeSubmitSection({ jobs, panel }) {
               <>
                 <IconCloudUploadOutline24 size={36} className="resume-dropzone-icon" />
                 <p className="resume-dropzone-text">点击或拖拽简历到此处</p>
-                <span className="resume-dropzone-hint">支持 PDF / Word / PPT / JPG，最大 {MAX_SIZE_MB}MB</span>
+                <span className="resume-dropzone-hint">{RESUME_FORMAT_HINT}</span>
               </>
             )}
           </div>
         </div>
-        {error && <p className="resume-error">{error}</p>}
+        {error && <p className="resume-error" role="alert">{error}</p>}
         <button type="submit" className="btn-primary" disabled={submitting}>
-          提交申请
+          {submitting ? '提交中…' : '提交申请'}
           <IconArrowRightOutline24 size={18} />
         </button>
       </form>

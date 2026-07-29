@@ -1115,6 +1115,7 @@ export interface ApiContactSubmissionContactSubmission
     emailMasked: Schema.Attribute.String;
     expiresAt: Schema.Attribute.DateTime & Schema.Attribute.Required;
     fingerprintHash: Schema.Attribute.String & Schema.Attribute.Private;
+    industry: Schema.Attribute.String;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',

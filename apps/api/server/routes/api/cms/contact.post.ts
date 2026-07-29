@@ -46,6 +46,7 @@ export default defineEventHandler(async (event) => {
       data: {
         name: data.name,
         company: data.company,
+        industry: data.industry,
         phoneMasked: maskPhone(data.phone),
         emailMasked: maskEmail(data.email || ''),
         phoneEncrypted: encryptPrivate(data.phone),

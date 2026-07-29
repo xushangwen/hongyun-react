@@ -13,7 +13,11 @@ case "$backup_dir" in
 esac
 
 [[ -f "$backup_dir/SHA256SUMS" ]] || { echo "Missing SHA256SUMS" >&2; exit 1; }
-(cd "$backup_dir" && shasum -a 256 -c SHA256SUMS)
+if command -v sha256sum >/dev/null 2>&1; then
+  (cd "$backup_dir" && sha256sum -c SHA256SUMS)
+else
+  (cd "$backup_dir" && shasum -a 256 -c SHA256SUMS)
+fi
 if [[ -f "$backup_dir/data.db" ]]; then
   sqlite3 "$backup_dir/data.db" "pragma integrity_check;" | grep -qx "ok"
 fi

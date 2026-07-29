@@ -185,6 +185,19 @@
   gap: 8px;
 }
 
+.hero-progress-button {
+  padding: 8px 0;
+  margin: -8px 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hero-progress-button:focus-visible {
+  outline: 2px solid var(--hy-white);
+  outline-offset: 3px;
+}
+
 .hero-progress-bar {
   width: 80px;
   height: 3px;

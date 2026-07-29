@@ -27,6 +27,7 @@ describe('forms API', () => {
       name: '张三',
       phone: '13800000000',
       company: '红运',
+      industry: '新能源行业 / 锂电池',
       message: '技术咨询',
     })
   })
@@ -63,6 +64,8 @@ describe('forms API', () => {
 
     const [, request] = fetchMock.mock.calls[0]
     expect(request.body).toBeInstanceOf(FormData)
+    expect(request.body.get('name')).toBe('李四')
+    expect(request.body.get('phone')).toBe('13900000000')
     expect(request.body.get('position')).toBe('机械工程师')
     expect(request.headers['Content-Type']).toBeUndefined()
   })

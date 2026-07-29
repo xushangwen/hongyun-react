@@ -37,7 +37,7 @@ elif [[ "$database_client" == "mysql" ]]; then
   database_user="$(awk -F= '$1=="DATABASE_USERNAME"{print $2}' "$cms_env" | tail -1)"
   database_password="$(awk -F= '$1=="DATABASE_PASSWORD"{print substr($0,index($0,\"=\")+1)}' "$cms_env" | tail -1)"
   MYSQL_PWD="$database_password" mysqldump \
-    --single-transaction --routines --triggers \
+    --single-transaction --routines --triggers --no-tablespaces \
     -h "$database_host" -P "${database_port:-3306}" -u "$database_user" "$database_name" \
     > "$target/database.sql"
 else
@@ -49,5 +49,9 @@ tar -C "$project_root/apps/cms/public" -czf "$target/uploads.tar.gz" uploads
 if [[ -d "$project_root/apps/api/.private-uploads" ]]; then
   tar -C "$project_root/apps/api" -czf "$target/private-uploads.tar.gz" .private-uploads
 fi
-find "$target" -type f ! -name SHA256SUMS -exec shasum -a 256 {} \; > "$target/SHA256SUMS"
+if command -v sha256sum >/dev/null 2>&1; then
+  find "$target" -type f ! -name SHA256SUMS -exec sha256sum {} \; > "$target/SHA256SUMS"
+else
+  find "$target" -type f ! -name SHA256SUMS -exec shasum -a 256 {} \; > "$target/SHA256SUMS"
+fi
 echo "Backup complete: $target"

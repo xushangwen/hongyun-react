@@ -21,6 +21,7 @@ export const inquiryContextSchema = z.object({
 export const contactPayloadSchema = z.object({
   name: z.string().trim().min(1).max(80),
   company: z.string().trim().max(160).optional().default(''),
+  industry: z.string().trim().max(160).optional().default(''),
   phone: z.string().trim().min(5).max(30).regex(/^[0-9+\-()\s]+$/),
   email: z.string().trim().email().max(200).optional().or(z.literal('')),
   message: z.string().trim().min(2).max(4000),
