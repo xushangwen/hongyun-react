@@ -9,6 +9,18 @@ lerna-debug.log*
 
 node_modules
 dist
+.output
+.nitro
+.cache
+.tmp
+apps/cms/.env
+apps/cms/.strapi
+apps/cms/.strapi-updater.json
+apps/cms/public/uploads/*
+!apps/cms/public/uploads/.gitkeep
+apps/api/.env
+apps/api/.private-uploads/
+scripts/migration/content-manifest.json
 dist-ssr
 *.local
 
