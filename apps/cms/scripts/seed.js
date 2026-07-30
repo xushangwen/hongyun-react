@@ -10,6 +10,7 @@ const manifestPath = path.resolve(root, 'scripts/migration/content-manifest.json
 const publicRoot = path.resolve(root, 'public')
 const syncExisting = process.argv.includes('--sync-existing')
 const syncContact = process.argv.includes('--sync-contact')
+process.env.CMS_SKIP_PRODUCT_LABEL_SYNC = 'true'
 if (syncExisting && process.env.MIGRATION_ALLOW_OVERWRITE !== 'true') {
   throw new Error('拒绝覆盖后台现有内容。仅在确认重置迁移数据时设置 MIGRATION_ALLOW_OVERWRITE=true。')
 }

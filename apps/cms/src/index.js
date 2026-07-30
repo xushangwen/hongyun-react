@@ -295,7 +295,9 @@ module.exports = {
     await ensureLocale(strapi, { code: 'zh', name: '中文 (zh)', isDefault: true })
     await ensureLocale(strapi, { code: 'en', name: 'English (en)', isDefault: false })
     await configureComponentItemEditors(strapi)
-    const productLabelsUpdated = await refreshProductCatalogLabels(strapi)
+    const productLabelsUpdated = process.env.CMS_SKIP_PRODUCT_LABEL_SYNC === 'true'
+      ? 0
+      : await refreshProductCatalogLabels(strapi)
     if (productLabelsUpdated) {
       strapi.log.info(`[bootstrap] 已同步 ${productLabelsUpdated} 条产品行业/系统名称`)
     }
