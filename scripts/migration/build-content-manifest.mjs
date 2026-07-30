@@ -849,6 +849,8 @@ const solutions = solutionCatalog.map(([industrySlug, name, solutionSlug, file],
   const page = extractPage([file], solutionSlug, name)
   const presentation = pagePresentation([file], solutionSlug, name)
   const equipmentItems = pageEquipment(file)
+  const summary = extractIntroSummary(file, solutionSlug)
+  const coverPath = presentation.hero?.sourcePath || presentation.views[0]?.sourcePath || null
   solutionLegacySectionsBySlug.set(solutionSlug, page.sections)
   technicalDatasets.push(...page.datasets)
   const path = `/solutions/${industrySlug}/${solutionSlug}`
@@ -857,7 +859,7 @@ const solutions = solutionCatalog.map(([industrySlug, name, solutionSlug, file],
     canonical: true, redirectCode: 'none', active: true, categoryContext: industrySlug,
   })
   return {
-    name, slug: solutionSlug, industryKey: `industry:${industrySlug}`, summary: '',
+    name, slug: solutionSlug, industryKey: `industry:${industrySlug}`, summary, coverPath,
     hero: {
       titleOverride: name, subtitle: '', mediaType: 'image', imagePosition: 'center',
       ...(presentation.hero
@@ -937,6 +939,36 @@ const cases = [
     relatedSolutionKeys: ['solution:twin-screw-pulping'],
     sections: solutionLegacySectionsBySlug.get('twin-screw-pulping') ?? [],
     legacyKey: 'case:twin-screw-pulping-validation',
+  },
+  {
+    title: '盛龙全自动生产系统项目案例',
+    slug: 'auto-production-shenglong-project',
+    caseType: 'project',
+    summary: '化工全自动生产系统的项目现场案例，展示从设备集成到实际运行的整体交付效果。',
+    confidentialityLevel: 'public',
+    relatedProductKeys: [],
+    relatedSolutionKeys: ['solution:auto-production'],
+    sections: [
+      {
+        __component: 'content.video',
+        internalName: '盛龙项目案例视频',
+        visible: true,
+        title: '盛龙项目案例',
+        video: {
+          label: '盛龙项目案例视频',
+          sourcePath: '/assets/videos/shenglong-case.webm',
+          alt: '盛龙项目案例',
+          role: 'video',
+        },
+        poster: {
+          label: '盛龙项目案例封面',
+          sourcePath: '/assets/videos/shenglong-case-poster.webp',
+          alt: '盛龙项目案例',
+          role: 'cover',
+        },
+      },
+    ],
+    legacyKey: 'case:auto-production-shenglong-project',
   },
 ]
 const caseChapters = [

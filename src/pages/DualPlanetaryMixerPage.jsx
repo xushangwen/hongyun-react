@@ -5,6 +5,7 @@ import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import TechInquirySection from '../components/TechInquirySection'
 import CmsParameterTableSection from '../components/CmsParameterTableSection'
+import CmsCaseListSection from '../components/CmsCaseListSection'
 import { useCmsDataset, useCmsDetail } from '../context/useCmsDetail'
 
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.webp'
@@ -381,11 +382,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
         </CmsParameterTableSection>
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Case</p>
-            <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
-
+        <CmsCaseListSection>
             <div className="cp-verify-block fade-up fade-up-delay-1">
               <h3 className="cp-verify-subheading">全自动加投料系统解决方案</h3>
               <div className="cp-charts-grid-3">
@@ -445,8 +442,7 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+        </CmsCaseListSection>
 
         {/* ===== 技术咨询 ===== */}
         <TechInquirySection />

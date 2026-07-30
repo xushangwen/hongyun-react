@@ -14,7 +14,7 @@ const expected = {
   'api::solution.solution': 7,
   'api::article-category.article-category': 3,
   'api::article.article': 6,
-  'api::case-study.case-study': 4,
+  'api::case-study.case-study': 5,
   'api::case-chapter.case-chapter': 5,
   'api::technical-dataset.technical-dataset': manifest.technicalDatasets.length,
   'api::partner.partner': 71,

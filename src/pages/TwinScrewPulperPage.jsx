@@ -3,6 +3,7 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ProductThreeView from '../components/ProductThreeView'
 import TechInquirySection from '../components/TechInquirySection'
+import CmsParameterTableSection from '../components/CmsParameterTableSection'
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.webp'
 
 const IMG = '/assets/images/solutions/twin-screw-pulping'
@@ -71,14 +72,10 @@ export default function TwinScrewPulperPage() {
           </div>
         </section>
 
-        {/* ===== 参数汇总 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">双螺杆制浆机参数汇总</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">参数内容待补充</p>
-          </div>
-        </section>
+        <CmsParameterTableSection
+          fallbackTitle="双螺杆制浆机型号参数"
+          className="page-section"
+        />
 
         {/* ===== 技术咨询 ===== */}
         <TechInquirySection />

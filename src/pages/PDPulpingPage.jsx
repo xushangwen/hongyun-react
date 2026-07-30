@@ -6,6 +6,7 @@ import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 import CmsParameterTableSection from '../components/CmsParameterTableSection'
+import CmsCaseListSection from '../components/CmsCaseListSection'
 import { useCmsDataset } from '../context/useCmsDetail'
 import VideoPlayer from '../components/VideoPlayer'
 const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
@@ -360,11 +361,7 @@ export default function PDPulpingPage() {
         </CmsParameterTableSection>
 
         {/* ===== 客户案例（严格按照循环制浆页样式布局）===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Case</p>
-            <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
-
+        <CmsCaseListSection>
             {/* 01 全自动加投料系统 */}
             <div className="cp-verify-block fade-up fade-up-delay-1">
               <h3 className="cp-verify-subheading">全自动加投料系统解决方案</h3>
@@ -429,8 +426,7 @@ export default function PDPulpingPage() {
               </div>
             </div>
 
-          </div>
-        </section>
+        </CmsCaseListSection>
 
         {/* ===== 技术咨询 ===== */}
         <TechInquirySection />

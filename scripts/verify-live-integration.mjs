@@ -47,7 +47,15 @@ for (const industry of industries) {
   const response = await json(`/api/cms/industries/${industry.slug}/solutions?locale=zh`)
   for (const solution of response.list || []) {
     const detail = await json(`/api/cms/solutions/${solution.slug}?locale=zh`)
-    if (!detail.title || !detail.sections?.length) throw new Error(`${solution.slug} 缺少可渲染详情`)
+    if (!detail.title || !detail.summary || !detail.cover || !detail.sections?.length) {
+      throw new Error(`${solution.slug} 缺少标题、摘要、封面或结构化详情`)
+    }
+    const caseKeys = detail.sections
+      .filter((section) => section.__component === 'content.case-list' && section.visible !== false)
+      .flatMap((section) => section.caseKeys || [])
+    for (const caseKey of caseKeys) {
+      if (!detail.cases?.[caseKey]) throw new Error(`${solution.slug} 未解析案例 ${caseKey}`)
+    }
     solutionDetails.push(detail)
   }
 }

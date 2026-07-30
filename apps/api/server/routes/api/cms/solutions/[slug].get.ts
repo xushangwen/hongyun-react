@@ -1,6 +1,7 @@
 import { createError, defineEventHandler, getRouterParam } from 'h3'
 import {
   cached,
+  detailCases,
   detailDatasets,
   detailDto,
   detailPopulate,
@@ -30,13 +31,17 @@ export default defineEventHandler(async (event) => {
     const item = response.data?.[0]
     if (!item) throw createError({ statusCode: 404, statusMessage: 'solution not found' })
     const normalized = normalizeCms(item)
-    const datasets = await detailDatasets(locale, normalized.sections)
+    const [datasets, cases] = await Promise.all([
+      detailDatasets(locale, normalized.sections),
+      detailCases(locale, normalized.sections),
+    ])
     const industrySlug = normalized.industry?.slug ?? 'new-energy'
     return {
       ...detailDto('solution', item, `/solutions/${industrySlug}/${slug}`, locale),
       industry: normalized.industry,
       relatedSolutions: normalized.relatedSolutions ?? [],
       datasets,
+      cases,
     }
   })
 })

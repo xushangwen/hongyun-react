@@ -45,7 +45,6 @@ export default function SsbMultiMixerPage() {
               </div>
               <div style={{ flex: '1 1 0', minWidth: 0 }}>
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">多功能混合机</h2>
-                <p className="cp-core-device-tbd fade-up fade-up-delay-2">产品介绍内容待补充</p>
               </div>
             </div>
           </div>

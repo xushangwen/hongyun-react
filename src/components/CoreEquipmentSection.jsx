@@ -68,7 +68,6 @@ function EquipmentFeatureContent({ value }) {
  *   imgAlt?: string
  *   features?: string[]          // 要点列表
  *   paragraphs?: { title: string, text: string }[]  // 标题+段落
- *   tbd?: string                 // 待补充占位文字
  *   imgStyle?: object            // 单项图片内联样式覆盖（如 maxHeight）
  * }>
  */
@@ -181,10 +180,6 @@ export default function CoreEquipmentSection({
                       <p className="cp-core-device-desc-para">{p.text}</p>
                     </div>
                   ))}
-
-                  {device.tbd && (
-                    <p className="cp-core-device-tbd">{device.tbd}</p>
-                  )}
                 </div>
               </div>
             </React.Fragment>

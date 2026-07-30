@@ -3149,6 +3149,45 @@
 }
 
 /* 客户案例 */
+.cms-case-intros {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.cms-case-intro {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.32fr) 1fr;
+  min-height: 150px;
+  overflow: hidden;
+  border: 1px solid var(--zinc-100);
+  background: var(--hy-white);
+}
+
+.cms-case-intro-image {
+  width: 100%;
+  height: 100%;
+  min-height: 150px;
+  object-fit: cover;
+}
+
+.cms-case-intro-content {
+  align-self: center;
+  padding: 28px 32px;
+}
+
+.cms-case-intro-content h3 {
+  margin: 0 0 10px;
+  color: var(--zinc-900);
+  font-size: 20px;
+}
+
+.cms-case-intro-content p {
+  margin: 0;
+  color: var(--zinc-600);
+  line-height: 1.8;
+}
+
 .detail-cases-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -3170,6 +3209,20 @@
 
 .detail-case-card p {
   padding: 16px;
+}
+
+@media (max-width: 640px) {
+  .cms-case-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .cms-case-intro-image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .cms-case-intro-content {
+    padding: 22px;
+  }
 }
 
 /* 联系CTA - 全宽暗色戏剧化处理 */

@@ -241,6 +241,36 @@ export async function detailDatasets(locale: Locale, sections: any[]) {
   )
 }
 
+export async function detailCases(locale: Locale, sections: any[]) {
+  const keys = [...new Set(
+    (sections ?? [])
+      .filter((section) => section?.__component === 'content.case-list' && section.visible !== false)
+      .flatMap((section) => Array.isArray(section.caseKeys) ? section.caseKeys : [])
+      .filter((key): key is string => typeof key === 'string' && Boolean(key)),
+  )]
+  if (!keys.length) return {}
+  const response = await strapiFetch<any>('/case-studies', {
+    query: {
+      locale,
+      status: 'published',
+      filters: { legacyKey: { $in: keys } },
+      pagination: { pageSize: 100 },
+      populate: {
+        cover: { fields: mediaFields },
+        sections: {
+          on: {
+            'content.media-gallery': { populate: { items: mediaItemPopulate } },
+            'special.renderer': { populate: '*' },
+          },
+        },
+      },
+    },
+  })
+  return Object.fromEntries(
+    normalizeCms(response.data ?? []).map((caseStudy: any) => [caseStudy.legacyKey, caseStudy]),
+  )
+}
+
 export function detailDto(kind: 'product' | 'solution' | 'article', item: any, canonicalPath: string, locale: Locale) {
   const normalized = normalizeCms(item)
   return {

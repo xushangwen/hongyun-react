@@ -1,6 +1,7 @@
 import { createError, defineEventHandler, getQuery, getRouterParam } from 'h3'
 import {
   cached,
+  detailCases,
   detailDatasets,
   detailDto,
   detailPopulate,
@@ -31,7 +32,10 @@ export default defineEventHandler(async (event) => {
     const item = response.data?.[0]
     if (!item) throw createError({ statusCode: 404, statusMessage: 'product not found' })
     const normalizedItem = normalizeCms(item)
-    const datasets = await detailDatasets(locale, normalizedItem.sections)
+    const [datasets, cases] = await Promise.all([
+      detailDatasets(locale, normalizedItem.sections),
+      detailCases(locale, normalizedItem.sections),
+    ])
     const placements = await strapiFetch<any>('/product-placements', {
       query: {
         locale,
@@ -50,6 +54,7 @@ export default defineEventHandler(async (event) => {
       relatedProducts: normalizeCms(item.relatedProducts ?? []),
       categoryContext: category,
       datasets,
+      cases,
     }
   })
 })

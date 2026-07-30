@@ -244,9 +244,11 @@ async function main() {
 
   const solutionIds = new Map()
   for (const item of manifest.solutions) {
-    const { industryKey, sourceFiles: _sourceFiles, ...data } = item
+    const { industryKey, sourceFiles: _sourceFiles, coverPath, ...data } = item
+    const cover = await upload(coverPath, null, item.name)
     const doc = await upsert('api::solution.solution', item.legacyKey, {
       ...data,
+      ...(cover ? { cover } : {}),
       industry: connectOne(industryIds.get(industryKey)),
     })
     solutionIds.set(item.legacyKey, doc.documentId)

@@ -5,6 +5,7 @@ import { IconCircleMediaPlayFill24 } from 'nucleo-core-fill-24'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ImagePlaceholder from '../components/ImagePlaceholder'
+import CmsCaseListSection from '../components/CmsCaseListSection'
 import solutionHeroImg from '../assets/img/industry-products.webp'
 import ctaBgImg from '../assets/img/learn-more.webp'
 import { useCmsDetail, useCmsSection } from '../context/useCmsDetail'
@@ -150,10 +151,7 @@ export default function SolutionDetailPage() {
             <h2 className="section-heading">方案概览</h2>
             <div className={textOnly ? 'detail-intro-text' : 'detail-intro-grid'}>
               <div className="detail-intro-text">
-                {solution?.intro
-                  ? <p>{solution.intro}</p>
-                  : <p className="cp-core-device-tbd">{`${solutionName}详细介绍内容待补充。`}</p>
-                }
+                {(solution?.intro || detail?.summary) && <p>{solution?.intro || detail.summary}</p>}
               </div>
               {!textOnly && (
                 <div className="detail-intro-image">
@@ -244,19 +242,7 @@ export default function SolutionDetailPage() {
         )}
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <h2 className="section-heading">客户案例</h2>
-            <div className="detail-cases-grid">
-              {[1, 2, 3].map((i) => (
-                <div className="detail-case-card" key={i}>
-                  <ImagePlaceholder height="180px" label={`${industryName}客户案例 ${i}`} />
-                  <p className="cp-core-device-tbd">客户案例详情待补充</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <CmsCaseListSection />
 
         {/* ===== 联系CTA - 全宽暗色 ===== */}
         <div className="detail-contact-cta">

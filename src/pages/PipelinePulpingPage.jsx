@@ -6,6 +6,7 @@ import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 import VideoPlayer from '../components/VideoPlayer'
+import CmsCaseListSection from '../components/CmsCaseListSection'
 
 const HERO_IMG = '/assets/images/solutions/robot-assembly.webp'
 const PRODUCT_IMG = '/assets/images/solutions/pipeline-pulping/main-product.webp'
@@ -427,11 +428,7 @@ export default function PipelinePulpingPage() {
         ]} />
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Case</p>
-            <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
-
+        <CmsCaseListSection grayBg>
             {/* 车间实拍 */}
             <div className="cp-verify-block fade-up fade-up-delay-1">
               <div className="cp-charts-grid-4 pp-charts-grid">
@@ -845,8 +842,7 @@ export default function PipelinePulpingPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+        </CmsCaseListSection>
 
         {/* ===== 技术咨询 ===== */}
         <TechInquirySection />

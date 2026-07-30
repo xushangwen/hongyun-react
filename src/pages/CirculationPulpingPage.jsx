@@ -13,6 +13,7 @@ import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 import CmsParameterTableSection from '../components/CmsParameterTableSection'
+import CmsCaseListSection from '../components/CmsCaseListSection'
 import { useCmsDataset } from '../context/useCmsDetail'
 import prdSysImg from '../assets/img/prd-sys.webp'
 
@@ -375,11 +376,7 @@ export default function CirculationPulpingPage() {
         </CmsParameterTableSection>
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Case</p>
-            <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
-
+        <CmsCaseListSection>
             {/* 01 来料信息 */}
             <div className="cp-verify-block fade-up fade-up-delay-1">
               <h3 className="cp-verify-subheading">来料信息</h3>
@@ -476,8 +473,7 @@ export default function CirculationPulpingPage() {
               </div>
             </div>
 
-          </div>
-        </section>
+        </CmsCaseListSection>
 
         {/* ===== 技术咨询 ===== */}
         <TechInquirySection />

@@ -5,6 +5,8 @@ import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 import VideoPlayer from '../components/VideoPlayer'
+import CmsCaseListSection from '../components/CmsCaseListSection'
+import CmsParameterTableSection from '../components/CmsParameterTableSection'
 
 const HERO_IMG = '/assets/images/solutions/battery-manufacturing.webp'
 const PRODUCT_IMG = '/assets/images/solutions/chemical/main-product.webp'
@@ -284,22 +286,10 @@ export default function ChemicalAutoProductionPage() {
         {/* ===== 核心设备卡片网格 ===== */}
         <CoreEquipmentSection devices={coreEquipment} layoutVariant="cards" grayBg />
 
-        {/* ===== 参数汇总（暂空）===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">化工全自动生产系统参数汇总</h2>
-            <p className="cp-table-note fade-up fade-up-delay-1" style={{ textAlign: 'center', marginTop: '2rem' }}>
-              参数详情待补充，请联系我们获取完整技术规格。
-            </p>
-          </div>
-        </section>
+        <CmsParameterTableSection fallbackTitle="化工全自动生产系统型号参数" />
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Case</p>
-            <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
+        <CmsCaseListSection>
             <div className="fade-up fade-up-delay-1" style={{ marginTop: '40px' }}>
               <VideoPlayer
                 src="/assets/videos/shenglong-case.webm"
@@ -307,8 +297,7 @@ export default function ChemicalAutoProductionPage() {
                 title="盛龙项目案例"
               />
             </div>
-          </div>
-        </section>
+        </CmsCaseListSection>
 
         {/* ===== 技术咨询 ===== */}
         <TechInquirySection />

@@ -3,6 +3,9 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
+import CmsCaseListSection from '../components/CmsCaseListSection'
+import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import CmsParameterTableSection from '../components/CmsParameterTableSection'
 
 const PD_IMG = '/assets/images/solutions/pd-pulping/main-product.webp'
 const IMG = '/assets/images/solutions/wet-electrode-system'
@@ -27,7 +30,6 @@ const coreDevices = [
     name: '管线式混合机',
     img: `${IMG}/pipeline-mixer.webp`,
     imgAlt: '管线式混合机',
-    tbd: '设备介绍内容待补充',
   },
 ]
 
@@ -86,34 +88,16 @@ export default function WetElectrodeSystemPage() {
         </section>
 
         {/* ===== 系统特点 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">System Features</p>
-            <h2 className="section-heading section-heading--center fade-up">系统特点</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">系统特点内容待补充</p>
-          </div>
-        </section>
+        <SystemFeaturesSection features={[]} enLabel="System Features" />
 
         {/* ===== 核心设备 ===== */}
         <CoreEquipmentSection devices={coreDevices} />
 
         {/* ===== 参数汇总 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Parameters Overview</p>
-            <h2 className="section-heading section-heading--center fade-up">湿法电极成套设备参数汇总</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">参数内容待补充</p>
-          </div>
-        </section>
+        <CmsParameterTableSection fallbackTitle="湿法电极成套设备型号参数" />
 
         {/* ===== 客户案例 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Case</p>
-            <h2 className="section-heading section-heading--center fade-up">客户案例</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">客户案例内容待补充</p>
-          </div>
-        </section>
+        <CmsCaseListSection />
 
         {/* ===== 技术咨询 ===== */}
         <TechInquirySection />

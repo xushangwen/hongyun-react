@@ -34,6 +34,7 @@ export default function SystemFeaturesSection({ features = [], title = '系统�
       desc: item.description,
     }))
   const resolvedFeatures = cmsFeatures.length ? cmsFeatures : features
+  if (!resolvedFeatures.length) return null
   const resolvedTitle = cmsFeatures.length ? (cmsSection.title || title) : title
   const useFlexCenter = columns !== undefined
   const cols = useFlexCenter ? columns : getGridCols(resolvedFeatures.length)
