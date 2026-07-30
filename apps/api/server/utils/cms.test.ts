@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { clearCmsCache, isCmsCacheBypassed, normalizeCms } from './cms'
+import { clearCmsCache, getCmsCacheGeneration, normalizeCms } from './cms'
 
 afterEach(() => {
   vi.useRealTimers()
@@ -26,14 +26,19 @@ describe('normalizeCms media paths', () => {
     })
   })
 
-  it('bypasses cache while a published CMS change is propagating', () => {
+  it('re-invalidates cache while a published CMS change is propagating', () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-07-31T00:00:00+08:00'))
+    const initialGeneration = getCmsCacheGeneration()
 
     clearCmsCache()
 
-    expect(isCmsCacheBypassed()).toBe(true)
-    vi.advanceTimersByTime(90_001)
-    expect(isCmsCacheBypassed()).toBe(false)
+    expect(getCmsCacheGeneration()).toBe(initialGeneration + 1)
+    vi.advanceTimersByTime(999)
+    expect(getCmsCacheGeneration()).toBe(initialGeneration + 1)
+    vi.advanceTimersByTime(1)
+    expect(getCmsCacheGeneration()).toBe(initialGeneration + 2)
+    vi.advanceTimersByTime(4_000)
+    expect(getCmsCacheGeneration()).toBe(initialGeneration + 3)
   })
 })

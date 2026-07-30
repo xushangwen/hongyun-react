@@ -24,19 +24,30 @@ type CacheEntry = {
 }
 
 const cache = new Map<string, CacheEntry>()
-const CACHE_INVALIDATION_GRACE_MS = 90_000
-let cacheBypassUntil = 0
+const DELAYED_INVALIDATION_MS = [1_000, 5_000] as const
+let cacheGeneration = 0
+let delayedInvalidations: ReturnType<typeof setTimeout>[] = []
 
-export function clearCmsCache() {
+function invalidateCmsCache() {
   cache.clear()
-  // Strapi lifecycle events may fire before the published transaction is
-  // visible to subsequent Content API reads. Do not let an eager frontend
-  // refresh re-cache the old published value during that propagation window.
-  cacheBypassUntil = Math.max(cacheBypassUntil, Date.now() + CACHE_INVALIDATION_GRACE_MS)
+  cacheGeneration += 1
 }
 
-export function isCmsCacheBypassed(now = Date.now()) {
-  return now < cacheBypassUntil
+export function clearCmsCache() {
+  for (const timer of delayedInvalidations) clearTimeout(timer)
+  invalidateCmsCache()
+  // Strapi lifecycle events can arrive just before the published transaction
+  // becomes visible. Re-clear shortly afterwards without disabling the cache
+  // globally for a long grace period.
+  delayedInvalidations = DELAYED_INVALIDATION_MS.map((delay) => {
+    const timer = setTimeout(invalidateCmsCache, delay)
+    timer.unref?.()
+    return timer
+  })
+}
+
+export function getCmsCacheGeneration() {
+  return cacheGeneration
 }
 
 export function parseLocale(event: H3Event): Locale {
@@ -91,9 +102,16 @@ export async function cached<T>(
   ttlMs: number,
   loader: () => Promise<T>,
 ): Promise<T> {
+  // Nitro owns the short-lived CMS cache. Browsers and IIS/ARR must always
+  // revalidate through Nitro so a webhook invalidation cannot be masked by a
+  // second, independent proxy cache.
+  setResponseHeader(event, 'Cache-Control', 'private, no-store, no-cache, must-revalidate, max-age=0')
+  setResponseHeader(event, 'Pragma', 'no-cache')
+  setResponseHeader(event, 'Expires', '0')
+
   const now = Date.now()
-  const bypassCache = isCmsCacheBypassed(now)
-  const entry = bypassCache ? undefined : cache.get(key)
+  const generation = cacheGeneration
+  const entry = cache.get(key)
   if (entry && entry.expiresAt > now) {
     setResponseHeader(event, 'ETag', entry.etag)
     setResponseHeader(event, 'X-CMS-Cache', 'HIT')
@@ -104,11 +122,11 @@ export async function cached<T>(
   }
   const value = await loader()
   const etag = `"${createHash('sha1').update(JSON.stringify(value)).digest('hex')}"`
-  if (!isCmsCacheBypassed()) {
+  if (cacheGeneration === generation) {
     cache.set(key, { value, expiresAt: Date.now() + ttlMs, etag })
   }
   setResponseHeader(event, 'ETag', etag)
-  setResponseHeader(event, 'X-CMS-Cache', bypassCache ? 'BYPASS' : 'MISS')
+  setResponseHeader(event, 'X-CMS-Cache', 'MISS')
   return value
 }
 

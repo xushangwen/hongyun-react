@@ -8,6 +8,7 @@ export async function cmsRequest(path, { signal } = {}) {
   signal?.addEventListener('abort', abort, { once: true })
   try {
     const response = await fetch(`${API_BASE_URL}${path}`, {
+      cache: 'no-store',
       headers: { Accept: 'application/json' },
       signal: controller.signal,
     })
