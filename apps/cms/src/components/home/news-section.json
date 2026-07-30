@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_home_news_sections",
+  "info": {
+    "displayName": "02 新闻动态",
+    "description": "对应首页轮播下方的新闻模块；新闻条目来自“新闻中心”"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "default": "首页 / 新闻动态（内容来自新闻中心）"
+    },
+    "title": {
+      "type": "string",
+      "default": "新闻动态"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

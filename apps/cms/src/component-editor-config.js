@@ -148,6 +148,67 @@ const COMPONENT_ITEM_CONFIGS = {
 }
 
 const CONTENT_TYPE_CONFIGS = {
+  'api::home-page.home-page': {
+    mainField: 'title',
+    labels: {
+      title: '页面名称',
+      heroSlides: '01 首屏轮播（视频 + 大标题 + 小标题）',
+      newsSection: '02 新闻动态',
+      aboutSection: '03 关于红运',
+      researchSection: '04 研发创新',
+      partnerSection: '05 合作客户（共用 Logo 数据集）',
+      contactSection: '06 项目咨询',
+      seo: 'SEO 设置',
+      sections: '旧首页迁移数据（已停用）',
+      sourceChecksum: '来源校验（系统）',
+    },
+    list: ['title', 'updatedAt', 'publishedAt'],
+    edit: [
+      [{ name: 'title', size: 12 }],
+      [{ name: 'heroSlides', size: 12 }],
+      [{ name: 'newsSection', size: 12 }],
+      [{ name: 'aboutSection', size: 12 }],
+      [{ name: 'researchSection', size: 12 }],
+      [{ name: 'partnerSection', size: 12 }],
+      [{ name: 'contactSection', size: 12 }],
+      [{ name: 'seo', size: 12 }],
+    ],
+  },
+  'api::product.product': {
+    mainField: 'name',
+    labels: {
+      name: '产品名称',
+      model: '产品型号',
+      categories: '所属行业（第一级，可多选）',
+      groups: '所属系统（第二级，可多选）',
+      categoryNames: '所属行业',
+      systemNames: '所属系统',
+      summary: '产品简介',
+      cover: '封面',
+      hero: '产品页首屏',
+      family: '所属产品系列',
+      relatedProducts: '相关产品',
+      sections: '产品详情模块',
+      seo: 'SEO 设置',
+      slug: '网址标识',
+      order: '默认排序',
+      legacyKey: '内部关联 Key（系统）',
+      sourceChecksum: '来源校验（系统）',
+      placements: '旧目录关系（系统）',
+    },
+    list: ['id', 'name', 'cover', 'categoryNames', 'systemNames'],
+    hiddenListFields: ['categories', 'groups'],
+    edit: [
+      [{ name: 'name', size: 8 }, { name: 'model', size: 4 }],
+      [{ name: 'categories', size: 6 }, { name: 'groups', size: 6 }],
+      [{ name: 'summary', size: 12 }],
+      [{ name: 'cover', size: 6 }, { name: 'hero', size: 6 }],
+      [{ name: 'sections', size: 12 }],
+      [{ name: 'family', size: 6 }, { name: 'relatedProducts', size: 6 }],
+      [{ name: 'seo', size: 12 }],
+      [{ name: 'slug', size: 8 }, { name: 'order', size: 4 }],
+    ],
+  },
   'api::technical-dataset.technical-dataset': {
     mainField: 'title',
     labels: {
@@ -195,6 +256,12 @@ async function configureComponentItemEditors(strapi) {
       if (!metadata) continue
       metadata.edit.label = label
       metadata.list.label = label
+    }
+
+    for (const field of desired.hiddenListFields ?? []) {
+      const metadata = next.metadatas?.[field]
+      if (!metadata) continue
+      metadata.list.visible = false
     }
 
     if (JSON.stringify(next) === JSON.stringify(current)) continue

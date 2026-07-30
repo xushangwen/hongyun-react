@@ -1,0 +1,64 @@
+{
+  "collectionName": "components_home_hero_slides",
+  "info": {
+    "displayName": "01 轮播条目（视频 + 标题文案）",
+    "description": "对应首页首屏轮播的一张画面"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "required": true
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images", "videos"],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "mobileMedia": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images", "videos"],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "进一步探索"
+    },
+    "buttonPath": {
+      "type": "string",
+      "required": true
+    },
+    "durationSeconds": {
+      "type": "integer",
+      "default": 6,
+      "min": 3,
+      "max": 30
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    }
+  }
+}

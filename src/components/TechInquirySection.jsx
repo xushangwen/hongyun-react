@@ -3,6 +3,7 @@ import { IconArrowRightOutline24, IconCircleCheckOutline24 } from 'nucleo-core-o
 import inquiryBgImg from '../assets/img/CleanShot 2026-03-13 at 12.57.12@2x.webp'
 import { submitInquiry } from '../services/formsApi'
 import { useCmsDetail } from '../context/useCmsDetail'
+import { useSiteSettings } from '../context/useSiteSettings'
 
 const defaultIndustryOptions = [
   '新能源行业 / 锂电池', '固态电池', '化工行业 / 涂料', '制胶 / 密封胶',
@@ -11,6 +12,9 @@ const defaultIndustryOptions = [
 
 export default function TechInquirySection({ industryOptions = defaultIndustryOptions, contentDocumentId = '' }) {
   const { detail } = useCmsDetail()
+  const { settings } = useSiteSettings()
+  const businessPhone = settings?.phone || '400 915 3366'
+  const businessEmail = settings?.email || 'hy@gzhy.cn'
   const resolvedDocumentId = contentDocumentId || detail?.documentId || ''
   const [formData, setFormData] = useState({
     name: '', phone: '', company: '', email: '', industry: '', needs: '',
@@ -41,7 +45,7 @@ export default function TechInquirySection({ industryOptions = defaultIndustryOp
         <p className="section-en-label fade-up">Contact</p>
         <h2 className="section-heading section-heading--center fade-up">技术咨询</h2>
         <p className="section-desc section-desc--center fade-up fade-up-delay-1">
-          获取专业一站式解决方案，请发送邮件至 hy@gzhy.cn，拨打 400-915-3366，<br />或留言即可得到回复。
+          获取专业一站式解决方案，请发送邮件至 {businessEmail}，拨打 {businessPhone}，<br />或留言即可得到回复。
         </p>
         {formSubmitted ? (
           <div className="contact-submit-success fade-up">
@@ -65,11 +69,11 @@ export default function TechInquirySection({ industryOptions = defaultIndustryOp
                 </div>
                 <div className="contact-brand-item">
                   <span className="contact-brand-item-label">服务热线</span>
-                  <span className="contact-brand-item-value">400 915 3366</span>
+                  <span className="contact-brand-item-value">{businessPhone}</span>
                 </div>
                 <div className="contact-brand-item">
                   <span className="contact-brand-item-label">商务邮箱</span>
-                  <span className="contact-brand-item-value">hy@gzhy.cn</span>
+                  <span className="contact-brand-item-value">{businessEmail}</span>
                 </div>
               </div>
             </div>

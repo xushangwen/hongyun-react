@@ -69,7 +69,7 @@ const menuData = [
   },
 ]
 
-export default function MobileMenu({ isOpen, onClose }) {
+export default function MobileMenu({ isOpen, onClose, logo, companyName, phone }) {
   const [activeSubmenu, setActiveSubmenu] = useState(null)
   const menuRef = useRef(null)
   useFocusTrap(menuRef, isOpen)
@@ -129,7 +129,11 @@ export default function MobileMenu({ isOpen, onClose }) {
               <span>{activeItem.label}</span>
             </button>
           ) : (
-            <img src="/assets/images/hy-logo-ch-h.svg" alt="红运机械" className="mobile-menu-logo" />
+            <img
+              src={logo || '/assets/images/hy-logo-ch-h.svg'}
+              alt={companyName || '红运机械'}
+              className="mobile-menu-logo"
+            />
           )}
           <button className="mobile-menu-close" onClick={handleClose} aria-label="关闭">
             <IconXmarkOutline24 size={22} />
@@ -200,7 +204,12 @@ export default function MobileMenu({ isOpen, onClose }) {
         {/* 底部信息 */}
         <div className="mobile-menu-footer">
           <span className="mobile-menu-hotline-label">全国统一服务热线</span>
-          <a href="tel:4009153366" className="mobile-menu-hotline-number">400 915 3366</a>
+          <a
+            href={`tel:${(phone || '400 915 3366').replace(/[^\d+]/g, '')}`}
+            className="mobile-menu-hotline-number"
+          >
+            {phone || '400 915 3366'}
+          </a>
         </div>
       </div>
     </>

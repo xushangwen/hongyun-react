@@ -39,6 +39,9 @@ const expectedSingles = [
   'api::navigation.navigation',
   'api::form-setting.form-setting',
 ]
+const allowAdditionalRecords = new Set([
+  'api::technical-dataset.technical-dataset',
+])
 
 async function verifyMigratedMedia(strapi, table, relatedType, field) {
   const connection = strapi.db.connection
@@ -214,6 +217,38 @@ async function verifySolutionEquipment(strapi) {
   return passed
 }
 
+async function verifyProductCatalogRelations(strapi) {
+  const products = await strapi.documents('api::product.product').findMany({
+    locale: 'zh',
+    status: 'published',
+    limit: 100,
+    populate: ['categories', 'groups'],
+  })
+  const expectedByProduct = new Map(manifest.products.map((product) => {
+    const placements = manifest.placements.filter(
+      (placement) => placement.productKey === product.legacyKey,
+    )
+    return [product.legacyKey, {
+      categories: [...new Set(placements.map((placement) => placement.categoryKey))].sort(),
+      groups: [...new Set(placements.map((placement) => placement.groupKey).filter(Boolean))].sort(),
+    }]
+  }))
+  let complete = 0
+  for (const product of products) {
+    const expectedRelations = expectedByProduct.get(product.legacyKey)
+    const categories = (product.categories ?? []).map((item) => item.legacyKey).sort()
+    const groups = (product.groups ?? []).map((item) => item.legacyKey).sort()
+    if (expectedRelations
+      && JSON.stringify(categories) === JSON.stringify(expectedRelations.categories)
+      && JSON.stringify(groups) === JSON.stringify(expectedRelations.groups)) {
+      complete += 1
+    }
+  }
+  const passed = complete === manifest.products.length
+  console.log(`${passed ? '✓' : '✗'} 产品中心行业/系统关系: ${complete}/${manifest.products.length}`)
+  return passed
+}
+
 async function main() {
   const appDir = path.resolve(__dirname, '..')
   const strapi = await createStrapi({ appDir, distDir: appDir }).load()
@@ -225,15 +260,46 @@ async function main() {
       ...(published.has(uid) ? { status: 'published' } : {}),
       limit: 1000,
     })
-    const status = records.length === expectedCount ? '✓' : '✗'
-    console.log(`${status} ${uid}: ${records.length}/${expectedCount}`)
-    if (records.length !== expectedCount) failed = true
+    const complete = allowAdditionalRecords.has(uid)
+      ? records.length >= expectedCount
+      : records.length === expectedCount
+    const status = complete ? '✓' : '✗'
+    const expectation = allowAdditionalRecords.has(uid) ? `≥${expectedCount}` : expectedCount
+    console.log(`${status} ${uid}: ${records.length}/${expectation}`)
+    if (!complete) failed = true
   }
   for (const uid of expectedSingles) {
     const record = await strapi.documents(uid).findFirst({ locale: 'zh' })
     console.log(`${record ? '✓' : '✗'} ${uid}: ${record ? '已同步' : '缺失'}`)
     if (!record) failed = true
   }
+  const home = await strapi.documents('api::home-page.home-page').findFirst({
+    locale: 'zh',
+    status: 'published',
+    populate: [
+      'heroSlides',
+      'newsSection',
+      'aboutSection',
+      'researchSection',
+      'partnerSection',
+      'contactSection',
+    ],
+  })
+  const homeModules = [
+    home?.heroSlides?.length,
+    home?.newsSection,
+    home?.aboutSection,
+    home?.researchSection,
+    home?.partnerSection,
+    home?.contactSection,
+  ]
+  const homeComplete = homeModules.every(Boolean)
+  console.log(`${homeComplete ? '✓' : '✗'} 首页六类模块结构: ${homeComplete ? '完整' : '缺失'}`)
+  if (!homeComplete) failed = true
+  const site = await strapi.documents('api::site-setting.site-setting').findFirst({ locale: 'zh' })
+  const siteComplete = Boolean(site?.phone && site?.email)
+  console.log(`${siteComplete ? '✓' : '✗'} 站点商务电话与邮箱: ${siteComplete ? '已配置' : '缺失'}`)
+  if (!siteComplete) failed = true
   const englishProducts = await strapi.documents('api::product.product').findMany({
     locale: 'en',
     status: 'published',
@@ -252,6 +318,7 @@ async function main() {
   if (!await verifyInlineDataTables(strapi)) failed = true
   if (!await verifyDetailPresentation(strapi)) failed = true
   if (!await verifySolutionEquipment(strapi)) failed = true
+  if (!await verifyProductCatalogRelations(strapi)) failed = true
   await strapi.destroy()
   if (failed) process.exitCode = 1
   else console.log('✅ CMS 数据完整性验证通过')

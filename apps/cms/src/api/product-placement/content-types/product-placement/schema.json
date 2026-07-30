@@ -4,13 +4,19 @@
   "info": {
     "singularName": "product-placement",
     "pluralName": "product-placements",
-    "displayName": "产品展示位",
-    "description": ""
+    "displayName": "产品所属行业与系统",
+    "description": "产品中心的目录关系：选择第一级行业、第二级系统和第三级产品；无系统层级的行业可不选系统"
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {
+    "content-manager": {
+      "visible": false
+    },
+    "content-type-builder": {
+      "visible": false
+    },
     "i18n": {
       "localized": true
     }
@@ -20,6 +26,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::product.product",
+      "inversedBy": "placements",
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -30,6 +37,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::product-category.product-category",
+      "inversedBy": "placements",
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -40,6 +48,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::product-group.product-group",
+      "inversedBy": "placements",
       "pluginOptions": {
         "i18n": {
           "localized": false

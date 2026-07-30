@@ -4,11 +4,11 @@ import newsData from '../data/newsData'
 
 const featuredNews = newsData.slice(0, 3)
 
-export default function NewsSection() {
+export default function NewsSection({ title = '行业动态' }) {
   return (
     <section className="news">
       <div className="news-container">
-        <h2 className="section-title">行业动态</h2>
+        <h2 className="section-title">{title || '行业动态'}</h2>
 
         <div className="news-grid">
           {featuredNews.map((news) => (

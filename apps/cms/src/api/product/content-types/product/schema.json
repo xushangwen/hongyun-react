@@ -5,7 +5,7 @@
     "singularName": "product",
     "pluralName": "products",
     "displayName": "产品中心",
-    "description": ""
+    "description": "在这里直接编辑产品，并通过所属行业与所属系统快速筛选定位；同一产品可属于多个行业或系统"
   },
   "options": {
     "draftAndPublish": true
@@ -83,6 +83,58 @@
         }
       }
     },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product-category.product-category",
+      "inversedBy": "products",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "groups": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product-group.product-group",
+      "inversedBy": "products",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "categoryNames": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "systemNames": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "placements": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-placement.product-placement",
+      "mappedBy": "product",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        },
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
     "relatedProducts": {
       "type": "relation",
       "relation": "manyToMany",
@@ -152,6 +204,18 @@
       "pluginOptions": {
         "i18n": {
           "localized": false
+        }
+      }
+    },
+    "catalogRelationsInitialized": {
+      "type": "boolean",
+      "default": false,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        },
+        "content-manager": {
+          "visible": false
         }
       }
     }

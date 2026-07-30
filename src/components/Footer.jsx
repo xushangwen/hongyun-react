@@ -1,14 +1,23 @@
 import { Link } from 'react-router-dom'
 import { IconEnvelopeOutline24 } from 'nucleo-core-outline-24'
+import { useSiteSettings } from '../context/useSiteSettings'
 
 export default function Footer() {
+  const { settings } = useSiteSettings()
+  const phone = settings?.phone || '400 915 3366'
+  const email = settings?.email || 'hy@gzhy.cn'
+  const copyright = settings?.copyright || 'Copyright © 2026 红运机械 All Rights Reserved.'
   return (
     <footer className="footer">
       <div className="footer-main">
         <div className="footer-container">
           {/* Logo Column */}
           <div className="footer-logo-col">
-            <img src="/assets/images/hy-logo-ch-v.svg" alt="红运机械" className="footer-logo" />
+            <img
+              src={settings?.footerLogo?.url || settings?.logo?.url || '/assets/images/hy-logo-ch-v.svg'}
+              alt={settings?.companyName || '红运机械'}
+              className="footer-logo"
+            />
           </div>
 
           {/* Navigation Columns */}
@@ -62,10 +71,10 @@ export default function Footer() {
             {/* Contact Info Column - hotline, email, social */}
             <div className="footer-col footer-contact-info">
               <p className="footer-hotline-label">全国统一商务热线</p>
-              <p className="footer-hotline">400 915 3366</p>
-              <a href="mailto:hy@gzhy.cn" className="footer-email">
+              <a href={`tel:${phone.replace(/[^\d+]/g, '')}`} className="footer-hotline">{phone}</a>
+              <a href={`mailto:${email}`} className="footer-email">
                 <IconEnvelopeOutline24 size={16} aria-hidden={true} />
-                <span>hy@gzhy.cn</span>
+                <span>{email}</span>
               </a>
               <div className="footer-qrcodes">
                 <div className="footer-qrcode-item">
@@ -95,8 +104,10 @@ export default function Footer() {
       {/* Footer Bottom */}
       <div className="footer-bottom">
         <div className="footer-bottom-container">
-          <p className="footer-copyright">Copyright © 2025 红运机械 All Rights Reserved.</p>
+          <p className="footer-copyright">{copyright}</p>
           <div className="footer-legal">
+            {settings?.icp && <a href="https://beian.miit.gov.cn/" rel="noreferrer" target="_blank">{settings.icp}</a>}
+            {settings?.icp && <span className="legal-divider">|</span>}
             <a href="#">版权声明</a>
             <span className="legal-divider">|</span>
             <a href="#">隐私政策</a>

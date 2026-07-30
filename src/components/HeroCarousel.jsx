@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import { getCompanyYears } from '../utils/companyYears'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 
-const slides = [
+const defaultSlides = [
   {
     video: '/assets/videos/03-battery-manufacturing-yard_compressed.webm',
     title: '高效混合<br>助力新能源与智能制造',
@@ -27,11 +27,31 @@ const slides = [
 
 const SLIDE_DURATION = 6000
 
-export default function HeroCarousel() {
+export default function HeroCarousel({ cmsSlides }) {
+  const slides = useMemo(() => {
+    const visibleSlides = (cmsSlides || []).filter((slide) => slide.visible !== false && slide.media?.url)
+    if (!visibleSlides.length) return defaultSlides
+    return visibleSlides.map((slide) => ({
+      media: slide.media,
+      mobileMedia: slide.mobileMedia,
+      video: slide.media?.mime?.startsWith('video/') ? slide.media.url : null,
+      image: slide.media?.mime?.startsWith('video/') ? null : slide.media.url,
+      title: slide.title,
+      desc: slide.subtitle || '',
+      link: slide.buttonPath || '/about',
+      buttonLabel: slide.buttonLabel || '进一步探索',
+      duration: Math.max(3, slide.durationSeconds || 6) * 1000,
+    }))
+  }, [cmsSlides])
   const reducedMotion = usePrefersReducedMotion()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [textFading, setTextFading] = useState(false)
-  const [displayText, setDisplayText] = useState({ title: slides[0].title, desc: slides[0].desc, link: slides[0].link })
+  const [displayText, setDisplayText] = useState({
+    title: slides[0].title,
+    desc: slides[0].desc,
+    link: slides[0].link,
+    buttonLabel: slides[0].buttonLabel || '进一步探索',
+  })
   const videoRefs = useRef([])
   const timerRef = useRef(null)
   const progressRef = useRef([])
@@ -42,8 +62,8 @@ export default function HeroCarousel() {
     if (reducedMotion) return
     timerRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length)
-    }, SLIDE_DURATION)
-  }, [reducedMotion])
+    }, slides[currentIndex]?.duration || SLIDE_DURATION)
+  }, [currentIndex, reducedMotion, slides])
 
   // 初始化自动播放
   useEffect(() => {
@@ -74,7 +94,12 @@ export default function HeroCarousel() {
     // 文字淡出 → 更新内容 → 淡入
     const fadeOutId = requestAnimationFrame(() => setTextFading(true))
     const textTimeoutId = setTimeout(() => {
-      setDisplayText({ title: slides[currentIndex].title, desc: slides[currentIndex].desc, link: slides[currentIndex].link })
+      setDisplayText({
+        title: slides[currentIndex].title,
+        desc: slides[currentIndex].desc,
+        link: slides[currentIndex].link,
+        buttonLabel: slides[currentIndex].buttonLabel || '进一步探索',
+      })
       setTextFading(false)
     }, 400)
 
@@ -94,17 +119,17 @@ export default function HeroCarousel() {
       cancelAnimationFrame(fadeOutId)
       clearTimeout(textTimeoutId)
     }
-  }, [currentIndex])
+  }, [currentIndex, slides])
 
   const handlePrev = useCallback(() => {
     setCurrentIndex((prev) => ((prev - 1) + slides.length) % slides.length)
     resetTimer()
-  }, [resetTimer])
+  }, [resetTimer, slides.length])
 
   const handleNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % slides.length)
     resetTimer()
-  }, [resetTimer])
+  }, [resetTimer, slides.length])
 
   const handleProgressClick = useCallback((index) => {
     setCurrentIndex(index)
@@ -121,17 +146,27 @@ export default function HeroCarousel() {
               className={`hero-slide${index === currentIndex ? ' active' : ''}`}
               data-index={index}
             >
-              <video
-                ref={(el) => (videoRefs.current[index] = el)}
-                className="hero-video"
-                autoPlay={index === 0 && !reducedMotion}
-                preload={index === 0 ? 'metadata' : 'none'}
-                muted
-                loop
-                playsInline
-              >
-                <source src={slide.video} type="video/webm" />
-              </video>
+              {slide.video ? (
+                <video
+                  ref={(el) => (videoRefs.current[index] = el)}
+                  className="hero-video"
+                  autoPlay={index === 0 && !reducedMotion}
+                  preload={index === 0 ? 'metadata' : 'none'}
+                  muted
+                  loop
+                  playsInline
+                  poster={slide.mobileMedia?.mime?.startsWith('image/') ? slide.mobileMedia.url : undefined}
+                >
+                  <source src={slide.video} type={slide.media?.mime || 'video/webm'} />
+                </video>
+              ) : (
+                <picture>
+                  {slide.mobileMedia?.url && (
+                    <source media="(max-width: 767px)" srcSet={slide.mobileMedia.url} />
+                  )}
+                  <img className="hero-video" src={slide.image} alt="" />
+                </picture>
+              )}
             </div>
           ))}
         </div>
@@ -147,7 +182,7 @@ export default function HeroCarousel() {
             {displayText.desc}
           </p>
           <Link to={displayText.link} className="hero-btn">
-            进一步探索
+            {displayText.buttonLabel}
             <IconArrowRightOutline24 size={18} />
           </Link>
         </div>

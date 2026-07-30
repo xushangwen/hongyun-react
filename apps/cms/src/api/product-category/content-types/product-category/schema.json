@@ -4,8 +4,8 @@
   "info": {
     "singularName": "product-category",
     "pluralName": "product-categories",
-    "displayName": "产品分类",
-    "description": ""
+    "displayName": "产品行业（第一级）",
+    "description": "前端产品中心的四大行业：新能源行业、固态电池、化工行业、辅助设备"
   },
   "options": {
     "draftAndPublish": false
@@ -95,6 +95,39 @@
       "type": "string",
       "unique": true,
       "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "groups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-group.product-group",
+      "mappedBy": "category",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "placements": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-placement.product-placement",
+      "mappedBy": "category",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "mappedBy": "categories",
       "pluginOptions": {
         "i18n": {
           "localized": false

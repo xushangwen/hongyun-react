@@ -4,8 +4,10 @@ import { IconGlobeOutline24 } from 'nucleo-core-outline-24'
 import { IconMagnifierOutline24 } from 'nucleo-core-outline-24'
 import MobileMenu from './MobileMenu'
 import DropdownContact from './DropdownContact'
+import { useSiteSettings } from '../context/useSiteSettings'
 
 export default function Header({ activeDropdown, openDropdown, scheduleClose, cancelClose, closeDropdown, onSearchOpen, forceScrolled = false }) {
+  const { settings } = useSiteSettings()
   const [scrolled, setScrolled] = useState(false)
   const [activeLang, setActiveLang] = useState('zh')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -40,7 +42,11 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
     <header className={`header${isHeaderWhite ? ' scrolled' : ''}`}>
       <div className="header-container">
         <Link to="/" className="logo">
-          <img src="/assets/images/hy-logo-ch-h.svg" alt="红运机械" className="logo-img" />
+          <img
+            src={settings?.headerLogo?.url || settings?.logo?.url || '/assets/images/hy-logo-ch-h.svg'}
+            alt={settings?.companyName || '红运机械'}
+            className="logo-img"
+          />
         </Link>
 
         <nav className="nav">
@@ -126,7 +132,13 @@ export default function Header({ activeDropdown, openDropdown, scheduleClose, ca
         onMouseEnter={cancelClose}
         onMouseLeave={scheduleClose}
       />
-      <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        logo={settings?.headerLogo?.url || settings?.logo?.url}
+        companyName={settings?.companyName}
+        phone={settings?.phone}
+      />
     </header>
   )
 }

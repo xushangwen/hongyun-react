@@ -1,19 +1,19 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
-const strengthStats = [
+const defaultStrengthStats = [
   { target: 5.6, decimals: 1, sup: '', unit: '%', label: '研发投入' },
   { target: 200, sup: '+', unit: '', label: '自主研发专利' },
   { target: 25, sup: '', unit: '%', label: '博士占比硕士占比' },
 ]
 
-const certifications = [
+const defaultCertifications = [
   { img: '/assets/images/str/cert-iso9001.webp', label: 'ISO 9001' },
   { img: '/assets/images/str/cert-iso14001.webp', label: 'ISO 14001' },
   { img: '/assets/images/str/cert-sgs.svg', label: 'SGS认证' },
   { img: '/assets/images/str/cert-patent.webp', label: '专利证书' },
 ]
 
-const certImages = [
+const defaultCertImages = [
   '/assets/images/honors/certificate/ce-cert.webp',
   '/assets/images/honors/certificate/iso9001.webp',
   '/assets/images/honors/certificate/iso14001.webp',
@@ -49,7 +49,31 @@ function animateNumber(element, target, decimals = 0, duration = 2000) {
   requestAnimationFrame(update)
 }
 
-export default function StrengthSection() {
+export default function StrengthSection({ content }) {
+  const strengthStats = useMemo(() => (
+    content?.stats?.length
+      ? content.stats.map((stat) => ({
+          target: Number(stat.value),
+          decimals: Number.isInteger(Number(stat.value)) ? 0 : 1,
+          sup: '',
+          unit: stat.suffix || '',
+          label: stat.label,
+        }))
+      : defaultStrengthStats
+  ), [content])
+  const certifications = useMemo(() => (
+    content?.certifications?.length
+      ? content.certifications
+          .map((item) => ({ img: item.media?.url, label: item.label || item.alt }))
+          .filter((item) => item.img)
+      : defaultCertifications
+  ), [content])
+  const certImages = useMemo(() => {
+    const remote = (content?.certificateGallery || [])
+      .map((item) => item.media?.url)
+      .filter(Boolean)
+    return remote.length ? remote : defaultCertImages
+  }, [content])
   const sectionRef = useRef(null)
   const numberRefs = useRef([])
   const [animated, setAnimated] = useState(false)
@@ -77,7 +101,7 @@ export default function StrengthSection() {
 
     observer.observe(section)
     return () => observer.disconnect()
-  }, [animated])
+  }, [animated, strengthStats])
 
   // 生成滚动列内容（重复以实现无缝循环）
   const renderScrollCol = (images, direction) => (
@@ -97,10 +121,10 @@ export default function StrengthSection() {
       <div className="strength-container">
         <div className="strength-left">
           <h2 className="strength-title">
-            研发创新
+            {content?.title || '研发创新'}
           </h2>
           <p className="strength-desc">
-            红运机械的研发体系致力于新材料与新工艺的开发、产品开发，以及样品的试制与测试验证。结合市场需求与行业前沿技术动态，专注于新能源电池材料、化工材料、电子材料、涂料、医疗药剂、火工炸药等多个应用领域的物料搅拌混合设备技术。通过持续创新打造性能卓越、质量可靠的搅拌混合设备产品系列，以满足不同领域客户的精准需求。
+            {content?.description || '红运机械的研发体系致力于新材料与新工艺的开发、产品开发，以及样品的试制与测试验证。结合市场需求与行业前沿技术动态，专注于新能源电池材料、化工材料、电子材料、涂料、医疗药剂、火工炸药等多个应用领域的物料搅拌混合设备技术。通过持续创新打造性能卓越、质量可靠的搅拌混合设备产品系列，以满足不同领域客户的精准需求。'}
           </p>
 
           <div className="strength-divider" />
@@ -140,18 +164,9 @@ export default function StrengthSection() {
 
         {/* Right - Certificates Scroll */}
         <div className="strength-right">
-          {renderScrollCol(
-            [certImages[0], certImages[1], certImages[2], certImages[3], certImages[0], certImages[1], certImages[2], certImages[3]],
-            'up'
-          )}
-          {renderScrollCol(
-            [certImages[4], certImages[5], certImages[6], certImages[7], certImages[4], certImages[5], certImages[6], certImages[7]],
-            'down'
-          )}
-          {renderScrollCol(
-            [certImages[8], certImages[9], certImages[10], certImages[8], certImages[9], certImages[10]],
-            'up'
-          )}
+          {renderScrollCol([...certImages.filter((_, index) => index % 3 === 0), ...certImages.filter((_, index) => index % 3 === 0)], 'up')}
+          {renderScrollCol([...certImages.filter((_, index) => index % 3 === 1), ...certImages.filter((_, index) => index % 3 === 1)], 'down')}
+          {renderScrollCol([...certImages.filter((_, index) => index % 3 === 2), ...certImages.filter((_, index) => index % 3 === 2)], 'up')}
         </div>
       </div>
     </section>

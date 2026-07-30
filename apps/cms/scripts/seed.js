@@ -142,10 +142,25 @@ async function upsert(uid, legacyKey, data, { force = syncExisting } = {}) {
   })
 }
 
-async function upsertSingle(uid, data, { force = syncExisting } = {}) {
+async function upsertSingle(uid, data, { force = syncExisting, fillMissingFields = [] } = {}) {
   const existing = await strapi.documents(uid).findFirst({ locale: 'zh' })
   const status = draftAndPublish.has(uid) ? 'published' : undefined
-  if (existing && !force) return existing
+  if (existing && !force && !fillMissingFields.length) return existing
+  if (existing && !force) {
+    const missingData = Object.fromEntries(
+      fillMissingFields
+        .filter((field) => existing[field] == null)
+        .map((field) => [field, data[field]]),
+    )
+    if (!Object.keys(missingData).length) return existing
+    const hydratedMissingData = await hydrate(missingData)
+    return strapi.documents(uid).update({
+      documentId: existing.documentId,
+      locale: 'zh',
+      ...(status ? { status } : {}),
+      data: hydratedMissingData,
+    })
+  }
   const hydrated = await hydrate(data)
   if (existing) {
     return strapi.documents(uid).update({
@@ -264,6 +279,37 @@ async function main() {
     groupIds.set(item.legacyKey, doc.documentId)
   }
 
+  for (const item of manifest.products) {
+    const documentId = productIds.get(item.legacyKey)
+    if (!documentId) continue
+    const existing = await strapi.documents('api::product.product').findOne({
+      documentId,
+      locale: 'zh',
+      status: 'published',
+      populate: ['categories', 'groups'],
+    })
+    if (existing?.catalogRelationsInitialized) continue
+    const productPlacements = manifest.placements.filter(
+      (placement) => placement.productKey === item.legacyKey,
+    )
+    const categoryDocumentIds = [...new Set(
+      productPlacements.map((placement) => categoryIds.get(placement.categoryKey)).filter(Boolean),
+    )]
+    const groupDocumentIds = [...new Set(
+      productPlacements.map((placement) => groupIds.get(placement.groupKey)).filter(Boolean),
+    )]
+    await strapi.documents('api::product.product').update({
+      documentId,
+      locale: 'zh',
+      status: 'published',
+      data: {
+        categories: connectMany(categoryDocumentIds),
+        groups: connectMany(groupDocumentIds),
+        catalogRelationsInitialized: true,
+      },
+    })
+  }
+
   for (const item of manifest.placements) {
     const { productKey, categoryKey, groupKey, coverPath, ...data } = item
     const coverOverride = await upload(coverPath, null, item.displayNameOverride)
@@ -333,8 +379,19 @@ async function main() {
     await upsert('api::global-presence.global-presence', item.legacyKey, item)
   }
 
-  await upsertSingle('api::site-setting.site-setting', manifest.singleTypes.siteSetting)
-  await upsertSingle('api::home-page.home-page', manifest.singleTypes.homePage)
+  await upsertSingle('api::site-setting.site-setting', manifest.singleTypes.siteSetting, {
+    fillMissingFields: ['headerLogo', 'footerLogo', 'email', 'copyright'],
+  })
+  await upsertSingle('api::home-page.home-page', manifest.singleTypes.homePage, {
+    fillMissingFields: [
+      'heroSlides',
+      'newsSection',
+      'aboutSection',
+      'researchSection',
+      'partnerSection',
+      'contactSection',
+    ],
+  })
   await upsertSingle('api::about-page.about-page', manifest.singleTypes.aboutPage)
   await upsertSingle('api::contact-page.contact-page', manifest.singleTypes.contactPage, {
     force: syncExisting || syncContact,

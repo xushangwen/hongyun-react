@@ -1,4 +1,4 @@
-/* Strapi 的部分图标按钮使用固定宽度，中文标签会被拆成两行。 */
+/* 后台部分图标按钮使用固定宽度，中文标签会被拆成两行。 */
 button > span,
 a[aria-disabled] > span {
   white-space: nowrap;
@@ -6,4 +6,28 @@ a[aria-disabled] > span {
 
 button:has(> span:first-child[aria-hidden='true'] + span:last-child) {
   min-width: max-content;
+}
+
+/* 内容列表的名称本身已经具备可点击状态，不再用下划线制造视觉噪音。 */
+main [role='gridcell'] a {
+  border-bottom: 0;
+  text-decoration: none;
+}
+
+/*
+ * 正式后台白标：隐藏框架官网、云服务、试用、定价与付费功能入口。
+ * 功能本身未启用，避免客户误入无权限或第三方营销页面。
+ */
+a[href*='strapi.io'],
+a[href*='strapi.cloud'],
+a[href*='cloud.strapi'],
+a[href*='/billing'],
+a[href*='/pricing'],
+a[href*='purchase-audit'],
+a[href*='purchase-content-history'],
+a[href*='purchase-single-sign-on'],
+a[href$='/settings/audit-logs'],
+a[href$='/settings/content-history'],
+a[href$='/settings/single-sign-on'] {
+  display: none !important;
 }

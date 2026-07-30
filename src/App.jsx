@@ -5,6 +5,7 @@ import ScrollToTop from './components/ScrollToTop'
 import SeoManager from './components/SeoManager'
 import { LenisProvider } from './context/LenisContext'
 import CmsDetailProvider from './context/CmsDetailProvider'
+import SiteSettingsProvider from './context/SiteSettingsProvider'
 import { useScrollReveal } from './hooks/useScrollReveal'
 import HomePage from './pages/HomePage'
 
@@ -49,6 +50,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <SiteSettingsProvider>
       <CmsDetailProvider>
       <LenisProvider>
       <ScrollToTop />
@@ -100,6 +102,7 @@ function App() {
       </Layout>
       </LenisProvider>
       </CmsDetailProvider>
+      </SiteSettingsProvider>
     </BrowserRouter>
   )
 }

@@ -486,6 +486,173 @@ export interface ContentVideo extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeAboutSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_about_sections';
+  info: {
+    description: '\u5BF9\u5E94\u9996\u9875\u201C\u5173\u4E8E\u7EA2\u8FD0\u201D\u6587\u5B57\u4E0E\u4E09\u9879\u4F01\u4E1A\u6570\u636E';
+    displayName: '03 \u5173\u4E8E\u7EA2\u8FD0';
+  };
+  attributes: {
+    buttonLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u8FDB\u4E00\u6B65\u63A2\u7D22'>;
+    buttonPath: Schema.Attribute.String & Schema.Attribute.DefaultTo<'/about'>;
+    internalName: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u9996\u9875 / \u5173\u4E8E\u7EA2\u8FD0'>;
+    paragraphOne: Schema.Attribute.Text;
+    paragraphTwo: Schema.Attribute.Text;
+    stats: Schema.Attribute.Component<'home.stat-item', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 3;
+        },
+        number
+      >;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface HomeContactSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_contact_sections';
+  info: {
+    description: '\u5BF9\u5E94\u9996\u9875\u5E95\u90E8\u9879\u76EE\u54A8\u8BE2\u6A21\u5757';
+    displayName: '06 \u9879\u76EE\u54A8\u8BE2';
+  };
+  attributes: {
+    buttonLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u8054\u7CFB\u6211\u4EEC'>;
+    buttonPath: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'/contact'>;
+    descriptionLines: Schema.Attribute.Component<'shared.text-item', true>;
+    image: Schema.Attribute.Media<'images'>;
+    internalName: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u9996\u9875 / \u9879\u76EE\u54A8\u8BE2'>;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface HomeHeroSlide extends Struct.ComponentSchema {
+  collectionName: 'components_home_hero_slides';
+  info: {
+    description: '\u5BF9\u5E94\u9996\u9875\u9996\u5C4F\u8F6E\u64AD\u7684\u4E00\u5F20\u753B\u9762';
+    displayName: '01 \u8F6E\u64AD\u6761\u76EE\uFF08\u89C6\u9891 + \u6807\u9898\u6587\u6848\uFF09';
+  };
+  attributes: {
+    buttonLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u8FDB\u4E00\u6B65\u63A2\u7D22'>;
+    buttonPath: Schema.Attribute.String & Schema.Attribute.Required;
+    durationSeconds: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 30;
+          min: 3;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<6>;
+    internalName: Schema.Attribute.String & Schema.Attribute.Required;
+    media: Schema.Attribute.Media<'images' | 'videos'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    mobileMedia: Schema.Attribute.Media<'images' | 'videos'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    visible: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface HomeNewsSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_news_sections';
+  info: {
+    description: '\u5BF9\u5E94\u9996\u9875\u8F6E\u64AD\u4E0B\u65B9\u7684\u65B0\u95FB\u6A21\u5757\uFF1B\u65B0\u95FB\u6761\u76EE\u6765\u81EA\u201C\u65B0\u95FB\u4E2D\u5FC3\u201D';
+    displayName: '02 \u65B0\u95FB\u52A8\u6001';
+  };
+  attributes: {
+    internalName: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u9996\u9875 / \u65B0\u95FB\u52A8\u6001\uFF08\u5185\u5BB9\u6765\u81EA\u65B0\u95FB\u4E2D\u5FC3\uFF09'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u65B0\u95FB\u52A8\u6001'>;
+    visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface HomePartnerSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_partner_sections';
+  info: {
+    description: '\u6807\u9898\u4E0E\u8BF4\u660E\u5728\u8FD9\u91CC\u7F16\u8F91\uFF1BLogo \u7EDF\u4E00\u590D\u7528\u5DE6\u4FA7\u201C\u5408\u4F5C\u4F19\u4F34\u201D\u6570\u636E\u96C6';
+    displayName: '05 \u5408\u4F5C\u5BA2\u6237';
+  };
+  attributes: {
+    buttonLabel: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u6D4F\u89C8\u6240\u6709\u5408\u4F5C\u5BA2\u6237'>;
+    buttonPath: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'/about#partners-page'>;
+    description: Schema.Attribute.Text;
+    internalName: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u9996\u9875 / \u5408\u4F5C\u5BA2\u6237\uFF08Logo \u6765\u81EA\u5408\u4F5C\u4F19\u4F34\u6570\u636E\u96C6\uFF09'>;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface HomeResearchSection extends Struct.ComponentSchema {
+  collectionName: 'components_home_research_sections';
+  info: {
+    description: '\u5BF9\u5E94\u9996\u9875\u7814\u53D1\u4ECB\u7ECD\u3001\u7814\u53D1\u6570\u636E\u3001\u8BA4\u8BC1\u6807\u5FD7\u4E0E\u8BC1\u4E66\u56FE\u7247';
+    displayName: '04 \u7814\u53D1\u521B\u65B0';
+  };
+  attributes: {
+    certificateGallery: Schema.Attribute.Component<'shared.media-item', true>;
+    certifications: Schema.Attribute.Component<'shared.media-item', true>;
+    description: Schema.Attribute.Text;
+    internalName: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u9996\u9875 / \u7814\u53D1\u521B\u65B0'>;
+    stats: Schema.Attribute.Component<'home.stat-item', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 3;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface HomeStatItem extends Struct.ComponentSchema {
+  collectionName: 'components_home_stat_items';
+  info: {
+    displayName: '\u6570\u636E\u6307\u6807';
+  };
+  attributes: {
+    description: Schema.Attribute.String;
+    icon: Schema.Attribute.Media<'images'>;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    prefix: Schema.Attribute.String;
+    suffix: Schema.Attribute.String;
+    value: Schema.Attribute.Decimal & Schema.Attribute.Required;
+  };
+}
+
 export interface SharedEquipmentItem extends Struct.ComponentSchema {
   collectionName: 'components_shared_equipment_items';
   info: {
@@ -912,6 +1079,13 @@ declare module '@strapi/strapi' {
       'content.media-text': ContentMediaText;
       'content.rich-text': ContentRichText;
       'content.video': ContentVideo;
+      'home.about-section': HomeAboutSection;
+      'home.contact-section': HomeContactSection;
+      'home.hero-slide': HomeHeroSlide;
+      'home.news-section': HomeNewsSection;
+      'home.partner-section': HomePartnerSection;
+      'home.research-section': HomeResearchSection;
+      'home.stat-item': HomeStatItem;
       'shared.equipment-item': SharedEquipmentItem;
       'shared.evidence-item': SharedEvidenceItem;
       'shared.feature-item': SharedFeatureItem;

@@ -4,8 +4,8 @@
   "info": {
     "singularName": "site-setting",
     "pluralName": "site-settings",
-    "displayName": "站点设置",
-    "description": ""
+    "displayName": "全站联系方式与品牌",
+    "description": "这里的品牌、商务电话、邮箱、地址和备案信息会显示在全站页头、页脚及咨询模块"
   },
   "options": {
     "draftAndPublish": false
@@ -31,6 +31,26 @@
       "allowedTypes": [
         "images"
       ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "headerLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "footerLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"],
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -64,6 +84,14 @@
       }
     },
     "icp": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "copyright": {
       "type": "string",
       "pluginOptions": {
         "i18n": {

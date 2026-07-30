@@ -1,7 +1,7 @@
 const zhHans = {
-  // Strapi 核心与主页
+  // 后台核心与主页
   'HomePage.header.title': '你好，{name}',
-  'HomePage.header.subtitle': '欢迎进入管理后台',
+  'HomePage.header.subtitle': '欢迎进入红运后台管理系统',
   'HomePage.widget.loading': '正在加载组件内容',
   'HomePage.widget.error': '无法加载组件内容',
   'HomePage.widget.no-data': '暂无内容',
@@ -40,14 +40,14 @@ const zhHans = {
 
   // 主页引导与统计组件
   'tours.overview.title': '了解你的应用',
-  'tours.overview.subtitle': '按照引导快速熟悉 Strapi',
+  'tours.overview.subtitle': '按照引导快速熟悉红运后台',
   'tours.overview.close': '关闭操作引导',
   'tours.overview.tasks': '操作任务',
   'tours.overview.contentTypeBuilder.label': '创建内容结构',
   'tours.overview.contentManager.label': '创建并发布内容',
   'tours.overview.apiTokens.label': '复制 API 令牌',
-  'tours.overview.strapiCloud.label': '将应用部署到 Strapi Cloud',
-  'tours.overview.strapiCloud.link': '查看文档',
+  'tours.overview.strapiCloud.label': '检查系统部署状态',
+  'tours.overview.strapiCloud.link': '查看帮助',
   'tours.overview.tour.link': '开始',
   'tours.overview.tour.done': '完成',
   'tours.overview.close.description': '确定要关闭操作引导吗？',
@@ -102,7 +102,7 @@ const zhHans = {
   'components.Blocks.blocks.unorderedList': '无序列表',
   'components.Blocks.blocks.orderedList': '有序列表',
 
-  // 内容管理器。Strapi 5.51.0 的简体中文包缺失了这一组键。
+  // 内容管理器新版简体中文包缺失的补充键。
   'content-manager.plugin.name': '内容管理器',
   'content-manager.header.name': '内容管理器',
   'content-manager.App.schemas.data-loaded': '内容结构已加载',
@@ -210,6 +210,7 @@ const zhHans = {
   article: '新闻正文',
   contact: '联系页面',
   content: '页面内容',
+  home: '首页模块',
   shared: '通用组件',
   special: '特殊模块',
   technical: '技术内容',
@@ -224,6 +225,13 @@ const zhHans = {
   'contact.office': '办公地点',
   'contact.panel': '联系面板',
   'contact.talent-value': '人才理念',
+  'home.hero-slide': '01 轮播条目（视频 + 标题文案）',
+  'home.news-section': '02 新闻动态',
+  'home.about-section': '03 关于红运',
+  'home.research-section': '04 研发创新',
+  'home.partner-section': '05 合作客户',
+  'home.contact-section': '06 项目咨询',
+  'home.stat-item': '数据指标',
   'content.case-list': '案例列表',
   'content.cta': '行动按钮',
   'content.data-table': '型号参数表',

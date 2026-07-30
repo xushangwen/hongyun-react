@@ -4,8 +4,8 @@
   "info": {
     "singularName": "product-group",
     "pluralName": "product-groups",
-    "displayName": "产品系统分组",
-    "description": ""
+    "displayName": "产品系统（第二级）",
+    "description": "行业下的系统层级；例如新能源行业下的双行星动力制浆、高效管线式制浆等系统"
   },
   "options": {
     "draftAndPublish": false
@@ -39,6 +39,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::product-category.product-category",
+      "inversedBy": "groups",
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -77,6 +78,28 @@
       "type": "string",
       "unique": true,
       "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "placements": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product-placement.product-placement",
+      "mappedBy": "group",
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "mappedBy": "groups",
       "pluginOptions": {
         "i18n": {
           "localized": false

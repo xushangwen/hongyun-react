@@ -147,6 +147,14 @@ export async function getCmsContact(signal) {
   return cmsRequest('/api/cms/contact?locale=zh', { signal })
 }
 
+export async function getCmsHome(signal) {
+  return cmsRequest('/api/cms/home?locale=zh', { signal })
+}
+
+export async function getCmsSite(signal) {
+  return cmsRequest('/api/cms/site?locale=zh', { signal })
+}
+
 export async function getCmsArticle(slug, signal) {
   const response = await cmsRequest(`/api/cms/news/${encodeURIComponent(slug)}?locale=zh`, { signal })
   return mapCmsArticle(response)

@@ -350,6 +350,11 @@ const MODE_LABELS = {
   'chart-config': '图表设置',
 }
 
+const ATTRIBUTE_LABELS = {
+  industryOptions: '行业选项',
+  positionOptions: '职位选项',
+}
+
 const MEDIA_COLUMN_PATTERN = /^(img|src|icon|video|poster|image|logo|media)$/i
 const LONG_TEXT_COLUMN_PATTERN = /^(desc|description|content|text|body|note|notes|details|summary)$/i
 
@@ -1142,7 +1147,13 @@ const StructuredJsonInput = forwardRef((props, ref) => {
   const update = (nextValue) => onChange({ target: { name, type: attribute.type, value: nextValue } })
   const setRows = (nextRows) => form?.onChange(rowsPath, nextRows)
   const setColumns = (nextColumns) => form?.onChange(columnsPath, nextColumns)
-  const fieldLabel = MODE_LABELS[mode] || intlLabel?.defaultMessage || intlLabel?.id || name
+  const attributeName = name.split('.').at(-1)
+  const fieldLabel =
+    ATTRIBUTE_LABELS[attributeName] ||
+    MODE_LABELS[mode] ||
+    intlLabel?.defaultMessage ||
+    intlLabel?.id ||
+    name
 
   let editor
   if (mode === 'columns') {

@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_home_contact_sections",
+  "info": {
+    "displayName": "06 项目咨询",
+    "description": "对应首页底部项目咨询模块"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "default": "首页 / 项目咨询"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "descriptionLines": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "联系我们"
+    },
+    "buttonPath": {
+      "type": "string",
+      "default": "/contact"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

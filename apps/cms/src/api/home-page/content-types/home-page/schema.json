@@ -4,8 +4,8 @@
   "info": {
     "singularName": "home-page",
     "pluralName": "home-pages",
-    "displayName": "首页",
-    "description": ""
+    "displayName": "首页模块",
+    "description": "字段顺序与前端首页从上到下完全一致：轮播、新闻、关于、研发、合作客户、项目咨询"
   },
   "options": {
     "draftAndPublish": true
@@ -25,15 +25,40 @@
         }
       }
     },
-    "hero": {
+    "heroSlides": {
       "type": "component",
-      "repeatable": false,
-      "component": "shared.page-hero",
+      "repeatable": true,
+      "component": "home.hero-slide",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
       }
+    },
+    "newsSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.news-section"
+    },
+    "aboutSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.about-section"
+    },
+    "researchSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.research-section"
+    },
+    "partnerSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.partner-section"
+    },
+    "contactSection": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.contact-section"
     },
     "sections": {
       "type": "dynamiczone",

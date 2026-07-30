@@ -7,6 +7,7 @@ import { contactPageContent } from './contact-page-content.mjs'
 const root = resolve(import.meta.dirname, '../..')
 const srcRoot = resolve(root, 'src')
 const publicRoot = resolve(root, 'public')
+const companyYears = new Date().getFullYear() - 1993
 const featureIconKeyByComponent = {
   IconDevelopment: 'development',
   IconTarget: 'target',
@@ -1146,11 +1147,23 @@ const manifest = {
   singleTypes: {
     siteSetting: {
       companyName: '红运机械',
-      phone: '400-928-5088',
+      headerLogo: {
+        __media: true,
+        sourcePath: '/assets/images/hy-logo-ch-h.svg',
+        alt: '红运机械',
+      },
+      footerLogo: {
+        __media: true,
+        sourcePath: '/assets/images/hy-logo-ch-v.svg',
+        alt: '红运机械',
+      },
+      phone: '400 915 3366',
+      email: 'hy@gzhy.cn',
       addresses: [
-        { title: '常州总部', text: '江苏省常州市', order: 0 },
-        { title: '广州基地', text: '广东省广州市', order: 1 },
+        { title: '常州总部', text: '江苏省常州市武进高新区南湖西路8-8号', order: 0 },
+        { title: '广州基地', text: '广州市南沙区东涌镇同裕街40号', order: 1 },
       ],
+      copyright: 'Copyright © 2026 红运机械 All Rights Reserved.',
       defaultSeo: {
         metaTitle: '红运机械｜混合、分散与制浆系统解决方案',
         metaDescription: '红运机械专注于新能源、固态电池与化工行业的混合、分散及制浆系统装备。',
@@ -1159,6 +1172,125 @@ const manifest = {
     },
     homePage: {
       title: '首页',
+      heroSlides: [
+        {
+          internalName: '轮播 1 / 新能源与智能制造',
+          media: {
+            __media: true,
+            sourcePath: '/assets/videos/03-battery-manufacturing-yard_compressed.webm',
+            alt: '新能源与智能制造',
+          },
+          title: '高效混合<br>助力新能源与智能制造',
+          subtitle: '专注粉体、液体输送与混合设备，服务新能源、化工、食品等行业',
+          buttonLabel: '进一步探索',
+          buttonPath: '/solutions#new-energy',
+          durationSeconds: 6,
+          visible: true,
+        },
+        {
+          internalName: '轮播 2 / 混动装备制造基地',
+          media: {
+            __media: true,
+            sourcePath: '/assets/videos/02-chemical-plant_compressed.webm',
+            alt: '混动装备制造基地',
+          },
+          title: '打造全球一流<br>混动装备制造基地',
+          subtitle: '红运为客户研发和定制上料、输送、除尘、计量的个性化解决方案',
+          buttonLabel: '进一步探索',
+          buttonPath: '/solutions#chemical',
+          durationSeconds: 6,
+          visible: true,
+        },
+        {
+          internalName: '轮播 3 / 技术积累',
+          media: {
+            __media: true,
+            sourcePath: '/assets/videos/01-electric-car- charge.webm',
+            alt: '混合设备研发与产线集成',
+          },
+          title: `${companyYears}年的混合设备研发及<br>产线集成技术的积累与沉淀`,
+          subtitle: '红运为客户研发和定制上料、输送、除尘、计量的个性化解决方案',
+          buttonLabel: '进一步探索',
+          buttonPath: '/about',
+          durationSeconds: 6,
+          visible: true,
+        },
+      ],
+      newsSection: {
+        internalName: '首页 / 新闻动态（内容来自新闻中心）',
+        title: '新闻动态',
+        visible: true,
+      },
+      aboutSection: {
+        internalName: '首页 / 关于红运',
+        title: `${companyYears}年的混合设备研发及<br />产线集成技术的积累与沉淀`,
+        subtitle: '红运为客户研发和定制上料、输送、除尘、<br />计量的个性化解决方案',
+        paragraphOne: `红运机械自1993年创立以来，致力于混合设备的研究、开发及制造，在不同领域开发了诸多高效节能、创新的混合设备解决方案和系统，帮助用户解决许多生产及生产工艺方面遇到的问题。因此，我们可以依用${companyYears}多年来积累在粉体计量、混合及输送方面的技术及物料混合生产工艺经验沉淀，为粉体上料、浆料混合及输送行业提供更好的建议及使用方法。`,
+        paragraphTwo: '我们的产品广泛应用于新能源、电子电极浆料、各种胶粘剂、火工药剂、涂料、食品、医药及化妆品等行业。',
+        buttonLabel: '进一步探索',
+        buttonPath: '/about',
+        stats: [
+          { label: '资本实力', value: 1.9, suffix: '亿', description: '注册资本（CNY）' },
+          { label: '研发积淀', value: companyYears, suffix: '年', description: '研发经验' },
+          { label: '生产规模', value: 94000, suffix: 'm²', description: '现代化生产基地' },
+        ],
+        visible: true,
+      },
+      researchSection: {
+        internalName: '首页 / 研发创新',
+        title: '研发创新',
+        description: '红运机械的研发体系致力于新材料与新工艺的开发、产品开发，以及样品的试制与测试验证。结合市场需求与行业前沿技术动态，专注于新能源电池材料、化工材料、电子材料、涂料、医疗药剂、火工炸药等多个应用领域的物料搅拌混合设备技术。通过持续创新打造性能卓越、质量可靠的搅拌混合设备产品系列，以满足不同领域客户的精准需求。',
+        stats: [
+          { label: '研发投入', value: 5.6, suffix: '%' },
+          { label: '自主研发专利', value: 200, suffix: '+' },
+          { label: '博士占比硕士占比', value: 25, suffix: '%' },
+        ],
+        certifications: [
+          { label: 'ISO 9001', sourcePath: '/assets/images/str/cert-iso9001.webp', role: 'other' },
+          { label: 'ISO 14001', sourcePath: '/assets/images/str/cert-iso14001.webp', role: 'other' },
+          { label: 'SGS认证', sourcePath: '/assets/images/str/cert-sgs.svg', role: 'other' },
+          { label: '专利证书', sourcePath: '/assets/images/str/cert-patent.webp', role: 'other' },
+        ],
+        certificateGallery: [
+          ...['ce-cert.webp', 'iso9001.webp', 'iso14001.webp'].map((name) => ({
+            label: '资质证书',
+            sourcePath: `/assets/images/honors/certificate/${name}`,
+            role: 'gallery',
+          })),
+          ...Array.from({ length: 8 }, (_, index) => ({
+            label: `专利证书 ${index + 1}`,
+            sourcePath: `/assets/images/honors/patent/patent-${String(index + 1).padStart(2, '0')}.webp`,
+            role: 'gallery',
+          })),
+        ],
+        visible: true,
+      },
+      partnerSection: {
+        internalName: '首页 / 合作客户（Logo 来自合作伙伴数据集）',
+        title: '追求完美，做到极致',
+        subtitle: '红运机械凭借卓越的技术与可靠的品质，<br />赢得了全球领先企业的信赖与选择。',
+        description: '我们与行业领袖建立的深度合作关系，不仅见证了红运产品的实力，<br />更成为推动行业技术进步的重要力量。',
+        buttonLabel: '浏览所有合作客户',
+        buttonPath: '/about#partners-page',
+        visible: true,
+      },
+      contactSection: {
+        internalName: '首页 / 项目咨询',
+        title: '项目咨询/技术咨询',
+        subtitle: '让我们携手合作，为您量身打造混合设备的个性化解决方案。',
+        descriptionLines: [
+          { text: '我们有义务并乐意随时回答您提出的任何问题', order: 0 },
+          { text: '给您拿出经济、且符合您实际的建议、或方案', order: 1 },
+        ],
+        buttonLabel: '联系我们',
+        buttonPath: '/contact',
+        image: {
+          __media: true,
+          sourcePath: '/assets/images/contact-right-bgimg.webp',
+          alt: '项目咨询',
+        },
+        visible: true,
+      },
       sections: home.sections,
       sourceChecksum: home.sourceChecksum,
     },

@@ -28,6 +28,7 @@ import talentBg03 from '../assets/img/talent-value-03.webp'
 import { submitInquiry, submitResume } from '../services/formsApi'
 import { useFocusTrap } from '../hooks/useFocusTrap'
 import { useCmsDetail } from '../context/useCmsDetail'
+import { useSiteSettings } from '../context/useSiteSettings'
 
 /* ========== 联系方式数据 ========== */
 const contactCards = [
@@ -358,8 +359,11 @@ function JobRichText({ value }) {
 
 function useContactContent() {
   const { detail } = useCmsDetail()
+  const { settings } = useSiteSettings()
 
   return useMemo(() => {
+    const businessPhone = settings?.phone
+    const businessEmail = settings?.email
     const remoteJobs = detail?.jobListings?.map((job) => ({
       id: job.legacyKey,
       title: job.title,
@@ -387,11 +391,36 @@ function useContactContent() {
       desc: item.description,
       bg: item.image?.url,
     }))
-    const panel = (remote, fallback) => ({
-      tagline: remote?.tagline || fallback.tagline,
-      background: remote?.background?.url || fallback.background,
-      items: remote?.items?.length ? remote.items : fallback.items,
-    })
+    const panel = (remote, fallback) => {
+      const items = remote?.items?.length ? remote.items : fallback.items
+      return {
+        tagline: remote?.tagline || fallback.tagline,
+        background: remote?.background?.url || fallback.background,
+        items: items.map((item) => ({
+          ...item,
+          value: item.label?.includes('服务热线') && businessPhone
+            ? businessPhone
+            : item.label?.includes('商务邮箱') && businessEmail
+              ? businessEmail
+              : item.value,
+        })),
+      }
+    }
+    const cards = (remoteCards?.length ? remoteCards : contactCards).map((card) => ({
+      ...card,
+      items: card.items.map((item) => ({
+        ...item,
+        value: item.label?.includes('全国客服') && businessPhone
+          ? businessPhone
+          : item.label?.includes('商务合作') && businessEmail
+            ? businessEmail
+            : item.value,
+      })),
+    }))
+    const offices = (detail?.offices?.length ? detail.offices : fallbackOffices).map((office, index) => ({
+      ...office,
+      address: settings?.addresses?.[index]?.text || office.address,
+    }))
 
     return {
       title: detail?.title || '联系我们',
@@ -412,8 +441,8 @@ function useContactContent() {
       industryOptions: detail?.industryOptions?.length
         ? detail.industryOptions.map((item) => item.label || item.value).filter(Boolean)
         : industryOptions,
-      contactCards: remoteCards?.length ? remoteCards : contactCards,
-      offices: detail?.offices?.length ? detail.offices : fallbackOffices,
+      contactCards: cards,
+      offices,
       talentTitle: detail?.talentTitle || '人才理念',
       talentDescription: detail?.talentDescription || '人才是红运机械最核心的竞争优势。我们广纳贤才、培育匠心，以开放包容的文化激发每位员工的无限潜能，共同书写高端装备制造的新篇章。',
       talentValues: remoteTalentValues?.length ? remoteTalentValues : talentValues,
@@ -423,7 +452,7 @@ function useContactContent() {
       resumeTitle: detail?.resumeTitle || '简历投递',
       resumeDescription: detail?.resumeDescription || '填写以下信息直接提交您的申请，HR 团队将在 3 个工作日内与您联系。',
     }
-  }, [detail])
+  }, [detail, settings])
 }
 
 /* ========== 简历上传弹窗 ========== */

@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_home_research_sections",
+  "info": {
+    "displayName": "04 研发创新",
+    "description": "对应首页研发介绍、研发数据、认证标志与证书图片"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "default": "首页 / 研发创新"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.stat-item",
+      "max": 3
+    },
+    "certifications": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.media-item"
+    },
+    "certificateGallery": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.media-item"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

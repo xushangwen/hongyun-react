@@ -146,6 +146,10 @@ function assertInlineDataTables(data) {
   if (!Array.isArray(data?.sections)) return
   for (const section of data.sections) {
     if (section?.__component !== 'content.data-table') continue
+    const isRelationOnlyDocumentCopy = section.id != null
+      && !['columns', 'rows', 'datasetKey', 'title', 'visible']
+        .some((key) => key in section)
+    if (isRelationOnlyDocumentCopy) continue
     const hasInlineData = section.columns != null || section.rows != null
     if (!hasInlineData && section.datasetKey) continue
     if (!hasInlineData) {
@@ -203,6 +207,31 @@ async function lockPublicRole(strapi) {
   strapi.log.info('[bootstrap] Public Role 已收紧：前台只能通过 BFF Token 访问 CMS')
 }
 
+async function refreshProductCatalogLabels(strapi, productId = null) {
+  const products = await strapi.db.query('api::product.product').findMany({
+    ...(productId ? { where: { id: productId } } : {}),
+    populate: ['categories', 'groups'],
+  })
+  let updated = 0
+  for (const product of products) {
+    const categoryNames = [...new Set(
+      (product.categories ?? []).map((item) => item.name).filter(Boolean),
+    )].join('、')
+    const systemNames = [...new Set(
+      (product.groups ?? []).map((item) => item.name).filter(Boolean),
+    )].join('、')
+    if (product.categoryNames === categoryNames && product.systemNames === systemNames) continue
+    await strapi.db.connection('hongyun_products')
+      .where({ id: product.id })
+      .update({
+        category_names: categoryNames,
+        system_names: systemNames,
+      })
+    updated += 1
+  }
+  return updated
+}
+
 module.exports = {
   register({ strapi }) {
     strapi.customFields.register({
@@ -232,6 +261,24 @@ module.exports = {
       beforeUpdate(event) { assertInlineDataTables(event.params.data) },
     })
     strapi.db.lifecycles.subscribe({
+      models: ['api::product.product'],
+      async afterCreate(event) {
+        await refreshProductCatalogLabels(strapi, event.result?.id)
+      },
+      async afterUpdate(event) {
+        await refreshProductCatalogLabels(strapi, event.result?.id)
+      },
+    })
+    strapi.db.lifecycles.subscribe({
+      models: [
+        'api::product-category.product-category',
+        'api::product-group.product-group',
+      ],
+      async afterUpdate() {
+        await refreshProductCatalogLabels(strapi)
+      },
+    })
+    strapi.db.lifecycles.subscribe({
       models: ['api::url-alias.url-alias'],
       beforeCreate(event) { assertUrlAlias(event.params.data) },
       beforeUpdate(event) { assertUrlAlias(event.params.data) },
@@ -248,6 +295,10 @@ module.exports = {
     await ensureLocale(strapi, { code: 'zh', name: '中文 (zh)', isDefault: true })
     await ensureLocale(strapi, { code: 'en', name: 'English (en)', isDefault: false })
     await configureComponentItemEditors(strapi)
+    const productLabelsUpdated = await refreshProductCatalogLabels(strapi)
+    if (productLabelsUpdated) {
+      strapi.log.info(`[bootstrap] 已同步 ${productLabelsUpdated} 条产品行业/系统名称`)
+    }
     await lockPublicRole(strapi)
   },
 }

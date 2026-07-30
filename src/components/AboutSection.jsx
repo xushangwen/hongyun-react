@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { IconArrowRightOutline24 } from 'nucleo-core-outline-24'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
@@ -6,7 +6,7 @@ import { getCompanyYears } from '../utils/companyYears'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const statsData = [
+const defaultStatsData = [
   {
     icon: '/assets/icons/gr/coins-stack%202.svg',
     label: '资本实力',
@@ -58,7 +58,19 @@ function animateNumber(element, target, isDecimal, duration = 2000) {
   requestAnimationFrame(update)
 }
 
-export default function AboutSection() {
+export default function AboutSection({ content }) {
+  const statsData = useMemo(() => {
+    if (!content?.stats?.length) return defaultStatsData
+    return content.stats.map((stat, index) => ({
+      icon: stat.icon?.url || defaultStatsData[index]?.icon,
+      label: stat.label,
+      target: Number(stat.value),
+      unit: stat.suffix || '',
+      desc: stat.description || '',
+      isDecimal: !Number.isInteger(Number(stat.value)),
+      prefix: stat.prefix || '',
+    }))
+  }, [content])
   const sectionRef = useRef(null)
   const bgRef = useRef(null)
   const numberRefs = useRef([])
@@ -107,7 +119,7 @@ export default function AboutSection() {
 
     observer.observe(section)
     return () => observer.disconnect()
-  }, [animated])
+  }, [animated, statsData])
 
   return (
     <section className="about" ref={sectionRef}>
@@ -116,22 +128,28 @@ export default function AboutSection() {
         {/* Top Content */}
         <div className="about-content">
           <div className="about-left">
-            <h2 className="about-title">
-              {getCompanyYears()}年的混合设备研发及<br />产线集成技术的积累与沉淀
-            </h2>
-            <p className="about-subtitle">
-              红运为客户研发和定制上料、输送、除尘、<br />计量的个性化解决方案
-            </p>
+            <h2
+              className="about-title"
+              dangerouslySetInnerHTML={{
+                __html: content?.title || `${getCompanyYears()}年的混合设备研发及<br />产线集成技术的积累与沉淀`,
+              }}
+            />
+            <p
+              className="about-subtitle"
+              dangerouslySetInnerHTML={{
+                __html: content?.subtitle || '红运为客户研发和定制上料、输送、除尘、<br />计量的个性化解决方案',
+              }}
+            />
           </div>
           <div className="about-right">
             <p className="about-desc">
-              红运机械自1993年创立以来，致力于混合设备的研究、开发及制造，在不同领域开发了诸多高效节能、创新的混合设备解决方案和系统，帮助用户解决许多生产及生产工艺方面遇到的问题。因此，我们可以依用{getCompanyYears()}多年来积累在粉体计量、混合及输送方面的技术及物料混合生产工艺经验沉淀，为粉体上料、浆料混合及输送行业提供更好的建议及使用方法。
+              {content?.paragraphOne || `红运机械自1993年创立以来，致力于混合设备的研究、开发及制造，在不同领域开发了诸多高效节能、创新的混合设备解决方案和系统，帮助用户解决许多生产及生产工艺方面遇到的问题。因此，我们可以依用${getCompanyYears()}多年来积累在粉体计量、混合及输送方面的技术及物料混合生产工艺经验沉淀，为粉体上料、浆料混合及输送行业提供更好的建议及使用方法。`}
             </p>
             <p className="about-desc">
-              我们的产品广泛应用于新能源、电子电极浆料、各种胶粘剂、火工药剂、涂料、食品、医药及化妆品等行业。
+              {content?.paragraphTwo || '我们的产品广泛应用于新能源、电子电极浆料、各种胶粘剂、火工药剂、涂料、食品、医药及化妆品等行业。'}
             </p>
-            <a href="/about" className="about-btn">
-              进一步探索
+            <a href={content?.buttonPath || '/about'} className="about-btn">
+              {content?.buttonLabel || '进一步探索'}
               <IconArrowRightOutline24 className="about-btn-arrow" size={18} />
             </a>
           </div>
@@ -151,6 +169,7 @@ export default function AboutSection() {
               <div className="about-stat-content">
                 <span className="about-stat-label">{stat.label}</span>
                 <div className="about-stat-value">
+                  {stat.prefix && <span className="about-stat-unit">{stat.prefix}</span>}
                   <span
                     className="about-stat-number font-din"
                     ref={(el) => (numberRefs.current[index] = el)}

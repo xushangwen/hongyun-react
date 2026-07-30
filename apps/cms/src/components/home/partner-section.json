@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_home_partner_sections",
+  "info": {
+    "displayName": "05 合作客户",
+    "description": "标题与说明在这里编辑；Logo 统一复用左侧“合作伙伴”数据集"
+  },
+  "attributes": {
+    "internalName": {
+      "type": "string",
+      "default": "首页 / 合作客户（Logo 来自合作伙伴数据集）"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "浏览所有合作客户"
+    },
+    "buttonPath": {
+      "type": "string",
+      "default": "/about#partners-page"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

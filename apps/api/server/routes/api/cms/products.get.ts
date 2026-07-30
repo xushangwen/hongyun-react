@@ -9,16 +9,17 @@ export default defineEventHandler(async (event) => {
   const group = query.group ? parseSlug(query.group) : null
   return cached(event, `products:${locale}:${category ?? ''}:${group ?? ''}:${page}:${pageSize}`, 45_000, async () => {
     if (category || group) {
-      const response = await strapiFetch<any>('/product-placements', {
+      const response = await strapiFetch<any>('/products', {
         query: {
           locale,
+          status: 'published',
           sort: ['order:asc'],
           pagination: { page, pageSize, withCount: true },
           filters: {
-            ...(category ? { category: { slug: { $eq: category } } } : {}),
-            ...(group ? { group: { slug: { $eq: group } } } : {}),
+            ...(category ? { categories: { slug: { $eq: category } } } : {}),
+            ...(group ? { groups: { slug: { $eq: group } } } : {}),
           },
-          populate: { product: { populate: { cover: true } }, category: true, group: true, coverOverride: true },
+          populate: { cover: true, categories: true, groups: true },
         },
       })
       return { list: normalizeCms(response.data ?? []), pagination: response.meta?.pagination }

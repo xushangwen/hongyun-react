@@ -1314,8 +1314,8 @@ export interface ApiGlobalPresenceGlobalPresence
 export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   collectionName: 'hongyun_home_pages';
   info: {
-    description: '';
-    displayName: '\u9996\u9875';
+    description: '\u5B57\u6BB5\u987A\u5E8F\u4E0E\u524D\u7AEF\u9996\u9875\u4ECE\u4E0A\u5230\u4E0B\u5B8C\u5168\u4E00\u81F4\uFF1A\u8F6E\u64AD\u3001\u65B0\u95FB\u3001\u5173\u4E8E\u3001\u7814\u53D1\u3001\u5408\u4F5C\u5BA2\u6237\u3001\u9879\u76EE\u54A8\u8BE2';
+    displayName: '\u9996\u9875\u6A21\u5757';
     pluralName: 'home-pages';
     singularName: 'home-page';
   };
@@ -1328,10 +1328,12 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     };
   };
   attributes: {
+    aboutSection: Schema.Attribute.Component<'home.about-section', false>;
+    contactSection: Schema.Attribute.Component<'home.contact-section', false>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    hero: Schema.Attribute.Component<'shared.page-hero', false> &
+    heroSlides: Schema.Attribute.Component<'home.hero-slide', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1342,7 +1344,10 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
       'oneToMany',
       'api::home-page.home-page'
     >;
+    newsSection: Schema.Attribute.Component<'home.news-section', false>;
+    partnerSection: Schema.Attribute.Component<'home.partner-section', false>;
     publishedAt: Schema.Attribute.DateTime;
+    researchSection: Schema.Attribute.Component<'home.research-section', false>;
     sections: Schema.Attribute.DynamicZone<
       [
         'content.rich-text',
@@ -1619,8 +1624,8 @@ export interface ApiProductCategoryProductCategory
   extends Struct.CollectionTypeSchema {
   collectionName: 'hongyun_product_categories';
   info: {
-    description: '';
-    displayName: '\u4EA7\u54C1\u5206\u7C7B';
+    description: '\u524D\u7AEF\u4EA7\u54C1\u4E2D\u5FC3\u7684\u56DB\u5927\u884C\u4E1A\uFF1A\u65B0\u80FD\u6E90\u884C\u4E1A\u3001\u56FA\u6001\u7535\u6C60\u3001\u5316\u5DE5\u884C\u4E1A\u3001\u8F85\u52A9\u8BBE\u5907';
+    displayName: '\u4EA7\u54C1\u884C\u4E1A\uFF08\u7B2C\u4E00\u7EA7\uFF09';
     pluralName: 'product-categories';
     singularName: 'product-category';
   };
@@ -1642,6 +1647,15 @@ export interface ApiProductCategoryProductCategory
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    groups: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-group.product-group'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     iconKey: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1675,6 +1689,21 @@ export interface ApiProductCategoryProductCategory
         };
       }> &
       Schema.Attribute.DefaultTo<0>;
+    placements: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-placement.product-placement'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false> &
       Schema.Attribute.SetPluginOptions<{
@@ -1791,8 +1820,8 @@ export interface ApiProductGroupProductGroup
   extends Struct.CollectionTypeSchema {
   collectionName: 'hongyun_product_groups';
   info: {
-    description: '';
-    displayName: '\u4EA7\u54C1\u7CFB\u7EDF\u5206\u7EC4';
+    description: '\u884C\u4E1A\u4E0B\u7684\u7CFB\u7EDF\u5C42\u7EA7\uFF1B\u4F8B\u5982\u65B0\u80FD\u6E90\u884C\u4E1A\u4E0B\u7684\u53CC\u884C\u661F\u52A8\u529B\u5236\u6D46\u3001\u9AD8\u6548\u7BA1\u7EBF\u5F0F\u5236\u6D46\u7B49\u7CFB\u7EDF';
+    displayName: '\u4EA7\u54C1\u7CFB\u7EDF\uFF08\u7B2C\u4E8C\u7EA7\uFF09';
     pluralName: 'product-groups';
     singularName: 'product-group';
   };
@@ -1844,6 +1873,21 @@ export interface ApiProductGroupProductGroup
         };
       }> &
       Schema.Attribute.DefaultTo<0>;
+    placements: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-placement.product-placement'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    products: Schema.Attribute.Relation<'manyToMany', 'api::product.product'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     relatedSolution: Schema.Attribute.Relation<
       'oneToOne',
@@ -1878,8 +1922,8 @@ export interface ApiProductPlacementProductPlacement
   extends Struct.CollectionTypeSchema {
   collectionName: 'hongyun_product_placements';
   info: {
-    description: '';
-    displayName: '\u4EA7\u54C1\u5C55\u793A\u4F4D';
+    description: '\u4EA7\u54C1\u4E2D\u5FC3\u7684\u76EE\u5F55\u5173\u7CFB\uFF1A\u9009\u62E9\u7B2C\u4E00\u7EA7\u884C\u4E1A\u3001\u7B2C\u4E8C\u7EA7\u7CFB\u7EDF\u548C\u7B2C\u4E09\u7EA7\u4EA7\u54C1\uFF1B\u65E0\u7CFB\u7EDF\u5C42\u7EA7\u7684\u884C\u4E1A\u53EF\u4E0D\u9009\u7CFB\u7EDF';
+    displayName: '\u4EA7\u54C1\u6240\u5C5E\u884C\u4E1A\u4E0E\u7CFB\u7EDF';
     pluralName: 'product-placements';
     singularName: 'product-placement';
   };
@@ -1887,6 +1931,12 @@ export interface ApiProductPlacementProductPlacement
     draftAndPublish: false;
   };
   pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
     i18n: {
       localized: true;
     };
@@ -1991,7 +2041,7 @@ export interface ApiProductPlacementProductPlacement
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'hongyun_products';
   info: {
-    description: '';
+    description: '\u5728\u8FD9\u91CC\u76F4\u63A5\u7F16\u8F91\u4EA7\u54C1\uFF0C\u5E76\u901A\u8FC7\u6240\u5C5E\u884C\u4E1A\u4E0E\u6240\u5C5E\u7CFB\u7EDF\u5FEB\u901F\u7B5B\u9009\u5B9A\u4F4D\uFF1B\u540C\u4E00\u4EA7\u54C1\u53EF\u5C5E\u4E8E\u591A\u4E2A\u884C\u4E1A\u6216\u7CFB\u7EDF';
     displayName: '\u4EA7\u54C1\u4E2D\u5FC3';
     pluralName: 'products';
     singularName: 'product';
@@ -2005,6 +2055,31 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    catalogRelationsInitialized: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        'content-manager': {
+          visible: false;
+        };
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<false>;
+    categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::product-category.product-category'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    categoryNames: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     cover: Schema.Attribute.Media<'images'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -2017,6 +2092,15 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     family: Schema.Attribute.Relation<
       'manyToOne',
       'api::product-family.product-family'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    groups: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::product-group.product-group'
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -2062,6 +2146,18 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<0>;
+    placements: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-placement.product-placement'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        'content-manager': {
+          visible: false;
+        };
+        i18n: {
+          localized: false;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
     relatedProducts: Schema.Attribute.Relation<
       'manyToMany',
@@ -2116,6 +2212,12 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
         };
       }>;
     summary: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    systemNames: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -2183,8 +2285,8 @@ export interface ApiResumeSubmissionResumeSubmission
 export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
   collectionName: 'hongyun_site_settings';
   info: {
-    description: '';
-    displayName: '\u7AD9\u70B9\u8BBE\u7F6E';
+    description: '\u8FD9\u91CC\u7684\u54C1\u724C\u3001\u5546\u52A1\u7535\u8BDD\u3001\u90AE\u7BB1\u3001\u5730\u5740\u548C\u5907\u6848\u4FE1\u606F\u4F1A\u663E\u793A\u5728\u5168\u7AD9\u9875\u5934\u3001\u9875\u811A\u53CA\u54A8\u8BE2\u6A21\u5757';
+    displayName: '\u5168\u7AD9\u8054\u7CFB\u65B9\u5F0F\u4E0E\u54C1\u724C';
     pluralName: 'site-settings';
     singularName: 'site-setting';
   };
@@ -2210,6 +2312,12 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
           localized: true;
         };
       }>;
+    copyright: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -2220,6 +2328,18 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
         };
       }>;
     email: Schema.Attribute.Email &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    footerLogo: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    headerLogo: Schema.Attribute.Media<'images'> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
