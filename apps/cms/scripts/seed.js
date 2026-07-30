@@ -155,25 +155,23 @@ async function upsertSingle(uid, data, { force = syncExisting, fillMissingFields
         .map((field) => [field, data[field]]),
     )
     if (!Object.keys(missingData).length) return existing
+    const versions = await strapi.db.query(uid).findMany({
+      where: { documentId: existing.documentId, locale: 'zh' },
+      select: ['id'],
+    })
     let updated = existing
     for (const [field, value] of Object.entries(missingData)) {
       const hydratedField = await hydrate({ [field]: value })
       try {
-        updated = await strapi.documents(uid).update({
-          documentId: existing.documentId,
-          locale: 'zh',
-          data: hydratedField,
-        })
+        for (const version of versions) {
+          updated = await strapi.entityService.update(uid, version.id, {
+            data: hydratedField,
+          })
+        }
       } catch (error) {
         error.message = `补齐 ${uid}.${field} 失败: ${error.message}`
         throw error
       }
-    }
-    if (status) {
-      updated = await strapi.documents(uid).publish({
-        documentId: existing.documentId,
-        locale: 'zh',
-      })
     }
     return updated
   }
