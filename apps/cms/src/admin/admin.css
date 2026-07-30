@@ -11,7 +11,7 @@ button:has(> span:first-child[aria-hidden='true'] + span:last-child) {
 /* 内容列表的名称本身已经具备可点击状态，不再用下划线制造视觉噪音。 */
 main [role='gridcell'] a {
   border-bottom: 0;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 /*
