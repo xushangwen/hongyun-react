@@ -6,7 +6,8 @@
   "attributes": {
     "internalName": {
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "产品参数表"
     },
     "visible": {
       "type": "boolean",
@@ -18,11 +19,50 @@
       }
     },
     "title": {
-      "type": "string"
-    },
-    "datasetKey": {
       "type": "string",
       "required": true
+    },
+    "datasetKey": {
+      "type": "string"
+    },
+    "columns": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "columns"
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "headerGroups": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "header-groups"
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "rows": {
+      "type": "customField",
+      "customField": "global::structured-json",
+      "options": {
+        "editorMode": "rows"
+      },
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "unitNotes": {
+      "type": "text"
     },
     "datasetView": {
       "type": "customField",

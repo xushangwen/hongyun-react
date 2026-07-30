@@ -1,7 +1,8 @@
 'use strict'
 
-const { createHmac } = require('node:crypto')
+const { createHmac, randomUUID } = require('node:crypto')
 const { errors } = require('@strapi/utils')
+const { configureComponentItemEditors } = require('./component-editor-config')
 const { ApplicationError } = errors
 
 const PUBLICLY_BLOCKED_PREFIXES = [
@@ -121,6 +122,15 @@ function assertDataset(data) {
   }
 }
 
+function prepareDatasetCreate(data) {
+  if (!data) return
+  if (!data.kind) data.kind = 'spec-table'
+  if (!data.schemaVersion) data.schemaVersion = 1
+  if (!data.version) data.version = 1
+  if (!data.legacyKey) data.legacyKey = `shared:dataset:${randomUUID()}`
+  assertDataset(data)
+}
+
 async function assertDatasetUpdate(strapi, event) {
   const data = event.params.data
   if (!data || !['kind', 'columns', 'rows', 'chartConfig'].some((key) => key in data)) return
@@ -130,6 +140,23 @@ async function assertDatasetUpdate(strapi, event) {
     select: ['kind', 'columns', 'rows', 'chartConfig'],
   })
   assertDataset({ ...existing, ...data })
+}
+
+function assertInlineDataTables(data) {
+  if (!Array.isArray(data?.sections)) return
+  for (const section of data.sections) {
+    if (section?.__component !== 'content.data-table') continue
+    const hasInlineData = section.columns != null || section.rows != null
+    if (!hasInlineData && section.datasetKey) continue
+    if (!hasInlineData) {
+      throw new ApplicationError(`数据表“${section.title || '未命名'}”尚未填写表格内容`)
+    }
+    assertDataset({
+      kind: 'spec-table',
+      columns: section.columns,
+      rows: section.rows,
+    })
+  }
 }
 
 function assertUrlAlias(data) {
@@ -196,8 +223,13 @@ module.exports = {
     })
     strapi.db.lifecycles.subscribe({
       models: ['api::technical-dataset.technical-dataset'],
-      beforeCreate(event) { assertDataset(event.params.data) },
+      beforeCreate(event) { prepareDatasetCreate(event.params.data) },
       async beforeUpdate(event) { await assertDatasetUpdate(strapi, event) },
+    })
+    strapi.db.lifecycles.subscribe({
+      models: ['api::product.product', 'api::solution.solution'],
+      beforeCreate(event) { assertInlineDataTables(event.params.data) },
+      beforeUpdate(event) { assertInlineDataTables(event.params.data) },
     })
     strapi.db.lifecycles.subscribe({
       models: ['api::url-alias.url-alias'],
@@ -215,6 +247,7 @@ module.exports = {
   async bootstrap({ strapi }) {
     await ensureLocale(strapi, { code: 'zh', name: '中文 (zh)', isDefault: true })
     await ensureLocale(strapi, { code: 'en', name: 'English (en)', isDefault: false })
+    await configureComponentItemEditors(strapi)
     await lockPublicRole(strapi)
   },
 }

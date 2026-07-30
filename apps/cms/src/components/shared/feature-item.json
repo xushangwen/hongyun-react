@@ -4,6 +4,13 @@
     "displayName": "功能特点"
   },
   "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
     "iconKey": {
       "type": "enumeration",
       "enum": [
@@ -32,13 +39,6 @@
           "localized": true
         }
       }
-    },
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "description": {
-      "type": "text"
     },
     "bullets": {
       "type": "component",

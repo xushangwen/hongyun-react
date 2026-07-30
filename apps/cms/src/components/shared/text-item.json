@@ -4,11 +4,11 @@
     "displayName": "文本项"
   },
   "attributes": {
-    "title": {
-      "type": "string"
-    },
     "text": {
       "type": "text"
+    },
+    "title": {
+      "type": "string"
     },
     "label": {
       "type": "string"

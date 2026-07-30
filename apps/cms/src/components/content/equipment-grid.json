@@ -20,13 +20,23 @@
     "title": {
       "type": "string"
     },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.equipment-item",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
     "equipmentKeys": {
       "type": "customField",
       "customField": "global::structured-json",
       "options": {
         "editorMode": "string-list"
       },
-      "required": true
+      "required": false
     },
     "layoutVariant": {
       "type": "enumeration",

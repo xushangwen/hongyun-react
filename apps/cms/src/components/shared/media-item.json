@@ -4,6 +4,9 @@
     "displayName": "媒体项"
   },
   "attributes": {
+    "label": {
+      "type": "string"
+    },
     "media": {
       "type": "media",
       "multiple": false,
@@ -18,18 +21,11 @@
         }
       }
     },
-    "sourcePath": {
-      "type": "customField",
-      "customField": "global::legacy-path"
-    },
     "alt": {
       "type": "string"
     },
     "caption": {
       "type": "text"
-    },
-    "label": {
-      "type": "string"
     },
     "role": {
       "type": "enumeration",
@@ -75,6 +71,10 @@
         "wide"
       ],
       "default": "auto"
+    },
+    "sourcePath": {
+      "type": "customField",
+      "customField": "global::legacy-path"
     }
   }
 }

@@ -220,7 +220,19 @@ export interface ContentDataTable extends Struct.ComponentSchema {
     displayName: '\u6570\u636E\u8868';
   };
   attributes: {
-    datasetKey: Schema.Attribute.String & Schema.Attribute.Required;
+    columns: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<
+        'global::structured-json',
+        {
+          editorMode: 'columns';
+        }
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    datasetKey: Schema.Attribute.String;
     datasetView: Schema.Attribute.JSON &
       Schema.Attribute.CustomField<
         'global::structured-json',
@@ -228,12 +240,39 @@ export interface ContentDataTable extends Struct.ComponentSchema {
           editorMode: 'dataset-view';
         }
       >;
-    internalName: Schema.Attribute.String & Schema.Attribute.Required;
+    headerGroups: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<
+        'global::structured-json',
+        {
+          editorMode: 'header-groups';
+        }
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    internalName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'\u4EA7\u54C1\u53C2\u6570\u8868'>;
     layoutVariant: Schema.Attribute.Enumeration<
       ['default', 'scroll', 'compact', 'grouped']
     > &
       Schema.Attribute.DefaultTo<'scroll'>;
-    title: Schema.Attribute.String;
+    rows: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<
+        'global::structured-json',
+        {
+          editorMode: 'rows';
+        }
+      > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    unitNotes: Schema.Attribute.Text;
     visible: Schema.Attribute.Boolean &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -251,7 +290,6 @@ export interface ContentEquipmentGrid extends Struct.ComponentSchema {
   };
   attributes: {
     equipmentKeys: Schema.Attribute.JSON &
-      Schema.Attribute.Required &
       Schema.Attribute.CustomField<
         'global::structured-json',
         {
@@ -259,6 +297,12 @@ export interface ContentEquipmentGrid extends Struct.ComponentSchema {
         }
       >;
     internalName: Schema.Attribute.String & Schema.Attribute.Required;
+    items: Schema.Attribute.Component<'shared.equipment-item', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     layoutVariant: Schema.Attribute.Enumeration<
       ['cards', 'horizontal', 'detailed']
     > &
@@ -439,6 +483,47 @@ export interface ContentVideo extends Struct.ComponentSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface SharedEquipmentItem extends Struct.ComponentSchema {
+  collectionName: 'components_shared_equipment_items';
+  info: {
+    displayName: '\u6838\u5FC3\u8BBE\u5907\u6761\u76EE';
+  };
+  attributes: {
+    alt: Schema.Attribute.String;
+    featureContent: Schema.Attribute.Blocks &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    features: Schema.Attribute.Component<'shared.text-item', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    imageFit: Schema.Attribute.Enumeration<['contain', 'cover']> &
+      Schema.Attribute.DefaultTo<'contain'>;
+    imagePosition: Schema.Attribute.Enumeration<
+      ['center', 'top', 'bottom', 'left', 'right']
+    > &
+      Schema.Attribute.DefaultTo<'center'>;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    paragraphs: Schema.Attribute.Component<'shared.text-item', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
   };
 }
 
@@ -827,6 +912,7 @@ declare module '@strapi/strapi' {
       'content.media-text': ContentMediaText;
       'content.rich-text': ContentRichText;
       'content.video': ContentVideo;
+      'shared.equipment-item': SharedEquipmentItem;
       'shared.evidence-item': SharedEvidenceItem;
       'shared.feature-item': SharedFeatureItem;
       'shared.media-item': SharedMediaItem;

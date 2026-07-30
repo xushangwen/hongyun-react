@@ -4,8 +4,8 @@
   "info": {
     "singularName": "technical-dataset",
     "pluralName": "technical-datasets",
-    "displayName": "技术数据集",
-    "description": ""
+    "displayName": "共享技术数据（高级）",
+    "description": "仅用于跨页面复用、图表、实验与技术证据；普通产品参数表请直接在产品页面编辑"
   },
   "options": {
     "draftAndPublish": true
@@ -33,6 +33,7 @@
         "chart-data",
         "eds-data"
       ],
+      "default": "spec-table",
       "required": true,
       "pluginOptions": {
         "i18n": {
@@ -43,6 +44,7 @@
     "schemaVersion": {
       "type": "integer",
       "min": 1,
+      "default": 1,
       "required": true,
       "pluginOptions": {
         "i18n": {

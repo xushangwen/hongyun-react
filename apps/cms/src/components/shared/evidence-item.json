@@ -4,6 +4,9 @@
     "displayName": "证据项"
   },
   "attributes": {
+    "title": {
+      "type": "string"
+    },
     "kind": {
       "type": "enumeration",
       "enum": [
@@ -15,9 +18,6 @@
         "sem-eds"
       ],
       "required": true
-    },
-    "title": {
-      "type": "string"
     },
     "description": {
       "type": "text"

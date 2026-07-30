@@ -2531,8 +2531,8 @@ export interface ApiTechnicalDatasetTechnicalDataset
   extends Struct.CollectionTypeSchema {
   collectionName: 'hongyun_technical_datasets';
   info: {
-    description: '';
-    displayName: '\u6280\u672F\u6570\u636E\u96C6';
+    description: '\u4EC5\u7528\u4E8E\u8DE8\u9875\u9762\u590D\u7528\u3001\u56FE\u8868\u3001\u5B9E\u9A8C\u4E0E\u6280\u672F\u8BC1\u636E\uFF1B\u666E\u901A\u4EA7\u54C1\u53C2\u6570\u8868\u8BF7\u76F4\u63A5\u5728\u4EA7\u54C1\u9875\u9762\u7F16\u8F91';
+    displayName: '\u5171\u4EAB\u6280\u672F\u6570\u636E\uFF08\u9AD8\u7EA7\uFF09';
     pluralName: 'technical-datasets';
     singularName: 'technical-dataset';
   };
@@ -2593,7 +2593,8 @@ export interface ApiTechnicalDatasetTechnicalDataset
         i18n: {
           localized: false;
         };
-      }>;
+      }> &
+      Schema.Attribute.DefaultTo<'spec-table'>;
     legacyKey: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique &
@@ -2633,7 +2634,8 @@ export interface ApiTechnicalDatasetTechnicalDataset
           min: 1;
         },
         number
-      >;
+      > &
+      Schema.Attribute.DefaultTo<1>;
     sourceChecksum: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

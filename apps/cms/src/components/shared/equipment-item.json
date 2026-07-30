@@ -1,0 +1,74 @@
+{
+  "collectionName": "components_shared_equipment_items",
+  "info": {
+    "displayName": "核心设备条目"
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "alt": {
+      "type": "string"
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "featureContent": {
+      "type": "blocks",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "paragraphs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "imageFit": {
+      "type": "enumeration",
+      "enum": [
+        "contain",
+        "cover"
+      ],
+      "default": "contain"
+    },
+    "imagePosition": {
+      "type": "enumeration",
+      "enum": [
+        "center",
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ],
+      "default": "center"
+    }
+  }
+}

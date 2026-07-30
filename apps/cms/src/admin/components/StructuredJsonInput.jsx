@@ -78,7 +78,7 @@ const Cards = styled.div`
 
 const Card = styled.div`
   display: grid;
-  grid-template-columns: minmax(160px, 1.25fr) minmax(130px, 1fr) minmax(120px, 0.6fr) auto;
+  grid-template-columns: minmax(180px, 1.5fr) minmax(140px, 0.75fr) auto;
   gap: 10px;
   align-items: start;
   padding: 12px;
@@ -223,14 +223,6 @@ const Table = styled.table`
   }
 `
 
-const Key = styled.div`
-  margin-top: 2px;
-  color: ${({ theme }) => theme.colors.neutral500};
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 11px;
-  font-weight: 400;
-`
-
 const Empty = styled.div`
   padding: 34px 16px;
   color: ${({ theme }) => theme.colors.neutral600};
@@ -350,6 +342,14 @@ const FIELD_NAMES = {
   diameter: '直径',
 }
 
+const MODE_LABELS = {
+  columns: '列设置',
+  rows: '表格内容（可直接粘贴 Excel）',
+  'header-groups': '分组表头（高级）',
+  'dataset-view': '显示设置（高级）',
+  'chart-config': '图表设置',
+}
+
 const MEDIA_COLUMN_PATTERN = /^(img|src|icon|video|poster|image|logo|media)$/i
 const LONG_TEXT_COLUMN_PATTERN = /^(desc|description|content|text|body|note|notes|details|summary)$/i
 
@@ -456,8 +456,25 @@ function smartValue(raw, type) {
     const number = Number(raw)
     return Number.isFinite(number) ? number : raw
   }
-  if (type === 'boolean') return raw === 'true'
+  if (type === 'boolean') return ['true', '是', 'yes', '1'].includes(String(raw).trim().toLowerCase())
   return raw
+}
+
+function inferColumnType(cells) {
+  const values = cells.map((cell) => String(cell ?? '').trim()).filter(Boolean)
+  if (!values.length) return 'text'
+  if (values.every((value) => Number.isFinite(Number(value)))) return 'number'
+  if (values.every((value) => ['true', 'false', '是', '否', 'yes', 'no', '1', '0'].includes(value.toLowerCase()))) {
+    return 'boolean'
+  }
+  return 'text'
+}
+
+function nextColumnId(columns) {
+  const used = new Set(columns.map((column) => column.id))
+  let index = 1
+  while (used.has(`field${index}`)) index += 1
+  return `field${index}`
 }
 
 function csvCell(value) {
@@ -521,7 +538,7 @@ function ColumnsEditor({ disabled, name, rows, setRows, update, value }) {
         <Action
           type="button"
           disabled={disabled}
-          onClick={() => update([...columns, { id: `field${columns.length + 1}`, label: '新字段', type: 'text' }])}
+          onClick={() => update([...columns, { id: nextColumnId(columns), label: '新字段', type: 'text' }])}
         >
           + 添加列
         </Action>
@@ -532,22 +549,13 @@ function ColumnsEditor({ disabled, name, rows, setRows, update, value }) {
             {columns.map((column, index) => (
               <Card key={`${column.id}-${index}`}>
                 <ControlGroup>
-                  <ControlLabel htmlFor={`${name}-${index}-label`}>后台显示名称</ControlLabel>
+                  <ControlLabel htmlFor={`${name}-${index}-label`}>列名称</ControlLabel>
                   <Input
                     id={`${name}-${index}-label`}
                     disabled={disabled}
                     value={column.label ?? ''}
                     placeholder={FIELD_NAMES[column.id] || '例如：设备型号'}
                     onChange={(event) => changeColumn(index, 'label', event.target.value)}
-                  />
-                </ControlGroup>
-                <ControlGroup>
-                  <ControlLabel htmlFor={`${name}-${index}-id`}>字段标识（英文，修改时会同步行数据）</ControlLabel>
-                  <Input
-                    id={`${name}-${index}-id`}
-                    disabled={disabled}
-                    value={column.id ?? ''}
-                    onChange={(event) => changeColumn(index, 'id', event.target.value.trim())}
                   />
                 </ControlGroup>
                 <ControlGroup>
@@ -585,7 +593,7 @@ function ColumnsEditor({ disabled, name, rows, setRows, update, value }) {
   )
 }
 
-function RowsEditor({ columns, disabled, MediaLibraryDialog, name, update, value }) {
+function RowsEditor({ columns, disabled, MediaLibraryDialog, name, setColumns, update, value }) {
   const rows = Array.isArray(value) ? value : []
   const [showPaste, setShowPaste] = useState(false)
   const [pasteValue, setPasteValue] = useState('')
@@ -607,6 +615,32 @@ function RowsEditor({ columns, disabled, MediaLibraryDialog, name, update, value
     )
   }
 
+  const addColumn = () => {
+    const id = nextColumnId(normalizedColumns)
+    setColumns([...normalizedColumns, { id, label: `第 ${normalizedColumns.length + 1} 列`, type: 'text' }])
+    update(rows.map((row) => ({ ...row, [id]: '' })))
+  }
+
+  const changeColumnLabel = (index, label) => {
+    setColumns(normalizedColumns.map((column, itemIndex) => (
+      itemIndex === index ? { ...column, label } : column
+    )))
+  }
+
+  const moveColumn = (index, direction) => {
+    setColumns(move(normalizedColumns, index, direction))
+  }
+
+  const deleteColumn = (index) => {
+    const removed = normalizedColumns[index]
+    setColumns(normalizedColumns.filter((_, itemIndex) => itemIndex !== index))
+    update(rows.map((row) => {
+      const next = { ...row }
+      delete next[removed.id]
+      return next
+    }))
+  }
+
   const importText = () => {
     const matrix = parseDelimited(pasteValue)
     if (matrix.length < 2) {
@@ -614,12 +648,25 @@ function RowsEditor({ columns, disabled, MediaLibraryDialog, name, update, value
       return
     }
     const header = matrix[0]
-    const mapped = header.map((cell) =>
-      normalizedColumns.find((column) => column.id === cell.trim() || column.label === cell.trim()),
+    let importColumns = normalizedColumns
+    let createdColumns = false
+    if (!columns.length) {
+      importColumns = header.map((cell, index) => ({
+        id: `field${index + 1}`,
+        label: cell.trim() || `第 ${index + 1} 列`,
+        type: inferColumnType(matrix.slice(1).map((row) => row[index])),
+      }))
+      setColumns(importColumns)
+      createdColumns = true
+    }
+    const mapped = header.map((cell, index) =>
+      createdColumns
+        ? importColumns[index]
+        : importColumns.find((column) => column.id === cell.trim() || column.label === cell.trim()),
     )
     const unknown = header.filter((_, index) => !mapped[index])
     if (unknown.length) {
-      setNotice(`这些列无法匹配：${unknown.join('、')}。请使用后台显示名称或字段标识作为表头。`)
+      setNotice(`这些列无法匹配：${unknown.join('、')}。请让 Excel 表头与“列名称”保持一致。`)
       return
     }
     const importedRows = matrix.slice(1).map((cells) =>
@@ -629,7 +676,11 @@ function RowsEditor({ columns, disabled, MediaLibraryDialog, name, update, value
     )
     update(importedRows)
     setPasteValue('')
-    setNotice(`已导入 ${importedRows.length} 行，保存前可继续检查和修改。`)
+    setNotice(
+      createdColumns
+        ? `已自动创建 ${importColumns.length} 列并导入 ${importedRows.length} 行，保存前可继续检查和修改。`
+        : `已导入 ${importedRows.length} 行，保存前可继续检查和修改。`,
+    )
     setShowPaste(false)
   }
 
@@ -677,10 +728,11 @@ function RowsEditor({ columns, disabled, MediaLibraryDialog, name, update, value
           <span>{rows.length} 行 × {normalizedColumns.length} 列</span>
         </ToolbarGroup>
         <ToolbarGroup>
-          <Action type="button" disabled={disabled || !normalizedColumns.length} onClick={() => setShowPaste(!showPaste)}>
-            从 Excel / CSV 粘贴
+          <Action type="button" disabled={disabled} onClick={() => setShowPaste(!showPaste)}>
+            从 Excel / CSV 粘贴并自动建表
           </Action>
           <Action type="button" disabled={!rows.length} onClick={exportCsv}>导出 CSV</Action>
+          <Action type="button" disabled={disabled} onClick={addColumn}>+ 添加一列</Action>
           <Action
             type="button"
             disabled={disabled || !normalizedColumns.length}
@@ -715,10 +767,26 @@ function RowsEditor({ columns, disabled, MediaLibraryDialog, name, update, value
               <thead>
                 <tr>
                   <th>行</th>
-                  {normalizedColumns.map((column) => (
+                  {normalizedColumns.map((column, columnIndex) => (
                     <th key={column.id}>
-                      {column.label === column.id ? FIELD_NAMES[column.id] || column.label : column.label}
-                      <Key>{column.id}</Key>
+                      <ControlGroup>
+                        <ControlLabel htmlFor={`${name}-column-${columnIndex}`}>第 {columnIndex + 1} 列</ControlLabel>
+                        <Input
+                          id={`${name}-column-${columnIndex}`}
+                          aria-label={`第 ${columnIndex + 1} 列名称`}
+                          disabled={disabled}
+                          value={column.label === column.id ? FIELD_NAMES[column.id] || column.label : column.label}
+                          onChange={(event) => changeColumnLabel(columnIndex, event.target.value)}
+                        />
+                        <ItemActions
+                          disabled={disabled}
+                          index={columnIndex}
+                          itemLabel="列"
+                          length={normalizedColumns.length}
+                          onMove={(direction) => moveColumn(columnIndex, direction)}
+                          onDelete={() => deleteColumn(columnIndex)}
+                        />
+                      </ControlGroup>
                     </th>
                   ))}
                 </tr>
@@ -1073,13 +1141,14 @@ const StructuredJsonInput = forwardRef((props, ref) => {
   )
   const update = (nextValue) => onChange({ target: { name, type: attribute.type, value: nextValue } })
   const setRows = (nextRows) => form?.onChange(rowsPath, nextRows)
-  const fieldLabel = intlLabel?.defaultMessage || intlLabel?.id || name
+  const setColumns = (nextColumns) => form?.onChange(columnsPath, nextColumns)
+  const fieldLabel = MODE_LABELS[mode] || intlLabel?.defaultMessage || intlLabel?.id || name
 
   let editor
   if (mode === 'columns') {
     editor = <ColumnsEditor disabled={disabled} name={name} rows={rows} setRows={setRows} update={update} value={parsed} />
   } else if (mode === 'rows') {
-    editor = <RowsEditor columns={Array.isArray(columns) ? columns : []} disabled={disabled} MediaLibraryDialog={MediaLibraryDialog} name={name} update={update} value={parsed} />
+    editor = <RowsEditor columns={Array.isArray(columns) ? columns : []} disabled={disabled} MediaLibraryDialog={MediaLibraryDialog} name={name} setColumns={setColumns} update={update} value={parsed} />
   } else if (mode === 'navigation') {
     editor = <RecordListEditor disabled={disabled} title="导航项目" fields={[{ key: 'label', label: '菜单名称', placeholder: '例如：关于红运' }, { key: 'path', label: '站内链接', placeholder: '例如：/about' }]} update={update} value={parsed} />
   } else if (mode === 'options') {

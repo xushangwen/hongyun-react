@@ -124,6 +124,75 @@ function isContentText(value) {
   return /[\u3400-\u9fff]/u.test(text)
 }
 
+const dualPlanetaryVariantKeyBySlug = {
+  'dual-planetary-mixer': 'production',
+  'dual-planetary-mixer-mid': 'mid',
+  'dual-planetary-mixer-lab': 'lab',
+}
+function jsxElementName(node) {
+  return node?.openingElement?.name?.type === 'JSXIdentifier'
+    ? node.openingElement.name.name
+    : ''
+}
+
+function jsxAttributeValue(node, attributeName, env) {
+  const attribute = node?.openingElement?.attributes?.find((item) =>
+    item.type === 'JSXAttribute' && item.name?.name === attributeName)
+  if (!attribute?.value) return ''
+  if (attribute.value.type === 'StringLiteral') return attribute.value.value
+  if (attribute.value.type === 'JSXExpressionContainer') {
+    return evaluate(attribute.value.expression, env)
+  }
+  return ''
+}
+
+function jsxPlainText(node, env) {
+  const parts = []
+  walk(node, (item) => {
+    if (item.type === 'JSXText') {
+      parts.push(item.value)
+      return
+    }
+    if (item.type !== 'JSXExpressionContainer') return
+    const value = evaluate(item.expression, env)
+    if (typeof value === 'string' || typeof value === 'number') parts.push(String(value))
+  })
+  return normalizeText(parts.join(' '))
+}
+
+function extractIntroSummary(relativePath, slug) {
+  const { env, ast } = staticEnvironment(relativePath)
+  if (relativePath.endsWith('/DualPlanetaryMixerPage.jsx')) {
+    const variantKey = dualPlanetaryVariantKeyBySlug[slug]
+    const variant = env.VARIANTS?.[variantKey]
+    return [variant?.intro1, variant?.intro2].filter(Boolean).join('\n\n')
+  }
+
+  let introSection = null
+  walk(ast.program, (node) => {
+    if (introSection || node.type !== 'JSXElement' || jsxElementName(node) !== 'section') return
+    const className = jsxAttributeValue(node, 'className', env)
+    if (typeof className === 'string' && className.includes('pdm-intro-section')) introSection = node
+  })
+  if (!introSection) return ''
+
+  const paragraphs = []
+  const bullets = []
+  walk(introSection, (node) => {
+    if (node.type !== 'JSXElement') return
+    const tagName = jsxElementName(node)
+    if (!['p', 'li'].includes(tagName)) return
+    const text = jsxPlainText(node, env)
+    if (!text || /待补充/.test(text)) return
+    if (tagName === 'li') bullets.push(text)
+    else paragraphs.push(text)
+  })
+  return [
+    ...paragraphs,
+    ...(bullets.length ? [bullets.map((item) => `• ${item}`).join('\n')] : []),
+  ].join('\n\n')
+}
+
 function resolveMediaPath(relativePath, sourceValue, imports) {
   const value = imports[sourceValue] ?? sourceValue
   if (typeof value !== 'string') return null
@@ -136,6 +205,186 @@ function resolveMediaPath(relativePath, sourceValue, imports) {
     return { sourcePath: `/${relative(root, sourceFile).replaceAll('\\', '/')}`, sourceFile: relative(root, sourceFile) }
   }
   return null
+}
+
+function pagePresentation(relativePaths, slug, title) {
+  let hero = null
+  let views = []
+
+  for (const relativePath of relativePaths) {
+    const { env, ast } = staticEnvironment(relativePath)
+    const imports = {}
+    for (const statement of ast.program.body) {
+      if (statement.type !== 'ImportDeclaration') continue
+      for (const specifier of statement.specifiers) imports[specifier.local.name] = statement.source.value
+    }
+    const evaluationEnv = { ...imports, ...env }
+
+    if (!views.length) {
+      views = env.productMap?.[slug]?.views
+        || env.VARIANTS?.[dualPlanetaryVariantKeyBySlug[slug]]?.views
+        || []
+    }
+
+    walk(ast.program, (node) => {
+      if (node.type !== 'JSXElement') return
+      const elementName = jsxElementName(node)
+      if (elementName === 'PageHero' && !hero) {
+        const sourceValue = jsxAttributeValue(node, 'bgImage', evaluationEnv)
+        const resolved = resolveMediaPath(relativePath, sourceValue, imports)
+        if (resolved) {
+          hero = {
+            __media: true,
+            ...resolved,
+            alt: `${title} Hero`,
+          }
+        }
+      }
+      if (elementName === 'ProductThreeView' && !views.length) {
+        const value = jsxAttributeValue(node, 'views', evaluationEnv)
+        if (Array.isArray(value)) views = value
+      }
+    })
+
+    if (hero && views.length) break
+  }
+
+  const viewItems = views
+    .map((view, index) => {
+      const relativePath = relativePaths.find((path) => {
+        const { env } = staticEnvironment(path)
+        return resolveMediaPath(path, view.src, env)
+      }) || relativePaths[0]
+      const { env, ast } = staticEnvironment(relativePath)
+      const imports = {}
+      for (const statement of ast.program.body) {
+        if (statement.type !== 'ImportDeclaration') continue
+        for (const specifier of statement.specifiers) imports[specifier.local.name] = statement.source.value
+      }
+      const resolved = resolveMediaPath(relativePath, view.src, { ...imports, ...env })
+      if (!resolved) return null
+      return {
+        ...resolved,
+        label: view.label || `视图 ${index + 1}`,
+        alt: `${title}${view.label || `视图 ${index + 1}`}`,
+        role: 'gallery',
+        imageFit: 'contain',
+        imagePosition: 'center',
+        aspectVariant: 'auto',
+      }
+    })
+    .filter(Boolean)
+
+  return { hero, views: viewItems }
+}
+
+function alignedDetailSections(sections, presentation) {
+  const aligned = sections.filter((section) => section.__component !== 'content.media-gallery')
+  if (presentation.views.length) {
+    aligned.push({
+      __component: 'content.media-gallery',
+      internalName: '三视图',
+      visible: true,
+      title: '三视图',
+      variant: 'three-view',
+      items: presentation.views,
+      layoutVariant: 'three-column',
+    })
+  }
+  return aligned
+}
+
+function pageEquipment(relativePath) {
+  const { env, ast } = staticEnvironment(relativePath)
+  const imports = {}
+  for (const statement of ast.program.body) {
+    if (statement.type !== 'ImportDeclaration') continue
+    for (const specifier of statement.specifiers) imports[specifier.local.name] = statement.source.value
+  }
+  const evaluationEnv = { ...imports, ...env }
+  let devices = env.coreEquipment || env.coreDevices || []
+  if (!devices.length) {
+    walk(ast.program, (node) => {
+      if (devices.length || node.type !== 'JSXElement' || jsxElementName(node) !== 'CoreEquipmentSection') return
+      const value = jsxAttributeValue(node, 'devices', evaluationEnv)
+      if (Array.isArray(value)) devices = value
+    })
+  }
+
+  return devices
+    .map((device, index) => {
+      const media = resolveMediaPath(relativePath, device.img, evaluationEnv)
+      if (!device.name || !media) return null
+      return {
+        name: device.name,
+        image: {
+          __media: true,
+          ...media,
+          alt: device.imgAlt || device.name,
+        },
+        alt: device.imgAlt || device.name,
+        features: (device.features || []).map((feature, featureIndex) => ({
+          text: feature,
+          order: featureIndex,
+        })),
+        featureContent: device.features?.length
+          ? [{
+              type: 'list',
+              format: 'unordered',
+              children: device.features.map((feature) => ({
+                type: 'list-item',
+                children: [{ type: 'text', text: feature }],
+              })),
+            }]
+          : [],
+        paragraphs: (device.paragraphs || []).map((paragraph, paragraphIndex) => ({
+          title: paragraph.title || '',
+          text: paragraph.text || '',
+          order: paragraphIndex,
+        })),
+        imageFit: 'contain',
+        imagePosition: 'center',
+      }
+    })
+    .filter(Boolean)
+}
+
+function alignedSolutionSections(sections, presentation, equipmentItems, solutionSlug) {
+  const output = alignedDetailSections(
+    sections.filter((section) => (
+      section.__component !== 'content.rich-text'
+      && !(
+        section.__component === 'content.data-table'
+        && /:(features|coreEquipment)$/.test(section.datasetKey || '')
+      )
+    )),
+    presentation,
+  )
+  if (equipmentItems.length) {
+    output.push({
+      __component: 'content.equipment-grid',
+      internalName: '核心设备',
+      visible: true,
+      title: '核心设备',
+      items: equipmentItems,
+      equipmentKeys: [],
+      layoutVariant: solutionSlug === 'auto-production' ? 'cards' : 'detailed',
+    })
+  }
+  const priority = {
+    'content.media-gallery': 10,
+    'content.feature-grid': 20,
+    'content.equipment-grid': 30,
+    'content.data-table': 40,
+    'special.renderer': 50,
+  }
+  return output
+    .map((section, index) => ({ section, index }))
+    .sort((a, b) => (
+      (priority[a.section.__component] || 60) - (priority[b.section.__component] || 60)
+      || a.index - b.index
+    ))
+    .map(({ section }) => section)
 }
 
 const dualPlanetaryDatasetRules = {
@@ -153,11 +402,24 @@ function scopeDatasetRows(key, name, rows) {
   })
 }
 
-function datasetTitle(key, name, title) {
-  if (name === 'allModels' && dualPlanetaryDatasetRules[key]) {
-    return `${title} · 型号参数`
-  }
-  return `${title} · ${name}`
+const datasetNameLabels = {
+  aboutNavItems: '导航条目',
+  certifications: '资质证书',
+  coreEquipment: '核心设备',
+  cultureItems: '企业文化',
+  features: '产品特点',
+  globalBranches: '全球布局',
+  introStats: '企业简介数据',
+  rndImages: '研发图片',
+  slides: '首页轮播',
+  statsData: '首页数据',
+  strengthStats: '企业实力数据',
+  timelineData: '发展历程',
+}
+
+function datasetTitle(name, title) {
+  if (name === 'modelParams' || name === 'allModels') return `${title}型号参数`
+  return `${title}${datasetNameLabels[name] || '数据表'}`
 }
 
 function extractPage(relativePaths, key, title) {
@@ -240,7 +502,7 @@ function extractPage(relativePaths, key, title) {
             if (columns.length >= 2) {
               const rows = scopeDatasetRows(key, name, primitiveRows)
               datasets.push({
-                title: datasetTitle(key, name, title),
+                title: datasetTitle(name, title),
                 kind: 'spec-table',
                 schemaVersion: 1,
                 columns,
@@ -358,6 +620,22 @@ function extractPage(relativePaths, key, title) {
       layoutVariant: 'grid',
     })
   }
+  const tableColumnLabels = {
+    model: '型号', liftType: '升降方式', workVol: '工作容积（L）', designVol: '设计容积（L）',
+    tankDim: '料缸尺寸（mm）', mixerMotor: '搅拌电机功率（kW）', revSpeed: '公转速度（rpm）',
+    ownSpeed: '自转速度（rpm）', dissolverKW: '分散功率（kW）', dissolverType: '分散电机',
+    dissolverRPM: '分散转速（rpm）', dissolverLinear: '分散线速度（m/s）', weight: '重量',
+    dimension: '外形尺寸', vol: '容积（L）', id: '内径（mm）', h: '高度（mm）', len: '长度（mm）',
+    ratio: '长径比', kw: '电机功率（kW）', rpm: '转速（rpm）', v: '线速度（m/s）',
+    gap: '间距（mm）', mixKw: '搅拌功率（kW）', mixRpm: '搅拌转速（rpm）',
+    slurryV: '浆料线速度（m/s）', dispKw: '分散功率（kW）', rotorDia: '转子直径（mm）',
+    dispRpm: '分散转速（rpm）', lineV: '线速度（m/s）', scrapeKw: '刮壁功率（kW）',
+    scrapeRpm: '刮壁转速（rpm）', sideKw: '侧分散功率（kW）', sideRpm: '侧分散转速（rpm）',
+    sideV: '侧分散线速度（m/s）', output: '产量', cycleTime: '循环时间', processTime: '处理时间',
+    batch: '批次', flow: '流量', flowRate: '流量', batchVol: '批次容积',
+    motorKW: '电机功率（kW）', linearSpeed: '线速度（m/s）', motor: '电机功率',
+    diameter: '直径', speed: '速度', title: '名称', desc: '说明',
+  }
   for (const dataset of datasets) {
     sections.push({
       __component: 'content.data-table',
@@ -365,6 +643,15 @@ function extractPage(relativePaths, key, title) {
       visible: true,
       title: dataset.title,
       datasetKey: dataset.legacyKey,
+      columns: dataset.columns.map((column) => ({
+        ...column,
+        label: !column.label || column.label === column.id
+          ? tableColumnLabels[column.id] || column.id
+          : column.label,
+      })),
+      headerGroups: dataset.headerGroups,
+      rows: dataset.rows,
+      unitNotes: dataset.unitNotes,
       layoutVariant: 'scroll',
     })
   }
@@ -418,9 +705,29 @@ for (const slugValue of chemicalSlugs) {
   if (!productPageMap[slugValue]) productPageMap[slugValue] = ['src/pages/ChemicalProductDetailPage.jsx']
 }
 
+const { env: legacyProductEnv } = staticEnvironment('src/pages/ProductDetailPage.jsx')
+const legacyProductSummarySource = {
+  'reciprocating-mixer': ['chemical', 'reciprocating-mixer'],
+  'dual-column-planetary': ['chemical', 'dual-planetary-stirrer'],
+  'butterfly-mixer': ['chemical', 'planetary-butterfly'],
+  'planetary-power-mixer': ['chemical', 'chem-dual-planetary'],
+  'vertical-kneader': ['chemical', 'vertical-kneader'],
+  'press-machine': ['chemical', 'press-dumper'],
+  'tilting-machine': ['chemical', 'press-dumper'],
+  'barrel-washer': ['chemical', 'barrel-washer'],
+  reactor: ['chemical', 'reactor-tank'],
+  'storage-tank': ['chemical', 'reactor-tank'],
+}
+
+function legacyProductSummary(slug) {
+  const [categoryId, productId] = legacyProductSummarySource[slug] ?? []
+  return legacyProductEnv.productMap?.[categoryId]?.products?.[productId]?.intro ?? ''
+}
+
 const categories = []
 const groups = []
 const productsBySlug = new Map()
+const productLegacyMediaSectionsBySlug = new Map()
 const placements = []
 const aliases = []
 const technicalDatasets = []
@@ -450,22 +757,41 @@ for (const [categoryIndex, category] of categoriesSource.entries()) {
     }
     for (const [productIndex, item] of (group.products ?? []).entries()) {
       if (!productsBySlug.has(item.slug)) {
-        const page = extractPage(productPageMap[item.slug] ?? ['src/pages/ProductDetailPage.jsx'], item.slug, item.name)
+        const pagePaths = productPageMap[item.slug] ?? ['src/pages/ProductDetailPage.jsx']
+        const page = extractPage(pagePaths, item.slug, item.name)
+        const summary = pagePaths
+          .map((relativePath) => extractIntroSummary(relativePath, item.slug))
+          .find(Boolean) || legacyProductSummary(item.slug)
+        const legacyMediaSections = page.sections.filter(
+          (section) => section.__component === 'content.media-gallery',
+        )
+        productLegacyMediaSectionsBySlug.set(item.slug, legacyMediaSections)
+        const presentation = pagePresentation(pagePaths, item.slug, item.name)
+        const sections = alignedDetailSections(
+          page.sections.filter((section) => section.__component !== 'content.rich-text'),
+          presentation,
+        )
         technicalDatasets.push(...page.datasets)
         productsBySlug.set(item.slug, {
           name: item.name,
           slug: item.slug,
-          summary: '',
+          summary,
           coverPath: item.image ?? null,
           hero: {
             titleOverride: item.name,
             subtitle: '',
+            ...(presentation.hero
+              ? {
+                  desktopMedia: presentation.hero,
+                  mobileMedia: presentation.hero,
+                }
+              : {}),
             mediaType: 'image',
             imagePosition: 'center',
             overlay: 'dark',
             showScrollIndicator: true,
           },
-          sections: page.sections,
+          sections,
           order: productsBySlug.size,
           legacyKey: `product:${item.slug}`,
           sourceChecksum: page.sourceChecksum,
@@ -518,8 +844,12 @@ const industries = Object.entries(industryMeta).map(([industrySlug, [name, summa
   name, slug: industrySlug, summary, order: index, visible: true,
   legacyKey: `industry:${industrySlug}`,
 }))
+const solutionLegacySectionsBySlug = new Map()
 const solutions = solutionCatalog.map(([industrySlug, name, solutionSlug, file], index) => {
   const page = extractPage([file], solutionSlug, name)
+  const presentation = pagePresentation([file], solutionSlug, name)
+  const equipmentItems = pageEquipment(file)
+  solutionLegacySectionsBySlug.set(solutionSlug, page.sections)
   technicalDatasets.push(...page.datasets)
   const path = `/solutions/${industrySlug}/${solutionSlug}`
   aliases.push({
@@ -530,9 +860,13 @@ const solutions = solutionCatalog.map(([industrySlug, name, solutionSlug, file],
     name, slug: solutionSlug, industryKey: `industry:${industrySlug}`, summary: '',
     hero: {
       titleOverride: name, subtitle: '', mediaType: 'image', imagePosition: 'center',
+      ...(presentation.hero
+        ? { desktopMedia: presentation.hero, mobileMedia: presentation.hero }
+        : {}),
       overlay: 'dark', showScrollIndicator: true,
     },
-    sections: page.sections, order: index, legacyKey: `solution:${solutionSlug}`,
+    sections: alignedSolutionSections(page.sections, presentation, equipmentItems, solutionSlug),
+    order: index, legacyKey: `solution:${solutionSlug}`,
     sourceChecksum: page.sourceChecksum, sourceFiles: page.sourceFiles,
   }
 })
@@ -568,7 +902,7 @@ const cases = [
     confidentialityLevel: 'anonymous',
     relatedProductKeys: productFamilies[0].productKeys,
     relatedSolutionKeys: ['solution:pd-pulping'],
-    sections: productsBySlug.get('dual-planetary-mixer')?.sections.filter((section) => section.__component === 'content.media-gallery') ?? [],
+    sections: productLegacyMediaSectionsBySlug.get('dual-planetary-mixer') ?? [],
     legacyKey: 'case:pd-shared-customer-cases',
   },
   {
@@ -579,7 +913,7 @@ const cases = [
     confidentialityLevel: 'public',
     relatedProductKeys: [],
     relatedSolutionKeys: ['solution:circulation-pulping'],
-    sections: solutions.find((item) => item.slug === 'circulation-pulping')?.sections ?? [],
+    sections: solutionLegacySectionsBySlug.get('circulation-pulping') ?? [],
     legacyKey: 'case:circulation-pulping-validation',
   },
   {
@@ -590,7 +924,7 @@ const cases = [
     confidentialityLevel: 'public',
     relatedProductKeys: [],
     relatedSolutionKeys: ['solution:pipeline-pulping'],
-    sections: solutions.find((item) => item.slug === 'pipeline-pulping')?.sections ?? [],
+    sections: solutionLegacySectionsBySlug.get('pipeline-pulping') ?? [],
     legacyKey: 'case:pipeline-pulping-validation',
   },
   {
@@ -601,7 +935,7 @@ const cases = [
     confidentialityLevel: 'public',
     relatedProductKeys: [],
     relatedSolutionKeys: ['solution:twin-screw-pulping'],
-    sections: solutions.find((item) => item.slug === 'twin-screw-pulping')?.sections ?? [],
+    sections: solutionLegacySectionsBySlug.get('twin-screw-pulping') ?? [],
     legacyKey: 'case:twin-screw-pulping-validation',
   },
 ]
