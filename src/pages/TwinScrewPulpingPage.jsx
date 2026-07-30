@@ -487,15 +487,6 @@ export default function TwinScrewPulpingPage() {
         {/* ===== 系统特点 ===== */}
         <SystemFeaturesSection features={features} title="系统特点" enLabel="System Features" grayBg />
 
-        {/* ===== 核心设备 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Core Equipment</p>
-            <h2 className="section-heading section-heading--center fade-up">核心设备</h2>
-            <p className="cp-core-device-tbd fade-up fade-up-delay-1">核心设备图片和内容待提供</p>
-          </div>
-        </section>
-
         {/* ===== 参数汇总 ===== */}
         <CmsParameterTableSection fallbackTitle="双螺杆连续制浆系统参数汇总">
           <ParamsTable />

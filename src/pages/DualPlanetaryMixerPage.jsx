@@ -5,7 +5,7 @@ import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
 import TechInquirySection from '../components/TechInquirySection'
 import CmsParameterTableSection from '../components/CmsParameterTableSection'
-import { useCmsDataset, useCmsDetail, useCmsSection } from '../context/useCmsDetail'
+import { useCmsDataset, useCmsDetail } from '../context/useCmsDetail'
 
 const HERO_IMG = '/assets/images/solutions/circulation-pulping/hero-bg-new.webp'
 const IMG = '/assets/images/products/pd-mixer'
@@ -269,25 +269,43 @@ function ParamsTable({ models = allModels }) {
 
 export default function DualPlanetaryMixerPage({ variant = 'production' }) {
   const v = VARIANTS[variant] ?? VARIANTS.production
-  const { detail } = useCmsDetail()
+  const { detail, status } = useCmsDetail()
   const dataset = useCmsDataset()
-  const mediaSection = useCmsSection('content.media-gallery')
+  const mediaSections = detail?.sections?.filter(
+    (section) => section.__component === 'content.media-gallery',
+  ) || []
+  const mediaSection = mediaSections.find((section) => section.variant === 'three-view')
+    || mediaSections.find((section) => /三视图/.test(`${section.internalName || ''} ${section.title || ''}`))
+    || mediaSections[0]
+  const expectedViewNames = new Set(v.views.map((item) => item.src.split('/').at(-1)))
   const cmsViews = (mediaSection?.items || [])
-    .filter((item) => /(?:tv|view|视图)/i.test(`${item.sourcePath || ''} ${item.label || ''} ${item.caption || ''}`))
+    .filter((item) => (
+      mediaSection.variant === 'three-view'
+      || expectedViewNames.has((item.sourcePath || item.media?.url || item.image?.url || '').split('/').at(-1))
+    ))
     .slice(0, 3)
     .map((item, index) => ({
       src: item.media?.url || item.image?.url || item.sourcePath,
       label: item.label || item.caption || (index === 0 ? '正视图' : '侧视图'),
     }))
   const cmsModels = dataset?.rows?.length ? dataset.rows : v.models
+  const cmsIntroParagraphs = detail?.summary
+    ?.split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
   const resolved = {
     ...v,
     title: detail?.title || v.title,
     productImg: detail?.cover?.url || v.productImg,
-    intro1: detail?.summary || v.intro1,
-    views: cmsViews.length ? cmsViews : v.views,
+    introParagraphs: cmsIntroParagraphs?.length ? cmsIntroParagraphs : [v.intro1, v.intro2],
     models: cmsModels.length ? cmsModels : v.models,
   }
+  const threeViewVisible = status === 'ready'
+    ? !mediaSection || mediaSection.visible !== false
+    : status === 'loading'
+      ? false
+      : true
+  const resolvedViews = cmsViews.length ? cmsViews : v.views
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -329,12 +347,11 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
               </div>
               <div className="pdm-intro-content">
                 <h2 className="pdm-intro-name fade-up fade-up-delay-1">{resolved.title}</h2>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  {resolved.intro1}
-                </p>
-                <p className="pdm-intro-desc fade-up fade-up-delay-2">
-                  {resolved.intro2}
-                </p>
+                {resolved.introParagraphs.map((paragraph) => (
+                  <p className="pdm-intro-desc fade-up fade-up-delay-2" key={paragraph}>
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             </div>
 
@@ -342,13 +359,18 @@ export default function DualPlanetaryMixerPage({ variant = 'production' }) {
         </section>
 
         {/* ===== 三视图 ===== */}
-        <section className="page-section page-section--gray">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Three Views</p>
-            <h2 className="section-heading section-heading--center fade-up">三视图</h2>
-            <ProductThreeView views={resolved.views} />
-          </div>
-        </section>
+        {threeViewVisible && (
+          <section className="page-section page-section--gray">
+            <div className="page-container">
+              <p className="section-en-label fade-up">Three Views</p>
+              <h2 className="section-heading section-heading--center fade-up">{mediaSection?.title || '三视图'}</h2>
+              <ProductThreeView
+                views={resolvedViews}
+                layoutVariant={mediaSection?.layoutVariant || 'three-column'}
+              />
+            </div>
+          </section>
+        )}
 
         {/* ===== 产品特点 ===== */}
         <SystemFeaturesSection features={features} title="产品特点" enLabel="Product Features" grayBg={false} />

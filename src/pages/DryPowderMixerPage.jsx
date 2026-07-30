@@ -3,6 +3,7 @@ import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import ProductThreeView from '../components/ProductThreeView'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 import CmsParameterTableSection from '../components/CmsParameterTableSection'
 import { useCmsDataset } from '../context/useCmsDetail'
@@ -108,6 +109,39 @@ const features = [
     Icon: IconLike,
     title: '全系列覆盖',
     desc: '实验型 2–100 L，量产型 150–1000 L，灵活满足从研发到量产各阶段需求',
+  },
+]
+
+const coreEquipment = [
+  {
+    name: '干法电极粉体高速混合机',
+    img: `${IMG}/product-main.webp`,
+    features: [
+      '用于干法电极粉体纤维化、电解质原料的混合、破碎、包覆，无溶剂工艺，大幅降低制造成本与能耗',
+    ],
+  },
+  {
+    name: '双螺杆干法电极连续挤出机',
+    img: `${IMG}/core-device-02.webp`,
+    features: [
+      '核心优势：2–5 min 快速出片，简单高效',
+      '多种物料同步计量喂料，实现连续化生产，精度高达 0.4%',
+      '模块独立温控，清理换型时间短',
+      '产品序列：实验型 10–100 kg/h，量产型 200–1500 kg/h',
+    ],
+  },
+  {
+    name: '电磁给料机',
+    img: `${IMG}/core-device-01.webp`,
+    imgAlt: '电磁给料机结构示意图',
+    features: [
+      '集预热、展平与定量输送于一体，确保粉料稳定、均匀供给',
+      'SUS304 不锈钢罐体，内表面 300 目镜面抛光，支持破拱搅拌与气锤',
+      '振动筛激振力可调，可安装 6–12 目筛网',
+      '电磁给料振幅可调，实现精确给料',
+      '碳纤维管红外加热配合 PID 控制，实现高精度温控',
+      '快卡式播粉器，播粉宽度可灵活调节',
+    ],
   },
 ]
 
@@ -270,89 +304,7 @@ export default function DryPowderMixerPage() {
         />
 
         {/* ===== 核心设备 ===== */}
-        <section className="page-section">
-          <div className="page-container">
-            <p className="section-en-label fade-up">Core Equipment</p>
-            <h2 className="section-heading section-heading--center fade-up">核心设备</h2>
-
-            <div className="cp-core-section">
-              {/* 干法电极粉体高速混合机 */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/product-main.webp`}
-                    alt="干法电极粉体高速混合机"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">干法电极粉体高速混合机</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  <ul className="cp-core-device-features cp-core-device-features--no-dot">
-                    <li>用于干法电极粉体纤维化、电解质原料的混合、破碎、包覆，无溶剂工艺，<br />大幅降低制造成本与能耗，超高速粉体混合机——纤维化技术的速度颠覆</li>
-                  </ul>
-                </div>
-              </div>
-
-              <hr className="cp-core-divider" />
-
-              {/* 双螺杆干法电极连续挤出机 */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/core-device-02.webp`}
-                    alt="双螺杆干法电极连续挤出机"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">双螺杆干法电极连续挤出机</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  <ul className="cp-core-device-features">
-                    <li>核心优势：2–5 min 快速出片，简单高效</li>
-                    <li>多种物料同步计量喂料，实现完美的连续化生产，精度高达0.4%</li>
-                    <li>模块独立温控，清理换型时间短</li>
-                    <li>产品序列：实验型10–100 kg/h，量产型200–1500 kg/h</li>
-                  </ul>
-                </div>
-              </div>
-
-              <hr className="cp-core-divider" />
-
-              {/* 电磁给料机 */}
-              <div className="cp-core-device-row fade-up fade-up-delay-1">
-                <div className="cp-core-device-img-wrap">
-                  <img
-                    src={`${IMG}/core-device-01.webp`}
-                    alt="电磁给料机结构示意图"
-                    className="cp-core-device-img"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="cp-core-device-info">
-                  <div className="cp-core-device-badge">
-                    <h3 className="cp-core-device-name">电磁给料机</h3>
-                  </div>
-                  <div className="cp-core-device-divider" />
-                  <ul className="cp-core-device-features">
-                    <li>集预热、展平与定量输送于一体，确保粉料稳定、均匀供给，<br />为极片均匀辊压工序奠定基础</li>
-                    <li>罐体：SUS304不锈钢，内表面300目镜面抛光，外表面150目拉丝；料仓盖小半翻盖式，配破拱搅拌电机（0～40 rpm可调）、气锤及气蝶</li>
-                    <li>震动筛：SUS304不锈钢，380V震动电机，激振力可调，可安装6～12目筛网</li>
-                    <li>电磁给料机：振幅根据物料特性和输送量调节（常规振幅1.2 mm），实现精确给料</li>
-                    <li>粉料预加热：碳纤维管红外线加热，温度可调，配PID控制器确保温度高精度控制</li>
-                    <li>播粉器：快卡式结构，播粉宽度灵活调节</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <CoreEquipmentSection devices={coreEquipment} />
 
         {/* ===== 参数汇总 ===== */}
         <CmsParameterTableSection

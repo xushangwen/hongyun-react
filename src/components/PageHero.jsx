@@ -5,23 +5,57 @@ export default function PageHero({ title, subtitle, bgImage, bgPosition = 'cente
   const cmsHero = detail?.hero
   const resolvedTitle = cmsHero?.titleOverride || title || detail?.title
   const resolvedSubtitle = cmsHero?.subtitle || subtitle
-  const resolvedBgImage = cmsHero?.desktopMedia?.url || bgImage
+  const desktopMedia = cmsHero?.desktopMedia
+  const mobileMedia = cmsHero?.mobileMedia
+  const resolvedBgImage = desktopMedia?.url || mobileMedia?.url || bgImage
   const resolvedBgPosition = cmsHero?.imagePosition || bgPosition
+  const mediaType = cmsHero?.mediaType === 'video' && (desktopMedia?.url || mobileMedia?.url)
+    ? 'video'
+    : 'image'
+  const overlay = noOverlay ? 'none' : (cmsHero?.overlay || 'dark')
+  const showScroll = !noScroll && cmsHero?.showScrollIndicator !== false
 
   return (
-    <section className="page-hero">
+    <section className={`page-hero page-hero--overlay-${overlay}`}>
       <div className="page-hero-bg">
-        {resolvedBgImage
-          ? <img src={resolvedBgImage} alt="" className="page-hero-bg-img" loading="eager" style={{ objectPosition: resolvedBgPosition }} />
+        {mediaType === 'video'
+          ? (
+              <video
+                className="page-hero-bg-img"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+                style={{ objectPosition: resolvedBgPosition }}
+              >
+                {mobileMedia?.url && <source src={mobileMedia.url} media="(max-width: 767px)" type={mobileMedia.mime || undefined} />}
+                <source src={desktopMedia?.url || mobileMedia?.url} type={desktopMedia?.mime || mobileMedia?.mime || undefined} />
+              </video>
+            )
+          : resolvedBgImage
+            ? (
+                <picture className="page-hero-bg-picture">
+                  {mobileMedia?.url && <source media="(max-width: 767px)" srcSet={mobileMedia.url} />}
+                  <img
+                    src={desktopMedia?.url || mobileMedia?.url || bgImage}
+                    alt=""
+                    className="page-hero-bg-img"
+                    loading="eager"
+                    style={{ objectPosition: resolvedBgPosition }}
+                  />
+                </picture>
+              )
           : <div className="page-hero-placeholder" />}
       </div>
-      {!noOverlay && <div className="page-hero-overlay" />}
+      {overlay !== 'none' && <div className={`page-hero-overlay page-hero-overlay--${overlay}`} />}
       <div className="page-hero-content">
         <h1 className="page-hero-title">{resolvedTitle || '追求完美 做到极致'}</h1>
         {resolvedSubtitle && <p className="page-hero-subtitle">{resolvedSubtitle}</p>}
         <div className="page-hero-divider" />
       </div>
-      {!noScroll && (
+      {showScroll && (
         <div className="page-hero-scroll" aria-hidden="true">
           <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
             <path d="M12 7V10" stroke="currentColor" strokeLinecap="square" strokeWidth="1.5" />

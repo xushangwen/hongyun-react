@@ -179,7 +179,17 @@ export const detailPopulate = {
         },
       },
       'content.data-table': { populate: '*' },
-      'content.equipment-grid': { populate: '*' },
+      'content.equipment-grid': {
+        populate: {
+          items: {
+            populate: {
+              image: { fields: mediaFields },
+              features: '*',
+              paragraphs: '*',
+            },
+          },
+        },
+      },
       'content.case-list': { populate: '*' },
       'content.cta': { populate: '*' },
       'technical.chart-gallery': { populate: { items: mediaItemPopulate } },

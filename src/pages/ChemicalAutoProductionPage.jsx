@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import PageHero from '../components/PageHero'
 import Breadcrumb from '../components/Breadcrumb'
 import SystemFeaturesSection from '../components/SystemFeaturesSection'
+import CoreEquipmentSection from '../components/CoreEquipmentSection'
 import TechInquirySection from '../components/TechInquirySection'
 import VideoPlayer from '../components/VideoPlayer'
 
@@ -213,33 +214,6 @@ const coreEquipment = [
   { name: '储罐',               img: `${EQ}/12-storage-tank.webp`          },
 ]
 
-/* ========== 核心设备卡片网格 ========== */
-function EquipmentCardGrid({ devices }) {
-  return (
-    <section className="page-section page-section--gray">
-      <div className="page-container">
-        <p className="section-en-label fade-up">Core Equipment</p>
-        <h2 className="section-heading section-heading--center fade-up">核心设备</h2>
-        <div className="chem-eq-grid fade-up fade-up-delay-1">
-          {devices.map((device, i) => (
-            <div className="chem-eq-card" key={i}>
-              <div className="chem-eq-img-wrap">
-                <img
-                  src={device.img}
-                  alt={device.name}
-                  className="chem-eq-img"
-                  loading="lazy"
-                />
-              </div>
-              <p className="chem-eq-name">{device.name}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 /* ========== 主页面 ========== */
 export default function ChemicalAutoProductionPage() {
 
@@ -308,7 +282,7 @@ export default function ChemicalAutoProductionPage() {
         <SystemFeaturesSection features={features} title="系统特点" enLabel="System Features" grayBg />
 
         {/* ===== 核心设备卡片网格 ===== */}
-        <EquipmentCardGrid devices={coreEquipment} />
+        <CoreEquipmentSection devices={coreEquipment} layoutVariant="cards" grayBg />
 
         {/* ===== 参数汇总（暂空）===== */}
         <section className="page-section page-section--gray">

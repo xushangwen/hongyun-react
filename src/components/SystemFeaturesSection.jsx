@@ -1,5 +1,5 @@
 import React from 'react'
-import { useCmsSection } from '../context/useCmsDetail'
+import { useCmsDetail } from '../context/useCmsDetail'
 
 /* ──────────────────────────────────────────────────────────
    SystemFeaturesSection — 系统/方案特点可复用区块
@@ -19,7 +19,12 @@ function getGridCols(n) {
 }
 
 export default function SystemFeaturesSection({ features = [], title = '系统特点', enLabel, grayBg = true, columns }) {
-  const cmsSection = useCmsSection('content.feature-grid')
+  const { detail, status } = useCmsDetail()
+  const cmsSection = detail?.sections?.find(
+    (section) => section.__component === 'content.feature-grid',
+  )
+  if (status === 'ready' && cmsSection?.visible === false) return null
+
   const cmsFeatures = (cmsSection?.items || [])
     .filter((item) => item.iconMedia?.url || item.iconKey)
     .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))

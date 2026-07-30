@@ -12,6 +12,39 @@ export function useCmsSection(component) {
   ) || null
 }
 
+function inlineDataset(section) {
+  if (!Array.isArray(section?.columns) || !Array.isArray(section?.rows)) return null
+  return {
+    title: section.title,
+    kind: 'spec-table',
+    schemaVersion: 1,
+    columns: section.columns,
+    headerGroups: Array.isArray(section.headerGroups) ? section.headerGroups : [],
+    rows: section.rows,
+    unitNotes: section.unitNotes || '',
+  }
+}
+
+function resolveTable(detail, section) {
+  if (!section) return null
+  return inlineDataset(section) || detail?.datasets?.[section.datasetKey] || null
+}
+
+export function useCmsDataTables() {
+  const { detail, status } = useCmsDetail()
+  if (status !== 'ready') return []
+  return (detail?.sections || [])
+    .filter((section) => section.__component === 'content.data-table' && section.visible !== false)
+    .map((section) => ({
+      section,
+      dataset: resolveTable(detail, section),
+      title: section.title || null,
+      layoutVariant: section.layoutVariant || 'scroll',
+      datasetView: section.datasetView || null,
+      unitNotes: section.unitNotes || '',
+    }))
+}
+
 export function useCmsDataTable(datasetKey) {
   const { detail, status } = useCmsDetail()
   const tableSection = detail?.sections?.find((section) => (
@@ -26,11 +59,12 @@ export function useCmsDataTable(datasetKey) {
 
   return {
     section: tableSection || null,
-    dataset: tableSection ? detail.datasets?.[tableSection.datasetKey] || null : null,
+    dataset: resolveTable(detail, tableSection),
     visible,
     title: tableSection?.title || null,
     layoutVariant: tableSection?.layoutVariant || 'scroll',
     datasetView: tableSection?.datasetView || null,
+    unitNotes: tableSection?.unitNotes || '',
   }
 }
 
