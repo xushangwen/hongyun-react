@@ -251,6 +251,14 @@ export default {
     })
   },
   bootstrap() {
+    const applyListLinkStyles = () => {
+      if (document.getElementById('hongyun-list-link-styles')) return
+      const style = document.createElement('style')
+      style.id = 'hongyun-list-link-styles'
+      style.textContent =
+        "main [role='gridcell'] a { border-bottom: 0 !important; text-decoration: none !important; }"
+      document.head.appendChild(style)
+    }
     const applyAdminTitle = () => {
       if (document.title !== ADMIN_TITLE) {
         document.title = ADMIN_TITLE
@@ -276,6 +284,7 @@ export default {
         })
     }
 
+    applyListLinkStyles()
     applyAdminTitle()
     hideVendorEntries()
     new MutationObserver(applyAdminTitle).observe(document.head, {
