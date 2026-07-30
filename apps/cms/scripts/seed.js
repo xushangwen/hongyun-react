@@ -10,9 +10,13 @@ const manifestPath = path.resolve(root, 'scripts/migration/content-manifest.json
 const publicRoot = path.resolve(root, 'public')
 const syncExisting = process.argv.includes('--sync-existing')
 const syncContact = process.argv.includes('--sync-contact')
+const replaceHome = process.argv.includes('--replace-home')
 process.env.CMS_SKIP_PRODUCT_LABEL_SYNC = 'true'
 if (syncExisting && process.env.MIGRATION_ALLOW_OVERWRITE !== 'true') {
   throw new Error('拒绝覆盖后台现有内容。仅在确认重置迁移数据时设置 MIGRATION_ALLOW_OVERWRITE=true。')
+}
+if (replaceHome && process.env.MIGRATION_ALLOW_HOME_REPLACE !== 'true') {
+  throw new Error('拒绝替换首页。仅在确认已备份生产数据库时设置 MIGRATION_ALLOW_HOME_REPLACE=true。')
 }
 let strapi
 
@@ -396,6 +400,15 @@ async function main() {
   await upsertSingle('api::site-setting.site-setting', manifest.singleTypes.siteSetting, {
     fillMissingFields: ['headerLogo', 'footerLogo', 'email', 'copyright'],
   })
+  if (replaceHome) {
+    const existingHome = await strapi.documents('api::home-page.home-page').findFirst({ locale: 'zh' })
+    if (existingHome) {
+      await strapi.documents('api::home-page.home-page').delete({
+        documentId: existingHome.documentId,
+        locale: 'zh',
+      })
+    }
+  }
   await upsertSingle('api::home-page.home-page', manifest.singleTypes.homePage, {
     fillMissingFields: [
       'heroSlides',
