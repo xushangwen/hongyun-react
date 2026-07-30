@@ -1,5 +1,9 @@
-import { describe, expect, it } from 'vitest'
-import { normalizeCms } from './cms'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { clearCmsCache, isCmsCacheBypassed, normalizeCms } from './cms'
+
+afterEach(() => {
+  vi.useRealTimers()
+})
 
 describe('normalizeCms media paths', () => {
   it('rewrites uploaded media paths inside JSON datasets through the BFF media route', () => {
@@ -20,5 +24,16 @@ describe('normalizeCms media paths', () => {
     expect(normalizeCms({ img: '/assets/images/history/1990.webp' })).toEqual({
       img: '/assets/images/history/1990.webp',
     })
+  })
+
+  it('bypasses cache while a published CMS change is propagating', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-07-31T00:00:00+08:00'))
+
+    clearCmsCache()
+
+    expect(isCmsCacheBypassed()).toBe(true)
+    vi.advanceTimersByTime(90_001)
+    expect(isCmsCacheBypassed()).toBe(false)
   })
 })

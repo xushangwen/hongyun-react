@@ -24,9 +24,19 @@ type CacheEntry = {
 }
 
 const cache = new Map<string, CacheEntry>()
+const CACHE_INVALIDATION_GRACE_MS = 90_000
+let cacheBypassUntil = 0
 
 export function clearCmsCache() {
   cache.clear()
+  // Strapi lifecycle events may fire before the published transaction is
+  // visible to subsequent Content API reads. Do not let an eager frontend
+  // refresh re-cache the old published value during that propagation window.
+  cacheBypassUntil = Math.max(cacheBypassUntil, Date.now() + CACHE_INVALIDATION_GRACE_MS)
+}
+
+export function isCmsCacheBypassed(now = Date.now()) {
+  return now < cacheBypassUntil
 }
 
 export function parseLocale(event: H3Event): Locale {
@@ -82,7 +92,8 @@ export async function cached<T>(
   loader: () => Promise<T>,
 ): Promise<T> {
   const now = Date.now()
-  const entry = cache.get(key)
+  const bypassCache = isCmsCacheBypassed(now)
+  const entry = bypassCache ? undefined : cache.get(key)
   if (entry && entry.expiresAt > now) {
     setResponseHeader(event, 'ETag', entry.etag)
     setResponseHeader(event, 'X-CMS-Cache', 'HIT')
@@ -93,9 +104,11 @@ export async function cached<T>(
   }
   const value = await loader()
   const etag = `"${createHash('sha1').update(JSON.stringify(value)).digest('hex')}"`
-  cache.set(key, { value, expiresAt: now + ttlMs, etag })
+  if (!isCmsCacheBypassed()) {
+    cache.set(key, { value, expiresAt: Date.now() + ttlMs, etag })
+  }
   setResponseHeader(event, 'ETag', etag)
-  setResponseHeader(event, 'X-CMS-Cache', 'MISS')
+  setResponseHeader(event, 'X-CMS-Cache', bypassCache ? 'BYPASS' : 'MISS')
   return value
 }
 
