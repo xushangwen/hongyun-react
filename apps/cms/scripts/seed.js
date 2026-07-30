@@ -149,7 +149,8 @@ async function upsertSingle(uid, data, { force = syncExisting, fillMissingFields
   if (existing && !force) {
     const missingData = Object.fromEntries(
       fillMissingFields
-        .filter((field) => existing[field] == null)
+        .filter((field) => existing[field] == null
+          || (Array.isArray(existing[field]) && existing[field].length === 0))
         .map((field) => [field, data[field]]),
     )
     if (!Object.keys(missingData).length) return existing
