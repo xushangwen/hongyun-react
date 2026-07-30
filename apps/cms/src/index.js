@@ -208,6 +208,7 @@ async function lockPublicRole(strapi) {
 }
 
 async function refreshProductCatalogLabels(strapi, productId = null) {
+  if (process.env.CMS_SKIP_PRODUCT_LABEL_SYNC === 'true') return 0
   const products = await strapi.db.query('api::product.product').findMany({
     ...(productId ? { where: { id: productId } } : {}),
     populate: ['categories', 'groups'],
