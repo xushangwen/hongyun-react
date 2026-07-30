@@ -162,13 +162,18 @@ async function upsertSingle(uid, data, { force = syncExisting, fillMissingFields
         updated = await strapi.documents(uid).update({
           documentId: existing.documentId,
           locale: 'zh',
-          ...(status ? { status } : {}),
           data: hydratedField,
         })
       } catch (error) {
         error.message = `补齐 ${uid}.${field} 失败: ${error.message}`
         throw error
       }
+    }
+    if (status) {
+      updated = await strapi.documents(uid).publish({
+        documentId: existing.documentId,
+        locale: 'zh',
+      })
     }
     return updated
   }
